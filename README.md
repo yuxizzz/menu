@@ -14,3 +14,10 @@ The output of the program should indicate the result of the request.
 Tools like those above will generate code snippets for you, as will some API documentation pages. You can also refer to the code from the Grade API lab activity for examples using OkHttp.
 All of your team members as collaborators for the repo.
 Under settings, you can add collaborators.o3o
+
+Recipe Organizer 
+
+store recipes (ingredients, instructions, etc.) 
+organize recipes in some meaningful way 
+user customization
+use of an API relevant to the domain
