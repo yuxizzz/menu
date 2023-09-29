@@ -21,3 +21,5 @@ store recipes (ingredients, instructions, etc.)
 organize recipes in some meaningful way 
 user customization
 use of an API relevant to the domain
+
+Our group will focus on Recipe Organizer.
