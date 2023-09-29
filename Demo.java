@@ -9,4 +9,5 @@ public class Demo {
             .method("GET", body)
             .build();
     Response response = client.newCall(request).execute();
+    int 0;
 }

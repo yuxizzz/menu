@@ -13,4 +13,17 @@ A minimal example of calling the API from Java.
 The output of the program should indicate the result of the request.
 Tools like those above will generate code snippets for you, as will some API documentation pages. You can also refer to the code from the Grade API lab activity for examples using OkHttp.
 All of your team members as collaborators for the repo.
-Under settings, you can add collaborators.
+Under settings, you can add collaborators.o3o
+
+Recipe Organizer 
+
+a description of the problem domain your team is tentatively wanting to focus on in the project. (e.g., trivia, finance, real estate, etc…)
+a brief, high-level description of what kind of application your team is thinking of developing.
+store recipes (ingredients, instructions, etc.) 
+
+organize recipes in some meaningful way 
+user customization
+use of an API relevant to the domain
+
+The problem domain that our project will focus on Recipe Organizer.
+
