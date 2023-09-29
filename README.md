@@ -17,9 +17,13 @@ Under settings, you can add collaborators.o3o
 
 Recipe Organizer 
 
+a description of the problem domain your team is tentatively wanting to focus on in the project. (e.g., trivia, finance, real estate, etc…)
+a brief, high-level description of what kind of application your team is thinking of developing.
 store recipes (ingredients, instructions, etc.) 
+
 organize recipes in some meaningful way 
 user customization
 use of an API relevant to the domain
 
-Our group will focus on Recipe Organizer.
+The problem domain that our project will focus on Recipe Organizer.
+
