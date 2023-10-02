@@ -1,10 +1,11 @@
 package api;
-
 import okhttp3.*;
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.IOException;
+import java.util.Arrays;
 
 public class Demo {
 
@@ -21,9 +22,9 @@ public class Demo {
         OkHttpClient client = new OkHttpClient().newBuilder()
                 .build();
         MediaType mediaType = MediaType.parse("text/plain");
-        RequestBody body = RequestBody.create("", mediaType);
+        RequestBody body = RequestBody.create(mediaType, "");
         Request request = new Request.Builder()
-                .url("https://api.spoonacular.com/recipes/findByIngredients?ingredients=carrots,tomatoes&number=10&limitLicense=true&ranking=1&ignorePantry=false&apiKey=058b6a2aa4e24c0186999c82e5b1f05e")
+                .url("https://api.spoonacular.com/recipes/guessNutrition?title=Spaghetti&apiKey=058b6a2aa4e24c0186999c82e5b1f05e")
                 .method("GET", body)
                 .build();
 
@@ -40,13 +41,12 @@ public class Demo {
             Response response = client.newCall(request).execute();
             System.out.println(response);
             JSONObject responseBody = new JSONObject(response.body().string());
-            return responseBody;
-//            if (responseBody.getInt("status_code") == 200) {
-//                JSONObject grade = responseBody.getJSONObject("grade");
-//                return response; //?????
-//            } else {
-//                throw new RuntimeException(responseBody.getString("message"));
-//            }
+            if (responseBody.getInt("status_code") == 200) {
+                JSONObject grade = responseBody.getJSONObject("grade");
+                return grade;
+            } else {
+               throw new RuntimeException(responseBody.getString("message"));
+            }
         } catch (IOException | JSONException e) {
             throw new RuntimeException(e);
         }
