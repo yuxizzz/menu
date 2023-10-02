@@ -34,7 +34,7 @@ public class Demo {
                 .build();
 //        Response response = client.newCall(request).execute();
 
-//        our code
+        //our code
 //        OkHttpClient client = new OkHttpClient().newBuilder()
 //                .build();
 //        MediaType mediaType = MediaType.parse("text/plain");
@@ -75,6 +75,6 @@ public class Demo {
 
     public static void main(String[] args) throws IOException {
         System.out.println(Demo.getDemo());
-        int i = 0;
+
     }
 }
