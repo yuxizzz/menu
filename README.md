@@ -19,6 +19,7 @@ Functions:
 3. a link to the documentation for an API your team can use related to the domain. 
 https://spoonacular.com/food-api/docs#Search-Recipes-Complex 
 4. a screenshot of using a tool to try out the API (like https://www.postman.com/Links to an external site. or https://hoppscotch.io/Links to an external site.Links to an external site.)
+   ![psost_recipe](https://github.com/yuxizzz/menu/blob/main/post%20recipe.jpeg)
 5. Technical problems blocking progress: 
 Which json version to use? We can’t find org.json:json:20230618, so we used json-20220924.jar instead. What are the differences? 
 How to utilize the requested json file and extract data based on user’s inputs? 
