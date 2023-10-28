@@ -1,5 +1,6 @@
 package entity;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -11,12 +12,22 @@ public class CommonRecipe implements Recipe {
     private List<String> tag;
     private Map<String, Boolean> allergy;
 
-    public CommonRecipe(String name, String ingredients, String nutrition, String instructions, List<String> tag, Map<String, Boolean> allergy) {
+    public CommonRecipe(String name, String ingredients, String nutrition, String instructions, List<String> tag) {
         this.name = name;
         this.ingredients = ingredients;
         this.nutrition = nutrition;
         this.instructions = instructions;
         this.tag = tag;
+        Map<String, Boolean> allergy = new HashMap<>();
+        String[] lla = {"Eggs", "Milk", "Mustard", "Peanut", "Crustacean", "Mollusc", "Fish", "Sesame", "Soy",
+                "Sulphites", "Sulfites", "Nut", "Wheat"};
+        for (String s : lla) {
+            if (ingredients.contains(s)) {
+                allergy.put(s, true);
+            } else {
+                allergy.put(s, false);
+            }
+        }
         this.allergy = allergy;
     }
 
@@ -42,6 +53,17 @@ public class CommonRecipe implements Recipe {
 
         public RecipeBuilder ingredients(String ingredients) {
             this.ingredients = ingredients;
+            Map<String, Boolean> allergy = new HashMap<>();
+            String[] lla = {"Eggs", "Milk", "Mustard", "Peanut", "Crustacean", "Mollusc", "Fish", "Sesame", "Soy",
+                    "Sulphites", "Sulfites", "Nut", "Wheat"};
+            for (String s : lla) {
+                if (ingredients.contains(s)) {
+                    allergy.put(s, true);
+                } else {
+                    allergy.put(s, false);
+                }
+            }
+            this.allergy = allergy;
             return this;
         }
 
@@ -60,13 +82,9 @@ public class CommonRecipe implements Recipe {
             return this;
         }
 
-        public RecipeBuilder allergy(Map<String, Boolean> allergy) {
-            this.allergy = allergy;
-            return this;
-        }
 
         public Recipe build() {
-            return new CommonRecipe(name, ingredients, nutrition, instructions, tag, allergy);
+            return new CommonRecipe(name, ingredients, nutrition, instructions, tag);
         }
     }
 
