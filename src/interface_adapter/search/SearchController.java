@@ -1,4 +1,4 @@
-package src.interface_adapter.search;
+package interface_adapter.search;
 
 public class SearchController {
 }

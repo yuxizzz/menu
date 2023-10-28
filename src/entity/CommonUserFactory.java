@@ -1,8 +1,5 @@
-<<<<<<< HEAD
-package src.entity;
-=======
 package entity;
->>>>>>> Hong
+
 
 import java.time.LocalDateTime;
 

@@ -1,8 +1,5 @@
-<<<<<<< HEAD
-package src.view;
-=======
 package view;
->>>>>>> Hong
+
 
 import javax.swing.*;
 

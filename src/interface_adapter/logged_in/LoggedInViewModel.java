@@ -1,13 +1,8 @@
-<<<<<<< HEAD
-package src.interface_adapter.logged_in;
 
-import interface_adapter.ViewModel;
-=======
 package interface_adapter.logged_in;
 
 import interface_adapter.ViewModel;
 import interface_adapter.login.LoginState;
->>>>>>> Hong
 
 import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;

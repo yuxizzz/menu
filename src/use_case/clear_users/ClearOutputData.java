@@ -1,15 +1,9 @@
-<<<<<<< HEAD
-package src.use_case.clear_users;
-=======
-package use_case.clear_users;
 
-// TODO Complete me
->>>>>>> Hong
+package use_case.clear_users;
 
 import java.util.ArrayList;
 
 public class ClearOutputData {
-<<<<<<< HEAD
     private boolean useCaseFailed;
     private String userDeleted;
 
@@ -24,15 +18,5 @@ public class ClearOutputData {
 
     public String getUserDeleted() {
         return userDeleted;
-=======
-    private final String clearedUserNames;
-
-    public ClearOutputData(String clearedUserNames) {
-        this.clearedUserNames = clearedUserNames;
-    }
-
-    public String getclearedUserNames() {
-        return clearedUserNames;
->>>>>>> Hong
     }
 }

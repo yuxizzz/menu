@@ -1,12 +1,7 @@
-<<<<<<< HEAD
-package src.data_access;
-=======
-package data_access;
->>>>>>> Hong
 
+package data_access;
 import entity.User;
 import use_case.signup.SignupUserDataAccessInterface;
-
 import java.util.HashMap;
 import java.util.Map;
 

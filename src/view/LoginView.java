@@ -1,16 +1,10 @@
-<<<<<<< HEAD
-package src.view;
-=======
 package view;
->>>>>>> Hong
 
 import interface_adapter.login.LoginController;
 import interface_adapter.login.LoginState;
 import interface_adapter.login.LoginViewModel;
-<<<<<<< HEAD
-=======
-import interface_adapter.signup.SignupState;
->>>>>>> Hong
+
+
 
 import javax.swing.*;
 import java.awt.*;
@@ -96,11 +90,8 @@ public class LoginView extends JPanel implements ActionListener, PropertyChangeL
                     @Override
                     public void keyTyped(KeyEvent e) {
                         LoginState currentState = loginViewModel.getState();
-<<<<<<< HEAD
                         currentState.setPassword(String.valueOf(passwordInputField.getPassword()) + e.getKeyChar());
-=======
-                        currentState.setPassword(passwordInputField.getText() + e.getKeyChar());
->>>>>>> Hong
+
                         loginViewModel.setState(currentState);
                     }
 

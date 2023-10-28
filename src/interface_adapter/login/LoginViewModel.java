@@ -1,8 +1,4 @@
-<<<<<<< HEAD
-package src.interface_adapter.login;
-=======
 package interface_adapter.login;
->>>>>>> Hong
 
 import interface_adapter.ViewModel;
 

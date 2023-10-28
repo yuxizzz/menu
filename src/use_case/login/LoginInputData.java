@@ -1,8 +1,4 @@
-<<<<<<< HEAD
-package src.use_case.login;
-=======
 package use_case.login;
->>>>>>> Hong
 
 public class LoginInputData {
 

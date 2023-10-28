@@ -88,8 +88,6 @@ public class FileUserDataAccessObject implements SignupUserDataAccessInterface, 
         }
     }
 
-<<<<<<< HEAD
-
     /**
      * Return whether a user exists with username identifier.
      * @param identifier the username to check.
@@ -109,34 +107,3 @@ public class FileUserDataAccessObject implements SignupUserDataAccessInterface, 
         return users;
     }
 }
-=======
-    public String clearUsers() {
-        String clearedUserNames = "";
-        for (String username : accounts.keySet()) {
-            clearedUserNames += username + " ";
-
-            try (BufferedWriter writer = new BufferedWriter(new FileWriter(csvFile))) {
-                writer.write(String.join(",", headers.keySet()));
-                writer.newLine();
-            } catch (IOException e) {
-                throw new RuntimeException("can not clear：" + e.getMessage());
-            }
-
-        }
-        return clearedUserNames;
-    }
-
-
-        /**
-         * Return whether a user exists with username identifier.
-         * @param identifier the username to check.
-         * @return whether a user exists with username identifier
-         */
-        @Override
-        public boolean existsByName (String identifier){
-            return accounts.containsKey(identifier);
-        }
-
-
-}
->>>>>>> Hong

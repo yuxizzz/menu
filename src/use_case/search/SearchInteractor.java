@@ -1,4 +1,4 @@
-package src.use_case.search;
+package use_case.search;
 
 public class SearchInteractor {
 }
