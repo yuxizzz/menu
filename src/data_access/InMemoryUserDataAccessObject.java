@@ -1,4 +1,4 @@
-package src.data_access;
+package data_access;
 
 import entity.User;
 import use_case.signup.SignupUserDataAccessInterface;

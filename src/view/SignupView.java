@@ -1,4 +1,4 @@
-package src.view;
+package view;
 
 import interface_adapter.clear_users.ClearController;
 import interface_adapter.clear_users.ClearState;
