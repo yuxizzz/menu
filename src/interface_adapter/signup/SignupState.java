@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 package src.interface_adapter.signup;
+=======
+package interface_adapter.signup;
+>>>>>>> Hong
 
 public class SignupState {
     private String username = "";

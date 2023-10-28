@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 package src.view;
 
 import interface_adapter.clear_users.ClearController;
@@ -6,6 +7,17 @@ import interface_adapter.clear_users.ClearViewModel;
 import interface_adapter.signup.SignupController;
 import interface_adapter.signup.SignupState;
 import interface_adapter.signup.SignupViewModel;
+=======
+package view;
+
+import interface_adapter.signup.SignupController;
+import interface_adapter.signup.SignupState;
+import interface_adapter.signup.SignupViewModel;
+import interface_adapter.clear_users.ClearController;
+import interface_adapter.clear_users.ClearState;
+import interface_adapter.clear_users.ClearViewModel;
+
+>>>>>>> Hong
 
 import javax.swing.*;
 import java.awt.*;
@@ -25,11 +37,15 @@ public class SignupView extends JPanel implements ActionListener, PropertyChange
     private final JPasswordField passwordInputField = new JPasswordField(15);
     private final JPasswordField repeatPasswordInputField = new JPasswordField(15);
     private final SignupController signupController;
+<<<<<<< HEAD
 
+=======
+>>>>>>> Hong
     private final ClearController clearController;
 
     private final JButton signUp;
     private final JButton cancel;
+<<<<<<< HEAD
     private final JButton clear;
 
     public SignupView(SignupController controller, SignupViewModel signupViewModel,
@@ -41,6 +57,20 @@ public class SignupView extends JPanel implements ActionListener, PropertyChange
         this.clearController = clearController;
         signupViewModel.addPropertyChangeListener(this);
         clearViewModel.addPropertyChangeListener(this);
+=======
+
+
+    private final JButton clear;
+
+    public SignupView(SignupController controller, SignupViewModel signupViewModel,ClearController clearController, ClearViewModel clearViewModel) {
+
+        this.signupController = controller;
+        this.signupViewModel = signupViewModel;
+        this.clearController = clearController;
+        this.clearViewModel = clearViewModel;
+
+        signupViewModel.addPropertyChangeListener(this);
+>>>>>>> Hong
 
         JLabel title = new JLabel(SignupViewModel.TITLE_LABEL);
         title.setAlignmentX(Component.CENTER_ALIGNMENT);
@@ -57,11 +87,19 @@ public class SignupView extends JPanel implements ActionListener, PropertyChange
         buttons.add(signUp);
         cancel = new JButton(SignupViewModel.CANCEL_BUTTON_LABEL);
         buttons.add(cancel);
+<<<<<<< HEAD
+=======
+
+>>>>>>> Hong
         clear = new JButton(SignupViewModel.CLEAR_BUTTON_LABEL);
         buttons.add(clear);
 
         signUp.addActionListener(
+<<<<<<< HEAD
                 // This creates an anonymous subclass of ActionListener and instantiates it.
+=======
+
+>>>>>>> Hong
                 new ActionListener() {
                     public void actionPerformed(ActionEvent evt) {
                         if (evt.getSource().equals(signUp)) {
@@ -77,25 +115,43 @@ public class SignupView extends JPanel implements ActionListener, PropertyChange
                 }
         );
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> Hong
         clear.addActionListener(
                 new ActionListener() {
                     @Override
                     public void actionPerformed(ActionEvent e) {
                         if (e.getSource().equals(clear)) {
+<<<<<<< HEAD
                             ClearState currentState = clearViewModel.getState();
                             clearController.execute();
                         }
 
+=======
+                            ClearState clearState = clearViewModel.getState();
+
+                            clearController.execute();
+
+                            String deletedUserNames = clearState.getclearedUserNames();
+
+                            JOptionPane.showMessageDialog(SignupView.this, deletedUserNames.replaceAll(" ", "\n"));
+                        }
+>>>>>>> Hong
                     }
                 }
         );
 
         cancel.addActionListener(this);
 
+<<<<<<< HEAD
         // This makes a new KeyListener implementing class, instantiates it, and
         // makes it listen to keystrokes in the usernameInputField.
         //
         // Notice how it has access to instance variables in the enclosing class!
+=======
+>>>>>>> Hong
         usernameInputField.addKeyListener(
                 new KeyListener() {
                     @Override
@@ -120,7 +176,11 @@ public class SignupView extends JPanel implements ActionListener, PropertyChange
                     @Override
                     public void keyTyped(KeyEvent e) {
                         SignupState currentState = signupViewModel.getState();
+<<<<<<< HEAD
                         currentState.setPassword(String.valueOf(passwordInputField.getPassword()) + e.getKeyChar());
+=======
+                        currentState.setPassword(passwordInputField.getText() + e.getKeyChar());
+>>>>>>> Hong
                         signupViewModel.setState(currentState);
                     }
 
@@ -141,7 +201,11 @@ public class SignupView extends JPanel implements ActionListener, PropertyChange
                     @Override
                     public void keyTyped(KeyEvent e) {
                         SignupState currentState = signupViewModel.getState();
+<<<<<<< HEAD
                         currentState.setRepeatPassword(String.valueOf(repeatPasswordInputField.getPassword()) + e.getKeyChar());
+=======
+                        currentState.setRepeatPassword(repeatPasswordInputField.getText() + e.getKeyChar());
+>>>>>>> Hong
                         signupViewModel.setState(currentState); // Hmm, is this necessary?
                     }
 
@@ -166,6 +230,11 @@ public class SignupView extends JPanel implements ActionListener, PropertyChange
         this.add(buttons);
     }
 
+<<<<<<< HEAD
+=======
+
+
+>>>>>>> Hong
     /**
      * React to a button click that results in evt.
      */
@@ -175,6 +244,7 @@ public class SignupView extends JPanel implements ActionListener, PropertyChange
 
     @Override
     public void propertyChange(PropertyChangeEvent evt) {
+<<<<<<< HEAD
         if (evt.getNewValue() instanceof SignupState) {
             SignupState state = (SignupState) evt.getNewValue();
             if (state.getUsernameError() != null) {
@@ -188,4 +258,11 @@ public class SignupView extends JPanel implements ActionListener, PropertyChange
         }
     }
 
+=======
+        SignupState state = (SignupState) evt.getNewValue();
+        if (state.getUsernameError() != null) {
+            JOptionPane.showMessageDialog(this, state.getUsernameError());
+        }
+    }
+>>>>>>> Hong
 }

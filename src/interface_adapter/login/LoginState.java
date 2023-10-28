@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 package src.interface_adapter.login;
+=======
+package interface_adapter.login;
+>>>>>>> Hong
 
 public class LoginState {
     private String username = "";

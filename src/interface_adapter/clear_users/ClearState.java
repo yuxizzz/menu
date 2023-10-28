@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 package src.interface_adapter.clear_users;
 
 public class ClearState {
@@ -23,4 +24,26 @@ public class ClearState {
     public void setMessageError(String error) {
         this.messageError = error;
     }
+=======
+package interface_adapter.clear_users;
+
+// TODO Complete me
+
+public class ClearState {
+        private String clearedUserNames = "";
+
+        public ClearState() {
+
+        }
+
+        public void setclearedUserNames(String clearedUserNames) {
+            this.clearedUserNames = clearedUserNames;
+        }
+
+        public String getclearedUserNames() {
+            return clearedUserNames;
+        }
+
+
+>>>>>>> Hong
 }

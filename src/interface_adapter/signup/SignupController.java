@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 package src.interface_adapter.signup;
+=======
+package interface_adapter.signup;
+>>>>>>> Hong
 
 import use_case.signup.SignupInputBoundary;
 import use_case.signup.SignupInputData;

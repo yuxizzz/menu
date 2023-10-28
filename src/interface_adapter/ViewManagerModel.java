@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 package src.interface_adapter;
+=======
+package interface_adapter;
+>>>>>>> Hong
 
 import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;

@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 package src.interface_adapter.login;
 
 import interface_adapter.ViewManagerModel;
@@ -5,6 +6,18 @@ import interface_adapter.logged_in.LoggedInState;
 import interface_adapter.logged_in.LoggedInViewModel;
 import use_case.login.LoginOutputBoundary;
 import use_case.login.LoginOutputData;
+=======
+package interface_adapter.login;
+
+import interface_adapter.logged_in.LoggedInState;
+import interface_adapter.logged_in.LoggedInViewModel;
+import interface_adapter.ViewManagerModel;
+import interface_adapter.signup.SignupState;
+import use_case.login.LoginOutputBoundary;
+import use_case.login.LoginOutputData;
+import use_case.signup.SignupOutputBoundary;
+import use_case.signup.SignupOutputData;
+>>>>>>> Hong
 
 public class LoginPresenter implements LoginOutputBoundary {
 

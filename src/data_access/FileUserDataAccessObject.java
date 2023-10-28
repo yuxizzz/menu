@@ -1,19 +1,20 @@
-package src.data_access;
+package data_access;
 
 import entity.User;
 import entity.UserFactory;
-import use_case.clear_users.ClearUserDataAccessInterface;
 import use_case.login.LoginUserDataAccessInterface;
 import use_case.signup.SignupUserDataAccessInterface;
+import use_case.clear_users.ClearUserDataAccessInterface;
 
 import java.io.*;
 import java.time.LocalDateTime;
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.Map;
+import java.util.List;
+import java.util.ArrayList;
 
-public class FileUserDataAccessObject implements SignupUserDataAccessInterface, LoginUserDataAccessInterface, ClearUserDataAccessInterface{
+public class FileUserDataAccessObject implements SignupUserDataAccessInterface, LoginUserDataAccessInterface , ClearUserDataAccessInterface {
 
     private final File csvFile;
 
@@ -87,6 +88,7 @@ public class FileUserDataAccessObject implements SignupUserDataAccessInterface, 
         }
     }
 
+<<<<<<< HEAD
 
     /**
      * Return whether a user exists with username identifier.
@@ -107,3 +109,34 @@ public class FileUserDataAccessObject implements SignupUserDataAccessInterface, 
         return users;
     }
 }
+=======
+    public String clearUsers() {
+        String clearedUserNames = "";
+        for (String username : accounts.keySet()) {
+            clearedUserNames += username + " ";
+
+            try (BufferedWriter writer = new BufferedWriter(new FileWriter(csvFile))) {
+                writer.write(String.join(",", headers.keySet()));
+                writer.newLine();
+            } catch (IOException e) {
+                throw new RuntimeException("can not clear：" + e.getMessage());
+            }
+
+        }
+        return clearedUserNames;
+    }
+
+
+        /**
+         * Return whether a user exists with username identifier.
+         * @param identifier the username to check.
+         * @return whether a user exists with username identifier
+         */
+        @Override
+        public boolean existsByName (String identifier){
+            return accounts.containsKey(identifier);
+        }
+
+
+}
+>>>>>>> Hong
