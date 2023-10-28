@@ -1,7 +1,7 @@
 package src.interface_adapter.clear_users;
 
-import use_case.clear_users.ClearInputBoundary;
-import use_case.clear_users.ClearInputData;
+import src.use_case.clear_users.ClearInputBoundary;
+import src.use_case.clear_users.ClearInputData;
 
 public class ClearController {
     final ClearInputBoundary clearUseCaseInteractor;
