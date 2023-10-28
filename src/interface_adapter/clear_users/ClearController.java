@@ -1,16 +1,17 @@
 package interface_adapter.clear_users;
 
-import data_access.FileUserDataAccessObject;
 import use_case.clear_users.ClearInputBoundary;
-import use_case.clear_users.ClearUserDataAccessInterface;
+import use_case.clear_users.ClearInputData;
 
-// TODO Complete me
 public class ClearController {
-    final ClearInputBoundary clearUsersInteractor;
-    public ClearController(ClearInputBoundary clearUsersInteractor) {
-        this.clearUsersInteractor = clearUsersInteractor;
+    final ClearInputBoundary clearUseCaseInteractor;
+
+    public ClearController(ClearInputBoundary clearUseCaseInteractor) {
+        this.clearUseCaseInteractor = clearUseCaseInteractor;
     }
+
     public void execute() {
-        clearUsersInteractor.execute();
+        ClearInputData clearInputData = new ClearInputData();
+        clearUseCaseInteractor.execute(clearInputData);
     }
 }
