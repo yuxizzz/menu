@@ -30,7 +30,6 @@ public class SignupView extends JPanel implements ActionListener, PropertyChange
 
     private final JButton signUp;
     private final JButton cancel;
-<<<<<<< HEAD
     private final JButton clear;
 
     public SignupView(SignupController controller, SignupViewModel signupViewModel,
