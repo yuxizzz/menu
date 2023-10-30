@@ -17,6 +17,39 @@ public class Search {
         return API_TOKEN;
     }
 
+    public static JSONObject getRecipeList() throws IOException {
+        OkHttpClient client = new OkHttpClient().newBuilder()
+                .build();
+        // MediaType mediaType = MediaType.parse("application/json");
+        // RequestBody body = RequestBody.create(mediaType, "0=i&1=n&2=g&3=r&4=e&5=d&6=i&7=e&8=n&9=t&10=L&11=i&12=s&13=t&14==&15=3&16= &17=o&18=z&19= &20=f&21=l&22=o&23=u&24=r&25=%26&26=s&27=e&28=r&29=v&30=i&31=n&32=g&33=s&34==&35=2");
+        Request request = new Request.Builder()
+                .url("https://api.spoonacular.com/recipes/complexSearch?diet=vegetarian&intolerances=gluten&addRecipeInformation=false&addRecipeNutrition=false&tags=ipsum ea proident amet occaecat&sort=calories&sortDirection=asc&offset=606&number=10&apiKey=33e759b1978e4ecb9cc584a2bf0ba675")
+                .addHeader("Content-Type", "application/json")
+                .build();
+
+        try {
+            Response response = client.newCall(request).execute();
+            assert response.body() != null;
+            JSONObject responseBody = new JSONObject(response.body().string());
+            if (response.code() == 200) {
+                return responseBody;
+//                return Recipe.builder()
+//                        .name(recipe.getString("name"))
+//                        .ingredients(recipe.getString("ingredients"))
+//                        .nutrition(recipe.getString("nutrition"))
+//                        .instructions(recipe.getString("instructions"))
+//                        .tag(recipe.getList("tag"))
+//                        .allergy(recipe.getMap("allergy"))
+//                        .build();
+            } else {
+                throw new RuntimeException(response.message());
+            }
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+
     public static JSONObject getRecipe() throws IOException {
         OkHttpClient client = new OkHttpClient().newBuilder()
                 .build();
