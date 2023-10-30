@@ -1,26 +1,20 @@
-package interface_adapter.login;
-
-import interface_adapter.ViewModel;
+package interface_adapter.search;
 
 import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;
 
-public class LoginViewModel extends ViewModel {
-
-    public final String TITLE_LABEL = "Log In View";
-    public final String USERNAME_LABEL = "Enter username";
-    public final String PASSWORD_LABEL = "Enter password";
-
-    public static final String LOGIN_BUTTON_LABEL = "Log in";
+public class SearchViewModel {
+    public static final String SEARCH_BUTTON_LABEL = "Search";
+    public static final String TITLE_LABEL = "Search View";
     public static final String CANCEL_BUTTON_LABEL = "Cancel";
 
-    private LoginState state = new LoginState();
+    private SearchState state = new SearchState();
 
-    public LoginViewModel() {
-        super("log in");
+    public SearchViewModel() {
+        super("search recipes");
     }
 
-    public void setState(LoginState state) {
+    public void setState(SearchState state) {
         this.state = state;
     }
 
@@ -36,7 +30,7 @@ public class LoginViewModel extends ViewModel {
         support.addPropertyChangeListener(listener);
     }
 
-    public LoginState getState() {
+    public SearchState getState() {
         return state;
     }
 }

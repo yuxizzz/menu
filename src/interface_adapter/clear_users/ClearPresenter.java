@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 package src.interface_adapter.clear_users;
 import interface_adapter.ViewManagerModel;
 import use_case.clear_users.ClearOutputBoundary;

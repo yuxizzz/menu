@@ -1,9 +1,12 @@
-package src.interface_adapter.clear_users;
+
+package interface_adapter.clear_users;
+
 
 import interface_adapter.ViewModel;
 
 import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;
+<<<<<<< HEAD
 
 public class ClearViewModel extends ViewModel {
     public final String TITLE_LABEL = "Clear View";
@@ -34,3 +37,4 @@ public class ClearViewModel extends ViewModel {
         return state;
     }
 }
+
