@@ -1,9 +1,11 @@
 package interface_adapter.search;
 
+import interface_adapter.ViewModel;
+
 import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;
 
-public class SearchViewModel {
+public class SearchViewModel extends ViewModel {
     public static final String SEARCH_BUTTON_LABEL = "Search";
     public static final String TITLE_LABEL = "Search View";
     public static final String CANCEL_BUTTON_LABEL = "Cancel";

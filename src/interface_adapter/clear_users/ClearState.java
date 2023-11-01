@@ -1,5 +1,4 @@
-<<<<<<< HEAD
-package src.interface_adapter.clear_users;
+package interface_adapter.clear_users;
 
 public class ClearState {
     private String message = "";
