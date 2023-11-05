@@ -32,6 +32,7 @@ class Folder{
 
 class Recipe{
 	-recipeid: String
+	-recipeurl: String
 	-image: String
   	-name: String   
   	-ingredients: String   
