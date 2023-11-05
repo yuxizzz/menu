@@ -22,15 +22,17 @@ class User {
 
 class Folder{ 
   	+name: String   
-  	+folder: Map<recipename: string, recipe: Recipe>
+  	+folder: Map<recipeid: string, recipe: Recipe>
   ---
-  	+removeRecipe(recipename: string): void  
+  	+removeRecipe(recipeid: string): void  
   	+deleteFolder(): void  
 }  
 
   
 
-class Recipe{  
+class Recipe{
+	-recipeid: String
+	-image: String
   	-name: String   
   	-ingredients: String   
   	-nutrition: String   
