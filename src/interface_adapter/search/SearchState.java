@@ -1,38 +1,60 @@
 package interface_adapter.search;
 
 public class SearchState {
-    private String keyWords = "";
-    private String keyWordsError = null;
+    private String ingredients = "";
+    private String ingredientsError = null;
+    private String allergy = "";
+    private String allergyError = null;
+
 
     public SearchState(SearchState copy) {
-        keyWords = copy.keyWords;
-        keyWordsError = copy.keyWordsError;
+        ingredients = copy.ingredients;
+        ingredientsError = copy.ingredientsError;
+        allergy = copy.allergy;
+        allergyError = copy.allergyError;
     }
 
     // Because of the previous copy constructor, the default constructor must be explicit.
     public SearchState() {
     }
 
-    public String getKeyWords() {
-        return keyWords;
+    public String getIngredients() {
+        return ingredients;
     }
 
-    public String getKeyWordsError() {
-        return keyWordsError;
+    public String getIngredientsError() {
+        return ingredientsError;
     }
 
-    public void setKeyWords(String keyWords) {
-        this.keyWords = keyWords;
+    public String getAllergy() {
+        return allergy;
     }
 
-    public void setKeyWordsError(String keyWordsError) {
-        this.keyWordsError = keyWordsError;
+    public String getAllergyError() {
+        return allergyError;
+    }
+
+    public void setIngredients(String userIngredients) {
+        this.ingredients = userIngredients;
+    }
+
+    public void setIngredientsError(String userIngredientsError) {
+        this.ingredientsError = userIngredientsError;
+    }
+
+    public void setAllergy(String allergy) {
+        this.allergy = allergy;
+    }
+
+    public void setAllergyError(String allergyError) {
+        this.allergyError = allergyError;
     }
 
     @Override
     public String toString() {
         return "SearchState{" +
-                "KeyWords='" + keyWords + '\'' +
+                "ingredients='" + ingredients + '\'' +
+                ", allergy='" + allergy + '\'' +
                 '}';
     }
 }

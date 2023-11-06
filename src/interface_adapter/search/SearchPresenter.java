@@ -36,9 +36,6 @@ public class SearchPresenter implements SearchOutputBoundary {
         SearchState searchState = searchViewModel.getState();
         searchState.setKeyWordsError(error);
         searchViewModel.firePropertyChanged();
-
-
     }
-
 }
 

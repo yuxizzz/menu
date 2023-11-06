@@ -1,13 +1,20 @@
 package use_case.search;
 
 public class SearchInputData {
-    final private String keyWords;
+    final private String ingredients;
+    final private String allergy;
 
-    public SearchInputData(String keyWords) {
-        this.keyWords = keyWords;
+    public SearchInputData(String ingredients, String allergy) {
+        this.ingredients = ingredients;
+        this.allergy = allergy;
+
     }
 
-    String getKeyWords() {
-        return keyWords;
+    String getIngredients() {
+        return ingredients;
+    }
+
+    String getAllergy() {
+        return allergy;
     }
 }
