@@ -6,8 +6,12 @@ import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;
 
 public class SearchViewModel extends ViewModel {
+    public static final String TITLE_LABEL = "Search Your Recipes!";
     public static final String SEARCH_BUTTON_LABEL = "Search";
-    public static final String TITLE_LABEL = "Search View";
+    public static final String INGREDIENT_BUTTON_LABEL = "Ingredients";
+
+    public static final String ALLERGY_BUTTON_LABEL = "Allergy/Intolerance";
+    public static final String MYFOLDER_BUTTON_LABEL = "My Folder";
     public static final String CANCEL_BUTTON_LABEL = "Cancel";
 
     private SearchState state = new SearchState();
