@@ -1,10 +1,6 @@
 package entity;
 
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-
-public class CommonSearchResults {
+public class CommonSearchResults implements SearchResults {
     private String image;
     private String recipeid;
     private String title;
@@ -49,6 +45,10 @@ public class CommonSearchResults {
         public SearchResultsBuilder imageType(String imageType) {
             this.imageType = imageType;
             return this;
+        }
+
+        public SearchResults build() {
+            return new CommonSearchResults(image, recipeid, title, imageType);
         }
     }
 
