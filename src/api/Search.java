@@ -1,12 +1,17 @@
 package api;
 
+import entity.CommonSearchResults;
+import entity.SearchResults;
 import okhttp3.*;
 import entity.Recipe;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Map;
+import java.util.List;
 
 public class Search {
 
@@ -18,7 +23,7 @@ public class Search {
         return API_TOKEN;
     }
 
-    public static JSONArray getRecipeList() throws IOException {
+    public static HashMap getRecipeList() throws IOException {
         OkHttpClient client = new OkHttpClient().newBuilder()
                 .build();
         // MediaType mediaType = MediaType.parse("application/json");
@@ -34,13 +39,34 @@ public class Search {
             JSONObject responseBody = new JSONObject(response.body().string());
             JSONArray results = responseBody.getJSONArray("results");
             if (response.code() == 200) {
-                return results;
-//                return SearchResults.builder()
-//                        .image(results.getString("image"))
-//                        .recipeid(results.getString("id"))
-//                        .title(results.getString("title"))
-//                        .imageType(results.getString("imageType"))
+//                return results;
+                HashMap<Object, SearchResults> searchresult = new HashMap<Object, SearchResults>();
+                for (Object item: results) {
+                    if (item.getClass().equals(JSONObject.class)) {
+                        SearchResults value = CommonSearchResults.builder()
+                                .image(((JSONObject) item).getString("image"))
+                                .recipeid(((JSONObject) item).getString("id"))
+                                .title(((JSONObject) item).getString("title"))
+                                .imageType(((JSONObject) item).getString("imageType"))
+                                .build();
+
+                        searchresult.put(value.getRecipeid(), value);
+
+//                    searchresult = CommonSearchResults.builder()
+//                            .image(results.toString("image"))
+//                            .recipeid(results.toString("id"))
+//                            .title(results.toString("title"))
+//                            .imageType(results.toString("imageType"))
+//                            .build();
+                    }
+                }
+//                return CommonSearchResults.builder()
+//                        .image(results.toString("image"))
+//                        .recipeid(results.toString("id"))
+//                        .title(results.toString("title"))
+//                        .imageType(results.toString("imageType"))
 //                        .build();
+                return searchresult;
             } else {
                 throw new RuntimeException(response.message());
             }
