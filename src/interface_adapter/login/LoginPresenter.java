@@ -5,6 +5,7 @@ import interface_adapter.logged_in.LoggedInState;
 import interface_adapter.logged_in.LoggedInViewModel;
 import use_case.login.LoginOutputBoundary;
 import use_case.login.LoginOutputData;
+import interface_adapter.login.LoginViewModel;
 
 public class LoginPresenter implements LoginOutputBoundary {
 
