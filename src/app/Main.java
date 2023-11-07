@@ -1,4 +1,4 @@
-package src.app;
+package app;
 
 import data_access.FileUserDataAccessObject;
 import entity.CommonUserFactory;
