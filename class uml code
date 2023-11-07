@@ -1,0 +1,64 @@
+User *-- Folder  
+
+Recipe o-- Folder  
+
+User --> Recipe  
+
+RecipeData --|> Recipe  
+
+RecipeUser --|> Recipe  
+
+   
+
+class User {  
+    -password: String   
+	-userID: int   
+    -userFolders: ArrayList<Folder>
+  ---
+    +getuserFolder(foldername: string)   
+}  
+
+  
+
+class Folder{ 
+  	+name: String   
+  	+folder: Map<recipename: string, recipe: Recipe>
+  ---
+  	+removeRecipe(recipename: string): void  
+  	+deleteFolder(): void  
+}  
+
+  
+
+class Recipe{  
+  	-name: String   
+  	-ingredients: String   
+  	-nutrition: String   
+  	-instructions: String   
+  	-tag: ArrayList<String>   
+  	-allgery: Map<allergyname: string, yesORno: bloolean>
+  ---
+    +search(keyword: String): ArrayList<Recipe>  
+    +checkAllergyRestriction(allergy: ArrayList<String>, recipe: Recipe): boolean  
+    +addtoFolder(recipe: Recipe, folder: Folder, user: User): void
+}  
+
+  
+
+class RecipeData{
+  ---
+}  
+
+  
+
+class RecipeUser{  
+    -userID: int   
+    -password: String
+  ---
+    +editName(edit: String, recipe: RecipeUser, userID: int, password: string): void  
+    +editIngredients(edit: String, recipe: RecipeUser, userID: int, password: string): void  
+    +editNutrition(edit: String, recipe: RecipeUser, userID: int, password: string): void  
+    +editTag(edit: String, recipe: RecipeUser, userID: int, password: string): void 
+    +editInstruction(edit: String, recipe: RecipeUser, userID: int, password: string): void  
+    +uploadRecipe(name: string,ingredients: string, nutrition: string,instructions: string, tag: List<String>, userID: int, password: string): void 
+} 

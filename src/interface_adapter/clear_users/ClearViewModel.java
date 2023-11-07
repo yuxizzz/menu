@@ -1,7 +1,5 @@
 package interface_adapter.clear_users;
-
 import interface_adapter.ViewModel;
-
 import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;
 
@@ -34,3 +32,4 @@ public class ClearViewModel extends ViewModel {
         return state;
     }
 }
+
