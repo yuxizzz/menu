@@ -16,7 +16,7 @@ public class OpenedFolderState {
         return foldername;
     }
 
-    public void setFoldername(String username) {
+    public void setFoldername(String foldername) {
         this.foldername = foldername;
     }
 }

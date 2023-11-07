@@ -13,20 +13,20 @@ public class OpenFolderState {
     // Because of the previous copy constructor, the default constructor must be explicit.
     public OpenFolderState() {}
 
-    public String getUsername() {
+    public String getFoldername() {
         return foldername;
     }
 
-    public String getUsernameError() {
+    public String getFoldernameError() {
         return foldernameError;
     }
 
 
-    public void setFoldername(String username) {
+    public void setFoldername(String foldername) {
         this.foldername = foldername;
     }
 
-    public void setFoldernameError(String usernameError) {
+    public void setFoldernameError(String foldernameError) {
         this.foldernameError = foldernameError;
     }
 
