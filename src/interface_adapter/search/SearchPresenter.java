@@ -9,7 +9,7 @@ import use_case.search.SearchOutputData;
 public class SearchPresenter implements SearchOutputBoundary {
     private final SearchViewModel searchViewModel;
     private final SearchedViewModel searchedViewModel;
-    private ViewManagerModel viewManagerModel;
+    private  ViewManagerModel viewManagerModel;
     public SearchPresenter(ViewManagerModel viewManagerModel,
                            SearchViewModel searchViewModel,
                            SearchedViewModel searchedViewModel){
@@ -34,7 +34,7 @@ public class SearchPresenter implements SearchOutputBoundary {
 
     public void prepareFailView(String error){
         SearchState searchState = searchViewModel.getState();
-        searchState.setKeyWordsError(error);
+        searchState.setIngredientsError(error);
         searchViewModel.firePropertyChanged();
     }
 }
