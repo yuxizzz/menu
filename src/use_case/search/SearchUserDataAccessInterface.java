@@ -9,7 +9,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 public interface SearchUserDataAccessInterface {
-    boolean existsIntolerance(String identifier);
+    boolean existsTags(String identifier);
     //to confirm if allergy is valid
     //if not，give it to presenter & prepareFailview
 

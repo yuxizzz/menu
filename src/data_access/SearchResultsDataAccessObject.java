@@ -12,7 +12,7 @@ import static api.Search.getRecipeList;
 public class SearchResultsDataAccessObject implements SearchUserDataAccessInterface {
     private AllResults allResults;
     @Override
-    public boolean existsIntolerance(String identifier) {
+    public boolean existsTags(String identifier) {
         return false;
     }
 
