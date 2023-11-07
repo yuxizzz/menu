@@ -47,24 +47,9 @@ public class Search {
                                 .title(((JSONObject) item).getString("title"))
                                 .imageType(((JSONObject) item).getString("imageType"))
                                 .build();
-
                         searchresult.put(value.getRecipeid(), value);
-
-//                    searchresult = CommonSearchResults.builder()
-//                            .image(results.toString("image"))
-//                            .recipeid(results.toString("id"))
-//                            .title(results.toString("title"))
-//                            .imageType(results.toString("imageType"))
-//                            .build();
                     }
                 }
-//                return CommonSearchResults.builder()
-//                        .image(results.toString("image"))
-//                        .recipeid(results.toString("id"))
-//                        .title(results.toString("title"))
-//                        .imageType(results.toString("imageType"))
-//                        .build();
-
                 return CommonAllResults.builder().results(searchresult).build();
             } else {
                 throw new RuntimeException(response.message());
@@ -74,38 +59,39 @@ public class Search {
         }
     }
 
-    // get recipe api
-//    public static JSONObject getRecipe() throws IOException {
-//        OkHttpClient client = new OkHttpClient().newBuilder()
-//                .build();
-//        // MediaType mediaType = MediaType.parse("application/json");
-//        // RequestBody body = RequestBody.create(mediaType, "0=i&1=n&2=g&3=r&4=e&5=d&6=i&7=e&8=n&9=t&10=L&11=i&12=s&13=t&14==&15=3&16= &17=o&18=z&19= &20=f&21=l&22=o&23=u&24=r&25=%26&26=s&27=e&28=r&29=v&30=i&31=n&32=g&33=s&34==&35=2");
-//        Request request = new Request.Builder()
-//                .url("https://api.spoonacular.com/recipes/complexSearch?diet=vegetarian&intolerances=gluten&addRecipeInformation=false&addRecipeNutrition=false&tags=ipsum ea proident amet occaecat&sort=calories&sortDirection=asc&offset=606&number=10&apiKey=33e759b1978e4ecb9cc584a2bf0ba675")
-//                .addHeader("Content-Type", "application/json")
-//                .build();
-//
-//        try {
-//            Response response = client.newCall(request).execute();
-//            assert response.body() != null;
-//            JSONObject responseBody = new JSONObject(response.body().string());
-//            if (response.code() == 200) {
-//                return responseBody;
-////                return Recipe.builder()
-////                        .name(recipe.getString("name"))
-////                        .ingredients(recipe.getString("ingredients"))
-////                        .nutrition(recipe.getString("nutrition"))
-////                        .instructions(recipe.getString("instructions"))
-////                        .tag(recipe.getList("tag"))
-////                        .allergy(recipe.getMap("allergy"))
-////                        .build();
-//            } else {
-//                throw new RuntimeException(response.message());
-//            }
-//        } catch (IOException e) {
-//            throw new RuntimeException(e);
-//        }
-//    }
+//     get recipe api
+    public static Recipe getRecipe(Integer id) throws IOException {
+        OkHttpClient client = new OkHttpClient().newBuilder()
+                .build();
+        // MediaType mediaType = MediaType.parse("application/json");
+        // RequestBody body = RequestBody.create(mediaType, "0=i&1=n&2=g&3=r&4=e&5=d&6=i&7=e&8=n&9=t&10=L&11=i&12=s&13=t&14==&15=3&16= &17=o&18=z&19= &20=f&21=l&22=o&23=u&24=r&25=%26&26=s&27=e&28=r&29=v&30=i&31=n&32=g&33=s&34==&35=2");
+        Request request = new Request.Builder()
+                .url(String.format("https://api.spoonacular.com/recipes/informationBulk?id=%s&includeNutrition=true&apiKey=33e759b1978e4ecb9cc584a2bf0ba675", id))
+                .addHeader("Content-Type", "application/json")
+                .build();
+
+        try {
+            Response response = client.newCall(request).execute();
+            assert response.body() != null;
+            JSONObject recipe = new JSONObject(response.body().string());
+            if (response.code() == 200) {
+                System.out.println(recipe);
+                return CommonRecipe.builder()
+                        .name(recipe.getString("name"))
+                        .image(recipe.getString("image"))
+                        .recipeurl(recipe.getString("url"))
+                        .recipeid(Integer.valueOf(recipe.getString("id")))
+                        .ingredients(recipe.getString("ingredients"))
+                        .nutrition(recipe.getString("nutrition"))
+                        .instructions(recipe.getString("instructions"))
+                        .build();
+            } else {
+                throw new RuntimeException(response.message());
+            }
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
 
     public static void main(String[] args) throws IOException {
         String includeIngredients = "tomato,cheese";
@@ -116,12 +102,3 @@ public class Search {
 
 }
 
-//    OkHttpClient client = new OkHttpClient().newBuilder()
-//            .build();
-//    MediaType mediaType = MediaType.parse("text/plain");
-//    RequestBody body = RequestBody.create(mediaType, "");
-//    Request request = new Request.Builder()
-//            .url("https://api.spoonacular.com/recipes/complexSearch?diet=vegetarian&intolerances=gluten&addRecipeInformation=false&addRecipeNutrition=false&tags=ipsum ea proident amet occaecat&sort=calories&sortDirection=asc&offset=606&number=10&apiKey=33e759b1978e4ecb9cc584a2bf0ba675")
-//            .method("GET", body)
-//            .build();
-//    Response response = client.newCall(request).execute();

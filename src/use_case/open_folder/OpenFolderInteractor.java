@@ -20,10 +20,10 @@ public class OpenFolderInteractor {
             openFolderPresenter.prepareFailView(foldername + ": Folder does not exist.");
         }else {
 
-            Folder folder = folderDataAccessObject.get(openFolderInputData.getFoldername());
-
-            OpenFolderOutputData openFolderOutputData = new OpenFolderOutputData(folder.getName(), false);
-            openFolderPresenter.prepareSuccessView(openFolderOutputData);
+//             Folder folder = folderDataAccessObject.get(openFolderInputData.getFoldername());
+//
+//             OpenFolderOutputData openFolderOutputData = new OpenFolderOutputData(folder.getName(), false);
+//             openFolderPresenter.prepareSuccessView(openFolderOutputData);
             }
         }
 }

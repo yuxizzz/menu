@@ -8,6 +8,7 @@ public interface Recipe {
     String getIngredients();
     String getNutrition();
     String getInstructions();
-    List<String> getTag();
-    Map<String, Boolean> getAllergy();
+    String getImage();
+    Integer getRecipeID();
+    String getRecipeURL();
 }
