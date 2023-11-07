@@ -1,5 +1,6 @@
 package interface_adapter.signup;
 
+
 public class SignupState {
     private String username = "";
     private String usernameError = null;

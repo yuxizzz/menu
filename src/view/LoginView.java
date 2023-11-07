@@ -4,6 +4,8 @@ import interface_adapter.login.LoginController;
 import interface_adapter.login.LoginState;
 import interface_adapter.login.LoginViewModel;
 
+
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -89,6 +91,7 @@ public class LoginView extends JPanel implements ActionListener, PropertyChangeL
                     public void keyTyped(KeyEvent e) {
                         LoginState currentState = loginViewModel.getState();
                         currentState.setPassword(String.valueOf(passwordInputField.getPassword()) + e.getKeyChar());
+
                         loginViewModel.setState(currentState);
                     }
 
