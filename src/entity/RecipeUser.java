@@ -5,9 +5,10 @@ import java.util.Map;
 import java.util.Objects;
 
 public class RecipeUser extends CommonRecipe {
-    public RecipeUser(String name, String ingredients, String nutrition, String instructions, List<String> tag) {
-        super(name, ingredients, nutrition, instructions, tag);
+    public RecipeUser(String name, String ingredients, String nutrition, String instructions, String image, String recipeurl, Integer recipeid) {
+        super(name, ingredients, nutrition, instructions, image, recipeurl, recipeid);
     }
+
 
     // a multiset always starts empty, so we can directly instantiate our private attribute
     // here; no need to explicitly write a new constructor.

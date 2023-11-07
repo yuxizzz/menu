@@ -1,54 +1,54 @@
 package entity;
 
-public class CommonSearchResults implements SearchResults {
+public class CommonSearchResult implements SearchResult {
     private String image;
     private String recipeid;
     private String title;
     private String imageType;
 
 
-    public CommonSearchResults(String image, String recipeid, String title, String imageType) {
+    public CommonSearchResult(String image, String recipeid, String title, String imageType) {
         this.image = image;
         this.recipeid = recipeid;
         this.title = title;
         this.imageType = imageType;
     }
 
-    public static SearchResultsBuilder builder() {
-        return new SearchResultsBuilder();
+    public static SearchResultBuilder builder() {
+        return new SearchResultBuilder();
     }
 
-    public static class SearchResultsBuilder {
+    public static class SearchResultBuilder {
         private String image;
         private String recipeid;
         private String title;
         private String imageType;
 
-        SearchResultsBuilder() {
+        SearchResultBuilder() {
         }
 
-        public SearchResultsBuilder image(String image) {
+        public SearchResultBuilder image(String image) {
             this.image = image;
             return this;
         }
 
-        public SearchResultsBuilder recipeid(String recipeid) {
+        public SearchResultBuilder recipeid(String recipeid) {
             this.recipeid = recipeid;
             return this;
         }
 
-        public SearchResultsBuilder title(String title) {
+        public SearchResultBuilder title(String title) {
             this.title = title;
             return this;
         }
 
-        public SearchResultsBuilder imageType(String imageType) {
+        public SearchResultBuilder imageType(String imageType) {
             this.imageType = imageType;
             return this;
         }
 
-        public SearchResults build() {
-            return new CommonSearchResults(image, recipeid, title, imageType);
+        public SearchResult build() {
+            return new CommonSearchResult(image, recipeid, title, imageType);
         }
     }
 

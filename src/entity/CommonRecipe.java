@@ -9,26 +9,19 @@ public class CommonRecipe implements Recipe {
     private String ingredients;
     private String nutrition;
     private String instructions;
-    private List<String> tag;
-    private Map<String, Boolean> allergy;
+    private String image;
+    private String recipeurl;
+    private Integer recipeid;
 
-    public CommonRecipe(String name, String ingredients, String nutrition, String instructions, List<String> tag) {
+    public CommonRecipe(String name, String ingredients, String nutrition, String instructions,
+                        String image, String recipeurl, Integer recipeid) {
         this.name = name;
         this.ingredients = ingredients;
         this.nutrition = nutrition;
         this.instructions = instructions;
-        this.tag = tag;
-        Map<String, Boolean> allergy = new HashMap<>();
-        String[] lla = {"Eggs", "Milk", "Mustard", "Peanut", "Crustacean", "Mollusc", "Fish", "Sesame", "Soy",
-                "Sulphites", "Sulfites", "Nut", "Wheat"};
-        for (String s : lla) {
-            if (ingredients.contains(s)) {
-                allergy.put(s, true);
-            } else {
-                allergy.put(s, false);
-            }
-        }
-        this.allergy = allergy;
+        this.recipeid = recipeid;
+        this.image = image;
+        this.recipeurl = recipeurl;
     }
 
     public static RecipeBuilder builder() {
@@ -40,8 +33,9 @@ public class CommonRecipe implements Recipe {
         private String ingredients;
         private String nutrition;
         private String instructions;
-        private List<String> tag;
-        private Map<String, Boolean> allergy;
+        private String image;
+        private String recipeurl;
+        private Integer recipeid;
 
         RecipeBuilder() {
         }
@@ -53,17 +47,6 @@ public class CommonRecipe implements Recipe {
 
         public RecipeBuilder ingredients(String ingredients) {
             this.ingredients = ingredients;
-            Map<String, Boolean> allergy = new HashMap<>();
-            String[] lla = {"Eggs", "Milk", "Mustard", "Peanut", "Crustacean", "Mollusc", "Fish", "Sesame", "Soy",
-                    "Sulphites", "Sulfites", "Nut", "Wheat"};
-            for (String s : lla) {
-                if (ingredients.contains(s)) {
-                    allergy.put(s, true);
-                } else {
-                    allergy.put(s, false);
-                }
-            }
-            this.allergy = allergy;
             return this;
         }
 
@@ -77,15 +60,25 @@ public class CommonRecipe implements Recipe {
             return this;
         }
 
-        public RecipeBuilder tag(List<String> tag) {
-            this.tag = tag;
+        public RecipeBuilder image(String image) {
+            this.image = image;
+            return this;
+        }
+        public RecipeBuilder recipeid(Integer recipeid) {
+            this.recipeid = recipeid;
             return this;
         }
 
+        public RecipeBuilder recipeurl(String recipeurl) {
+            this.recipeurl = recipeurl;
+            return this;
+        }
 
         public Recipe build() {
-            return new CommonRecipe(name, ingredients, nutrition, instructions, tag);
+            return new CommonRecipe(name, ingredients, nutrition, instructions, image, recipeurl, recipeid);
         }
+
+
     }
 
     @Override
@@ -95,6 +88,9 @@ public class CommonRecipe implements Recipe {
                 ", ingredients='" + ingredients + '\'' +
                 ", nutrition=" + nutrition + '\'' +
                 ", instructions='" + instructions + '\'' +
+                ", image='" + image + '\'' +
+                ", recipeurl='" + recipeurl + '\'' +
+                ", recipeid='" + recipeid + '\'' +
                 '}';
     }
 
@@ -113,12 +109,14 @@ public class CommonRecipe implements Recipe {
     public String getInstructions() {
         return instructions;
     }
-
-    public List<String> getTag() {
-        return tag;
+    public String getImage() {
+        return image;
+    }
+    public Integer getRecipeID() {
+        return recipeid;
+    }
+    public String getRecipeURL() {
+        return recipeurl;
     }
 
-    public Map<String, Boolean> getAllergy() {
-        return allergy;
-    }
 }
