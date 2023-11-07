@@ -45,7 +45,7 @@ public class Search {
                     if (item.getClass().equals(JSONObject.class)) {
                         SearchResults value = CommonSearchResults.builder()
                                 .image(((JSONObject) item).getString("image"))
-                                .recipeid(((JSONObject) item).getString("id"))
+                                .recipeid(String.valueOf(((JSONObject) item).getInt("id")))
                                 .title(((JSONObject) item).getString("title"))
                                 .imageType(((JSONObject) item).getString("imageType"))
                                 .build();
