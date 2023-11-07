@@ -9,7 +9,7 @@ public class OpenFolderInputData {
     }
 
 
-    static String getFoldername() {
+    String getFoldername() {
         return foldername;
     }
 }

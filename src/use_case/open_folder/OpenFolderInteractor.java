@@ -15,15 +15,15 @@ public class OpenFolderInteractor {
     }
 
     public void execute(OpenFolderInputData openFolderInputData) {
-        String foldername = OpenFolderInputData.getFoldername();
+        String foldername = openFolderInputData.getFoldername();
         if (!folderDataAccessObject.existsByName(foldername)) {
             openFolderPresenter.prepareFailView(foldername + ": Folder does not exist.");
         }else {
 
-            Folder user = folderDataAccessObject.get(OpenFolderInputData.getFoldername());
+            Folder folder = folderDataAccessObject.get(openFolderInputData.getFoldername());
 
             OpenFolderOutputData openFolderOutputData = new OpenFolderOutputData(folder.getName(), false);
-            OpenFolderPresenter.prepareSuccessView(openFolderOutputData);
+            openFolderPresenter.prepareSuccessView(openFolderOutputData);
             }
         }
 }
