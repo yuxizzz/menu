@@ -1,9 +1,7 @@
 package api;
 
-import entity.CommonSearchResults;
-import entity.SearchResults;
+import entity.*;
 import okhttp3.*;
-import entity.Recipe;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
@@ -23,13 +21,13 @@ public class Search {
         return API_TOKEN;
     }
 
-    public static HashMap getRecipeList() throws IOException {
+    public static AllResults getRecipeList(String includeIngredients, String tags) throws IOException {
         OkHttpClient client = new OkHttpClient().newBuilder()
                 .build();
         // MediaType mediaType = MediaType.parse("application/json");
         // RequestBody body = RequestBody.create(mediaType, "0=i&1=n&2=g&3=r&4=e&5=d&6=i&7=e&8=n&9=t&10=L&11=i&12=s&13=t&14==&15=3&16= &17=o&18=z&19= &20=f&21=l&22=o&23=u&24=r&25=%26&26=s&27=e&28=r&29=v&30=i&31=n&32=g&33=s&34==&35=2");
         Request request = new Request.Builder()
-                .url("https://api.spoonacular.com/recipes/complexSearch?diet=vegetarian&intolerances=gluten&addRecipeInformation=false&addRecipeNutrition=false&tags=ipsum ea proident amet occaecat&sort=calories&sortDirection=asc&offset=606&number=10&apiKey=33e759b1978e4ecb9cc584a2bf0ba675")
+                .url(String.format("https://api.spoonacular.com/recipes/complexSearch?includeIngredients=%s&tags=%s&number=10&apiKey=33e759b1978e4ecb9cc584a2bf0ba675", includeIngredients, tags))
                 .addHeader("Content-Type", "application/json")
                 .build();
 
@@ -40,10 +38,10 @@ public class Search {
             JSONArray results = responseBody.getJSONArray("results");
             if (response.code() == 200) {
 //                return results;
-                HashMap<Object, SearchResults> searchresult = new HashMap<Object, SearchResults>();
+                HashMap<Object, SearchResult> searchresult = new HashMap<Object, SearchResult>();
                 for (Object item: results) {
                     if (item.getClass().equals(JSONObject.class)) {
-                        SearchResults value = CommonSearchResults.builder()
+                        SearchResult value = CommonSearchResult.builder()
                                 .image(((JSONObject) item).getString("image"))
                                 .recipeid(String.valueOf(((JSONObject) item).getInt("id")))
                                 .title(((JSONObject) item).getString("title"))
@@ -66,7 +64,8 @@ public class Search {
 //                        .title(results.toString("title"))
 //                        .imageType(results.toString("imageType"))
 //                        .build();
-                return searchresult;
+
+                return CommonAllResults.builder().results(searchresult).build();
             } else {
                 throw new RuntimeException(response.message());
             }
@@ -109,7 +108,9 @@ public class Search {
 //    }
 
     public static void main(String[] args) throws IOException {
-        System.out.println(Search.getRecipeList());
+        String includeIngredients = "tomato,cheese";
+        String tags = "ipsum ea proident amet occaecat";
+        System.out.println(Search.getRecipeList(includeIngredients, tags));
     }
 
 

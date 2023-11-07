@@ -1,6 +1,6 @@
 package entity;
 
-public interface SearchResults {
+public interface SearchResult {
     String getImage();
     String getRecipeid();
     String getTitle();
