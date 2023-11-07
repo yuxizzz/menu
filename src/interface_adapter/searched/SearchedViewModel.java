@@ -5,6 +5,7 @@ import interface_adapter.ViewModel;
 import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;
 
+
 public class SearchedViewModel extends ViewModel {
     public static final String GET_BUTTON_LABEL = "GET";
     public static final String TITLE_LABEL = "Searched Result View";

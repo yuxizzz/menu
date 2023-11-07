@@ -1,5 +1,6 @@
 package view;
 
+import interface_adapter.searched.SearchedState;
 import interface_adapter.searched.SearchedViewModel;
 
 import javax.swing.*;
@@ -26,24 +27,29 @@ public class SearchedView extends JPanel implements ActionListener, PropertyChan
         getRecipe1 = new JButton(searchedViewModel.GET_BUTTON_LABEL);
         buttons.add(getRecipe1);
 
-        cancel.addActionListener(this);
+        cancel.addActionListener(this
+                // TODO: CANCEL button to be implemented
+        );
         this.setLayout(new BoxLayout(this, BoxLayout.X_AXIS));
 
-        getRecipe1.addActionListener(this);
+        getRecipe1.addActionListener(this
+                // TODO: Get Recipe to be implemented
+        );
         this.setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
 
 
         this.add(buttons);
 
+
+
     }
 
     @Override
-    public void actionPerformed(ActionEvent e) {
-
-    }
+    public void actionPerformed(ActionEvent evt) {System.out.println("Click " + evt.getActionCommand());}
 
     @Override
     public void propertyChange(PropertyChangeEvent evt) {
+        SearchedState state = (SearchedState) evt.getNewValue();
 
     }
 }
