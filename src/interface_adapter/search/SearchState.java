@@ -3,15 +3,15 @@ package interface_adapter.search;
 public class SearchState {
     private String ingredients = "";
     private String ingredientsError = null;
-    private String allergy = "";
-    private String allergyError = null;
+    private String tags = "";
+    private String tagsError = null;
 
 
     public SearchState(SearchState copy) {
         ingredients = copy.ingredients;
         ingredientsError = copy.ingredientsError;
-        allergy = copy.allergy;
-        allergyError = copy.allergyError;
+        tags = copy.tags;
+        tagsError = copy.tagsError;
     }
 
     // Because of the previous copy constructor, the default constructor must be explicit.
@@ -26,12 +26,12 @@ public class SearchState {
         return ingredientsError;
     }
 
-    public String getAllergy() {
-        return allergy;
+    public String getTags() {
+        return tags;
     }
 
-    public String getAllergyError() {
-        return allergyError;
+    public String getTagsError() {
+        return tagsError;
     }
 
     public void setIngredients(String userIngredients) {
@@ -42,19 +42,19 @@ public class SearchState {
         this.ingredientsError = userIngredientsError;
     }
 
-    public void setAllergy(String allergy) {
-        this.allergy = allergy;
+    public void setTags(String tags) {
+        this.tags = tags;
     }
 
-    public void setAllergyError(String allergyError) {
-        this.allergyError = allergyError;
+    public void setTagsError(String TagsError) {
+        this.tagsError = tagsError;
     }
 
     @Override
     public String toString() {
         return "SearchState{" +
                 "ingredients='" + ingredients + '\'' +
-                ", allergy='" + allergy + '\'' +
+                ", allergy='" + tags + '\'' +
                 '}';
     }
 }

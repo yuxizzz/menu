@@ -18,8 +18,8 @@ public class SearchView extends JPanel implements ActionListener, PropertyChange
     public final String viewName = "search recipes";
     private final SearchViewModel searchViewModel;
     final JTextField ingredientsInputField = new JTextField();
-    final JTextField allergyInputField = new JTextField();
-    private final JLabel allergyErrorField = new JLabel();
+    final JTextField tagInputField = new JTextField();
+    private final JLabel tagErrorField = new JLabel();
 
     private final JLabel ingredientsErrorField = new JLabel();
     final JButton search;
@@ -41,7 +41,7 @@ public class SearchView extends JPanel implements ActionListener, PropertyChange
         LabelTextPanel IngredientRecipesInfo = new LabelTextPanel(
                 new JLabel(SearchViewModel.INGREDIENT_BUTTON_LABEL), ingredientsInputField);
         LabelTextPanel searchRecipesInfo = new LabelTextPanel(
-                new JLabel(SearchViewModel.ALLERGY_BUTTON_LABEL), allergyInputField);
+                new JLabel(SearchViewModel.TAG_BUTTON_LABEL), tagInputField);
 
         JPanel buttons = new JPanel();
         search = new JButton(SearchViewModel.SEARCH_BUTTON_LABEL);
@@ -57,7 +57,7 @@ public class SearchView extends JPanel implements ActionListener, PropertyChange
                         if (evt.getSource().equals(search)) {
                             SearchState currentState = searchViewModel.getState();
 
-                            searchController.execute(currentState.getIngredients(), currentState.getAllergy());
+                            searchController.execute(currentState.getIngredients(), currentState.getTags());
                         }
                     }
                 }
@@ -91,13 +91,13 @@ public class SearchView extends JPanel implements ActionListener, PropertyChange
             });
 
 
-        allergyInputField.addKeyListener(
+        tagInputField.addKeyListener(
                 new KeyListener() {
                     @Override
                     public void keyTyped(KeyEvent e) {
                         SearchState currentState = searchViewModel.getState();
-                        String text = allergyInputField.getText() + e.getKeyChar();
-                        currentState.setAllergy(text);
+                        String text = tagInputField.getText() + e.getKeyChar();
+                        currentState.setTags(text);
                         searchViewModel.setState(currentState);
                     }
 
@@ -126,8 +126,8 @@ public class SearchView extends JPanel implements ActionListener, PropertyChange
     @Override
     public void propertyChange(PropertyChangeEvent evt) {
         SearchState state = (SearchState) evt.getNewValue();
-        if (state.getAllergyError() != null) {
-            JOptionPane.showMessageDialog(this, state.getAllergyError());
+        if (state.getTagsError() != null) {
+            JOptionPane.showMessageDialog(this, state.getTagsError());
         }
         if (state.getIngredientsError() != null) {
             JOptionPane.showMessageDialog(this, state.getIngredientsError());

@@ -14,6 +14,7 @@ public class SearchInteractor implements SearchInputBoundary {
     public void execute(SearchInputData signupInputData) {
 
         // check for searchDataAccesObject  一些checking -> 然后给searchPresenter 反馈
+        // if (!)
 
 //        if (searchDataAccessObject.existsByName(signupInputData.getUsername())) {
 //            userPresenter.prepareFailView("User already exists.");
