@@ -3,14 +3,15 @@ package use_case.search;
 import entity.SearchResult;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 public class SearchOutputData {
     private boolean useCaseFailed;
-    private ArrayList<SearchResult> searchedRecipes;
+    private HashMap<String, ArrayList<String>> searchedRecipes;
 
-    public SearchOutputData(ArrayList<SearchResult> searchedRecipes, boolean useCaseFailed){
+    public SearchOutputData(HashMap<String, ArrayList<String>> searchedRecipes, boolean useCaseFailed){
         this.useCaseFailed = useCaseFailed;
         this.searchedRecipes = searchedRecipes;
     }
-    public ArrayList<SearchResult> getSearchedRecipes(){return searchedRecipes;}
+    public HashMap<String, ArrayList<String>> getSearchedRecipes(){return searchedRecipes;}
 }

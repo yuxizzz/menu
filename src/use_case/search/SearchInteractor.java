@@ -23,11 +23,15 @@ public class SearchInteractor implements SearchInputBoundary {
         } else {
             HashMap<Object, SearchResult> results = searchDataAccessObject.getOutputRecipes(searchInputData.getIngredients(),
                     searchInputData.getTags());
-            ArrayList<SearchResult> response = new ArrayList<>();
+
+            HashMap<String, ArrayList<String>> recipes = new HashMap<>();
             for (SearchResult s: results.values()) {
-                response.add(s);
+                ArrayList<String> response = new ArrayList<>();
+                response.add(s.getTitle());
+                response.add(s.getImage());
+                recipes.put(s.getRecipeid(), response);
             }
-            SearchOutputData searchOutputData = new SearchOutputData(response, false);
+            SearchOutputData searchOutputData = new SearchOutputData(recipes, false);
             searchPresenter.prepareSuccessView(searchOutputData);
         }
     }
