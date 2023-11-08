@@ -1,8 +1,9 @@
 package use_case.search;
 
-import entity.AllResults;
+import entity.SearchResult;
 
 import java.io.IOException;
+import java.util.HashMap;
 
 public interface SearchUserDataAccessInterface {
     boolean existsTags(String identifier) throws IOException;
@@ -12,7 +13,7 @@ public interface SearchUserDataAccessInterface {
     boolean existsIngredients(String identifier) throws IOException;
     //same as above
 
-    AllResults getOutputRecipes(String ingredients, String allergy) throws IOException;
+    HashMap<Object, SearchResult> getOutputRecipes(String ingredients, String allergy) throws IOException;
 
     //give the list of recipes to presenter and prepareSuccessView
     // -> show recipes to SearchedView

@@ -1,6 +1,7 @@
 package use_case.open_folder;
 
 import entity.User;
+import entity.folder.Folder;
 import use_case.login.LoginInputData;
 import use_case.login.LoginOutputData;
 
@@ -20,6 +21,7 @@ public class OpenFolderInteractor {
             openFolderPresenter.prepareFailView(foldername + ": Folder does not exist.");
         }else {
 
+//              TODO: uncomment
 //             Folder folder = folderDataAccessObject.get(openFolderInputData.getFoldername());
 //
 //             OpenFolderOutputData openFolderOutputData = new OpenFolderOutputData(folder.getName(), false);
