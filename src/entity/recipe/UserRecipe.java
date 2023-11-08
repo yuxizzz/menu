@@ -15,10 +15,6 @@ public class UserRecipe extends CommonRecipe {
     }
 
 
-    // a multiset always starts empty, so we can directly instantiate our private attribute
-    // here; no need to explicitly write a new constructor.
-
-
     public String editName(String edit, UserRecipe userRecipe, String username, String password, User user){
         if (userRecipe.user == user){
             userRecipe.name = edit;
