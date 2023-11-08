@@ -1,20 +1,20 @@
-package src.data_access;
 
+package data_access;
 import entity.User;
+import use_case.search.SearchUserDataAccessInterface;
 import use_case.signup.SignupUserDataAccessInterface;
-
 import java.util.HashMap;
 import java.util.Map;
 
-public class InMemoryUserDataAccessObject implements SignupUserDataAccessInterface {
+public class InMemoryUserDataAccessObject {
 
     private final Map<String, User> users = new HashMap<>();
-
+    //implements SignupUserDataAccessInterface, SearchUserDataAccessInterface
     /**
      * @param identifier the user's username
      * @return whether the user exists
      */
-    @Override
+
     public boolean existsByName(String identifier) {
         return users.containsKey(identifier);
     }
@@ -22,8 +22,10 @@ public class InMemoryUserDataAccessObject implements SignupUserDataAccessInterfa
     /**
      * @param user the data to save
      */
-    @Override
+
     public void save(User user) {
         users.put(user.getName(), user);
     }
+
+
 }
