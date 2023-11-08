@@ -1,4 +1,6 @@
-package entity;
+package entity.recipe;
+
+import entity.recipe.Recipe;
 
 import java.util.HashMap;
 import java.util.List;
@@ -118,5 +120,6 @@ public class CommonRecipe implements Recipe {
     public String getRecipeURL() {
         return recipeurl;
     }
+
 
 }

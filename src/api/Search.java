@@ -1,6 +1,8 @@
 package api;
 
 import entity.*;
+import entity.recipe.Recipe;
+import entity.recipe.CommonRecipe;
 import okhttp3.*;
 import org.json.JSONArray;
 import org.json.JSONObject;

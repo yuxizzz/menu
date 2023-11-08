@@ -1,11 +1,14 @@
-package entity;
+package entity.recipe;
+
+import entity.recipe.CommonRecipe;
 
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
 
-public class RecipeUser extends CommonRecipe {
-    public RecipeUser(String name, String ingredients, String nutrition, String instructions, String image, String recipeurl, Integer recipeid) {
+public class UserRecipe extends CommonRecipe {
+
+    public UserRecipe(String name, String ingredients, String nutrition, String instructions, String image, String recipeurl, Integer recipeid) {
         super(name, ingredients, nutrition, instructions, image, recipeurl, recipeid);
     }
 
