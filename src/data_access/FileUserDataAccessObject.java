@@ -98,6 +98,7 @@ public class FileUserDataAccessObject implements SignupUserDataAccessInterface, 
         return accounts.containsKey(identifier);
     }
 
+    // TODO change clear user to other class such as remove or delete
     @Override
     public ArrayList<String> clearAllUser() {
         ArrayList<String> users = new ArrayList<>();

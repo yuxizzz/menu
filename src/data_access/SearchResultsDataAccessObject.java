@@ -1,9 +1,10 @@
 package data_access;
 
-import entity.AllResults;
+import entity.SearchResult;
 import use_case.search.SearchUserDataAccessInterface;
 
 import java.io.IOException;
+import java.util.HashMap;
 
 import static api.Search.getRecipeList;
 
@@ -22,7 +23,7 @@ public class SearchResultsDataAccessObject implements SearchUserDataAccessInterf
     }
 
     @Override
-    public AllResults getOutputRecipes(String ingredients, String tags) throws IOException {
+    public HashMap<Object, SearchResult> getOutputRecipes(String ingredients, String tags) throws IOException {
         return getRecipeList(ingredients, tags);
     }
 
