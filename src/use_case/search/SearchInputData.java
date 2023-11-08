@@ -14,7 +14,7 @@ public class SearchInputData {
         return ingredients;
     }
 
-    String getAllergy() {
+    String getTags() {
         return tags;
     }
 }
