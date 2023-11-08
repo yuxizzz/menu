@@ -16,7 +16,7 @@ import java.net.URL;
 public class OpenedFolderViewModel extends ViewModel {
     public final String TITLE_LABEL = "Opened Folder View";
 
-    private OpenedFolderState state = new OpenedFolderState();
+    private static OpenedFolderState state = new OpenedFolderState();
 
     public static final String REMOVE_BUTTON_LABEL = "Remove recipe";
     public static final String GET_BUTTON_LABEL = "Get recipe";
@@ -49,7 +49,7 @@ public class OpenedFolderViewModel extends ViewModel {
 
 
 
-    public OpenedFolderState getState() {
+    public static OpenedFolderState getState() {
         return state;
     }
 
