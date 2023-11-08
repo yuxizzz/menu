@@ -7,13 +7,13 @@ import java.util.List;
 import java.util.Map;
 
 public class CommonRecipe implements Recipe {
-    private String name;
-    private String ingredients;
-    private String nutrition;
-    private String instructions;
-    private String image;
-    private String recipeurl;
-    private Integer recipeid;
+    String name;
+    String ingredients;
+    String nutrition;
+    String instructions;
+    String image;
+    String recipeurl;
+    Integer recipeid;
 
     public CommonRecipe(String name, String ingredients, String nutrition, String instructions,
                         String image, String recipeurl, Integer recipeid) {
