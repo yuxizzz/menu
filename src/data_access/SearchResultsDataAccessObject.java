@@ -12,8 +12,9 @@ public class SearchResultsDataAccessObject implements SearchUserDataAccessInterf
 
     @Override
     public boolean existsIngredients(String ingredient, String tags) throws IOException {
-        getRecipeList(ingredient, tags);
-        return false;
+        if (getRecipeList(ingredient, tags).isEmpty()) {
+            return false;
+        } else {return true;}
     }
 
     @Override

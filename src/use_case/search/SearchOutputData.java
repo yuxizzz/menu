@@ -1,17 +1,16 @@
 package use_case.search;
 
+import entity.SearchResult;
+
 import java.util.ArrayList;
 
 public class SearchOutputData {
     private boolean useCaseFailed;
-    private String searchedRecipes;
+    private ArrayList<SearchResult> searchedRecipes;
 
-    public SearchOutputData(ArrayList<String> searchedRecipes, boolean useCaseFailed){
+    public SearchOutputData(ArrayList<SearchResult> searchedRecipes, boolean useCaseFailed){
         this.useCaseFailed = useCaseFailed;
-        this.searchedRecipes = "";
-        for (String s: searchedRecipes){
-            this.searchedRecipes += s + "\n";
-        }
+        this.searchedRecipes = searchedRecipes;
     }
-    public String getSearchedRecipes(){return searchedRecipes;}
+    public ArrayList<SearchResult> getSearchedRecipes(){return searchedRecipes;}
 }
