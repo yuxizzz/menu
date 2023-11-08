@@ -5,13 +5,15 @@ public class DeleteFolderInteractor implements DeleteFolderInputBoundary {
     final DeleteFolderUserDataAccessInterface deleteFolderUserDataAccessObject;
     final DeleteFolderOutputBoundary deleteFolderPresenter;
 
-    public DeleteFolderInteractor(DeleteFolderOutputBoundary userDataAccessInterface, DeleteFolderOutputBoundary deleteFolderOutputBoundary) {
-        this.deleteFolderUserDataAccessObject = userDataAccessInterface;
+    public DeleteFolderInteractor(DeleteFolderUserDataAccessInterface deleteFolderUserDataAccessObject, DeleteFolderOutputBoundary deleteFolderOutputBoundary) {
+        this.deleteFolderUserDataAccessObject = deleteFolderUserDataAccessObject;
         this.deleteFolderPresenter = deleteFolderOutputBoundary;
     }
 
     @Override
     public void execute(DeleteFolderInputData deleteFolderInputData) {
-        //TODO to be implemented
+        String deletedFolder = deleteFolderUserDataAccessObject.deleteFolder(deleteFolderInputData.getFoldername());
+        DeleteFolderOutputData deleteFolderOutputData = new DeleteFolderOutputData(deletedFolder, false);
+        deleteFolderPresenter.prepareSuccessView(deleteFolderOutputData);
     }
 }

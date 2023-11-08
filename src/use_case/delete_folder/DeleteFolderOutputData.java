@@ -6,13 +6,9 @@ public class DeleteFolderOutputData {
     private boolean useCaseFailed;
     private String folderDeleted;
 
-    public DeleteFolderOutputData(ArrayList<String> folderDeleted, boolean useCaseFailed) {
+    public DeleteFolderOutputData(String folderDeleted, boolean useCaseFailed) {
         this.useCaseFailed = useCaseFailed;
-        this.folderDeleted = "";
-        for (String r: folderDeleted) {
-            this.folderDeleted += r + "\n";
-        }
-
+        this.folderDeleted = folderDeleted;
     }
 
     public String getFolderDeleted() {
