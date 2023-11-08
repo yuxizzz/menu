@@ -2,11 +2,11 @@ package use_case.search;
 
 public class SearchInputData {
     final private String ingredients;
-    final private String allergy;
+    final private String tags;
 
-    public SearchInputData(String ingredients, String allergy) {
+    public SearchInputData(String ingredients, String tags) {
         this.ingredients = ingredients;
-        this.allergy = allergy;
+        this.tags = tags;
 
     }
 
@@ -15,6 +15,6 @@ public class SearchInputData {
     }
 
     String getAllergy() {
-        return allergy;
+        return tags;
     }
 }
