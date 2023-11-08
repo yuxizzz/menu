@@ -1,7 +1,7 @@
 package use_case.create_folder;
 
-import entity.Folder;
-import entity.FolderFactory;
+import entity.folder.Folder;
+import entity.folder.FolderFactory;
 
 public class CreateFolderInteractor implements CreateFolderInputBoundary {
     final CreateFolderDataAccessInterface folderDataAccessObject;

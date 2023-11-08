@@ -1,4 +1,4 @@
-package entity;
+package entity.folder;
 
 public class CommonFolderFactory implements FolderFactory {
 
