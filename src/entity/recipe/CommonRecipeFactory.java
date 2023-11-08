@@ -1,8 +1,6 @@
-package entity;
+package entity.recipe;
 
-import java.time.LocalDateTime;
 import java.util.List;
-import java.util.Map;
 
 public class CommonRecipeFactory implements RecipeFactory {
     @Override

@@ -1,4 +1,4 @@
-package entity;
+package entity.folder;
 
 import java.util.HashMap;
 

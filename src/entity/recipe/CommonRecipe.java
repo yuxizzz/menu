@@ -1,4 +1,4 @@
-package entity;
+package entity.recipe;
 
 import java.util.HashMap;
 import java.util.List;

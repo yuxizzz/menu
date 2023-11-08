@@ -1,17 +1,13 @@
 package api;
 
-import entity.CommonSearchResults;
-import entity.SearchResults;
+import entity.search_results.CommonSearchResults;
+import entity.search_results.SearchResults;
 import okhttp3.*;
-import entity.Recipe;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.Map;
-import java.util.List;
 
 public class Search {
 

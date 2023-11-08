@@ -1,10 +1,6 @@
 package use_case.search;
 
-import entity.CommonSearchResults;
-import entity.SearchResults;
-
-import javax.xml.transform.Result;
-import java.util.ArrayList;
+import entity.search_results.SearchResults;
 
 public interface SearchUserDataAccessInterface {
     boolean existsIntolerance(String identifier);

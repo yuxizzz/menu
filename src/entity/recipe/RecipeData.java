@@ -1,7 +1,8 @@
-package entity;
+package entity.recipe;
+
+import entity.recipe.CommonRecipe;
 
 import java.util.List;
-import java.util.Map;
 
 public class RecipeData extends CommonRecipe {
     public RecipeData(String name, String ingredients, String nutrition, String instructions, List<String> tag) {
