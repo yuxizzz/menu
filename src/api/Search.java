@@ -50,6 +50,7 @@ public class Search {
                                 .imageType(((JSONObject) item).getString("imageType"))
                                 .build();
 
+
                         searchresult.put(value.getRecipeid(), value);
 
 //                    searchresult = CommonSearchResults.builder()
