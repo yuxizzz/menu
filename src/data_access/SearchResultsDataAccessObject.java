@@ -11,14 +11,8 @@ import static api.Search.getRecipeList;
 public class SearchResultsDataAccessObject implements SearchUserDataAccessInterface {
 
     @Override
-    public boolean existsTags(String identifier) throws IOException {
-        getRecipeList("egg", identifier);
-        return false;
-    }
-
-    @Override
-    public boolean existsIngredients(String identifier) throws IOException {
-        getRecipeList(identifier, "gluten");
+    public boolean existsIngredients(String ingredient, String tags) throws IOException {
+        getRecipeList(ingredient, tags);
         return false;
     }
 

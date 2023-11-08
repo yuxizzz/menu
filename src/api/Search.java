@@ -97,7 +97,7 @@ public class Search {
     }
 
     public static void main(String[] args) throws IOException {
-        String includeIngredients = "tomato,cheese";
+        String includeIngredients = "?";
         String tags = "ipsum ea proident amet occaecat";
         System.out.println(Search.getRecipeList(includeIngredients, tags));
     }
