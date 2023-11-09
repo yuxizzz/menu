@@ -27,9 +27,8 @@ public class SearchedView extends JPanel implements ActionListener, PropertyChan
         getRecipe1 = new JButton(searchedViewModel.GET_BUTTON_LABEL);
         buttons.add(getRecipe1);
 
-        cancel.addActionListener(this
-                // TODO: CANCEL button to be implemented
-        );
+        cancel.addActionListener(this);
+
         this.setLayout(new BoxLayout(this, BoxLayout.X_AXIS));
 
         getRecipe1.addActionListener(this
