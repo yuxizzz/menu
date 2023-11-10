@@ -1,6 +1,7 @@
 package interface_adapter.remove_recipe;
 
 import interface_adapter.ViewManagerModel;
+import interface_adapter.opened_folder.OpenedFolderState;
 import interface_adapter.opened_folder.OpenedFolderViewModel;
 import use_case.remove_recipe.RemoveOuntputBoundary;
 import use_case.remove_recipe.RemoveOutputData;
@@ -18,15 +19,13 @@ public class RemovePresenter implements RemoveOuntputBoundary {
     }
 
     public void prepareSuccessView(RemoveOutputData response){
-        //on success switch to pop up remove ensure
-        RemoveState removeState = RemoveViewModel.getState();
-        //? What is the meaning of getRecipeRemoved(), Do I need to use this method?
-        //? or I need to make a new method for present remove ensure
-        removeState.setRecipeRemoved(response.getRecipeRemoved());
-        this.removeViewModel.setState(removeState);
+        //on success switch to pop up remove ensure, and then opened view.
+        OpenedFolderState openedFolderState = OpenedFolderViewModel.getState();
+        //Do we need to implement something like that loginState.setUsername(response.getUsername());
+        this.openedFolderViewModel.setState(openedFolderState);
         openedFolderViewModel.firePropertyChanged();
 
-        viewManagerModel.setActiveView(removeViewModel.getViewName());
+        viewManagerModel.setActiveView(openedFolderViewModel.getViewName());
         viewManagerModel.firePropertyChanged();
     }
 
