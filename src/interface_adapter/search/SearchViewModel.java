@@ -9,7 +9,6 @@ public class SearchViewModel extends ViewModel {
     public static final String TITLE_LABEL = "Search Your Recipes!";
     public static final String SEARCH_BUTTON_LABEL = "Search";
     public static final String INGREDIENT_BUTTON_LABEL = "Ingredients";
-
     public static final String TAG_BUTTON_LABEL = "Tags";
     public static final String MYFOLDER_BUTTON_LABEL = "My Folder";
     public static final String CANCEL_BUTTON_LABEL = "Cancel";

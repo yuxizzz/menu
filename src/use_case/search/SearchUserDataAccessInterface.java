@@ -1,17 +1,13 @@
 package use_case.search;
 
-import entity.SearchResult;
+import entity.search_results.SearchResult;
 
 import java.io.IOException;
 import java.util.HashMap;
 
 public interface SearchUserDataAccessInterface {
-    boolean existsTags(String identifier) throws IOException;
-    //to confirm if allergy is valid
-    //if not，give it to presenter & prepareFailview
 
-    boolean existsIngredients(String identifier) throws IOException;
-    //same as above
+    boolean existsIngredients(String ingredient, String tags) throws IOException;
 
     HashMap<Object, SearchResult> getOutputRecipes(String ingredients, String allergy) throws IOException;
 

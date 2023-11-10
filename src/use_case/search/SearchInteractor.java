@@ -1,5 +1,11 @@
 package use_case.search;
 
+import entity.search_results.SearchResult;
+
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.HashMap;
+
 public class SearchInteractor implements SearchInputBoundary {
     final SearchUserDataAccessInterface searchDataAccessObject;
     final SearchOutputBoundary searchPresenter;
@@ -11,23 +17,22 @@ public class SearchInteractor implements SearchInputBoundary {
     }
 
     @Override
-    public void execute(SearchInputData signupInputData) {
+    public void execute(SearchInputData searchInputData) throws IOException {
+        if (!searchDataAccessObject.existsIngredients(searchInputData.getIngredients(), searchInputData.getTags())) {
+            searchPresenter.prepareFailView("Invalid ingredients");
+        } else {
+            HashMap<Object, SearchResult> results = searchDataAccessObject.getOutputRecipes(searchInputData.getIngredients(),
+                    searchInputData.getTags());
 
-        // check for searchDataAccesObject  一些checking -> 然后给searchPresenter 反馈
-        // if (!)
-
-//        if (searchDataAccessObject.existsByName(signupInputData.getUsername())) {
-//            userPresenter.prepareFailView("User already exists.");
-//        } else if (!signupInputData.getPassword().equals(signupInputData.getRepeatPassword())) {
-//            userPresenter.prepareFailView("Passwords don't match.");
-//        } else {
-//
-//            LocalDateTime now = LocalDateTime.now();
-//            User user = userFactory.create(signupInputData.getUsername(), signupInputData.getPassword(), now);
-//            userDataAccessObject.save(user);
-//
-//            SignupOutputData signupOutputData = new SignupOutputData(user.getName(), now.toString(), false);
-//            userPresenter.prepareSuccessView(signupOutputData);
-//        }
+            HashMap<String, ArrayList<String>> recipes = new HashMap<>();
+            for (SearchResult s: results.values()) {
+                ArrayList<String> response = new ArrayList<>();
+                response.add(s.getTitle());
+                response.add(s.getImage());
+                recipes.put(s.getRecipeid(), response);
+            }
+            SearchOutputData searchOutputData = new SearchOutputData(recipes, false);
+            searchPresenter.prepareSuccessView(searchOutputData);
+        }
     }
 }

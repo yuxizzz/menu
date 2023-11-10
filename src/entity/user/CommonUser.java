@@ -1,4 +1,4 @@
-package entity;
+package entity.user;
 
 import entity.folder.DefaultFolder;
 import entity.folder.Folder;
@@ -37,6 +37,11 @@ class CommonUser implements User {
     @Override
     public String getPassword() {
         return password;
+    }
+
+    @Override
+    public String getUserFolders() {
+        return null;
     }
 
     @Override

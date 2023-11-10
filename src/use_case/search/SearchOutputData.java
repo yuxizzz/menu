@@ -1,17 +1,15 @@
 package use_case.search;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 public class SearchOutputData {
     private boolean useCaseFailed;
-    private String searchedRecipes;
+    private HashMap<String, ArrayList<String>> searchedRecipes;
 
-    public SearchOutputData(ArrayList<String> searchedRecipes, boolean useCaseFailed){
+    public SearchOutputData(HashMap<String, ArrayList<String>> searchedRecipes, boolean useCaseFailed){
         this.useCaseFailed = useCaseFailed;
-        this.searchedRecipes = "";
-        for (String s: searchedRecipes){
-            this.searchedRecipes += s + "\n";
-        }
+        this.searchedRecipes = searchedRecipes;
     }
-    public String getSearchedRecipes(){return searchedRecipes;}
+    public HashMap<String, ArrayList<String>> getSearchedRecipes(){return searchedRecipes;}
 }

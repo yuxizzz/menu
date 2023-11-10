@@ -8,7 +8,7 @@ import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;
 
 public class LoggedInViewModel extends ViewModel {
-    public final String TITLE_LABEL = "Logged In View";
+    public final String TITLE_LABEL = "Logged in view";
 
     private LoggedInState state = new LoggedInState();
 

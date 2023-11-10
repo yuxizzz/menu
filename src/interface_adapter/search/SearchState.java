@@ -6,12 +6,15 @@ public class SearchState {
     private String tags = "";
     private String tagsError = null;
 
+    private String userID = "";
+
 
     public SearchState(SearchState copy) {
         ingredients = copy.ingredients;
         ingredientsError = copy.ingredientsError;
         tags = copy.tags;
         tagsError = copy.tagsError;
+        userID = copy.userID;
     }
 
     // Because of the previous copy constructor, the default constructor must be explicit.
@@ -50,11 +53,17 @@ public class SearchState {
         this.tagsError = tagsError;
     }
 
+    public String getUserID(String userID) {return this.userID;}
+
     @Override
     public String toString() {
         return "SearchState{" +
                 "ingredients='" + ingredients + '\'' +
                 ", allergy='" + tags + '\'' +
                 '}';
+    }
+
+    public void setUserId(String username) {
+        this.userID = userID;
     }
 }
