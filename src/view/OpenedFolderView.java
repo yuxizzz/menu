@@ -2,10 +2,12 @@ package view;
 
 import interface_adapter.opened_folder.OpenedFolderState;
 import interface_adapter.opened_folder.OpenedFolderViewModel;
+import interface_adapter.remove_recipe.RemoveController;
+import interface_adapter.remove_recipe.RemoveState;
+import interface_adapter.remove_recipe.RemoveViewModel;
 
 import javax.imageio.ImageIO;
 import javax.swing.*;
-import javax.swing.border.Border;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -17,7 +19,14 @@ import java.net.URL;
 public class OpenedFolderView extends JPanel implements ActionListener, PropertyChangeListener {
     public final String viewName = "opened folder";
     private final OpenedFolderViewModel openedFolderViewModel;
-    
+
+// TODO import open recipe class
+//    private final OpenRecipeViewModel openRecipeViewModel;
+//    private final OpenRecipeController openRecipeController;
+
+    private final RemoveViewModel removeViewModel;
+    private final RemoveController removeController;
+
     JLabel foldername;
     final JButton remove;
     final JButton get;
@@ -25,19 +34,33 @@ public class OpenedFolderView extends JPanel implements ActionListener, Property
     /**
      * A window with a title and a JButton.
      */
-    public OpenedFolderView(OpenedFolderViewModel openedFolderViewModel) {
+//    public OpenedFolderView(OpenedFolderViewModel openedFolderViewModel, RemoveController removeController,
+//                            OpenRecipeViewModel openRecipeViewModel, OpenRecipeController openRecipeController, RemoveViewModel removeViewModel) {
+    public OpenedFolderView(OpenedFolderViewModel openedFolderViewModel, RemoveController removeController, RemoveViewModel removeViewModel) {
         this.openedFolderViewModel = openedFolderViewModel;
+        this.removeController = removeController;
+//        this.openRecipeController = openRecipeController;
+//        this.openRecipeViewModel = openRecipeViewModel;
+        this.removeViewModel = removeViewModel;
+
         JButton get = new JButton(OpenedFolderViewModel.GET_BUTTON_LABEL);
         JButton remove = new JButton(OpenedFolderViewModel.REMOVE_BUTTON_LABEL);
+
+
         this.remove = remove;
         this.get = get;
         this.openedFolderViewModel.addPropertyChangeListener(this);
+//        this.openRecipeViewModel.addPropertyChangeListener(this);
 
         JLabel title = new JLabel("Opened Folder Screen");
         title.setAlignmentX(Component.CENTER_ALIGNMENT);
 
         JLabel foldernameInfo = new JLabel("Currently opened folder: ");
         foldername = new JLabel();
+
+        JPanel buttons = new JPanel();
+        buttons.add(get);
+        buttons.add(remove);
 
 //        JButton button = new JButton(OpenedFolderViewModel.GET_BUTTON_LABEL);
         get.setBounds(600, 10, 250, 100);
@@ -47,8 +70,39 @@ public class OpenedFolderView extends JPanel implements ActionListener, Property
         remove.setBounds(900, 10, 250, 100);
         remove.setText("REMOVE");
 
-        remove.addActionListener(this);
-        get.addActionListener(this);
+        get.addActionListener(
+
+                // This creates an anonymous subclass of ActionListener and instantiates it.
+                new ActionListener() {
+                    public void actionPerformed(ActionEvent evt) {
+                        if (evt.getSource().equals(get)) {
+//                            OpenRecipeState currentState = openRecipeViewModel.getState();
+//
+//                            openRecipeController.execute(
+//                                    currentState.getRecipeID(),
+//                                    currentState.getName(),
+//                                    currentState.getIngredients(),
+//                                    currentState.getNutrition(),
+//                                    currentState.getInstructions(),
+//                                    currentState.getImage(),
+//                                    currentState.getRecipeURL()
+//                            );
+                        }
+                    }
+                }
+        );
+        remove.addActionListener(
+                new ActionListener() {
+                    @Override
+                    public void actionPerformed(ActionEvent e) {
+                        if (e.getSource().equals(remove)) {
+
+                            RemoveState currentState = removeViewModel.getState();
+                            removeController.execute();
+                        }
+                    }
+                }
+        );
 
         Image image = null;
         try {
