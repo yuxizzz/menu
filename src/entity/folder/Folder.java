@@ -1,9 +1,11 @@
 package entity.folder;
 
+import entity.recipe.Recipe;
+
 import java.util.HashMap;
 
 public interface Folder {
-    void removeRecipe(Integer recipeID);
     String getName();
-    HashMap getRecipeMap();
+    HashMap<Integer, Recipe> getRecipeMap();
+    void removeRecipe(Integer recipeId);
 }

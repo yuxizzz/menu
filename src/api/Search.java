@@ -23,7 +23,7 @@ public class Search {
         return API_TOKEN;
     }
 
-    public static AllResults getRecipeList(String includeIngredients, String tags) throws IOException {
+    public static HashMap<Object, SearchResult> getRecipeList(String includeIngredients, String tags) throws IOException {
         OkHttpClient client = new OkHttpClient().newBuilder()
                 .build();
         // MediaType mediaType = MediaType.parse("application/json");
@@ -52,7 +52,8 @@ public class Search {
                         searchresult.put(value.getRecipeid(), value);
                     }
                 }
-                return CommonAllResults.builder().results(searchresult).build();
+                return searchresult;
+//                return CommonAllResults.builder().results(searchresult).build();
             } else {
                 throw new RuntimeException(response.message());
             }
