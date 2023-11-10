@@ -1,4 +1,4 @@
-package entity;
+package entity.search_results;
 
 public class CommonSearchResult implements SearchResult {
     private String image;

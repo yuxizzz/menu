@@ -1,4 +1,4 @@
-package entity;
+package entity.search_results;
 
 public interface SearchResult {
     String getImage();

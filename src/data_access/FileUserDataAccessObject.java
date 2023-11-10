@@ -1,8 +1,7 @@
 package data_access;
 
-import entity.User;
-import entity.UserFactory;
-import use_case.delete_folder.DeleteFolderUserDataAccessInterface;
+import entity.user.User;
+import entity.user.UserFactory;
 import use_case.login.LoginUserDataAccessInterface;
 import use_case.signup.SignupUserDataAccessInterface;
 import use_case.clear_users.ClearUserDataAccessInterface;
@@ -12,10 +11,9 @@ import java.time.LocalDateTime;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.Map;
-import java.util.List;
 import java.util.ArrayList;
 
-public class FileUserDataAccessObject implements SignupUserDataAccessInterface, LoginUserDataAccessInterface , ClearUserDataAccessInterface, DeleteFolderUserDataAccessInterface{
+public class FileUserDataAccessObject implements SignupUserDataAccessInterface, LoginUserDataAccessInterface , ClearUserDataAccessInterface{
 
     private final File csvFile;
 

@@ -1,7 +1,5 @@
 package use_case.search;
 
-import entity.SearchResult;
-
 import java.util.ArrayList;
 import java.util.HashMap;
 

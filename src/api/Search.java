@@ -1,17 +1,15 @@
 package api;
 
-import entity.*;
 import entity.recipe.Recipe;
 import entity.recipe.CommonRecipe;
+import entity.search_results.CommonSearchResult;
+import entity.search_results.SearchResult;
 import okhttp3.*;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.Map;
-import java.util.List;
 
 public class Search {
 

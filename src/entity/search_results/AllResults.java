@@ -1,4 +1,4 @@
-package entity;
+package entity.search_results;
 
 import java.util.HashMap;
 

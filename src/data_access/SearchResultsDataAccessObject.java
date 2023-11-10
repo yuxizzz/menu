@@ -1,6 +1,6 @@
 package data_access;
 
-import entity.SearchResult;
+import entity.search_results.SearchResult;
 import use_case.search.SearchUserDataAccessInterface;
 
 import java.io.IOException;

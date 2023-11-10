@@ -1,7 +1,7 @@
 package app;
 
-import entity.CommonUserFactory;
-import entity.UserFactory;
+import entity.user.CommonUserFactory;
+import entity.user.UserFactory;
 import interface_adapter.ViewManagerModel;
 import interface_adapter.logged_in.LoggedInViewModel;
 import interface_adapter.login.LoginController;

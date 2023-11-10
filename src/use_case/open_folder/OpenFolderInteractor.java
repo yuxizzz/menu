@@ -1,10 +1,5 @@
 package use_case.open_folder;
 
-import entity.User;
-import entity.folder.Folder;
-import use_case.login.LoginInputData;
-import use_case.login.LoginOutputData;
-
 public class OpenFolderInteractor {
     final OpenFolderDataAccessInterface folderDataAccessObject;
     final OpenFolderOutputBoundary openFolderPresenter;

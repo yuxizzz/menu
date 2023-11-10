@@ -1,8 +1,8 @@
-package entity;
+package entity.search_results;
 
 import java.util.HashMap;
 
-public class CommonAllResults implements AllResults{
+public class CommonAllResults implements AllResults {
     private HashMap<Object, SearchResult> results;
 
 
