@@ -14,7 +14,7 @@ public class SearchState {
         ingredientsError = copy.ingredientsError;
         tags = copy.tags;
         tagsError = copy.tagsError;
-        userID = copy.userID
+        userID = copy.userID;
     }
 
     // Because of the previous copy constructor, the default constructor must be explicit.

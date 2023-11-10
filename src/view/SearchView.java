@@ -1,6 +1,5 @@
 package view;
 
-import interface_adapter.login.LoginState;
 import interface_adapter.search.SearchController;
 import interface_adapter.search.SearchState;
 import interface_adapter.search.SearchViewModel;
@@ -13,6 +12,7 @@ import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
+import java.io.IOException;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
@@ -60,7 +60,11 @@ public class SearchView extends JPanel implements ActionListener, PropertyChange
                         if (evt.getSource().equals(search)) {
                             SearchState currentState = searchViewModel.getState();
 
-                            searchController.execute(currentState.getIngredients(), currentState.getTags());
+                            try {
+                                searchController.execute(currentState.getIngredients(), currentState.getTags());
+                            } catch (IOException e) {
+                                throw new RuntimeException(e);
+                            }
                         }
                     }
                 }
