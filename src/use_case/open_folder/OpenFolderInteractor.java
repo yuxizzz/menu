@@ -6,9 +6,7 @@ public class OpenFolderInteractor {
     final OpenFolderDataAccessInterface folderDataAccessObject;
     final OpenFolderOutputBoundary openFolderPresenter;
 
-    public OpenFolderInteractor(OpenFolderDataAccessInterface folderDataAccessInterface,
-                                OpenFolderOutputBoundary openFolderOutputBoundary,
-                                OpenFolderDataAccessInterface folderDataAccessObject,
+    public OpenFolderInteractor(OpenFolderDataAccessInterface folderDataAccessObject,
                                 OpenFolderOutputBoundary openFolderPresenter) {
         this.folderDataAccessObject = folderDataAccessObject;
         this.openFolderPresenter = openFolderPresenter;

@@ -105,7 +105,7 @@ public class OpenedFolderView extends JPanel implements ActionListener, Property
                 }
         );
 
-//        TODO need to get information in foler for recipe
+//        TODO need to get information in folder for recipe
         Image image = null;
         try {
             URL url = new URL("https://spoonacular.com/productImages/436359-312x231.jpg");
