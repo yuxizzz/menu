@@ -6,30 +6,21 @@ import entity.recipe.Recipe;
 import use_case.delete_folder.DeleteFolderUserDataAccessInterface;
 
 import java.io.*;
-import java.time.LocalDateTime;
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
-
-//TODO recipeDAO & folderDAO
 public class FileFolderDataAccessObject implements DeleteFolderUserDataAccessInterface {
     private final File csvFile;
-
+    private FolderFactory folderFactory;
     private final Map<String, Integer> headers = new LinkedHashMap<>();
-
     private final Map<String, Folder> folders = new HashMap<>();
 
-    private FolderFactory folderFactory;
-
-    public FileFolderDataAccessObject(String csvPath, FolderFactory folderFactory) throws IOException {
+    public FileFolderDataAccessObject(String csvFilePath, FolderFactory folderFactory) throws IOException {
+        csvFile = new File(csvFilePath);
         this.folderFactory = folderFactory;
-
-        csvFile = new File(csvPath);
         headers.put("folder_name", 0);
         headers.put("recipe_id", 1);
-
         if (csvFile.length() == 0) {
             save();
         } else {
@@ -59,7 +50,6 @@ public class FileFolderDataAccessObject implements DeleteFolderUserDataAccessInt
     }
 
     public void save(Folder folder) {folders.put(folder.getName(), folder);};
-
     private void save() {
         BufferedWriter writer;
         try {
