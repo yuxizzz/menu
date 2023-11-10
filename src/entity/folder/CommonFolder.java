@@ -12,6 +12,12 @@ public class CommonFolder implements Folder {
         this.foldername = foldername;
         this.recipeMap = new HashMap<Integer, Recipe>();
     }
+
+    public CommonFolder(String foldername, HashMap<Integer, Recipe> recipeMap) {
+        this.foldername = foldername;
+        this.recipeMap = recipeMap;
+    }
+
     @Override
     public String getName() {
         return foldername;
@@ -26,4 +32,5 @@ public class CommonFolder implements Folder {
             recipeMap.remove(recipeId);
         }
     }
+
 }

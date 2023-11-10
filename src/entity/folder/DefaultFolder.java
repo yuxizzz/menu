@@ -7,11 +7,16 @@ import java.util.HashMap;
 
 public class DefaultFolder implements Folder {
     private String folderName;
-    private HashMap<Integer, UserRecipe> recipeMap;
+    private HashMap<Integer, Recipe> recipeMap;
 
     public DefaultFolder() {
         this.folderName = "My Recipes";
-        this.recipeMap = new HashMap<Integer, UserRecipe>();
+        this.recipeMap = new HashMap<Integer, Recipe>();
+    }
+
+    public DefaultFolder(String foldername, HashMap<Integer, Recipe> recipeMap) {
+        this.folderName = foldername;
+        this.recipeMap = recipeMap;
     }
 
     @Override

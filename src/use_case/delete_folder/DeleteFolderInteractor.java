@@ -1,5 +1,6 @@
 package use_case.delete_folder;
 
+//TODO delete folder from user userDAO
 
 public class DeleteFolderInteractor implements DeleteFolderInputBoundary {
     final DeleteFolderUserDataAccessInterface deleteFolderUserDataAccessObject;
