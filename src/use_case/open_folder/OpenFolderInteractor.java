@@ -1,11 +1,15 @@
 package use_case.open_folder;
 
+import entity.folder.Folder;
+
 public class OpenFolderInteractor {
     final OpenFolderDataAccessInterface folderDataAccessObject;
     final OpenFolderOutputBoundary openFolderPresenter;
 
     public OpenFolderInteractor(OpenFolderDataAccessInterface folderDataAccessInterface,
-                                OpenFolderOutputBoundary openFolderOutputBoundary, OpenFolderDataAccessInterface folderDataAccessObject, OpenFolderOutputBoundary openFolderPresenter) {
+                                OpenFolderOutputBoundary openFolderOutputBoundary,
+                                OpenFolderDataAccessInterface folderDataAccessObject,
+                                OpenFolderOutputBoundary openFolderPresenter) {
         this.folderDataAccessObject = folderDataAccessObject;
         this.openFolderPresenter = openFolderPresenter;
     }
@@ -15,12 +19,10 @@ public class OpenFolderInteractor {
         if (!folderDataAccessObject.existsByName(foldername)) {
             openFolderPresenter.prepareFailView(foldername + ": Folder does not exist.");
         }else {
+             Folder folder = folderDataAccessObject.get(openFolderInputData.getFoldername());
 
-//              TODO: uncomment
-//             Folder folder = folderDataAccessObject.get(openFolderInputData.getFoldername());
-//
-//             OpenFolderOutputData openFolderOutputData = new OpenFolderOutputData(folder.getName(), false);
-//             openFolderPresenter.prepareSuccessView(openFolderOutputData);
+             OpenFolderOutputData openFolderOutputData = new OpenFolderOutputData(folder.getName(), false);
+             openFolderPresenter.prepareSuccessView(openFolderOutputData);
             }
         }
 }
