@@ -17,6 +17,7 @@ import java.net.URL;
 public class OpenedFolderView extends JPanel implements ActionListener, PropertyChangeListener {
     public final String viewName = "opened folder";
     private final OpenedFolderViewModel openedFolderViewModel;
+    
     JLabel foldername;
     final JButton remove;
     final JButton get;
@@ -57,7 +58,7 @@ public class OpenedFolderView extends JPanel implements ActionListener, Property
             e.printStackTrace();
         }
 
-        Border border = BorderFactory.createLineBorder(Color.green,3);
+//        Border border = BorderFactory.createLineBorder(Color.green,3);
         JLabel label = new JLabel(new ImageIcon(image));
         label.setBounds(150, 250, 150, 150);
         label.setVisible(false);
@@ -67,7 +68,7 @@ public class OpenedFolderView extends JPanel implements ActionListener, Property
         // set text LEFT,CENTER, RIGHT of imageicon
         label.setVerticalTextPosition(JLabel.TOP);
         // set text TOP,CENTER, BOTTOM of imageicon
-        label.setForeground(new Color(0x00FF00));
+//        label.setForeground(new Color(0x00FF00));
         // set font color of text
         label.setFont(new Font("MV Boli",Font.PLAIN,20));
         // set font of text
@@ -77,7 +78,7 @@ public class OpenedFolderView extends JPanel implements ActionListener, Property
         // set background color
         label.setOpaque(true);
         // display background color
-        label.setBorder(border);
+//        label.setBorder(border);
         // sets border of label (not image+text)
         label.setVerticalAlignment(JLabel.CENTER);
         // set vertical position of icon+text within label
@@ -137,7 +138,7 @@ public class OpenedFolderView extends JPanel implements ActionListener, Property
             e.printStackTrace();
         }
 
-        Border border = BorderFactory.createLineBorder(Color.green,3);
+//        Border border = BorderFactory.createLineBorder(Color.green,3);
         JLabel label = new JLabel(new ImageIcon(image));
         label.setBounds(150, 250, 150, 150);
         label.setVisible(true);
@@ -147,7 +148,7 @@ public class OpenedFolderView extends JPanel implements ActionListener, Property
         // set text LEFT,CENTER, RIGHT of imageicon
         label.setVerticalTextPosition(JLabel.TOP);
         // set text TOP,CENTER, BOTTOM of imageicon
-        label.setForeground(new Color(0x00FF00));
+//        label.setForeground(new Color(0x00FF00));
         // set font color of text
         label.setFont(new Font("MV Boli",Font.PLAIN,20));
         // set font of text
@@ -157,7 +158,7 @@ public class OpenedFolderView extends JPanel implements ActionListener, Property
         // set background color
         label.setOpaque(true);
         // display background color
-        label.setBorder(border);
+//        label.setBorder(border);
         // sets border of label (not image+text)
         label.setVerticalAlignment(JLabel.CENTER);
         // set vertical position of icon+text within label
