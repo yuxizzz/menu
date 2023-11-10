@@ -1,6 +1,6 @@
 package use_case.create_folder;
 
-import entity.Recipe;
+import entity.recipe.Recipe;
 
 import java.util.HashMap;
 import java.util.Map;
