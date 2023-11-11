@@ -2,10 +2,12 @@ package view;
 
 import interface_adapter.opened_folder.OpenedFolderState;
 import interface_adapter.opened_folder.OpenedFolderViewModel;
+import interface_adapter.remove_recipe.RemoveController;
+import interface_adapter.remove_recipe.RemoveState;
+import interface_adapter.remove_recipe.RemoveViewModel;
 
 import javax.imageio.ImageIO;
 import javax.swing.*;
-import javax.swing.border.Border;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -17,6 +19,14 @@ import java.net.URL;
 public class OpenedFolderView extends JPanel implements ActionListener, PropertyChangeListener {
     public final String viewName = "opened folder";
     private final OpenedFolderViewModel openedFolderViewModel;
+
+// TODO import open recipe class
+//    private final OpenRecipeViewModel openRecipeViewModel;
+//    private final OpenRecipeController openRecipeController;
+
+    private final RemoveViewModel removeViewModel;
+    private final RemoveController removeController;
+
     JLabel foldername;
     final JButton remove;
     final JButton get;
@@ -24,19 +34,34 @@ public class OpenedFolderView extends JPanel implements ActionListener, Property
     /**
      * A window with a title and a JButton.
      */
-    public OpenedFolderView(OpenedFolderViewModel openedFolderViewModel) {
+//    public OpenedFolderView(OpenedFolderViewModel openedFolderViewModel, RemoveController removeController,
+//                            OpenRecipeViewModel openRecipeViewModel, OpenRecipeController openRecipeController, RemoveViewModel removeViewModel) {
+    public OpenedFolderView(OpenedFolderViewModel openedFolderViewModel, RemoveController removeController,
+                            RemoveViewModel removeViewModel) {
         this.openedFolderViewModel = openedFolderViewModel;
+        this.removeController = removeController;
+//        this.openRecipeController = openRecipeController;
+//        this.openRecipeViewModel = openRecipeViewModel;
+        this.removeViewModel = removeViewModel;
+
         JButton get = new JButton(OpenedFolderViewModel.GET_BUTTON_LABEL);
         JButton remove = new JButton(OpenedFolderViewModel.REMOVE_BUTTON_LABEL);
+
+
         this.remove = remove;
         this.get = get;
         this.openedFolderViewModel.addPropertyChangeListener(this);
+//        this.openRecipeViewModel.addPropertyChangeListener(this);
 
         JLabel title = new JLabel("Opened Folder Screen");
         title.setAlignmentX(Component.CENTER_ALIGNMENT);
 
         JLabel foldernameInfo = new JLabel("Currently opened folder: ");
         foldername = new JLabel();
+
+        JPanel buttons = new JPanel();
+        buttons.add(get);
+        buttons.add(remove);
 
 //        JButton button = new JButton(OpenedFolderViewModel.GET_BUTTON_LABEL);
         get.setBounds(600, 10, 250, 100);
@@ -46,9 +71,41 @@ public class OpenedFolderView extends JPanel implements ActionListener, Property
         remove.setBounds(900, 10, 250, 100);
         remove.setText("REMOVE");
 
-        remove.addActionListener(this);
-        get.addActionListener(this);
+        get.addActionListener(
 
+                // This creates an anonymous subclass of ActionListener and instantiates it.
+                new ActionListener() {
+                    public void actionPerformed(ActionEvent evt) {
+                        if (evt.getSource().equals(get)) {
+//                            OpenRecipeState currentState = openRecipeViewModel.getState();
+//
+//                            openRecipeController.execute(
+//                                    currentState.getRecipeID(),
+//                                    currentState.getName(),
+//                                    currentState.getIngredients(),
+//                                    currentState.getNutrition(),
+//                                    currentState.getInstructions(),
+//                                    currentState.getImage(),
+//                                    currentState.getRecipeURL()
+//                            );
+                        }
+                    }
+                }
+        );
+        remove.addActionListener(
+                new ActionListener() {
+                    @Override
+                    public void actionPerformed(ActionEvent e) {
+                        if (e.getSource().equals(remove)) {
+
+                            RemoveState currentState = removeViewModel.getState();
+                            removeController.execute();
+                        }
+                    }
+                }
+        );
+
+//        TODO need to get information in folder for recipe
         Image image = null;
         try {
             URL url = new URL("https://spoonacular.com/productImages/436359-312x231.jpg");
@@ -57,7 +114,7 @@ public class OpenedFolderView extends JPanel implements ActionListener, Property
             e.printStackTrace();
         }
 
-        Border border = BorderFactory.createLineBorder(Color.green,3);
+//        Border border = BorderFactory.createLineBorder(Color.green,3);
         JLabel label = new JLabel(new ImageIcon(image));
         label.setBounds(150, 250, 150, 150);
         label.setVisible(false);
@@ -67,7 +124,7 @@ public class OpenedFolderView extends JPanel implements ActionListener, Property
         // set text LEFT,CENTER, RIGHT of imageicon
         label.setVerticalTextPosition(JLabel.TOP);
         // set text TOP,CENTER, BOTTOM of imageicon
-        label.setForeground(new Color(0x00FF00));
+//        label.setForeground(new Color(0x00FF00));
         // set font color of text
         label.setFont(new Font("MV Boli",Font.PLAIN,20));
         // set font of text
@@ -77,7 +134,7 @@ public class OpenedFolderView extends JPanel implements ActionListener, Property
         // set background color
         label.setOpaque(true);
         // display background color
-        label.setBorder(border);
+//        label.setBorder(border);
         // sets border of label (not image+text)
         label.setVerticalAlignment(JLabel.CENTER);
         // set vertical position of icon+text within label
@@ -110,157 +167,11 @@ public class OpenedFolderView extends JPanel implements ActionListener, Property
         this.setSize(500,500);
         this.setVisible(true);
     }
-    public static void main( String[] args)
-    {   JLabel title = new JLabel("Opened Folder Screen");
-        title.setAlignmentX(Component.CENTER_ALIGNMENT);
 
-        JLabel foldernameInfo = new JLabel("Currently opened folder: ");
-
-        JButton get = new JButton(OpenedFolderViewModel.GET_BUTTON_LABEL);
-        JButton remove = new JButton(OpenedFolderViewModel.REMOVE_BUTTON_LABEL);
-//        JButton button = new JButton(OpenedFolderViewModel.GET_BUTTON_LABEL);
-        get.setBounds(600, 10, 250, 100);
-        get.setText("GET");
-
-//        JButton buttonremove = new JButton(OpenedFolderViewModel.GET_BUTTON_LABEL);
-        remove.setBounds(900, 10, 250, 100);
-        remove.setText("REMOVE");
-
-//        remove.addActionListener(this);
-//        get.addActionListener(this);
-
-        Image image = null;
-        try {
-            URL url = new URL("https://spoonacular.com/productImages/436359-312x231.jpg");
-            image = ImageIO.read(url);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-
-        Border border = BorderFactory.createLineBorder(Color.green,3);
-        JLabel label = new JLabel(new ImageIcon(image));
-        label.setBounds(150, 250, 150, 150);
-        label.setVisible(true);
-        label.setText("recipe title");
-        // set text of label label.setIcon(image);
-        label.setHorizontalTextPosition(JLabel.CENTER);
-        // set text LEFT,CENTER, RIGHT of imageicon
-        label.setVerticalTextPosition(JLabel.TOP);
-        // set text TOP,CENTER, BOTTOM of imageicon
-        label.setForeground(new Color(0x00FF00));
-        // set font color of text
-        label.setFont(new Font("MV Boli",Font.PLAIN,20));
-        // set font of text
-        label.setIconTextGap(-25);
-        // set gap of text to image
-        label.setBackground(Color.black);
-        // set background color
-        label.setOpaque(true);
-        // display background color
-        label.setBorder(border);
-        // sets border of label (not image+text)
-        label.setVerticalAlignment(JLabel.CENTER);
-        // set vertical position of icon+text within label
-        label.setHorizontalAlignment(JLabel.CENTER);
-        // set horizontal position of icon+text within label
-        label.setBounds(100, 10, 250, 250);
-
-//        Border border = BorderFactory.createLineBorder(Color.green,3);
-//        Image image = null;
-//        try {
-//            URL url = new URL("https://spoonacular.com/productImages/436359-312x231.jpg");
-//            image = ImageIO.read(url);
-//        } catch (IOException e) {
-//            e.printStackTrace();
-//        }
-//        JLabel label = new JLabel(new ImageIcon(image)); //create a label
-//        label.setText("bro, do you even code?");
-//        // set text of label label.setIcon(image);
-//        label.setHorizontalTextPosition(JLabel.CENTER);
-//        // set text LEFT,CENTER, RIGHT of imageicon
-//        label.setVerticalTextPosition(JLabel.TOP);
-//        // set text TOP,CENTER, BOTTOM of imageicon
-//        label.setForeground(new Color(0x00FF00));
-//        // set font color of text
-//        label.setFont(new Font("MV Boli",Font.PLAIN,20));
-//        // set font of text
-//        label.setIconTextGap(-25);
-//        // set gap of text to image
-//        label.setBackground(Color.black);
-//        // set background color
-//        label.setOpaque(true);
-//        // display background color
-//        label.setBorder(border);
-//        // sets border of label (not image+text)
-//        label.setVerticalAlignment(JLabel.CENTER);
-//        // set vertical position of icon+text within label
-//        label.setHorizontalAlignment(JLabel.CENTER);
-//        // set horizontal position of icon+text within label
-//        label.setBounds(100, 10, 250, 250);
-//        // set x,y position within frame as well as dimensions
-//
-//        JLabel title = new JLabel("Opened Folder Screen");
-//        title.setAlignmentX(Component.CENTER_ALIGNMENT);
-//
-//
-//        JButton button = new JButton(OpenedFolderViewModel.GET_BUTTON_LABEL);
-//        button.setBounds(600, 10, 250, 100);
-//        button.setText("OPEN");
-//
-//        JButton buttonremove = new JButton(OpenedFolderViewModel.GET_BUTTON_LABEL);
-//        buttonremove.setBounds(900, 10, 250, 100);
-//        buttonremove.setText("REMOVE");
-
-        JFrame frame = new JFrame();
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.setSize(500,500);
-        frame.setLayout(null);
-        frame.setVisible(true);
-        frame.add(label);
-        frame.add(remove);
-        frame.add(get);
-        frame.add(title);
-        frame.pack();
-
-//        ImageIcon icon = new ImageIcon("point.png");
-//        ImageIcon icon2 = new ImageIcon("face.png");
-//
-//        label = new JLabel();
-//        label.setIcon(icon2);
-//        label.setBounds(150, 250, 150, 150);
-//        label.setVisible(false);
-
-//        button = new JButton();
-//        button.setBounds(100, 100, 250, 100);
-//        button.addActionListener(this);
-//        button.setText("I'm a button!");
-//
-//        button.setFocusable(false);
-//        button.setIcon(icon);
-//        button.setHorizontalTextPosition(JButton.CENTER);
-//        button.setVerticalTextPosition(JButton.BOTTOM);
-//        button.setFont(new Font("Comic Sans",Font.BOLD,25));
-//        button.setIconTextGap(-15);
-//        button.setForeground(Color.cyan);
-//        button.setBackground(Color.lightGray);
-//        button.setBorder(BorderFactory.createEtchedBorder());
-//
-//        this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-//        this.setLayout(null);
-//        this.setSize(500,500);
-//        this.setVisible(true);
-//        this.add(button);
-//        this.add(label);
-    }
+//    example
 
     @Override
-//    public void actionPerformed(ActionEvent e) {
-//        if(e.getSource()==button) {
-//            System.out.println("poo");
-//            button.setEnabled(false);
-//            label.setVisible(true);
-//
-//    }
+
 
     /**
      * React to a button click that results in evt.

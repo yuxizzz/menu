@@ -4,11 +4,11 @@ public class RemoveOutputData {
 
     private boolean useCaseFailed;
 
-    private String recipeRemoved;
+    private String removedRecipe;
 
-    public RemoveOutputData(String recipeRemoved, boolean useCaseFailed){
+    public RemoveOutputData(String removedRecipe, boolean useCaseFailed){
         this.useCaseFailed = useCaseFailed;
-        this.recipeRemoved = "Do you ensure to remove" + recipeRemoved + "?";
+        this.removedRecipe = removedRecipe;
     }
-    public String getRecipeRemoved() { return recipeRemoved;}
+    public String getRemovedRecipe() { return removedRecipe;}
 }

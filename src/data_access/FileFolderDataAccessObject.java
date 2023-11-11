@@ -4,23 +4,33 @@ import entity.folder.Folder;
 import entity.folder.FolderFactory;
 import entity.recipe.Recipe;
 import use_case.delete_folder.DeleteFolderUserDataAccessInterface;
+import use_case.open_folder.OpenFolderDataAccessInterface;
 
 import java.io.*;
+import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
-public class FileFolderDataAccessObject implements DeleteFolderUserDataAccessInterface {
+
+//TODO recipeDAO & folderDAO
+public class FileFolderDataAccessObject implements DeleteFolderUserDataAccessInterface, OpenFolderDataAccessInterface {
     private final File csvFile;
-    private FolderFactory folderFactory;
+
     private final Map<String, Integer> headers = new LinkedHashMap<>();
+
     private final Map<String, Folder> folders = new HashMap<>();
 
-    public FileFolderDataAccessObject(String csvFilePath, FolderFactory folderFactory) throws IOException {
-        csvFile = new File(csvFilePath);
+    private FolderFactory folderFactory;
+
+    public FileFolderDataAccessObject(String csvPath, FolderFactory folderFactory) throws IOException {
         this.folderFactory = folderFactory;
+
+        csvFile = new File(csvPath);
         headers.put("folder_name", 0);
         headers.put("recipe_id", 1);
+
         if (csvFile.length() == 0) {
             save();
         } else {
@@ -36,7 +46,7 @@ public class FileFolderDataAccessObject implements DeleteFolderUserDataAccessInt
                     String folderName = String.valueOf(col[headers.get("folder_name")]);
                     String[] recipeIDs = col[headers.get("recipe_id")].split(" ");
                     HashMap<Integer, Recipe> recipes = new HashMap<>();
-                    for (String id: recipeIDs) {
+                    for (String id : recipeIDs) {
                         Integer recipeID = Integer.parseInt(id);
                         FileRecipeDataAccessObject recipeDAO = new FileRecipeDataAccessObject();
                         Recipe recipe = recipeDAO.getRecipeFromFile(recipeID);
@@ -49,7 +59,12 @@ public class FileFolderDataAccessObject implements DeleteFolderUserDataAccessInt
         }
     }
 
-    public void save(Folder folder) {folders.put(folder.getName(), folder);};
+    public void save(Folder folder) {
+        folders.put(folder.getName(), folder);
+    }
+
+    ;
+
     private void save() {
         BufferedWriter writer;
         try {
@@ -76,5 +91,15 @@ public class FileFolderDataAccessObject implements DeleteFolderUserDataAccessInt
     public String deleteFolder(String folderName) {
         folders.remove(folderName);
         return folderName + "is removed";
+    }
+
+    @Override
+    public boolean existsByName(String identifier) {
+        return folders.containsKey(identifier);
+
+    }
+
+    public Folder get(String folderName) {
+        return folders.get(folderName);
     }
 }
