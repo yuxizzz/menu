@@ -1,16 +1,22 @@
 package use_case.opened_folder;
 
-import use_case.login.LoginOutputData;
+import entity.recipe.UserRecipe;
 
 public class OpenedFolderOutputData {
-    private final String foldername;
+//    private final UserRecipe;
     private boolean useCaseFailed;
 
-    public OpenedFolderOutputData(String foldername, boolean useCaseFailed) {
-        this.foldername = foldername;
+    public OpenedFolderOutputData(Integer recipeid, boolean useCaseFailed) {
+//        UserRecipe recipe = getRecipe(recipeid);
+//        this.recipe = recipe;
     }
 
-    public String getFoldername() {
-        return foldername;
-    }
+//    public String getRecipe() {
+//        return recipe;
+//    }
+
+    // TODO return the evt
+//    public Object getSource() {
+//        return foldername;
+//    }
 }

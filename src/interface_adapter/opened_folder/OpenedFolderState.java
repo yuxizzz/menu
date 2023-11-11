@@ -19,4 +19,7 @@ public class OpenedFolderState {
     public void setFoldername(String foldername) {
         this.foldername = foldername;
     }
+
+    public void setFoldernameError(String error) {
+    }
 }

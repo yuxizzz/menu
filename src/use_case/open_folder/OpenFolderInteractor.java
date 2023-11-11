@@ -19,7 +19,7 @@ public class OpenFolderInteractor {
         }else {
              Folder folder = folderDataAccessObject.get(openFolderInputData.getFoldername());
 
-             OpenFolderOutputData openFolderOutputData = new OpenFolderOutputData(folder.getName(), false);
+             OpenFolderOutputData openFolderOutputData = new OpenFolderOutputData(folder.getName(), false,folder.getRecipeMap());
              openFolderPresenter.prepareSuccessView(openFolderOutputData);
             }
         }

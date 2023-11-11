@@ -1,27 +1,27 @@
 package use_case.opened_folder;
 
 import entity.folder.Folder;
+import entity.recipe.Recipe;
 
 public class OpenedFolderInteractor {
-    final OpenedFolderDataAccessInterface folderDataAccessObject;
+    final OpenedFolderDataAccessInterface recipeDataAccessObject;
     final OpenedFolderOutputBoundary openedFolderPresenter;
 
-    public OpenedFolderInteractor(OpenedFolderDataAccessInterface folderDataAccessInterface,
-                                  OpenedFolderDataAccessInterface folderDataAccessObject,
+    public OpenedFolderInteractor(OpenedFolderDataAccessInterface recipeDataAccessObject,
                                   OpenedFolderOutputBoundary openedFolderPresenter) {
-        this.folderDataAccessObject = folderDataAccessObject;
+        this.recipeDataAccessObject = recipeDataAccessObject;
         this.openedFolderPresenter = openedFolderPresenter;
     }
 
     public void execute(OpenedFolderInputData openedFolderInputData) {
-        String foldername = openedFolderInputData.getFoldername();
-        if (!folderDataAccessObject.existsByName(foldername)) {
-            openedFolderPresenter.prepareFailView(foldername + ": Folder does not exist.");
+        Integer recipeid = openedFolderInputData.getRecipeid();
+        if (!recipeDataAccessObject.existsByID(recipeid)) {
+            openedFolderPresenter.prepareFailView("Recipe does not exist.");
         }else {
-             Folder folder = folderDataAccessObject.get(openedFolderInputData.getFoldername());
+             Recipe recipe = recipeDataAccessObject.get(openedFolderInputData.getRecipeid());
 
-             OpenedFolderOutputData openFolderOutputData = new OpenedFolderOutputData(folder.getName(), false);
-             openedFolderPresenter.prepareSuccessView(openFolderOutputData);
+             OpenedFolderOutputData openedFolderOutputData = new OpenedFolderOutputData(recipe.getRecipeID(), false);
+             openedFolderPresenter.prepareSuccessView(openedFolderOutputData);
             }
         }
 }

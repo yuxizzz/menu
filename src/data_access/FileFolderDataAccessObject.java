@@ -100,6 +100,6 @@ public class FileFolderDataAccessObject implements DeleteFolderUserDataAccessInt
     }
 
     public Folder get(String folderName) {
-        return folders.remove(folderName);
+        return folders.get(folderName);
     }
 }
