@@ -8,9 +8,13 @@ import java.beans.PropertyChangeSupport;
 
 //Do I need to implement RemoveViewModel or directly use Opened View Model.??
 public class RemoveViewModel extends ViewModel {
-    public final String TITLE_LABEL = "Ensure View";
+    public static final String TITLE_LABEL = "Ensure View";
+
+    public static final String Question_LABEL = "Do you ensure to remove this recipe?";
     public static final String ENSURE_BUTTON_LABEL = "Ensure";
     public static final String CANCEL_BUTTON_LABEL = "Cancel";
+
+
     private static RemoveState state = new RemoveState();
 
     public RemoveViewModel() {
@@ -22,9 +26,10 @@ public class RemoveViewModel extends ViewModel {
 
     public final PropertyChangeSupport support = new PropertyChangeSupport(this);
 
-
+    // This is what the Remove Presenter will call to let the ViewModel know
+    // to alert the View
     @Override
-    public void firePropertyChanged() {support.firePropertyChange("state", null, this.state);
+    public void firePropertyChanged() {support.firePropertyChange("state", null, state);
 
     }
 
