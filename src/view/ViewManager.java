@@ -1,4 +1,5 @@
-package src.view;
+package view;
+
 
 import interface_adapter.ViewManagerModel;
 

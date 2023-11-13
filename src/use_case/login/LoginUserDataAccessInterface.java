@@ -1,6 +1,7 @@
-package src.use_case.login;
+package use_case.login;
 
-import entity.User;
+
+import entity.user.User;
 
 public interface LoginUserDataAccessInterface {
     boolean existsByName(String identifier);

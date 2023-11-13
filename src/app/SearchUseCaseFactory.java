@@ -1,6 +1,5 @@
-package src.app;
+package app;
 
 
 public class SearchUseCaseFactory {
     }
-}

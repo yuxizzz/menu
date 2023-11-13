@@ -1,4 +1,4 @@
-package src.view;
+package view;
 
 import interface_adapter.clear_users.ClearController;
 import interface_adapter.clear_users.ClearState;
@@ -57,10 +57,12 @@ public class SignupView extends JPanel implements ActionListener, PropertyChange
         buttons.add(signUp);
         cancel = new JButton(SignupViewModel.CANCEL_BUTTON_LABEL);
         buttons.add(cancel);
+
         clear = new JButton(SignupViewModel.CLEAR_BUTTON_LABEL);
         buttons.add(clear);
 
         signUp.addActionListener(
+
                 // This creates an anonymous subclass of ActionListener and instantiates it.
                 new ActionListener() {
                     public void actionPerformed(ActionEvent evt) {
@@ -77,6 +79,7 @@ public class SignupView extends JPanel implements ActionListener, PropertyChange
                 }
         );
 
+
         clear.addActionListener(
                 new ActionListener() {
                     @Override
@@ -85,7 +88,6 @@ public class SignupView extends JPanel implements ActionListener, PropertyChange
                             ClearState currentState = clearViewModel.getState();
                             clearController.execute();
                         }
-
                     }
                 }
         );
@@ -165,6 +167,7 @@ public class SignupView extends JPanel implements ActionListener, PropertyChange
         this.add(repeatPasswordInfo);
         this.add(buttons);
     }
+
 
     /**
      * React to a button click that results in evt.
