@@ -1,6 +1,9 @@
 package use_case.open_folder;
 
 import entity.folder.Folder;
+import entity.recipe.Recipe;
+
+import java.util.HashMap;
 
 public class OpenFolderInteractor {
     final OpenFolderDataAccessInterface folderDataAccessObject;
@@ -18,8 +21,11 @@ public class OpenFolderInteractor {
             openFolderPresenter.prepareFailView(foldername + ": Folder does not exist.");
         }else {
              Folder folder = folderDataAccessObject.get(openFolderInputData.getFoldername());
+             HashMap<Integer, Recipe> recipeMap = folderDataAccessObject.getrecipeMap(foldername);
 
-             OpenFolderOutputData openFolderOutputData = new OpenFolderOutputData(folder.getName(), false,folder.getRecipeMap());
+
+             OpenFolderOutputData openFolderOutputData = new OpenFolderOutputData(folder.getName(),
+                     false,folder.getRecipeMap());
              openFolderPresenter.prepareSuccessView(openFolderOutputData);
             }
         }

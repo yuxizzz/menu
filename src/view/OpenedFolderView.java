@@ -1,5 +1,8 @@
 package view;
 
+import interface_adapter.open_recipe.OpenRecipeController;
+import interface_adapter.open_recipe.OpenRecipeState;
+import interface_adapter.open_recipe.OpenRecipeViewModel;
 import interface_adapter.opened_folder.OpenedFolderState;
 import interface_adapter.opened_folder.OpenedFolderViewModel;
 import interface_adapter.remove_recipe.RemoveController;
@@ -21,8 +24,8 @@ public class OpenedFolderView extends JPanel implements ActionListener, Property
     private final OpenedFolderViewModel openedFolderViewModel;
 
 // TODO import open recipe class
-//    private final OpenRecipeViewModel openRecipeViewModel;
-//    private final OpenRecipeController openRecipeController;
+    private final OpenRecipeViewModel openRecipeViewModel;
+    private final OpenRecipeController openRecipeController;
 
     private final RemoveViewModel removeViewModel;
     private final RemoveController removeController;
@@ -34,14 +37,15 @@ public class OpenedFolderView extends JPanel implements ActionListener, Property
     /**
      * A window with a title and a JButton.
      */
-//    public OpenedFolderView(OpenedFolderViewModel openedFolderViewModel, RemoveController removeController,
-//                            OpenRecipeViewModel openRecipeViewModel, OpenRecipeController openRecipeController, RemoveViewModel removeViewModel) {
     public OpenedFolderView(OpenedFolderViewModel openedFolderViewModel, RemoveController removeController,
+                            OpenRecipeViewModel openRecipeViewModel, OpenRecipeController openRecipeController,
                             RemoveViewModel removeViewModel) {
+//    public OpenedFolderView(OpenedFolderViewModel openedFolderViewModel, RemoveController removeController,
+//                            RemoveViewModel removeViewModel) {
         this.openedFolderViewModel = openedFolderViewModel;
         this.removeController = removeController;
-//        this.openRecipeController = openRecipeController;
-//        this.openRecipeViewModel = openRecipeViewModel;
+        this.openRecipeController = openRecipeController;
+        this.openRecipeViewModel = openRecipeViewModel;
         this.removeViewModel = removeViewModel;
 
         JButton get = new JButton(OpenedFolderViewModel.GET_BUTTON_LABEL);
