@@ -9,6 +9,6 @@ public interface OpenFolderDataAccessInterface {
     boolean existsByName(String identifier);
 
     Folder get(String foldername);
-//    HashMap<Integer, Recipe> getrecipeMap(String foldername);
+    HashMap<Integer, Recipe> getrecipeMap(String foldername);
 
 }
