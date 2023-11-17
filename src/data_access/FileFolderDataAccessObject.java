@@ -7,8 +7,6 @@ import use_case.delete_folder.DeleteFolderUserDataAccessInterface;
 import use_case.open_folder.OpenFolderDataAccessInterface;
 
 import java.io.*;
-import java.time.LocalDateTime;
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.Map;
@@ -16,6 +14,7 @@ import java.util.Map;
 
 //TODO recipeDAO & folderDAO
 public class FileFolderDataAccessObject implements DeleteFolderUserDataAccessInterface, OpenFolderDataAccessInterface {
+//    , OpenFolderDataAccessInterface
     private final File csvFile;
 
     private final Map<String, Integer> headers = new LinkedHashMap<>();
@@ -103,8 +102,8 @@ public class FileFolderDataAccessObject implements DeleteFolderUserDataAccessInt
         return folders.get(folderName);
     }
 
-//    @Override
-//    public HashMap<Integer, Recipe> getrecipeMap(String foldername) {
-//        return headers.get(foldername);
-//    } }
+
+    public HashMap<Integer, Recipe> getrecipeMap(String foldername) {
+        return folders.get(foldername).getRecipeMap();
+    }
 }
