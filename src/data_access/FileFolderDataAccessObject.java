@@ -102,4 +102,9 @@ public class FileFolderDataAccessObject implements DeleteFolderUserDataAccessInt
     public Folder get(String folderName) {
         return folders.get(folderName);
     }
+
+//    @Override
+//    public HashMap<Integer, Recipe> getrecipeMap(String foldername) {
+//        return headers.get(foldername);
+//    } }
 }
