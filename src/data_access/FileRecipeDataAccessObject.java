@@ -8,6 +8,10 @@ import java.io.*;
 import java.util.*;
 
 public class FileRecipeDataAccessObject{
+    /**
+     * The DataAccessObject class for Recipe objects, where they are stored in csv file. The usecases
+     * can get access to the Recipe objects data through the DAO.
+     */
     private final File csvFile;
 
     private final Map<String, Integer> headers = new LinkedHashMap<>();
