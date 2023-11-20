@@ -1,5 +1,6 @@
 package view;
 
+import entity.recipe.Recipe;
 import interface_adapter.open_recipe.OpenRecipeController;
 import interface_adapter.open_recipe.OpenRecipeState;
 import interface_adapter.open_recipe.OpenRecipeViewModel;
@@ -18,6 +19,7 @@ import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 import java.io.IOException;
 import java.net.URL;
+import java.util.HashMap;
 
 public class OpenedFolderView extends JPanel implements ActionListener, PropertyChangeListener {
     public final String viewName = "opened folder";
@@ -33,6 +35,7 @@ public class OpenedFolderView extends JPanel implements ActionListener, Property
     JLabel foldername;
     final JButton remove;
     final JButton get;
+
 
     /**
      * A window with a title and a JButton.
@@ -50,10 +53,13 @@ public class OpenedFolderView extends JPanel implements ActionListener, Property
 
         JButton get = new JButton(OpenedFolderViewModel.GET_BUTTON_LABEL);
         JButton remove = new JButton(OpenedFolderViewModel.REMOVE_BUTTON_LABEL);
+        HashMap<Integer, Recipe> recipeMap = openedFolderViewModel.getRecipeMap();
 
 
         this.remove = remove;
         this.get = get;
+
+        for (Recipe value : recipeMap.values()) {
         this.openedFolderViewModel.addPropertyChangeListener(this);
 //        this.openRecipeViewModel.addPropertyChangeListener(this);
 
@@ -110,41 +116,44 @@ public class OpenedFolderView extends JPanel implements ActionListener, Property
         );
 
 //        TODO need to get information in folder for recipe
-        Image image = null;
-        try {
-            URL url = new URL("https://spoonacular.com/productImages/436359-312x231.jpg");
-            image = ImageIO.read(url);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+
+
+            Image image = null;
+            try {
+                URL url = new URL(value.getImage());
+//                "https://spoonacular.com/productImages/436359-312x231.jpg"
+                image = ImageIO.read(url);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
 
 //        Border border = BorderFactory.createLineBorder(Color.green,3);
-        JLabel label = new JLabel(new ImageIcon(image));
-        label.setBounds(150, 250, 150, 150);
-        label.setVisible(false);
-        label.setText("bro, do you even code?");
-        // set text of label label.setIcon(image);
-        label.setHorizontalTextPosition(JLabel.CENTER);
-        // set text LEFT,CENTER, RIGHT of imageicon
-        label.setVerticalTextPosition(JLabel.TOP);
-        // set text TOP,CENTER, BOTTOM of imageicon
+            JLabel label = new JLabel(new ImageIcon(image));
+            label.setBounds(150, 250, 150, 150);
+            label.setVisible(false);
+            label.setText("bro, do you even code?");
+            // set text of label label.setIcon(image);
+            label.setHorizontalTextPosition(JLabel.CENTER);
+            // set text LEFT,CENTER, RIGHT of imageicon
+            label.setVerticalTextPosition(JLabel.TOP);
+            // set text TOP,CENTER, BOTTOM of imageicon
 //        label.setForeground(new Color(0x00FF00));
-        // set font color of text
-        label.setFont(new Font("MV Boli",Font.PLAIN,20));
-        // set font of text
-        label.setIconTextGap(-25);
-        // set gap of text to image
-        label.setBackground(Color.black);
-        // set background color
-        label.setOpaque(true);
-        // display background color
+            // set font color of text
+            label.setFont(new Font("MV Boli", Font.PLAIN, 20));
+            // set font of text
+            label.setIconTextGap(-25);
+            // set gap of text to image
+            label.setBackground(Color.black);
+            // set background color
+            label.setOpaque(true);
+            // display background color
 //        label.setBorder(border);
-        // sets border of label (not image+text)
-        label.setVerticalAlignment(JLabel.CENTER);
-        // set vertical position of icon+text within label
-        label.setHorizontalAlignment(JLabel.CENTER);
-        // set horizontal position of icon+text within label
-        label.setBounds(100, 10, 250, 250);
+            // sets border of label (not image+text)
+            label.setVerticalAlignment(JLabel.CENTER);
+            // set vertical position of icon+text within label
+            label.setHorizontalAlignment(JLabel.CENTER);
+            // set horizontal position of icon+text within label
+            label.setBounds(100, 10, 250, 250);
 
 //        button.setFocusable(false);
 //        button.setIcon(icon);
@@ -163,13 +172,14 @@ public class OpenedFolderView extends JPanel implements ActionListener, Property
 //        this.add(button);
 //        this.add(label);
 
-        this.setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
-        this.add(title);
-        this.add(label);
-        this.add(foldernameInfo);
-        this.add(foldername);
-        this.setSize(500,500);
-        this.setVisible(true);
+            this.setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
+            this.add(title);
+            this.add(label);
+            this.add(foldernameInfo);
+            this.add(foldername);
+            this.setSize(500, 500);
+            this.setVisible(true);
+        }
     }
 
 //    example

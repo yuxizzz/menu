@@ -1,10 +1,13 @@
 package interface_adapter.open_folder;
 
+import entity.recipe.Recipe;
 import interface_adapter.ViewManagerModel;
 import interface_adapter.opened_folder.OpenedFolderState;
 import interface_adapter.opened_folder.OpenedFolderViewModel;
 import use_case.open_folder.OpenFolderOutputBoundary;
 import use_case.open_folder.OpenFolderOutputData;
+
+import java.util.HashMap;
 
 public class OpenFolderPresenter implements OpenFolderOutputBoundary {
 
@@ -39,4 +42,5 @@ public class OpenFolderPresenter implements OpenFolderOutputBoundary {
         openFolderState.setFoldernameError(error);
         openFolderViewModel.firePropertyChanged();
     }
+
 }

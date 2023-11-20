@@ -6,6 +6,7 @@ import entity.recipe.Recipe;
 import use_case.delete_folder.DeleteFolderUserDataAccessInterface;
 import use_case.open_folder.OpenFolderDataAccessInterface;
 
+import java.awt.*;
 import java.io.*;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
@@ -102,8 +103,10 @@ public class FileFolderDataAccessObject implements DeleteFolderUserDataAccessInt
         return folders.get(folderName);
     }
 
-
-    public HashMap<Integer, Recipe> getrecipeMap(String foldername) {
-        return folders.get(foldername).getRecipeMap();
+// TODO change it to integer list<recipe information> use java doc to explain
+//    list[url, title]
+//    public HashMap<Integer, List> getrecipeMap(String foldername) {
+//        for
+//        return folders.get(foldername).getRecipeMap();
     }
 }
