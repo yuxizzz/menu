@@ -3,6 +3,7 @@ package data_access;
 import entity.folder.Folder;
 import entity.folder.FolderFactory;
 import entity.recipe.Recipe;
+import use_case.create_folder.CreateFolderDataAccessInterface;
 import use_case.delete_folder.DeleteFolderUserDataAccessInterface;
 import use_case.open_folder.OpenFolderDataAccessInterface;
 
@@ -15,7 +16,7 @@ import java.util.Map;
 
 
 //TODO recipeDAO & folderDAO
-public class FileFolderDataAccessObject implements DeleteFolderUserDataAccessInterface, OpenFolderDataAccessInterface {
+public class FileFolderDataAccessObject implements DeleteFolderUserDataAccessInterface, OpenFolderDataAccessInterface, CreateFolderDataAccessInterface {
     private final File csvFile;
 
     private final Map<String, Integer> headers = new LinkedHashMap<>();
