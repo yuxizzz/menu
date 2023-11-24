@@ -1,7 +1,6 @@
 package entity.folder;
 
 import entity.recipe.Recipe;
-import entity.recipe.UserRecipe;
 
 import java.util.HashMap;
 
@@ -30,7 +29,7 @@ public class DefaultFolder implements Folder {
     }
 
     @Override
-    public HashMap getRecipeMap() {
+    public HashMap<Integer, Recipe> getRecipeMap() {
         return recipeMap;
     }
 }

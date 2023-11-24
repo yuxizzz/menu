@@ -1,25 +1,31 @@
 package data_access;
 
 import entity.recipe.Recipe;
-import entity.recipe.RecipeFactory;;
+import entity.recipe.RecipeFactory;
 
 import java.io.*;
 
 import java.util.*;
 
+/**
+ * The DataAccessObject class for Recipe objects, where they are stored in csv file. The usecases
+ * can get access to the Recipe objects data through the DAO.
+ */
 public class FileRecipeDataAccessObject{
-    /**
-     * The DataAccessObject class for Recipe objects, where they are stored in csv file. The usecases
-     * can get access to the Recipe objects data through the DAO.
-     */
+
     private final File csvFile;
 
     private final Map<String, Integer> headers = new LinkedHashMap<>();
 
-    private final Map<String, Recipe> recipeList = new HashMap<>();
+    private final Map<Integer, Recipe> recipeList = new HashMap<>();
 
     private RecipeFactory recipeFactory;
 
+    /**
+     * @param csvPath
+     * @param recipeFactory
+     * @throws IOException
+     */
     public FileRecipeDataAccessObject(String csvPath, RecipeFactory recipeFactory) throws IOException {
         this.recipeFactory = recipeFactory;
 
@@ -39,8 +45,8 @@ public class FileRecipeDataAccessObject{
             try (BufferedReader reader = new BufferedReader(new FileReader(csvFile))) {
                 String header = reader.readLine();
 
-                // For later: clean this up by creating a new Exception subclass and handling it in the UI.
-                assert header.equals("recipe_name,ingredients,nutrition,instructions,image,recipeurl,recipeid");
+                // TODO: For later: clean this up by creating a new Exception subclass and handling it in the UI.
+//                assert header.equals("recipe_name,ingredients,nutrition,instructions,image,recipeurl,recipeid");
 
                 String row;
                 while ((row = reader.readLine()) != null) {
@@ -51,9 +57,9 @@ public class FileRecipeDataAccessObject{
                     String instruction = String.valueOf(col[headers.get("instructions")]);
                     String image = String.valueOf(col[headers.get("image")]);
                     String recipeUrl = String.valueOf(col[headers.get("recipeurl")]);
-                    String recipeId = String.valueOf(col[headers.get("recipeid")]);
+                    Integer recipeId = Integer.valueOf(col[headers.get("recipeid")]);
                     Recipe recipe = recipeFactory.create(recipeName, ingredients, nutrition, instruction, image, recipeUrl, recipeId);
-                    recipeList.put(recipeName, recipe);
+                    recipeList.put(recipeId, recipe);
                 }
             }
         }
@@ -68,7 +74,7 @@ public class FileRecipeDataAccessObject{
 
             for (Recipe recipe: recipeList.values()) {
                 String line = String.format("%s,%s,%s,%s,%s",
-                        recipe.getName(), recipe.getIngredients(), recipe.getNutrition(), recipe.getInstructions(), recipe.getImage(), recipe.getRecipeURL(), recipe.getRecipeID());
+                        recipe.getName(), recipe.getIngredients(), recipe.getNutrition(), recipe.getInstructions(), recipe.getImage(), recipe.getRecipeURL(), recipe.getRecipeID().toString());
                 writer.write(line);
                 writer.newLine();
             }
@@ -76,5 +82,24 @@ public class FileRecipeDataAccessObject{
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
+    }
+
+    /**
+     * @param recipeHashMap
+     */
+    public void saveFolderRecipes(HashMap<Integer, Recipe> recipeHashMap) {
+        for (Integer id: recipeHashMap.keySet()) {
+            if (!recipeList.containsKey(id)) {
+                recipeList.put(id, recipeHashMap.get(id));
+            }
+        }
+    }
+
+    /**
+     * @param recipeID
+     * @return
+     */
+    public Recipe getRecipeFromFile(Integer recipeID) {
+        return recipeList.get(recipeID);
     }
 }
