@@ -5,6 +5,6 @@ import entity.recipe.Recipe;
 
 public interface GetRecipeDataAccessInterface {
 
-//    boolean existsByName(Integer recipeID);
+    boolean existsByName(Integer recipeID);
     void save(Recipe recipe);
 }

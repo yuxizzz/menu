@@ -7,7 +7,7 @@ import java.beans.PropertyChangeSupport;
 
 public class GetRecipeViewModel extends ViewModel {
     public static final String TITLE_LABEL = "Get Recipe View";
-    public static final String GETRECIPE_BUTTON_LABEL = "Get";
+    public static final String COLLECT_BUTTON_LABEL = "Collect";
     private GetRecipeState state = new GetRecipeState();
     public GetRecipeViewModel() {
         super("get recipe");
