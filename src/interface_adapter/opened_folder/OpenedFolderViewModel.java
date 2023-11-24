@@ -2,16 +2,10 @@
 package interface_adapter.opened_folder;
 
 import interface_adapter.ViewModel;
-import interface_adapter.login.LoginState;
 
-import javax.imageio.ImageIO;
-import javax.swing.*;
-import javax.swing.border.Border;
-import java.awt.*;
 import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;
-import java.io.IOException;
-import java.net.URL;
+
 
 public class OpenedFolderViewModel extends ViewModel {
     public final String TITLE_LABEL = "Opened Folder View";

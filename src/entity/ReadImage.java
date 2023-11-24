@@ -1,7 +1,5 @@
 package entity;
 
-import interface_adapter.opened_folder.OpenedFolderViewModel;
-
 import java.awt.*;
 import java.io.IOException;
 import java.net.URL;

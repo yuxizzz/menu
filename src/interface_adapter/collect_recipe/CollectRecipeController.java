@@ -2,9 +2,6 @@ package interface_adapter.collect_recipe;
 
 import use_case.collect_recipe.CollectRecipeInputBoundary;
 import use_case.collect_recipe.CollectRecipeInputData;
-import use_case.collect_recipe.CollectRecipeOutputData;
-import use_case.signup.SignupInputBoundary;
-import use_case.signup.SignupInputData;
 
 public class CollectRecipeController {
     final CollectRecipeInputBoundary userCollectUseCaseInteractor;

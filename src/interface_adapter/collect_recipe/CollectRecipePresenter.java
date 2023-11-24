@@ -1,6 +1,7 @@
 package interface_adapter.collect_recipe;
 
 import interface_adapter.ViewManagerModel;
+import interface_adapter.clear_users.ClearState;
 import use_case.collect_recipe.CollectRecipeOutputBoundary;
 import use_case.collect_recipe.CollectRecipeOutputData;
 
@@ -23,6 +24,14 @@ public class CollectRecipePresenter implements CollectRecipeOutputBoundary {
     @Override
     public void prepareSuccessView(CollectRecipeOutputData collectRecipeOutputData) {
         //On success, switch to folder popup View
+        CollectRecipeState collectRecipeState = collectRecipeViewModel.getState();
+        collectRecipeState.setFolderNames(collectRecipeOutputData.getFolders());
+        this.collectRecipeViewModel.setState(collectRecipeState);
+        collectRecipeViewModel.firePropertyChanged();
+
+        viewManagerModel.setActiveView(collectRecipeViewModel.getViewName());
+        viewManagerModel.firePropertyChanged();
+
 
 
     }

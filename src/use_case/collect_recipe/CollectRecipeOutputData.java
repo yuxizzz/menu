@@ -9,7 +9,7 @@ public class CollectRecipeOutputData {
         this.folders = folders;
     }
 
-    ArrayList<String> getFolders() {
+    public ArrayList<String> getFolders() {
         return folders;
     }
 }
