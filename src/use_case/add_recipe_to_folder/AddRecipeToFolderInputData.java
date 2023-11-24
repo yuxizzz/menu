@@ -2,16 +2,19 @@ package use_case.add_recipe_to_folder;
 
 public class AddRecipeToFolderInputData {
     final private String folderName;
-    final private String recipeID;
+    final private Integer recipeID;
+    private final int userID;
 
-    public AddRecipeToFolderInputData(String folderName, String recipeID) {
+    public AddRecipeToFolderInputData(String folderName, Integer recipeID, int userID) {
         this.folderName = folderName;
         this.recipeID = recipeID;
+        this.userID = userID;
+
     }
 
     String getFolderName() {
         return folderName;
     }
 
-    String getRecipeID(){return recipeID;};
+    Integer getRecipeID(){return recipeID;};
 }

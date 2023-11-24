@@ -9,7 +9,7 @@ public class CollectRecipeController {
         this.userCollectUseCaseInteractor = userCollectUseCaseInteractor;
     }
 
-    public void execute(String recipeID, int userID) {
+    public void execute(Integer recipeID, int userID) {
         CollectRecipeInputData collectRecipeInputData = new CollectRecipeInputData(recipeID, userID);
 
         userCollectUseCaseInteractor.execute(collectRecipeInputData);

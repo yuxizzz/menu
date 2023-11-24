@@ -3,6 +3,8 @@ package data_access;
 import entity.folder.Folder;
 import entity.folder.FolderFactory;
 import entity.recipe.Recipe;
+import use_case.add_recipe_to_folder.AddRecipeToFolderDataAccessInterface;
+import use_case.add_recipe_to_folder.AddRecipeToFolderInputData;
 import use_case.delete_folder.DeleteFolderUserDataAccessInterface;
 import use_case.open_folder.OpenFolderDataAccessInterface;
 
@@ -10,10 +12,10 @@ import java.io.*;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.Map;
+import java.util.Objects;
 
 
-
-public class FileFolderDataAccessObject implements DeleteFolderUserDataAccessInterface, OpenFolderDataAccessInterface {
+public class FileFolderDataAccessObject implements DeleteFolderUserDataAccessInterface, OpenFolderDataAccessInterface, AddRecipeToFolderDataAccessInterface {
 
     private final File csvFile;
 
@@ -129,5 +131,18 @@ public class FileFolderDataAccessObject implements DeleteFolderUserDataAccessInt
      */
     public HashMap<Integer, Recipe> getrecipeMap(String foldername) {
         return folders.get(foldername).getRecipeMap();
+    }
+
+
+    @Override
+    public String addRecipeToFolder(String folderName, Integer recipeID) {
+        for (String s : folders.keySet()) {
+            if (s.equals(folderName)) {
+                Folder f = folders.get(s);
+                f.addRecipe(recipeID);
+                return "successfully added to " + folderName;
+            }
+        }
+        return null;
     }
 }

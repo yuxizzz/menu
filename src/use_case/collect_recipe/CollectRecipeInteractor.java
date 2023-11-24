@@ -25,7 +25,7 @@ public class CollectRecipeInteractor implements CollectRecipeInputBoundary {
             for (Folder f: folderLists) {
                 folders.add(f.getName());
             }
-            CollectRecipeOutputData collectRecipeOutputData = new CollectRecipeOutputData(folders);
+            CollectRecipeOutputData collectRecipeOutputData = new CollectRecipeOutputData(folders, collectRecipeInputData.getRecipeID(),collectRecipeInputData.getUserID() );
             userPresenter.prepareSuccessView(collectRecipeOutputData);
 
         }

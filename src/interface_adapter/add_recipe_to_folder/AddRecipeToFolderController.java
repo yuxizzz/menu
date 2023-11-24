@@ -10,7 +10,11 @@ public class AddRecipeToFolderController {
     }
 
     public void execute(String folderName, String recipeID) {
-        AddRecipeToFolderInputData addRecipeToFolderInputData = new AddRecipeToFolderInputData(folderName, recipeID);
+
+    }
+
+    public void execute(String folderName, Integer recipeID, int userID) {
+        AddRecipeToFolderInputData addRecipeToFolderInputData = new AddRecipeToFolderInputData(folderName, recipeID, userID);
 
         addFolderUseCaseInteractor.execute(addRecipeToFolderInputData);
     }
