@@ -1,6 +1,7 @@
 package view;
-
-import interface_adapter.ViewModel;
+import interface_adapter.collect_recipe.CollectRecipeController;
+import interface_adapter.collect_recipe.CollectRecipeState;
+import interface_adapter.collect_recipe.CollectRecipeViewModel;
 import interface_adapter.get_recipe.GetRecipeController;
 import interface_adapter.get_recipe.GetRecipeState;
 import interface_adapter.get_recipe.GetRecipeViewModel;
@@ -19,12 +20,19 @@ public class RecipeView extends JPanel implements ActionListener, PropertyChange
     public final String viewName = "recipe";
     private final GetRecipeViewModel getRecipeViewModel;
     private final GetRecipeController getRecipeController;
+    private final CollectRecipeViewModel collectViewModel;
+    private final CollectRecipeController collectRecipeController
     private final JButton collect;
 
-    public RecipeView(GetRecipeViewModel getRecipeViewModel, GetRecipeController getRecipeController) {
+    public RecipeView(GetRecipeViewModel getRecipeViewModel, GetRecipeController getRecipeController,
+                      CollectRecipeViewModel collectViewModel, CollectRecipeController collectRecipeController) {
         this.getRecipeViewModel = getRecipeViewModel;
         this.getRecipeController = getRecipeController;
         getRecipeViewModel.addPropertyChangeListener(this);
+
+        this.collectViewModel = collectViewModel;
+        this.collectRecipeController = collectRecipeController;
+        this.collectViewModel.addPropertyChangeListener(this);
 
         JLabel title = new JLabel(GetRecipeViewModel.TITLE_LABEL);
         title.setAlignmentX(Component.CENTER_ALIGNMENT);
@@ -33,10 +41,22 @@ public class RecipeView extends JPanel implements ActionListener, PropertyChange
         collect = new JButton(GetRecipeViewModel.COLLECT_BUTTON_LABEL);
         buttons.add(collect);
 
-//        collect.addActionListener();
 
+        collect.addActionListener(
+
+                // This creates an anonymous subclass of ActionListener and instantiates it.
+                new ActionListener() {
+                    public void actionPerformed(ActionEvent evt) {
+                        if (evt.getSource().equals(collect)) {
+                            CollectRecipeState currentState = collectViewModel.getState();
+                            collectRecipeController.execute(currentState.getRecipeID(), currentState.getUserID());
+                        }
+                    }
+                }
+        );
         this.add(title);
         this.add(buttons);
+        this.setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
     }
 
     @Override
