@@ -14,4 +14,9 @@ public class InMemoryFolderDataAccessObject implements DeleteFolderUserDataAcces
         // remove 1 folder
         return null;
     }
+
+    @Override
+    public boolean existsByName(String identifier) {
+        return false;
+    }
 }
