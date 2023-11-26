@@ -2,8 +2,8 @@ package use_case.collect_recipe;
 
 public class CollectRecipeInputData {
     final private Integer recipeID;
-    final private int userID;
-    public CollectRecipeInputData(Integer recipeID, int userID) {
+    final private Integer userID;
+    public CollectRecipeInputData(Integer recipeID, Integer userID) {
         this.recipeID = recipeID;
         this.userID = userID;
     }
