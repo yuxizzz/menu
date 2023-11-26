@@ -1,16 +1,20 @@
 package interface_adapter.logout;
 
 public class LogoutState {
-    private Integer userID;
+    private String username;
+    private String error = null;
     public LogoutState(LogoutState copy) {
-        userID = copy.userID;
+        username = copy.username;
     }
     public LogoutState() {
     }
-    public Integer getUserID() {
-        return userID;
+    public String getUserID() {
+        return username;
     }
-    public void setUserID(Integer userID) {
-        this.userID = userID;
+    public void setUserID(String username) {
+        this.username = username;
+    }
+    public void setMessageError(String error) {
+        this.error = error;
     }
 }

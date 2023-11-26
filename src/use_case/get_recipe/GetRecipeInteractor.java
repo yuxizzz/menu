@@ -14,7 +14,6 @@ public class GetRecipeInteractor implements GetRecipeInputBoundary {
         this.recipePresenter = recipePresenter;
     }
 
-    // DAO: false -> recipeID !exist
     @Override
     public void execute(GetRecipeInputData getRecipeInputData) throws IOException {
         if (recipeDataAccessObject.existsByName(getRecipeInputData.getRecipeID())) {
