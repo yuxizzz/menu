@@ -8,10 +8,10 @@ public class LogoutState {
     }
     public LogoutState() {
     }
-    public String getUserID() {
+    public String getUsername() {
         return username;
     }
-    public void setUserID(String username) {
+    public void setUsername(String username) {
         this.username = username;
     }
     public void setMessageError(String error) {
