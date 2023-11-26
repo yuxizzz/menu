@@ -105,8 +105,9 @@ public class FileFolderDataAccessObject implements DeleteFolderUserDataAccessInt
 
 // TODO change it to integer list<recipe information> use java doc to explain
 //    list[url, title]
-//    public HashMap<Integer, List> getrecipeMap(String foldername) {
-//        for
-//        return folders.get(foldername).getRecipeMap();
+    public HashMap<Integer, List> getrecipeMap(String foldername) {
+        HashMap<Integer, List> recipeMap = new HashMap<Integer, List>();
+        for (Recipe key : folders.get(foldername).getRecipeMap().values())
+        return folders.get(foldername).getRecipeMap();
     }
 }
