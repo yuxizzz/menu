@@ -8,6 +8,7 @@ import use_case.open_folder.OpenFolderDataAccessInterface;
 
 import java.awt.*;
 import java.io.*;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.Map;
@@ -105,9 +106,16 @@ public class FileFolderDataAccessObject implements DeleteFolderUserDataAccessInt
 
 // TODO change it to integer list<recipe information> use java doc to explain
 //    list[url, title]
-    public HashMap<Integer, List> getrecipeMap(String foldername) {
-        HashMap<Integer, List> recipeMap = new HashMap<Integer, List>();
-        for (Recipe key : folders.get(foldername).getRecipeMap().values())
-        return folders.get(foldername).getRecipeMap();
+    public HashMap<Integer, ArrayList> getrecipeMap(String foldername) {
+        HashMap<Integer, ArrayList> recipeMap = new HashMap<Integer, ArrayList>();
+        for (Map.Entry<Integer, Recipe> entry : folders.get(foldername).getRecipeMap().entrySet()) {
+            Integer key = entry.getKey();
+            Recipe value = entry.getValue();
+            ArrayList list1 = new ArrayList();
+            list1.add(value.getRecipeURL());
+            list1.add(value.getName());
+            recipeMap.put(key, list1);
+        }
+        return recipeMap;
     }
 }

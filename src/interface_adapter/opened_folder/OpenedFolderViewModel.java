@@ -13,6 +13,7 @@ import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;
 import java.io.IOException;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.HashMap;
 
 public class OpenedFolderViewModel extends ViewModel {
@@ -23,7 +24,7 @@ public class OpenedFolderViewModel extends ViewModel {
     public static final String REMOVE_BUTTON_LABEL = "Remove recipe";
     public static final String GET_BUTTON_LABEL = "Get recipe";
     private String openedFolder;
-    private HashMap<Integer, Recipe> recipeMap;
+    private HashMap<Integer, ArrayList> recipeMap;
 
 
     public OpenedFolderViewModel() {
@@ -60,11 +61,11 @@ public class OpenedFolderViewModel extends ViewModel {
         return openedFolder;
     }
 
-    public void setRecipeMap(HashMap<Integer, Recipe> RecipeMap) {
+    public void setRecipeMap(HashMap<Integer, ArrayList> RecipeMap) {
         this.recipeMap = recipeMap;
     }
 
-    public HashMap<Integer, Recipe> getRecipeMap() {
+    public HashMap<Integer, ArrayList> getRecipeMap() {
         return recipeMap;
     }
 }

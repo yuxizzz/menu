@@ -19,7 +19,9 @@ import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 import java.io.IOException;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Map;
 
 public class OpenedFolderView extends JPanel implements ActionListener, PropertyChangeListener {
     public final String viewName = "opened folder";
@@ -53,13 +55,15 @@ public class OpenedFolderView extends JPanel implements ActionListener, Property
 
         JButton get = new JButton(OpenedFolderViewModel.GET_BUTTON_LABEL);
         JButton remove = new JButton(OpenedFolderViewModel.REMOVE_BUTTON_LABEL);
-        HashMap<Integer, Recipe> recipeMap = openedFolderViewModel.getRecipeMap();
+        HashMap<Integer, ArrayList> recipeMap = openedFolderViewModel.getRecipeMap();
 
 
         this.remove = remove;
         this.get = get;
 
-        for (Recipe value : recipeMap.values()) {
+        for (Map.Entry<Integer, ArrayList> entry : recipeMap.entrySet()) {
+            Integer key = entry.getKey();
+            ArrayList value = entry.getValue();
         this.openedFolderViewModel.addPropertyChangeListener(this);
 //        this.openRecipeViewModel.addPropertyChangeListener(this);
 
@@ -120,7 +124,7 @@ public class OpenedFolderView extends JPanel implements ActionListener, Property
 
             Image image = null;
             try {
-                URL url = new URL(value.getImage());
+                URL url = new URL((String) value.get(1));
 //                "https://spoonacular.com/productImages/436359-312x231.jpg"
                 image = ImageIO.read(url);
             } catch (IOException e) {
@@ -131,7 +135,7 @@ public class OpenedFolderView extends JPanel implements ActionListener, Property
             JLabel label = new JLabel(new ImageIcon(image));
             label.setBounds(150, 250, 150, 150);
             label.setVisible(false);
-            label.setText("bro, do you even code?");
+            label.setText((String) value.get(1));
             // set text of label label.setIcon(image);
             label.setHorizontalTextPosition(JLabel.CENTER);
             // set text LEFT,CENTER, RIGHT of imageicon
