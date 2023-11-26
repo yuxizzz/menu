@@ -25,11 +25,11 @@ public class LoginUseCaseFactory {
     public static LoginView create(
             ViewManagerModel viewManagerModel,
             LoginViewModel loginViewModel,
-            SearchViewModel searchViewModel,
+            LoggedInViewModel loggedInViewModel,
             LoginUserDataAccessInterface userDataAccessObject) {
 
         try {
-            LoginController loginController = createLoginUseCase(viewManagerModel, loginViewModel, searchViewModel,
+            LoginController loginController = createLoginUseCase(viewManagerModel, loginViewModel, loggedInViewModel,
                     userDataAccessObject);
             return new LoginView(loginViewModel, loginController);
         } catch (IOException e) {
@@ -42,11 +42,11 @@ public class LoginUseCaseFactory {
     private static LoginController createLoginUseCase(
             ViewManagerModel viewManagerModel,
             LoginViewModel loginViewModel,
-            SearchViewModel searchViewModel,
+            LoggedInViewModel loggedInViewModel,
             LoginUserDataAccessInterface userDataAccessObject) throws IOException {
 
         // Notice how we pass this method's parameters to the Presenter.
-        LoginOutputBoundary loginOutputBoundary = new LoginPresenter(viewManagerModel, searchViewModel, loginViewModel);
+        LoginOutputBoundary loginOutputBoundary = new LoginPresenter(viewManagerModel, loggedInViewModel, loginViewModel);
 
         UserFactory userFactory = new CommonUserFactory();
 
