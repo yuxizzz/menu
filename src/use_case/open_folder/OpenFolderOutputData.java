@@ -14,6 +14,7 @@ public class OpenFolderOutputData {
                                 HashMap<Integer, Recipe> recipeMap) {
         this.foldername = foldername;
         this.recipeMap = recipeMap;
+        this.useCaseFailed = useCaseFailed;
     }
 
     public String getFoldername() {
