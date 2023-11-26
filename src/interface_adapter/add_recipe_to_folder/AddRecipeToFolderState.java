@@ -7,7 +7,7 @@ public class AddRecipeToFolderState {
     private String messageError = null;
     private ArrayList<String> folderNames;
     private Integer recipeID;
-    private String username
+    private String username;
 
 
     public AddRecipeToFolderState() {

@@ -75,7 +75,7 @@ public class RecipeView extends JPanel implements ActionListener, PropertyChange
             }
         }
 //        else if (evt.getNewValue() instanceof ClearState) {
-//            ClearState clearState = (ClearState) evt.getNewValue();
+//          clearState = (ClearState) evt.getNewValue();
 //            if (clearState.getUserDeleted() != null) {
 //                JOptionPane.showMessageDialog(this, clearState.getUserDeleted());
 //            }
