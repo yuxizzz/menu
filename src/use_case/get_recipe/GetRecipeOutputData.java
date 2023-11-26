@@ -10,10 +10,10 @@ public class GetRecipeOutputData {
     private Recipe recipe;
     private boolean useCaseFailed;
 
-    public GetRecipeOutputData(Integer recipeID, boolean useCaseFailed) throws IOException {
+    public GetRecipeOutputData(Recipe recipe, boolean useCaseFailed) throws IOException {
 //        this.recipeID = recipeID;
         this.useCaseFailed = useCaseFailed;
-        this.recipe = Search.getRecipe(recipeID);
+        this.recipe = recipe;
     }
     public Recipe getRecipe() {
         return recipe;

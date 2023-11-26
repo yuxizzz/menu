@@ -1,7 +1,9 @@
 package use_case.get_recipe;
 
-import entity.folder.Folder;
-import use_case.create_folder.CreateFolderOutputData;
+import api.Search;
+import entity.recipe.Recipe;
+
+import java.io.IOException;
 
 public class GetRecipeInteractor implements GetRecipeInputBoundary {
     final GetRecipeDataAccessInterface recipeDataAccessObject;
@@ -13,15 +15,15 @@ public class GetRecipeInteractor implements GetRecipeInputBoundary {
     }
 
     @Override
-    public void execute(GetRecipeInputData getRecipeInputData) {
-//        if (!recipeDataAccessObject.existsByName(getRecipeInputData.getRecipeID())) {
-//            recipePresenter.prepareFailView("Recipe not found.");
-//        } else {
-//            Folder folder = folderFactory.create(createFolderInputData.getFoldername());
-//            folderDataAccessObject.save(folder);
-//
-//            CreateFolderOutputData createFolderOutputData = new CreateFolderOutputData(folder.getName(), false);
-//            folderPresenter.prepareSuccessView(createFolderOutputData);
-//        }
+    public void execute(GetRecipeInputData getRecipeInputData) throws IOException {
+        if (recipeDataAccessObject.existsByName(getRecipeInputData.getRecipeID())) {
+            recipePresenter.prepareFailView("Recipe not found.");
+        } else {
+            Recipe recipe = Search.getRecipe(getRecipeInputData.getRecipeID());
+            recipeDataAccessObject.save(recipe);
+
+            GetRecipeOutputData getRecipeOutputData = new GetRecipeOutputData(recipe, false);
+            recipePresenter.prepareSuccessView(getRecipeOutputData);
+        }
     }
 }
