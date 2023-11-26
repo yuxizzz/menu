@@ -3,12 +3,12 @@ package use_case.add_recipe_to_folder;
 public class AddRecipeToFolderInputData {
     final private String folderName;
     final private Integer recipeID;
-    private final Integer userID;
+    private final String username;
 
-    public AddRecipeToFolderInputData(String folderName, Integer recipeID, Integer userID) {
+    public AddRecipeToFolderInputData(String folderName, Integer recipeID, String username) {
         this.folderName = folderName;
         this.recipeID = recipeID;
-        this.userID = userID;
+        this.username = username;
 
     }
 

@@ -7,5 +7,5 @@ import java.util.ArrayList;
 public interface CollectRecipeDataAccessInterface {
     boolean existsAllFolders(Integer recipeID);
 
-    ArrayList<Folder> getAllFolders(Integer userID);
+    ArrayList<Folder> getAllFolders(String username);
 }

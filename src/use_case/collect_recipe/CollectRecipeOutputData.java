@@ -6,12 +6,12 @@ import java.util.HashMap;
 public class CollectRecipeOutputData {
     private final ArrayList<String> folders;
     private final Integer recipeID;
-    private final int userID;
+    private final String username;
 
-    public CollectRecipeOutputData(ArrayList<String> folders, Integer recipeID, int userID) {
+    public CollectRecipeOutputData(ArrayList<String> folders, Integer recipeID, String username) {
         this.folders = folders;
         this.recipeID = recipeID;
-        this.userID = userID;
+        this.username = username;
     }
 
     public ArrayList<String> getFolders() {
@@ -21,8 +21,8 @@ public class CollectRecipeOutputData {
     public Integer getRecipeID() {
         return recipeID;
     }
-    public int getUserID() {
-        return userID;
+    public String getUserID() {
+        return username;
     }
 
 }
