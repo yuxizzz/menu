@@ -12,6 +12,6 @@ public class LogoutInteractor implements LogoutInputBoundary{
     @Override
     public void execute(LogoutInputData logoutInputData) {
         LogoutOutputData logoutOutputData = new LogoutOutputData();
-        logoutPresenter.prepareSuccessView(logoutOutputData);
+        logoutPresenter.prepareSuccessView();
     }
 }
