@@ -1,18 +1,17 @@
 package use_case.collect_recipe;
 
 public class CollectRecipeInputData {
-    final private String recipeID;
-    final private int userID;
-    public CollectRecipeInputData(String recipeID, int userID) {
+    final private Integer recipeID;
+    final private String username;
+    public CollectRecipeInputData(Integer recipeID, String username) {
         this.recipeID = recipeID;
-        this.userID = userID;
+        this.username = username;
     }
-
-    String getRecipeID() {
+    Integer getRecipeID() {
         return recipeID;
     }
 
-    int getUserID() {
-        return userID;
+    String getUserID() {
+        return username;
     }
 }

@@ -9,4 +9,6 @@ public interface Folder {
     String getName();
     HashMap<Integer, Recipe> getRecipeMap();
     void removeRecipe(Integer recipeId);
+
+    void addRecipe(Integer recipeID);
 }
