@@ -1,7 +1,9 @@
 package view;
+
 import interface_adapter.collect_recipe.CollectRecipeController;
 import interface_adapter.collect_recipe.CollectRecipeState;
 import interface_adapter.collect_recipe.CollectRecipeViewModel;
+
 import interface_adapter.get_recipe.GetRecipeController;
 import interface_adapter.get_recipe.GetRecipeState;
 import interface_adapter.get_recipe.GetRecipeViewModel;
