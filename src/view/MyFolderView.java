@@ -1,9 +1,14 @@
 package view;
 
+import interface_adapter.create_folder.CreateFolderController;
+import interface_adapter.create_folder.CreateFolderViewModel;
+import interface_adapter.delete_folder.DeleteFolderController;
+import interface_adapter.delete_folder.DeleteFolderViewModel;
 import interface_adapter.logout.LogoutState;
 import interface_adapter.logout.LogoutViewModel;
 import interface_adapter.my_folder.MyFolderViewModel;
-import interface_adapter.signup.SignupState;
+import interface_adapter.open_folder.OpenFolderController;
+import interface_adapter.open_folder.OpenFolderViewModel;
 
 import javax.swing.*;
 import java.awt.*;
@@ -18,8 +23,17 @@ public class MyFolderView extends JPanel implements ActionListener, PropertyChan
 
     private final LogoutViewModel logoutViewModel;
 
-    JLabel username;
+    private final OpenFolderViewModel openFolderViewModel;
+    private final OpenFolderController openFolderController;
+    private final DeleteFolderViewModel deleteFolderViewModel;
+    private final DeleteFolderController deleteFolderController;
+    private final CreateFolderViewModel createFolderViewModel;
+    private final CreateFolderController createFolderController;
 
+    JLabel username;
+    final JButton openFolder;
+    final JButton deleteFolder;
+    final JButton createFolder;
     final JButton logOut;
 
 
@@ -27,9 +41,22 @@ public class MyFolderView extends JPanel implements ActionListener, PropertyChan
     /**
      * A window with a title and a JButton.
      */
-    public MyFolderView(MyFolderViewModel myFolderViewModel, LogoutViewModel logoutViewModel) {
+    public MyFolderView(MyFolderViewModel myFolderViewModel,
+                        LogoutViewModel logoutViewModel,
+                        OpenFolderViewModel openFolderViewModel,
+                        OpenFolderController openFolderController,
+                        DeleteFolderViewModel deleteFolderViewModel,
+                        DeleteFolderController deleteFolderController,
+                        CreateFolderViewModel createFolderViewModel,
+                        CreateFolderController createFolderController) {
         this.myFolderViewModel = myFolderViewModel;
         this.logoutViewModel = logoutViewModel;
+        this.openFolderViewModel = openFolderViewModel;
+        this.openFolderController = openFolderController;
+        this.deleteFolderViewModel = deleteFolderViewModel;
+        this.deleteFolderController = deleteFolderController;
+        this.createFolderViewModel = createFolderViewModel;
+        this.createFolderController = createFolderController;
         this.myFolderViewModel.addPropertyChangeListener(this);
         this.logoutViewModel.addPropertyChangeListener(this);
 
@@ -40,7 +67,17 @@ public class MyFolderView extends JPanel implements ActionListener, PropertyChan
         username = new JLabel();
 
         JPanel buttons = new JPanel();
-        logOut = new JButton(myFolderViewModel.LOGOUT_BUTTON_LABEL);
+        JButton logOut = new JButton(myFolderViewModel.LOGOUT_BUTTON_LABEL);
+        JButton openFolder = new JButton(myFolderViewModel.OPEN_BUTTON_LABEL);
+        JButton deleteFolder = new JButton(myFolderViewModel.DELETE_BUTTON_LABEL);
+        JButton createFolder = new JButton(myFolderViewModel.CREATE_BUTTON_LABEL);
+
+        this.openFolder = openFolder;
+        this.deleteFolder = deleteFolder;
+        this.createFolder = createFolder;
+        this.logOut = logOut;
+
+        // TODO add listener to each folder in my folder view. use the for loop in Opened Folder View
         buttons.add(logOut);
 
         logOut.addActionListener(

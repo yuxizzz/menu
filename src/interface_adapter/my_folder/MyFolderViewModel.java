@@ -3,6 +3,7 @@ package interface_adapter.my_folder;
 import interface_adapter.ViewModel;
 import interface_adapter.login.LoginState;
 
+import javax.swing.*;
 import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;
 
@@ -11,6 +12,9 @@ public class MyFolderViewModel extends ViewModel {
     public final String USERNAME_LABEL = "Username: ";
     public static final String ALL_FOLDER_LABEL = "All Folders";
     public static final String LOGOUT_BUTTON_LABEL = "Log Out";
+    public static final String OPEN_BUTTON_LABEL = "Open Folder";
+    public static final String DELETE_BUTTON_LABEL = "Delete Folder";
+    public static final String CREATE_BUTTON_LABEL = "Create Folder";
 
     private MyFolderState state = new MyFolderState();
 
