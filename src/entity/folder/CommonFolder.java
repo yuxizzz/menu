@@ -33,4 +33,9 @@ public class CommonFolder implements Folder {
         }
     }
 
+    @Override
+    public void addRecipe(Integer recipeID) {
+
+    }
+
 }
