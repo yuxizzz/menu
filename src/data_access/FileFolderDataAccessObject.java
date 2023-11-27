@@ -3,18 +3,21 @@ package data_access;
 import entity.folder.Folder;
 import entity.folder.FolderFactory;
 import entity.recipe.Recipe;
-import use_case.create_folder.CreateFolderDataAccessInterface;
+import use_case.add_recipe_to_folder.AddRecipeToFolderDataAccessInterface;
+import use_case.add_recipe_to_folder.AddRecipeToFolderInputData;
 import use_case.delete_folder.DeleteFolderUserDataAccessInterface;
 import use_case.open_folder.OpenFolderDataAccessInterface;
 
+import java.awt.*;
 import java.io.*;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.Map;
-
+import java.util.Objects;
 
 //TODO recipeDAO & folderDAO
-public class FileFolderDataAccessObject implements DeleteFolderUserDataAccessInterface, OpenFolderDataAccessInterface, CreateFolderDataAccessInterface {
+public class FileFolderDataAccessObject implements DeleteFolderUserDataAccessInterface, OpenFolderDataAccessInterface, AddRecipeToFolderDataAccessInterface {
 
     private final File csvFile;
 
@@ -73,6 +76,7 @@ public class FileFolderDataAccessObject implements DeleteFolderUserDataAccessInt
         folders.put(folder.getName(), folder);
     }
 
+    ;
 
     private void saveToCSV() {
         BufferedWriter writer;
@@ -128,7 +132,32 @@ public class FileFolderDataAccessObject implements DeleteFolderUserDataAccessInt
      * @param foldername
      * @return
      */
-    public HashMap<Integer, Recipe> getrecipeMap(String foldername) {
-        return folders.get(foldername).getRecipeMap();
+
+// TODO change it to integer list<recipe information> use java doc to explain
+//    list[url, title]
+    public HashMap<Integer, ArrayList> getrecipeMap(String foldername) {
+        HashMap<Integer, ArrayList> recipeMap = new HashMap<Integer, ArrayList>();
+        for (Map.Entry<Integer, Recipe> entry : folders.get(foldername).getRecipeMap().entrySet()) {
+            Integer key = entry.getKey();
+            Recipe value = entry.getValue();
+            ArrayList list1 = new ArrayList();
+            list1.add(value.getRecipeURL());
+            list1.add(value.getName());
+            recipeMap.put(key, list1);
+        }
+        return recipeMap;
+    }
+
+
+    @Override
+    public String addRecipeToFolder(String folderName, Integer recipeID) {
+        for (String s : folders.keySet()) {
+            if (s.equals(folderName)) {
+                Folder f = folders.get(s);
+                f.addRecipe(recipeID);
+                return "successfully added to " + folderName;
+            }
+        }
+        return null;
     }
 }

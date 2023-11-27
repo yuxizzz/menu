@@ -13,9 +13,6 @@ import java.awt.event.KeyListener;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 import java.io.IOException;
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
-
 public class SearchView extends JPanel implements ActionListener, PropertyChangeListener {
 
     public final String viewName = "search recipes";
@@ -29,10 +26,12 @@ public class SearchView extends JPanel implements ActionListener, PropertyChange
     final JButton cancel;
 
     final JButton myFolder;
+    private final String username;
 
     private final SearchController searchController;
 
-    public SearchView(SearchViewModel searchViewModel, SearchController searchController) {
+    public SearchView(SearchViewModel searchViewModel, String username, SearchController searchController) {
+        this.username = username;
 
         this.searchController = searchController;
         this.searchViewModel = searchViewModel;
@@ -74,9 +73,8 @@ public class SearchView extends JPanel implements ActionListener, PropertyChange
         // TODO: CANCEL button to be implemented
         );
 
-        myFolder.addActionListener(this
-                // TODO: MY FOLDER to be implemented
-                );
+//        myFolder.addActionListener(
+//                // TODO: MY FOLDER to be implemented);
 
         ingredientsInputField.addKeyListener(
             new KeyListener() {

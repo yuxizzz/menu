@@ -1,6 +1,7 @@
 
 package interface_adapter.opened_folder;
 
+import entity.recipe.Recipe;
 import interface_adapter.ViewModel;
 import interface_adapter.login.LoginState;
 
@@ -12,6 +13,8 @@ import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;
 import java.io.IOException;
 import java.net.URL;
+import java.util.ArrayList;
+import java.util.HashMap;
 
 public class OpenedFolderViewModel extends ViewModel {
     public final String TITLE_LABEL = "Opened Folder View";
@@ -21,6 +24,8 @@ public class OpenedFolderViewModel extends ViewModel {
     public static final String REMOVE_BUTTON_LABEL = "Remove recipe";
     public static final String GET_BUTTON_LABEL = "Get recipe";
     private String openedFolder;
+    private HashMap<Integer, ArrayList> recipeMap;
+
 
     public OpenedFolderViewModel() {
         super("opened folder");
@@ -47,8 +52,6 @@ public class OpenedFolderViewModel extends ViewModel {
     }
 
 
-
-
     public static OpenedFolderState getState() {
         return state;
     }
@@ -58,7 +61,11 @@ public class OpenedFolderViewModel extends ViewModel {
         return openedFolder;
     }
 
-    public void setOpenedFolder(String openedFolder) {
-        this.openedFolder = openedFolder;
+    public void setRecipeMap(HashMap<Integer, ArrayList> RecipeMap) {
+        this.recipeMap = recipeMap;
+    }
+
+    public HashMap<Integer, ArrayList> getRecipeMap() {
+        return recipeMap;
     }
 }
