@@ -1,13 +1,16 @@
 package view;
 
 import interface_adapter.create_folder.CreateFolderController;
+import interface_adapter.create_folder.CreateFolderState;
 import interface_adapter.create_folder.CreateFolderViewModel;
 import interface_adapter.delete_folder.DeleteFolderController;
+import interface_adapter.delete_folder.DeleteFolderState;
 import interface_adapter.delete_folder.DeleteFolderViewModel;
 import interface_adapter.logout.LogoutState;
 import interface_adapter.logout.LogoutViewModel;
 import interface_adapter.my_folder.MyFolderViewModel;
 import interface_adapter.open_folder.OpenFolderController;
+import interface_adapter.open_folder.OpenFolderState;
 import interface_adapter.open_folder.OpenFolderViewModel;
 import interface_adapter.remove_recipe.RemoveState;
 
@@ -90,7 +93,6 @@ public class MyFolderView extends JPanel implements ActionListener, PropertyChan
             openFolder.setBounds(600, 10, 250, 100);
             openFolder.setText("OPEN");
 
-//        JButton buttonremove = new JButton(OpenedFolderViewModel.GET_BUTTON_LABEL);
             deleteFolder.setBounds(900, 10, 250, 100);
             deleteFolder.setText("DELETE");
 
@@ -100,29 +102,23 @@ public class MyFolderView extends JPanel implements ActionListener, PropertyChan
                     new ActionListener() {
                         public void actionPerformed(ActionEvent evt) {
                             if (evt.getSource().equals(openFolder)) {
-//                            OpenFolderState currentState = openRecipeViewModel.getState();
-//
-//                            openRecipeController.execute(
-//                                    currentState.getRecipeID(),
-//                                    currentState.getName(),
-//                                    currentState.getIngredients(),
-//                                    currentState.getNutrition(),
-//                                    currentState.getInstructions(),
-//                                    currentState.getImage(),
-//                                    currentState.getRecipeURL()
-//                            );
+                            OpenFolderState currentState = openFolderViewModel.getState();
+
+                            openFolderController.execute(
+                                    currentState.getFoldername());
                             }
                         }
                     }
             );
+
             deleteFolder.addActionListener(
                     new ActionListener() {
                         @Override
                         public void actionPerformed(ActionEvent e) {
                             if (e.getSource().equals(deleteFolder)) {
-//
-//                                RemoveState currentState = removeViewModel.getState();
-//                                removeController.execute();
+
+                                DeleteFolderState currentState = deleteFolderViewModel.getState();
+                                deleteFolderController.execute(currentState.getFolderDeleted());
                             }
                         }
                     }
@@ -145,6 +141,21 @@ public class MyFolderView extends JPanel implements ActionListener, PropertyChan
                         }
                     });
             buttons.add(logOut);
+            buttons.add(createFolder);
+
+            createFolder.addActionListener(
+                    new ActionListener() {
+                        @Override
+                        public void actionPerformed(ActionEvent e) {
+                            if (e.getSource().equals(createFolder)) {
+
+                                CreateFolderState currentState = createFolderViewModel.getState();
+                                createFolderController.execute(currentState.getFoldername());
+                                // TODO check create folder state something might wrong
+                            }
+                        }
+                    }
+            );
             this.setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
 
             this.add(title);
