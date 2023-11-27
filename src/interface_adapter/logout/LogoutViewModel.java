@@ -1,5 +1,4 @@
 package interface_adapter.logout;
-
 import interface_adapter.ViewModel;
 
 import java.beans.PropertyChangeListener;
