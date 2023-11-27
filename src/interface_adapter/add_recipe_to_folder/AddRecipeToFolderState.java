@@ -27,7 +27,7 @@ public class AddRecipeToFolderState {
     }
 
 
-    public void setUserID(String username) {
+    public void setUsername(String username) {
         this.username = username;
     }
 
@@ -35,7 +35,7 @@ public class AddRecipeToFolderState {
         return recipeID;
     }
 
-    public String getUserID() {
+    public String getUsername() {
         return username;
     }
 }

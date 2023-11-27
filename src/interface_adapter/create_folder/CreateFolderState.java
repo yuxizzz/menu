@@ -1,11 +1,16 @@
 package interface_adapter.create_folder;
 
+import interface_adapter.logged_in.LoggedInState;
+
 public class CreateFolderState {
     private String foldername = "";
     private String foldernameError = null;
+    private String username = "";
+
     public CreateFolderState(CreateFolderState copy) {
         foldername = copy.foldername;
         foldernameError = copy.foldernameError;
+        this.username = copy.username;
     }
     public CreateFolderState() {
     }
@@ -20,5 +25,11 @@ public class CreateFolderState {
     }
     public void setFoldernameError(String foldernameError) {
         this.foldernameError = foldernameError;
+    }
+    public String getUsername() {
+        return username;
+    }
+    public void setUsername(String username) {
+        this.username = username;
     }
 }
