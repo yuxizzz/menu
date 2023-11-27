@@ -6,7 +6,7 @@ public class SearchState {
     private String tags = "";
     private String tagsError = null;
 
-    private String userID = "";
+    private String username = "";
 
 
     public SearchState(SearchState copy) {
@@ -14,7 +14,7 @@ public class SearchState {
         ingredientsError = copy.ingredientsError;
         tags = copy.tags;
         tagsError = copy.tagsError;
-        userID = copy.userID;
+        username = copy.username;
     }
 
     // Because of the previous copy constructor, the default constructor must be explicit.
@@ -53,7 +53,7 @@ public class SearchState {
         this.tagsError = tagsError;
     }
 
-    public String getUserID(String userID) {return this.userID;}
+    public String getUsername(String username) {return this.username;}
 
     @Override
     public String toString() {
@@ -63,7 +63,7 @@ public class SearchState {
                 '}';
     }
 
-    public void setUserId(String username) {
-        this.userID = userID;
+    public void setUsername(String username) {
+        this.username = username;
     }
 }
