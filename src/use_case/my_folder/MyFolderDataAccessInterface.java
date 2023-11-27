@@ -13,4 +13,6 @@ public interface MyFolderDataAccessInterface {
     Folder get(String foldername);
     HashMap<Integer, ArrayList> getrecipeMap(String foldername);
 
+    ArrayList<String> getFolderList();
+
 }

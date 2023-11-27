@@ -6,6 +6,7 @@ import interface_adapter.login.LoginState;
 import javax.swing.*;
 import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;
+import java.util.ArrayList;
 
 public class MyFolderViewModel extends ViewModel {
     public final String TITLE_LABEL = "My Folder View";
@@ -17,6 +18,8 @@ public class MyFolderViewModel extends ViewModel {
     public static final String CREATE_BUTTON_LABEL = "Create Folder";
 
     private MyFolderState state = new MyFolderState();
+
+    private ArrayList<String> folderList = new ArrayList<>();
 
     public MyFolderViewModel() {
         super("my folder");
@@ -41,4 +44,9 @@ public class MyFolderViewModel extends ViewModel {
     public MyFolderState getState() {
         return state;
     }
+
+    public void setFolderList(ArrayList<String> folderList){
+        this.folderList = folderList;
+    }
+    public ArrayList<String> getFolderList(){return folderList;}
 }

@@ -9,13 +9,18 @@ import interface_adapter.logout.LogoutViewModel;
 import interface_adapter.my_folder.MyFolderViewModel;
 import interface_adapter.open_folder.OpenFolderController;
 import interface_adapter.open_folder.OpenFolderViewModel;
+import interface_adapter.remove_recipe.RemoveState;
 
+import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
+import java.io.IOException;
+import java.net.URL;
+import java.util.ArrayList;
 
 public class MyFolderView extends JPanel implements ActionListener, PropertyChangeListener {
     public final String viewName = "My Folder View";
@@ -35,7 +40,6 @@ public class MyFolderView extends JPanel implements ActionListener, PropertyChan
     final JButton deleteFolder;
     final JButton createFolder;
     final JButton logOut;
-
 
 
     /**
@@ -66,7 +70,7 @@ public class MyFolderView extends JPanel implements ActionListener, PropertyChan
         JLabel usernameInfo = new JLabel("Username: ");
         username = new JLabel();
 
-        JPanel buttons = new JPanel();
+
         JButton logOut = new JButton(myFolderViewModel.LOGOUT_BUTTON_LABEL);
         JButton openFolder = new JButton(myFolderViewModel.OPEN_BUTTON_LABEL);
         JButton deleteFolder = new JButton(myFolderViewModel.DELETE_BUTTON_LABEL);
@@ -77,38 +81,89 @@ public class MyFolderView extends JPanel implements ActionListener, PropertyChan
         this.createFolder = createFolder;
         this.logOut = logOut;
 
-        // TODO add listener to each folder in my folder view. use the for loop in Opened Folder View
-        buttons.add(logOut);
+        ArrayList<String> folderList = myFolderViewModel.getFolderList();
+        for (String item : folderList) {
+            this.myFolderViewModel.addPropertyChangeListener(this);
+            JPanel buttons = new JPanel();
+            buttons.add(openFolder);
+            buttons.add(deleteFolder);
+            openFolder.setBounds(600, 10, 250, 100);
+            openFolder.setText("OPEN");
 
-        logOut.addActionListener(
+//        JButton buttonremove = new JButton(OpenedFolderViewModel.GET_BUTTON_LABEL);
+            deleteFolder.setBounds(900, 10, 250, 100);
+            deleteFolder.setText("DELETE");
 
-                // This creates an anonymous subclass of ActionListener and instantiates it.
-                new ActionListener() {
-                    public void actionPerformed(ActionEvent evt) {
-                        if (evt.getSource().equals(logOut)) {
-                            LogoutState currentState = logoutViewModel.getState();
-                            
-                }
+            openFolder.addActionListener(
+
+                    // This creates an anonymous subclass of ActionListener and instantiates it.
+                    new ActionListener() {
+                        public void actionPerformed(ActionEvent evt) {
+                            if (evt.getSource().equals(openFolder)) {
+//                            OpenFolderState currentState = openRecipeViewModel.getState();
+//
+//                            openRecipeController.execute(
+//                                    currentState.getRecipeID(),
+//                                    currentState.getName(),
+//                                    currentState.getIngredients(),
+//                                    currentState.getNutrition(),
+//                                    currentState.getInstructions(),
+//                                    currentState.getImage(),
+//                                    currentState.getRecipeURL()
+//                            );
+                            }
+                        }
+                    }
+            );
+            deleteFolder.addActionListener(
+                    new ActionListener() {
+                        @Override
+                        public void actionPerformed(ActionEvent e) {
+                            if (e.getSource().equals(deleteFolder)) {
+//
+//                                RemoveState currentState = removeViewModel.getState();
+//                                removeController.execute();
+                            }
+                        }
+                    }
+            );
+
+//        TODO need to get information in folder for recipe
+
+            // TODO add listener to each folder in my folder view. use the for loop in Opened Folder View
+
+
+            logOut.addActionListener(
+
+                    // This creates an anonymous subclass of ActionListener and instantiates it.
+                    new ActionListener() {
+                        public void actionPerformed(ActionEvent evt) {
+                            if (evt.getSource().equals(logOut)) {
+                                LogoutState currentState = logoutViewModel.getState();
+
+                            }
+                        }
+                    });
+            buttons.add(logOut);
+            this.setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
+
+            this.add(title);
+            this.add(usernameInfo);
+            this.add(username);
+            this.add(buttons);
+        }
+    }
+
+            /**
+             * React to a button click that results in evt.
+             */
+            public void actionPerformed (ActionEvent evt){
+                System.out.println("Click " + evt.getActionCommand());
             }
-        });
 
-        this.setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
+            @Override
+            public void propertyChange(PropertyChangeEvent evt){
 
-        this.add(title);
-        this.add(usernameInfo);
-        this.add(username);
-        this.add(buttons);
-    }
-
-
-    /**
-     * React to a button click that results in evt.
-     */
-    public void actionPerformed(ActionEvent evt) {
-        System.out.println("Click " + evt.getActionCommand());
-    }
-
-    @Override
-    public void propertyChange(PropertyChangeEvent evt) {
     }
 }
+

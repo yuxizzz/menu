@@ -57,6 +57,11 @@ public class OpenedFolderView extends JPanel implements ActionListener, Property
         JButton remove = new JButton(OpenedFolderViewModel.REMOVE_BUTTON_LABEL);
         HashMap<Integer, ArrayList> recipeMap = openedFolderViewModel.getRecipeMap();
 
+        JLabel title = new JLabel("Opened Folder Screen");
+        title.setAlignmentX(Component.CENTER_ALIGNMENT);
+
+        JLabel foldernameInfo = new JLabel("Currently opened folder: ");
+        foldername = new JLabel();
 
         this.remove = remove;
         this.get = get;
@@ -66,12 +71,6 @@ public class OpenedFolderView extends JPanel implements ActionListener, Property
             ArrayList value = entry.getValue();
         this.openedFolderViewModel.addPropertyChangeListener(this);
 //        this.openRecipeViewModel.addPropertyChangeListener(this);
-
-        JLabel title = new JLabel("Opened Folder Screen");
-        title.setAlignmentX(Component.CENTER_ALIGNMENT);
-
-        JLabel foldernameInfo = new JLabel("Currently opened folder: ");
-        foldername = new JLabel();
 
         JPanel buttons = new JPanel();
         buttons.add(get);

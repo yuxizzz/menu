@@ -2,6 +2,9 @@ package interface_adapter.my_folder;
 
 import interface_adapter.logged_in.LoggedInState;
 
+import java.util.ArrayList;
+import java.util.HashMap;
+
 public class MyFolderState {
     private String username = "";
 
