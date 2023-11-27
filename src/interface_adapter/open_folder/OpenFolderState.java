@@ -1,39 +1,31 @@
 package interface_adapter.open_folder;
 
 
-import interface_adapter.edit_recipe.EditRecipeState;
+import interface_adapter.logged_in.LoggedInState;
 
 public class OpenFolderState {
     private String foldername = "";
-    private String foldernameError = null;
-
     private String username = "";
 
-
-    public OpenFolderState(OpenFolderState copy) {
+    public OpenFolderState(interface_adapter.open_folder.OpenFolderState copy) {
         foldername = copy.foldername;
-        foldernameError = copy.foldernameError;
         username = copy.username;
     }
 
     // Because of the previous copy constructor, the default constructor must be explicit.
-    public OpenFolderState() {}
+    public OpenFolderState() {
+    }
 
     public String getFoldername() {
         return foldername;
     }
 
-    public String getFoldernameError() {
-        return foldernameError;
-    }
-
-
     public void setFoldername(String foldername) {
-        this.foldername = foldername;
-    }
 
-    public void setFoldernameError(String foldernameError) {
-        this.foldernameError = foldernameError;
+        this.foldername = foldername;
+
+    }
+    public void setFoldernameError(String error) {
     }
 
     public String getUsername() {
@@ -42,5 +34,4 @@ public class OpenFolderState {
     public void setUsername(String username) {
         this.username = username;
     }
-
 }
