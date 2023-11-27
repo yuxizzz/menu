@@ -1,6 +1,5 @@
 package view;
 
-import interface_adapter.ViewModel;
 import interface_adapter.get_recipe.GetRecipeController;
 import interface_adapter.get_recipe.GetRecipeState;
 import interface_adapter.get_recipe.GetRecipeViewModel;
