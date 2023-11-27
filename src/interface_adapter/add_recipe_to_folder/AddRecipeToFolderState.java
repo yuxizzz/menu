@@ -7,7 +7,7 @@ public class AddRecipeToFolderState {
     private String messageError = null;
     private ArrayList<String> folderNames;
     private Integer recipeID;
-    private int userID;
+    private String username;
 
 
     public AddRecipeToFolderState() {
@@ -27,15 +27,15 @@ public class AddRecipeToFolderState {
     }
 
 
-    public void setUserID(int userID) {
-        this.userID = userID;
+    public void setUserID(String username) {
+        this.username = username;
     }
 
     public Integer getRecipeID() {
         return recipeID;
     }
 
-    public int getUserID() {
-        return userID;
+    public String getUserID() {
+        return username;
     }
 }

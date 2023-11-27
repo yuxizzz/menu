@@ -4,11 +4,11 @@ public class UploadOutputData {
 
     private boolean useCaseFailed;
 
-    private String recipeRemoved;
+    private Integer recipeUploaded;
 
-    public UploadOutputData(String recipeRemoved, boolean useCaseFailed){
+    public UploadOutputData(Integer recipeID, boolean useCaseFailed){
         this.useCaseFailed = useCaseFailed;
-        this.recipeRemoved = "Do you ensure to remove" + recipeRemoved + "?";
+        this.recipeUploaded = recipeID;
     }
-    public String getRecipeRemoved() { return recipeRemoved;}
+    public Integer getRecipeUploaded() { return recipeUploaded;}
 }

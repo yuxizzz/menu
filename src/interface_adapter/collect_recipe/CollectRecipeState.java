@@ -8,8 +8,8 @@ public class CollectRecipeState {
     private ArrayList<String> folderNames;
     private String noFolderError = null;
 
-    private String recipeID = "";
-    private int userID;
+    private Integer recipeID;
+    private String username;
 
     public CollectRecipeState(CollectRecipeState copy) {
         folderNames = copy.folderNames;
@@ -20,19 +20,19 @@ public class CollectRecipeState {
     public CollectRecipeState() {
     }
 
-    public void setUserID(int userID) {
-        this.userID = userID;
+    public void setUserID(String username) {
+        this.username= username;
     }
 
-    public int getUserID() {
-        return userID;
+    public String getUserID() {
+        return username;
     }
 
-    public void setRecipeID(String recipeID) {
+    public void setRecipeID(Integer recipeID) {
         this.recipeID = recipeID;
     }
 
-    public String getRecipeID() {
+    public Integer getRecipeID() {
         return recipeID;
     }
 
