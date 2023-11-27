@@ -1,6 +1,7 @@
 package view;
 
 import entity.recipe.Recipe;
+import interface_adapter.open_folder.OpenFolderViewModel;
 import interface_adapter.open_recipe.OpenRecipeController;
 import interface_adapter.open_recipe.OpenRecipeState;
 import interface_adapter.open_recipe.OpenRecipeViewModel;
@@ -25,7 +26,7 @@ import java.util.Map;
 
 public class OpenedFolderView extends JPanel implements ActionListener, PropertyChangeListener {
     public final String viewName = "opened folder";
-    private final OpenedFolderViewModel openedFolderViewModel;
+    private final OpenFolderViewModel openFolderViewModel;
 
 // TODO import open recipe class
     private final OpenRecipeViewModel openRecipeViewModel;
@@ -42,12 +43,12 @@ public class OpenedFolderView extends JPanel implements ActionListener, Property
     /**
      * A window with a title and a JButton.
      */
-    public OpenedFolderView(OpenedFolderViewModel openedFolderViewModel, RemoveController removeController,
+    public OpenedFolderView(OpenFolderViewModel openFolderViewModel, RemoveController removeController,
                             OpenRecipeViewModel openRecipeViewModel, OpenRecipeController openRecipeController,
                             RemoveViewModel removeViewModel) {
 //    public OpenedFolderView(OpenedFolderViewModel openedFolderViewModel, RemoveController removeController,
 //                            RemoveViewModel removeViewModel) {
-        this.openedFolderViewModel = openedFolderViewModel;
+        this.openFolderViewModel = openFolderViewModel;
         this.removeController = removeController;
         this.openRecipeController = openRecipeController;
         this.openRecipeViewModel = openRecipeViewModel;
@@ -55,7 +56,7 @@ public class OpenedFolderView extends JPanel implements ActionListener, Property
 
         JButton get = new JButton(OpenedFolderViewModel.GET_BUTTON_LABEL);
         JButton remove = new JButton(OpenedFolderViewModel.REMOVE_BUTTON_LABEL);
-        HashMap<Integer, ArrayList> recipeMap = openedFolderViewModel.getRecipeMap();
+        HashMap<Integer, ArrayList> recipeMap = openFolderViewModel.getRecipeMap();
 
         JLabel title = new JLabel("Opened Folder Screen");
         title.setAlignmentX(Component.CENTER_ALIGNMENT);
@@ -69,7 +70,7 @@ public class OpenedFolderView extends JPanel implements ActionListener, Property
         for (Map.Entry<Integer, ArrayList> entry : recipeMap.entrySet()) {
             Integer key = entry.getKey();
             ArrayList value = entry.getValue();
-        this.openedFolderViewModel.addPropertyChangeListener(this);
+        this.openFolderViewModel.addPropertyChangeListener(this);
 //        this.openRecipeViewModel.addPropertyChangeListener(this);
 
         JPanel buttons = new JPanel();
