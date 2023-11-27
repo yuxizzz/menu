@@ -8,13 +8,15 @@ import use_case.add_recipe_to_folder.AddRecipeToFolderInputData;
 import use_case.delete_folder.DeleteFolderUserDataAccessInterface;
 import use_case.open_folder.OpenFolderDataAccessInterface;
 
+import java.awt.*;
 import java.io.*;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.Map;
 import java.util.Objects;
 
-
+//TODO recipeDAO & folderDAO
 public class FileFolderDataAccessObject implements DeleteFolderUserDataAccessInterface, OpenFolderDataAccessInterface, AddRecipeToFolderDataAccessInterface {
 
     private final File csvFile;
@@ -74,6 +76,7 @@ public class FileFolderDataAccessObject implements DeleteFolderUserDataAccessInt
         folders.put(folder.getName(), folder);
     }
 
+    ;
 
     private void saveToCSV() {
         BufferedWriter writer;
@@ -129,7 +132,8 @@ public class FileFolderDataAccessObject implements DeleteFolderUserDataAccessInt
      * @param foldername
      * @return
      */
-  // TODO change it to integer list<recipe information> use java doc to explain
+
+// TODO change it to integer list<recipe information> use java doc to explain
 //    list[url, title]
     public HashMap<Integer, ArrayList> getrecipeMap(String foldername) {
         HashMap<Integer, ArrayList> recipeMap = new HashMap<Integer, ArrayList>();

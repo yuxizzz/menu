@@ -3,6 +3,7 @@ package use_case.open_folder;
 import entity.folder.Folder;
 import entity.recipe.Recipe;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 
 public class OpenFolderInteractor {
@@ -21,7 +22,7 @@ public class OpenFolderInteractor {
             openFolderPresenter.prepareFailView(foldername + ": Folder does not exist.");
         }else {
              Folder folder = folderDataAccessObject.get(openFolderInputData.getFoldername());
-             HashMap<Integer, Recipe> recipeMap = folderDataAccessObject.getrecipeMap(foldername);
+             HashMap<Integer, ArrayList> recipeMap = folderDataAccessObject.getrecipeMap(foldername);
 
 
              OpenFolderOutputData openFolderOutputData = new OpenFolderOutputData(folder.getName(),

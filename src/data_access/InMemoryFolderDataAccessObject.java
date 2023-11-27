@@ -15,8 +15,5 @@ public class InMemoryFolderDataAccessObject implements DeleteFolderUserDataAcces
         return null;
     }
 
-    @Override
-    public boolean existsByName(String identifier) {
-        return false;
-    }
+
 }

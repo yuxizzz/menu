@@ -6,6 +6,8 @@ import java.net.URL;
 import javax.imageio.ImageIO;
 import javax.swing.*;
 
+// model for view
+
 public class ReadImage {
     public static void main(String[] args) {
         JLabel title = new JLabel("Opened Folder Screen");
