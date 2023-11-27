@@ -19,7 +19,7 @@ public class UploadInteractor implements UploadInputBoundary{
         if (recipeDataAccessObject.existByName(uploadInputData.getRecipename())){
             recipePresenter.prepareFailView("Recipe name already exists.");
         }else{
-            Recipe recipe = RecipeFactory.create(uploadInputData.getRecipename(), uploadInputData.getIngredients(),
+            Recipe recipe = recipeFactory.create(uploadInputData.getRecipename(), uploadInputData.getIngredients(),
                     uploadInputData.getNutrition(), uploadInputData.getInstructions(), uploadInputData.getImage(),
                     uploadInputData.getRecipeurl(), uploadInputData.getRecipeid());
             recipeDataAccessObject.saveRecipe(recipe);
