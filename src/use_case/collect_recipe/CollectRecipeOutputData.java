@@ -5,11 +5,24 @@ import java.util.HashMap;
 
 public class CollectRecipeOutputData {
     private final ArrayList<String> folders;
-    public CollectRecipeOutputData(ArrayList<String> folders) {
+    private final Integer recipeID;
+    private final String username;
+
+    public CollectRecipeOutputData(ArrayList<String> folders, Integer recipeID, String username) {
         this.folders = folders;
+        this.recipeID = recipeID;
+        this.username = username;
     }
 
-    ArrayList<String> getFolders() {
+    public ArrayList<String> getFolders() {
         return folders;
     }
+
+    public Integer getRecipeID() {
+        return recipeID;
+    }
+    public String getUserID() {
+        return username;
+    }
+
 }
