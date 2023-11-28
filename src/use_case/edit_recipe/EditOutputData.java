@@ -11,4 +11,8 @@ public class EditOutputData {
         this.recipeRemoved = "Do you ensure to remove" + recipeRemoved + "?";
     }
     public String getRecipeRemoved() { return recipeRemoved;}
+
+    public Integer getRecipeEdited() {
+        return null;
+    }
 }

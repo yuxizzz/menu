@@ -1,4 +1,40 @@
 package interface_adapter.edit_recipe;
 
-public class EditRecipePresenter {
+import interface_adapter.ViewManagerModel;
+import use_case.edit_recipe.EditOuntputBoundary;
+import use_case.edit_recipe.EditOutputData;
+
+public class EditRecipePresenter implements EditOuntputBoundary {
+
+    private final EditRecipeViewModel editRecipeViewModel;
+    private final ViewManagerModel viewManagerModel;
+
+    public EditRecipePresenter(EditRecipeViewModel editRecipeViewModel,
+                               ViewManagerModel viewManagerModel) {
+
+        this.editRecipeViewModel = editRecipeViewModel;
+        this.viewManagerModel = viewManagerModel;
+    }
+
+
+
+
+    @Override
+    public void prepareSuccessView(EditOutputData message) {
+        //On success, switch to the edit folder view.
+
+        EditRecipeState editRecipeState = editRecipeViewModel.getState();
+
+        editRecipeState.setRecipeID(message.getRecipeEdited());
+
+
+    }
+
+    @Override
+    public void prepareFailView(String error) {
+        EditRecipeState editRecipeState =editRecipeViewModel.getState();
+        editRecipeState.setRecipeIDError(error);
+        editRecipeViewModel.firePropertyChanged();
+
+    }
 }
