@@ -14,6 +14,11 @@ public class OpenRecipeOutputData {
         this.recipe = recipe;
     }
     public Recipe getRecipe() {
+
         return recipe;
+    }
+
+    public Integer getRecipeID(){
+        return recipe.getRecipeID();
     }
 }

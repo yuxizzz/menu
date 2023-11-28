@@ -38,4 +38,7 @@ public class AddRecipeToFolderState {
     public String getUsername() {
         return username;
     }
+
+    public void setUserID(String userID) {
+    }
 }

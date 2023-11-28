@@ -27,15 +27,15 @@ public class OpenFolderPresenter implements OpenFolderOutputBoundary {
 
     @Override
     public void prepareSuccessView(OpenFolderOutputData response) {
-        // On success, switch to the logged in view.
+        // On success, switch to the open folder view.
 
-//        OpenRecipeState openRecipeState = openRecipeViewModel.getState();
-//        openRecipeState.setFoldername(response.getFoldername());
-//        this.openRecipeViewModel.setState(openedFolderState);
-//        this.openRecipeViewModel.firePropertyChanged();
-//
-//        this.viewManagerModel.setActiveView(openRecipeViewModel.getViewName());
-//        this.viewManagerModel.firePropertyChanged();
+        OpenFolderState openFolderState = openFolderViewModel.getState();
+        openFolderState.setFoldername(response.getFoldername());
+        this.openFolderViewModel.setState(openFolderState);
+        this.openRecipeViewModel.firePropertyChanged();
+
+        this.viewManagerModel.setActiveView(openRecipeViewModel.getViewName());
+        this.viewManagerModel.firePropertyChanged();
     }
 
     @Override
