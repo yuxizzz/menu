@@ -1,18 +1,8 @@
 package interface_adapter.open_folder;
 
-import entity.recipe.Recipe;
 import interface_adapter.ViewModel;
-import interface_adapter.login.LoginState;
-import interface_adapter.open_folder.OpenFolderState;
-
-import javax.imageio.ImageIO;
-import javax.swing.*;
-import javax.swing.border.Border;
-import java.awt.*;
 import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;
-import java.io.IOException;
-import java.net.URL;
 import java.util.ArrayList;
 import java.util.HashMap;
 
