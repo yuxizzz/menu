@@ -33,8 +33,12 @@ public class EditRecipePresenter implements EditOuntputBoundary {
         //On success, switch to the edit folder view.
 
         EditRecipeState editRecipeState = editRecipeViewModel.getState();
+        this.editRecipeViewModel.setState(editRecipeState);
+        editRecipeViewModel.firePropertyChanged();
 
-        editRecipeState.setRecipeID(message.getRecipeEdited());
+        viewManagerModel.setActiveView(editRecipeViewModel.getViewName());
+
+        viewManagerModel.firePropertyChanged();
 
 
     }

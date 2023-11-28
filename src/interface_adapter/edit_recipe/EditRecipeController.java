@@ -11,8 +11,12 @@ public class EditRecipeController {
         this.editRecipeUseCaseInteractor = editRecipeUseCaseInteractor;
     }
 
-    public void execute(Integer recipeID){
-        EditInputData editInputData = new EditInputData(recipeID);
+    public void execute(Integer recipeID, String recipename, String ingredients,
+                        String nutrition, String instructions,
+                        String image, String recipeurl){
+        EditInputData editInputData = new EditInputData(recipeID, recipename,
+                ingredients, nutrition,
+                instructions, image, recipeurl);
 
         editRecipeUseCaseInteractor.execute(editInputData);
     }

@@ -4,9 +4,9 @@ public class EditOutputData {
 
     private boolean useCaseFailed;
 
-    private String recipeRemoved;
+    private String recipeEdited;
 
-    public EditOutputData(String recipeRemoved, boolean useCaseFailed){
+    public EditOutputData(String recipeEdited, boolean useCaseFailed){
 
 
 
@@ -14,11 +14,11 @@ public class EditOutputData {
 
 
 
-        this.recipeRemoved = "Do you ensure to remove" + recipeRemoved + "?";
+        this.recipeEdited = "Do you ensure to edit" + recipeEdited + "?";
     }
-    public String getRecipeRemoved() { return recipeRemoved;}
 
-    public Integer getRecipeEdited() {
-        return null;
+
+    public String getRecipeEdited() {
+        return recipeEdited;
     }
 }
