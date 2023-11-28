@@ -2,8 +2,7 @@ package view;
 
 import interface_adapter.logout.LogoutState;
 import interface_adapter.logout.LogoutViewModel;
-import interface_adapter.my_folder.MyFolderViewModel;
-import interface_adapter.signup.SignupState;
+import interface_adapter.get_my_folder.MyFolderViewModel;
 
 import javax.swing.*;
 import java.awt.*;

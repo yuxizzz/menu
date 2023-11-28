@@ -23,7 +23,7 @@ public class RecipeView extends JPanel implements ActionListener, PropertyChange
     private final GetRecipeViewModel getRecipeViewModel;
     private final GetRecipeController getRecipeController;
     private final CollectRecipeViewModel collectViewModel;
-    private final CollectRecipeController collectRecipeController
+    private final CollectRecipeController collectRecipeController;
     private final JButton collect;
 
     public RecipeView(GetRecipeViewModel getRecipeViewModel, GetRecipeController getRecipeController,

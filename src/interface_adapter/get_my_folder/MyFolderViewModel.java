@@ -1,7 +1,6 @@
-package interface_adapter.my_folder;
+package interface_adapter.get_my_folder;
 
 import interface_adapter.ViewModel;
-import interface_adapter.login.LoginState;
 
 import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;
