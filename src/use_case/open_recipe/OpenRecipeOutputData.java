@@ -21,4 +21,5 @@ public class OpenRecipeOutputData {
     public Integer getRecipeID(){
         return recipe.getRecipeID();
     }
+
 }
