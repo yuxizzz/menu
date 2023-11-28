@@ -13,7 +13,7 @@ public class DeleteRecipeInteractor implements DeleteRecipeInputBoundary {
     }
 
     @Override
-    public void execute(ClearInputData clearInputData) {
+    public void execute(DeleteRecipeInputData deleteRecipeInputData) {
 
         Integer recipeid = null;
         //deleteRecipeDataAccessObject.deleteRecipe(Integer recipeid);
