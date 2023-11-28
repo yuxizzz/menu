@@ -10,6 +10,8 @@ public class UploadInputData {
     final private String instructions;
     final private String image;
     final private String recipeurl;
+
+
     public UploadInputData(String recipename, String ingredients, String nutrition,
                            String instructions, String image, String recipeurl, Integer recipeID){
 
@@ -20,13 +22,28 @@ public class UploadInputData {
         this.instructions = instructions;
         this.image = image;
         this.recipeurl = recipeurl;
-    }
-    String getRecipename(){return recipename;}
-    Integer getRecipeid(){return recipeID;}
 
-    String getIngredients(){return ingredients;}
-    String getNutrition(){return nutrition;}
-    String getInstructions(){return instructions;}
-    String getImage(){return image;}
-    String getRecipeurl(){return recipeurl;}
+    }
+    String getRecipename(){
+        return recipename;
+    }
+    Integer getRecipeid(){
+        return recipeID;}
+
+    String getIngredients(){
+        return ingredients;
+    }
+    String getNutrition(){
+        return nutrition;
+    }
+    String getInstructions(){
+        return instructions;
+    }
+    String getImage(){
+        return image;
+    }
+    String getRecipeurl(){
+        return recipeurl;
+    }
+
 }
