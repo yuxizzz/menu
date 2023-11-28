@@ -53,7 +53,7 @@ public class SearchState {
         this.tagsError = tagsError;
     }
 
-    public String getUsername(String username) {return this.username;}
+    public String getUsername() {return this.username;}
 
     @Override
     public String toString() {

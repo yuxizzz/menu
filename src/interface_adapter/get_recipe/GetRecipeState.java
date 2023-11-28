@@ -5,6 +5,8 @@ import entity.recipe.Recipe;
 public class GetRecipeState {
     private Recipe recipe;
     private String recipeError = null;
+
+    private String username;
 //    private String recipeName = recipe.getName();
     public GetRecipeState(GetRecipeState copy) {
         recipe = copy.recipe;
@@ -46,4 +48,6 @@ public class GetRecipeState {
     public Integer getRecipeID() {
         return recipe.getRecipeID();
     }
+    public void setUsername(String username) {this.username = username;}
+    public String getUsername() {return this.username;}
 }

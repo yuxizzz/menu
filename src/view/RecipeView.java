@@ -51,7 +51,7 @@ public class RecipeView extends JPanel implements ActionListener, PropertyChange
                     public void actionPerformed(ActionEvent evt) {
                         if (evt.getSource().equals(collect)) {
                             CollectRecipeState currentState = collectViewModel.getState();
-                            collectRecipeController.execute(currentState.getRecipeID(), currentState.getUserID());
+                            collectRecipeController.execute(currentState.getRecipeID(), currentState.getUsername());
                         }
                     }
                 }

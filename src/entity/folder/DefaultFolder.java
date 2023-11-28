@@ -24,6 +24,11 @@ public class DefaultFolder implements Folder {
     }
 
     @Override
+    public void addRecipe(Integer recipeID) {
+
+    }
+
+    @Override
     public String getName() {
         return folderName;
     }
