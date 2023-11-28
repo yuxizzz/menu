@@ -23,6 +23,7 @@ public class GetRecipePresenter implements GetRecipeOutputBoundary {
         getRecipeState.setRecipe(recipe.getRecipe());
         CollectRecipeState collectRecipeState = collectRecipeViewModel.getState();
         collectRecipeState.setRecipeID(getRecipeState.getRecipeID());
+        collectRecipeState.setUsername(getRecipeState.getUsername());
         this.getRecipeViewModel.setState(getRecipeState);
         getRecipeViewModel.firePropertyChanged();
 
