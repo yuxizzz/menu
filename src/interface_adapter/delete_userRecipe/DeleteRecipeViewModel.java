@@ -10,7 +10,8 @@ public class DeleteRecipeViewModel {
 
     public DeleteRecipeViewModel(){ super();}
 
-    public void setState(DeleteRecipeState state){ this.state = state;}
+    public void setState(DeleteRecipeState state){
+        this.state = state;}
 
     private final PropertyChangeSupport support = new PropertyChangeSupport(this);
 

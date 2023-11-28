@@ -19,6 +19,15 @@ public class EditRecipePresenter implements EditOuntputBoundary {
 
 
 
+
+
+
+
+
+
+
+
+
     @Override
     public void prepareSuccessView(EditOutputData message) {
         //On success, switch to the edit folder view.
@@ -30,10 +39,25 @@ public class EditRecipePresenter implements EditOuntputBoundary {
 
     }
 
+
+
+
+
+
+
+
+
+
+
+
     @Override
     public void prepareFailView(String error) {
+
+
         EditRecipeState editRecipeState =editRecipeViewModel.getState();
+
         editRecipeState.setRecipeIDError(error);
+
         editRecipeViewModel.firePropertyChanged();
 
     }
