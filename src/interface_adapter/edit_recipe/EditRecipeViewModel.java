@@ -14,11 +14,23 @@ public class EditRecipeViewModel extends ViewModel {
     public final String TITLE_LABEL = "Edit Recipe View";
 
     public static final String RECIPENAME_LABEL = "Input recipename";
+
+
     public static final String INGREDIENTS_LABEL = "Input ingredients";
+
+
     public static final String NUTRITION_LABEL = "Input nutrition";
+
+
     public static final String INSTRUCTIONS_LABEL = "Input instructions";
+
+
     public static final String IMAGE_LABEL = "Input image";
+
+
     public static final String RECIPEURL_LABEL = "Input recipeurl";
+
+
     public static final String RECIPEID_LABEL = "Input recipeid";
 
 

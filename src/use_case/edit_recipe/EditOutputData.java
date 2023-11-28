@@ -7,7 +7,13 @@ public class EditOutputData {
     private String recipeRemoved;
 
     public EditOutputData(String recipeRemoved, boolean useCaseFailed){
+
+
+
         this.useCaseFailed = useCaseFailed;
+
+
+
         this.recipeRemoved = "Do you ensure to remove" + recipeRemoved + "?";
     }
     public String getRecipeRemoved() { return recipeRemoved;}
