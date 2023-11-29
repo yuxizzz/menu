@@ -102,4 +102,8 @@ public class FileRecipeDataAccessObject{
     public Recipe getRecipeFromFile(Integer recipeID) {
         return recipeList.get(recipeID);
     }
+
+    public boolean existsByName(Integer recipeID) {
+        return recipeList.containsKey(recipeID);
+    }
 }
