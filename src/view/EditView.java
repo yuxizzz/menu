@@ -16,6 +16,14 @@ import java.awt.event.KeyListener;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 
+
+
+
+
+
+
+
+
 public class EditView extends JPanel implements ActionListener, PropertyChangeListener {
 
     public final String viewName = "edit recipe";
@@ -33,6 +41,9 @@ public class EditView extends JPanel implements ActionListener, PropertyChangeLi
     private final JTextField recipeidInputField = new JTextField(15);
     private final JButton edit;
 
+
+
+
     private final JButton cancel;
 
     public EditView(EditRecipeViewModel editRecipeViewModel, EditRecipeController
@@ -49,24 +60,36 @@ public class EditView extends JPanel implements ActionListener, PropertyChangeLi
 
         LabelTextPanel nameInfo = new LabelTextPanel(
                 new JLabel(EditRecipeViewModel.RECIPENANME_LABEL), nameInputField);
+
         LabelTextPanel ingredientsInfo = new LabelTextPanel(
                 new JLabel(EditRecipeViewModel.INGREDIENTS_LABEL), ingredientsInputField);
+
         LabelTextPanel nutritionInfo = new LabelTextPanel(
                 new JLabel(EditRecipeViewModel.NUTRITION_LABEL), nutritionInputField);
+
         LabelTextPanel instructionsInfo = new LabelTextPanel(
                 new JLabel(EditRecipeViewModel.INSTRUCTIONS_LABEL), instructionsInputField);
+
         LabelTextPanel imageInfo = new LabelTextPanel(
                 new JLabel(EditRecipeViewModel.IMAGE_LABEL), imageInputField);
+
         LabelTextPanel recipeurlPasswordInfo = new LabelTextPanel(
                 new JLabel(EditRecipeViewModel.RECIPEURL_LABEL), recipeurlInputField);
+
         LabelTextPanel recipeidInfo = new LabelTextPanel(
                 new JLabel(EditRecipeViewModel.RECIPEID_LABEL), recipeidInputField);
+
+
+
 
         JPanel buttons = new JPanel();
         this.edit = new JButton(EditRecipeViewModel.EDIT_BUTTON_LABEL);
         buttons.add(edit);
         this.cancel = new JButton(EditRecipeViewModel.CANCEL_BUTTON_LABEL);
         buttons.add(cancel);
+
+
+
 
         edit.addActionListener(
 
@@ -96,10 +119,16 @@ public class EditView extends JPanel implements ActionListener, PropertyChangeLi
 
         cancel.addActionListener(this);
 
+
+
+
         // This makes a new KeyListener implementing class, instantiates it, and
         // makes it listen to keystrokes in the usernameInputField.
         //
         // Notice how it has access to instance variables in the enclosing class!
+
+
+
 
 
 
@@ -122,6 +151,10 @@ public class EditView extends JPanel implements ActionListener, PropertyChangeLi
                     }
                 });
 
+
+
+
+
         ingredientsInputField.addKeyListener(
                 new KeyListener() {
                     @Override
@@ -131,6 +164,9 @@ public class EditView extends JPanel implements ActionListener, PropertyChangeLi
                         currentState.setIngredients(text);
                         editRecipeViewModel.setState(currentState);
                     }
+
+
+
 
                     @Override
                     public void keyPressed(KeyEvent e) {
@@ -159,6 +195,11 @@ public class EditView extends JPanel implements ActionListener, PropertyChangeLi
                     public void keyReleased(KeyEvent e) {
                     }
                 });
+
+
+
+
+
 
         instructionsInputField.addKeyListener(
                 new KeyListener() {
@@ -250,6 +291,13 @@ public class EditView extends JPanel implements ActionListener, PropertyChangeLi
                     }
                 });
 
+
+
+
+
+
+
+
         this.setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
 
         this.add(title);
@@ -262,6 +310,10 @@ public class EditView extends JPanel implements ActionListener, PropertyChangeLi
         this.add(recipeurlPasswordInfo);
         this.add(buttons);
 
+
+
+
+
     }
 
 
@@ -273,6 +325,10 @@ public class EditView extends JPanel implements ActionListener, PropertyChangeLi
 
 
     }
+
+
+
+
 
     @Override
     public void propertyChange(PropertyChangeEvent evt) {
