@@ -28,16 +28,18 @@ public class EditInteractor implements EditInputBoundary{
     public void execute(EditInputData editInputData) {
         if (editDataAccessObject.existByRecipeID(editInputData.getRecipeID())) {
             UserRecipe userRecipe = editDataAccessObject.getRecipe();
+
             User user = userRecipe.getUser();
-            //EditOutputData editOutputData = new EditOutputData(editRecipe, false);
-            //editPresenter.prepareSuccessView(removeOutputData);
+
+            EditOutputData editOutputData = new EditOutputData(userRecipe.getName(), false);
+            editPresenter.prepareSuccessView(editOutputData);
             if (!Objects.equals(userRecipe.getImage(), editInputData.getImage())
 
                     && editInputData.getImage() != null) {
 
                 userRecipe.editImage(editInputData.getImage(), userRecipe, user);
 
-                //editPresenter.prepareSuccessView(removeOutputData);
+                editPresenter.prepareSuccessView(editOutputData);
 
             } else if (!Objects.equals(userRecipe.getIngredients(), editInputData.getIngredients())
 
@@ -45,7 +47,7 @@ public class EditInteractor implements EditInputBoundary{
 
                 userRecipe.editIngredients(editInputData.getIngredients(), userRecipe, user);
 
-                //editPresenter.prepareSuccessView(removeOutputData);
+                editPresenter.prepareSuccessView(editOutputData);
 
             } else if (!Objects.equals(userRecipe.getInstructions(), editInputData.getInstructions())
 
@@ -53,7 +55,7 @@ public class EditInteractor implements EditInputBoundary{
 
                 userRecipe.editInstructions(editInputData.getInstructions(), userRecipe, user);
 
-                //editPresenter.prepareSuccessView(removeOutputData);
+                editPresenter.prepareSuccessView(editOutputData);
 
             } else if (!Objects.equals(userRecipe.getName(), editInputData.getRecipename())
 
@@ -61,7 +63,7 @@ public class EditInteractor implements EditInputBoundary{
 
                 userRecipe.editName(editInputData.getRecipename(), userRecipe, user);
 
-                //editPresenter.prepareSuccessView(removeOutputData);
+                editPresenter.prepareSuccessView(editOutputData);
 
 
             } else if (!Objects.equals(userRecipe.getNutrition(), editInputData.getNutrition())
@@ -70,7 +72,7 @@ public class EditInteractor implements EditInputBoundary{
 
                 userRecipe.editNutrition(editInputData.getNutrition(), userRecipe, user);
 
-                //editPresenter.prepareSuccessView(removeOutputData);
+                editPresenter.prepareSuccessView(editOutputData);
 
             } else if (!Objects.equals(userRecipe.getRecipeURL(), editInputData.getRrecipeurl())
 
@@ -78,7 +80,7 @@ public class EditInteractor implements EditInputBoundary{
 
                 userRecipe.editRecipeURL(editInputData.getRrecipeurl(), userRecipe, user);
 
-                //editPresenter.prepareSuccessView(removeOutputData);
+                editPresenter.prepareSuccessView(editOutputData);
 
 
             } else if (!Objects.equals(userRecipe.getRecipeID(), editInputData.getRecipeID())
@@ -87,7 +89,7 @@ public class EditInteractor implements EditInputBoundary{
 
                 userRecipe.editRecipeID(editInputData.getRecipeID(), userRecipe, user);
 
-                //editPresenter.prepareSuccessView(removeOutputData);
+                editPresenter.prepareSuccessView(editOutputData);
 
             } else {
                 editPresenter.prepareFailView("The edited image is the same as before");
