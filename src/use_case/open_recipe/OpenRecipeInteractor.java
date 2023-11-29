@@ -19,6 +19,7 @@ public class OpenRecipeInteractor implements OpenRecipeInputBoundary {
     public void execute(OpenRecipeInputData openRecipeInputData) throws IOException {
         if (!openRecipeDataAccessObject.existsByName(openRecipeInputData.getRecipeID())) {
             openRecipePresenter.prepareFailView("Recipe not found.");
+
         } else {
             Folder folder = openRecipeInputData.getFolder();
             Recipe recipe = folder.getRecipeMap().get(openRecipeInputData.getRecipeID());
