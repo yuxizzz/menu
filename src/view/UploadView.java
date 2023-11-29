@@ -31,9 +31,7 @@ public class UploadView extends JPanel implements ActionListener, PropertyChange
     private final JTextField imageInputField = new JTextField(15);
     private final JTextField recipeurlInputField = new JTextField(15);
     private final JTextField recipeidInputField = new JTextField(15);
-
     private final JButton upload;
-
     private final JButton cancel;
 
     public UploadView(UploadRecipeViewModel uploadRecipeViewModel, UploadRecipeController uploadRecipeController, JButton upload, JButton cancel) {
@@ -100,7 +98,8 @@ public class UploadView extends JPanel implements ActionListener, PropertyChange
         //
         // Notice how it has access to instance variables in the enclosing class!
 
-//TODO: implement the JTextLabels
+
+
         nameInputField.addKeyListener(
                 new KeyListener() {
             @Override
@@ -248,6 +247,18 @@ public class UploadView extends JPanel implements ActionListener, PropertyChange
                     }
                 });
 
+        this.setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
+
+        this.add(title);
+        this.add(nameInfo);
+        this.add(nutritionInfo);
+        this.add(instructionsInfo);
+        this.add(ingredientsInfo);
+        this.add(imageInfo);
+        this.add(recipeidInfo);
+        this.add(recipeurlPasswordInfo);
+        this.add(buttons);
+
     }
 
 
@@ -256,7 +267,10 @@ public class UploadView extends JPanel implements ActionListener, PropertyChange
 
 
     @Override
-    public void actionPerformed(ActionEvent e) {JOptionPane.showConfirmDialog(this, "Cancel not implemented yet.");
+    public void actionPerformed(ActionEvent e) {
+
+
+        JOptionPane.showConfirmDialog(this, "Cancel not implemented yet.");
 
     }
 
