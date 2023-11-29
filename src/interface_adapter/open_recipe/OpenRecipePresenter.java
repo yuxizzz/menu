@@ -17,7 +17,6 @@ public class OpenRecipePresenter implements OpenRecipeOutputBoundary {
         this.viewManagerModel = viewManagerModel;
     }
 
-
     @Override
     public void prepareSuccessView(OpenRecipeOutputData response) {
         //On success, switch to open recipe view model
@@ -38,11 +37,6 @@ public class OpenRecipePresenter implements OpenRecipeOutputBoundary {
 
 
     }
-
-
-
-
-
 
     @Override
     public void prepareFailView(String error) {
