@@ -6,6 +6,7 @@ import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;
 
 public class DeleteRecipeViewModel {
+    public static final String TITLE_LABEL = "delete recipe view";
     private DeleteRecipeState state = new DeleteRecipeState();
 
     public DeleteRecipeViewModel(){ super();}
