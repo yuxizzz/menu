@@ -1,5 +1,6 @@
 package view;
 
+import interface_adapter.edit_recipe.EditRecipeState;
 import interface_adapter.edit_recipe.EditRecipeViewModel;
 import interface_adapter.signup.SignupState;
 import interface_adapter.signup.SignupViewModel;
@@ -11,6 +12,8 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 
@@ -98,7 +101,157 @@ public class UploadView extends JPanel implements ActionListener, PropertyChange
         // Notice how it has access to instance variables in the enclosing class!
 
 //TODO: implement the JTextLabels
+        nameInputField.addKeyListener(
+                new KeyListener() {
+            @Override
+            public void keyTyped(KeyEvent e) {
+                UploadRecipeState currentState = uploadRecipeViewModel.getState();
+                String text = nameInputField.getText() + e.getKeyChar();
+                currentState.setRecipename(text);
+                uploadRecipeViewModel.setState(currentState);
+            }
+
+            @Override
+            public void keyPressed(KeyEvent e) {
+            }
+
+            @Override
+            public void keyReleased(KeyEvent e) {
+            }
+        });
+
+        ingredientsInputField.addKeyListener(
+                new KeyListener() {
+                    @Override
+                    public void keyTyped(KeyEvent e) {
+                        UploadRecipeState currentState = uploadRecipeViewModel.getState();
+                        String text = ingredientsInputField.getText() + e.getKeyChar();
+                        currentState.setIngredients(text);
+                        uploadRecipeViewModel.setState(currentState);
+                    }
+
+                    @Override
+                    public void keyPressed(KeyEvent e) {
+                    }
+
+                    @Override
+                    public void keyReleased(KeyEvent e) {
+                    }
+                });
+
+        nutritionInputField.addKeyListener(
+                new KeyListener() {
+                    @Override
+                    public void keyTyped(KeyEvent e) {
+                        UploadRecipeState currentState = uploadRecipeViewModel.getState();
+                        String text = nutritionInputField.getText() + e.getKeyChar();
+                        currentState.setNutrition(text);
+                        uploadRecipeViewModel.setState(currentState);
+                    }
+
+                    @Override
+                    public void keyPressed(KeyEvent e) {
+                    }
+
+                    @Override
+                    public void keyReleased(KeyEvent e) {
+                    }
+                });
+
+        instructionsInputField.addKeyListener(
+                new KeyListener() {
+                    @Override
+                    public void keyTyped(KeyEvent e) {
+                        UploadRecipeState currentState = uploadRecipeViewModel.getState();
+                        String text = instructionsInputField.getText() + e.getKeyChar();
+                        currentState.setInstructions(text);
+                        uploadRecipeViewModel.setState(currentState);
+                    }
+
+                    @Override
+                    public void keyPressed(KeyEvent e) {
+                    }
+
+                    @Override
+                    public void keyReleased(KeyEvent e) {
+                    }
+                });
+
+
+
+
+
+
+        imageInputField.addKeyListener(
+                new KeyListener() {
+                    @Override
+                    public void keyTyped(KeyEvent e) {
+                        UploadRecipeState currentState = uploadRecipeViewModel.getState();
+                        String text = imageInputField.getText() + e.getKeyChar();
+                        currentState.setImage(text);
+                        uploadRecipeViewModel.setState(currentState);
+                    }
+
+                    @Override
+                    public void keyPressed(KeyEvent e) {
+                    }
+
+                    @Override
+                    public void keyReleased(KeyEvent e) {
+                    }
+                });
+
+
+
+
+
+
+        recipeurlInputField.addKeyListener(
+                new KeyListener() {
+                    @Override
+                    public void keyTyped(KeyEvent e) {
+                        UploadRecipeState currentState = uploadRecipeViewModel.getState();
+                        String text = recipeurlInputField.getText() + e.getKeyChar();
+                        currentState.setRecipeurl(text);
+                        uploadRecipeViewModel.setState(currentState);
+                    }
+
+                    @Override
+                    public void keyPressed(KeyEvent e) {
+                    }
+
+                    @Override
+                    public void keyReleased(KeyEvent e) {
+                    }
+                });
+
+
+
+
+
+        recipeidInputField.addKeyListener(
+                new KeyListener() {
+                    @Override
+                    public void keyTyped(KeyEvent e) {
+                        UploadRecipeState currentState = uploadRecipeViewModel.getState();
+                        Integer text = Integer.valueOf(recipeidInputField.getText() + e.getKeyChar());
+                        currentState.setRecipeID(text);
+                        uploadRecipeViewModel.setState(currentState);
+                    }
+
+                    @Override
+                    public void keyPressed(KeyEvent e) {
+                    }
+
+                    @Override
+                    public void keyReleased(KeyEvent e) {
+                    }
+                });
+
     }
+
+
+
 
 
 
@@ -106,6 +259,10 @@ public class UploadView extends JPanel implements ActionListener, PropertyChange
     public void actionPerformed(ActionEvent e) {JOptionPane.showConfirmDialog(this, "Cancel not implemented yet.");
 
     }
+
+
+
+
 
     @Override
     public void propertyChange(PropertyChangeEvent evt) {
