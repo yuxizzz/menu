@@ -8,6 +8,8 @@ public class EditRecipeState {
 
     private String recipename = null;
 
+    private String recipenameError = null;
+
     private String ingredients = null;
 
     private String nutrition = null;
@@ -29,6 +31,8 @@ public class EditRecipeState {
         instructions = copy.instructions;
         image = copy.image;
         recipeurl = copy.recipeurl;
+        recipenameError = copy.recipenameError;
+        recipeIDError = copy.recipeIDError;
     }
 
 
@@ -89,6 +93,16 @@ public class EditRecipeState {
     public void setRecipeIDError(String recipeIDError){
         this.recipeIDError = recipeIDError;
 
+    }
+
+    public void setRecipeNameError(String recipenameError){
+        this.recipenameError = recipenameError;
+
+    }
+
+    public String getRecipenameError(){
+
+        return recipenameError;
     }
 
     public String getRecipeIDError(){

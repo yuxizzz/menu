@@ -18,9 +18,14 @@ public class EditInputData {
                          String instructions,
                          String image,
                          String recipeurl){
+
+
         this.recipeID = recipeID;
+
         this.recipename = recipename;
+
         this.ingredients = ingredients;
+
         this.nutrition = nutrition;
 
         this.instructions = instructions;
@@ -35,18 +40,34 @@ public class EditInputData {
     String getRecipename(){
         return recipename;
     }
+
+
+
     String getIngredients(){
         return ingredients;
     }
+
+
+
     String getNutrition(){
         return nutrition;
     }
+
+
+
     String getInstructions(){
         return instructions;
     }
+
+
+
+
     String getImage(){
         return image;
     }
+
+
+
     String getRrecipeurl(){
         return recipeurl;
     }

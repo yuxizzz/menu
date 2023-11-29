@@ -1,5 +1,6 @@
 package interface_adapter.upload_recipe;
 
+import entity.recipe.UserRecipe;
 import entity.user.User;
 import use_case.upload_recipe.UploadInputBoundary;
 import use_case.upload_recipe.UploadInputData;
