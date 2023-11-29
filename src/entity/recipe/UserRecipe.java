@@ -11,7 +11,7 @@ public class UserRecipe extends CommonRecipe {
     }
 
 
-    public String editName(String edit, UserRecipe userRecipe, String username, String password, User user){
+    public String editName(String edit, UserRecipe userRecipe, User user){
         if (userRecipe.user == user){
             userRecipe.name = edit;
             return "Edit Successfully";
@@ -20,7 +20,7 @@ public class UserRecipe extends CommonRecipe {
         }
     }
 
-    public String editIngredients(String edit, UserRecipe userRecipe, String username, String password, User user){
+    public String editIngredients(String edit, UserRecipe userRecipe, User user){
         if (userRecipe.user == user){
             userRecipe.ingredients = edit;
             return "Edit Successfully";
@@ -29,7 +29,7 @@ public class UserRecipe extends CommonRecipe {
         }
     }
 
-    public String editNutrition(String edit, UserRecipe userRecipe, String username, String password, User user){
+    public String editNutrition(String edit, UserRecipe userRecipe, User user){
         if (userRecipe.user == user){
             userRecipe.nutrition = edit;
             return "Edit Successfully";
@@ -37,7 +37,7 @@ public class UserRecipe extends CommonRecipe {
             return "Fail to Edit";
         }
     }
-    public String editInstructions(String edit, UserRecipe userRecipe, String username, String password, User user){
+    public String editInstructions(String edit, UserRecipe userRecipe, User user){
         if (userRecipe.user == user){
             userRecipe.instructions = edit;
             return "Edit Successfully";
@@ -47,7 +47,7 @@ public class UserRecipe extends CommonRecipe {
     }
 
 
-    public String editRecipeID(Integer edit, UserRecipe userRecipe, String username, String password, User user){
+    public String editRecipeID(Integer edit, UserRecipe userRecipe, User user){
         if (userRecipe.user == user){
             userRecipe.recipeid = edit;
             return "Edit Successfully";
@@ -57,7 +57,7 @@ public class UserRecipe extends CommonRecipe {
     }
 
 
-    public String editRecipeURL(String edit, UserRecipe userRecipe, String username, String password, User user){
+    public String editRecipeURL(String edit, UserRecipe userRecipe, User user){
         if (userRecipe.user == user){
             userRecipe.recipeurl = edit;
             return "Edit Successfully";
@@ -66,13 +66,17 @@ public class UserRecipe extends CommonRecipe {
         }
     }
 
-    public String editImage(String edit, UserRecipe userRecipe, String username, String password, User user){
+    public String editImage(String edit, UserRecipe userRecipe, User user){
         if (userRecipe.user == user){
             userRecipe.image = edit;
             return "Edit Successfully";
         } else {
             return "Fail to Edit";
         }
+    }
+
+    public User getUser(){
+        return this.user;
     }
 
 //    public RecipeUser uploadRecipe(String name, String ingredients, String nutrition, String instructions, List<String> tag,

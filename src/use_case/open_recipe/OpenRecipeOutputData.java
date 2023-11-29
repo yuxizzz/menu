@@ -10,7 +10,11 @@ public class OpenRecipeOutputData {
 
     public OpenRecipeOutputData(Recipe recipe, boolean useCaseFailed) throws IOException {
 //        this.recipeID = recipeID;
+
+
         this.useCaseFailed = useCaseFailed;
+
+
         this.recipe = recipe;
     }
     public Recipe getRecipe() {
