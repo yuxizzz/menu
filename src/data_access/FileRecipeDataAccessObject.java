@@ -1,7 +1,9 @@
 package data_access;
 
+import entity.recipe.CommonRecipe;
 import entity.recipe.Recipe;
 import entity.recipe.RecipeFactory;
+import entity.recipe.UserRecipe;
 
 import java.io.*;
 
@@ -95,6 +97,8 @@ public class FileRecipeDataAccessObject{
         }
     }
 
+
+
     /**
      * @param recipeID
      * @return
@@ -106,4 +110,28 @@ public class FileRecipeDataAccessObject{
     public boolean existsByName(Integer recipeID) {
         return recipeList.containsKey(recipeID);
     }
+
+
+
+
+
+
+//TODO: How to change the Recipe to Common Recipe? Because I need the common recipe ? may be cast?
+    public CommonRecipe removeRecipe(Integer removedRecipeID){
+        CommonRecipe commonRecipe = (CommonRecipe) recipeList.get(removedRecipeID);
+        recipeList.remove(removedRecipeID);
+
+        return commonRecipe;
+    }
+
+    public UserRecipe deleteRecipe(Integer deletedRecipeID){
+        UserRecipe userRecipe = (UserRecipe) recipeList.get(deletedRecipeID);
+        recipeList.remove(deletedRecipeID);
+        this.save();
+
+        return userRecipe;
+    }
+
+
+
 }

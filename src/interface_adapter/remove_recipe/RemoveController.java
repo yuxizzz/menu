@@ -10,8 +10,13 @@ public class RemoveController {
         this.removeUseCaseInteractor = removeUseCaseInteractor;
 
     }
-    public void execute(){
-        RemoveInputData removeInputData = new RemoveInputData();
+
+
+
+    public void execute(Integer recipeID){
+        RemoveInputData removeInputData = new RemoveInputData(recipeID);
+
+
         removeUseCaseInteractor.execute(removeInputData);
     }
 }
