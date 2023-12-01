@@ -9,6 +9,7 @@ import entity.recipe.CommonRecipeFactory;
 import entity.user.CommonUserFactory;
 import interface_adapter.ViewManagerModel;
 import interface_adapter.clear_users.ClearViewModel;
+import interface_adapter.get_recipe.GetRecipeViewModel;
 import interface_adapter.logged_in.LoggedInViewModel;
 import interface_adapter.login.LoginViewModel;
 import interface_adapter.logout.LogoutController;
@@ -82,6 +83,7 @@ public class Main {
 
 
         // TODO CSV PATH
+
         FileRecipeDataAccessObject recipeDataAccessObject;
         try {
             recipeDataAccessObject = new FileRecipeDataAccessObject("./users.csv",
@@ -108,9 +110,11 @@ public class Main {
             throw new RuntimeException(e);
         }
 
+        GetRecipeViewModel getRecipeViewModel = new GetRecipeViewModel();
+
         LoggedInView loggedInView = LoggedinUseCaseFactory.create(viewManagerModel, loggedInViewModel,
-                searchedViewModel, searchViewModel, searchUserDataAccessObject, openedFolderViewModel,
-                myFolderViewModel, (MyFolderDataAccessInterface) myFolderDataAccessObject, loginViewModel, logoutViewModel,
+                searchedViewModel, getRecipeViewModel, searchViewModel, searchUserDataAccessObject, openedFolderViewModel,
+                myFolderViewModel, myFolderDataAccessObject, loginViewModel, logoutViewModel,
                 (LogoutDataAccessInterface) logoutDataAccessObject);
         views.add(loggedInView, loggedInView.viewName);
 
