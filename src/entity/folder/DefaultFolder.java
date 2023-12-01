@@ -24,8 +24,8 @@ public class DefaultFolder implements Folder {
     }
 
     @Override
-    public void addRecipe(Integer recipeID) {
-
+    public void addRecipe(Integer recipeID, Recipe recipe) {
+        recipeMap.put(recipeID, recipe);
     }
 
     @Override
