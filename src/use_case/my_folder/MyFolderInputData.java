@@ -6,15 +6,15 @@ import java.util.HashMap;
 
 public class MyFolderInputData {
 
-    final private String foldername;
+    final private String username;
 
-    public MyFolderInputData(String foldername) {
-        this.foldername = foldername;
+    public MyFolderInputData(String username) {
+        this.username = username;
     }
 
 
-    String getFoldername() {
-        return foldername;
+    String getUsername() {
+        return username;
     }
 
 }

@@ -18,11 +18,11 @@ public class MyFolderInteractor {
     }
 
     public void execute(MyFolderInputData myFolderInputData) {
-        String foldername = myFolderInputData.getFoldername();
-        if (!folderDataAccessObject.existsByName(foldername)) {
-            myFolderPresenter.prepareFailView(foldername + ": Folder does not exist.");
+        String username = myFolderInputData.getUsername();
+        if (!folderDataAccessObject.existsByName(username)) {
+            myFolderPresenter.prepareFailView(username + ": User does not exist.");
         }else {
-             Folder folder = folderDataAccessObject.get(myFolderInputData.getFoldername());
+             Folder folder = folderDataAccessObject.get(myFolderInputData.getUsername());
              HashMap<Integer, ArrayList> recipeMap = folderDataAccessObject.getrecipeMap(foldername);
 
              MyFolderOutputData myFolderOutputData = new MyFolderOutputData(folder.getName(),
