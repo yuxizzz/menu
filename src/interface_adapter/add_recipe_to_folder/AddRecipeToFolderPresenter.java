@@ -22,4 +22,12 @@ public class AddRecipeToFolderPresenter implements AddRecipeToFolderOutputBounda
         viewManagerModel.setActiveView(addRecipeToFolderViewModel.getViewName());
         viewManagerModel.firePropertyChanged();
     }
+
+    @Override
+    public void prepareFailView(String recipeAlreadyExisted) {
+        AddRecipeToFolderState addRecipeToFolderState = addRecipeToFolderViewModel.getState();
+        addRecipeToFolderState.setMessageError(recipeAlreadyExisted);
+        this.addRecipeToFolderViewModel.setState(addRecipeToFolderState);
+        addRecipeToFolderViewModel.firePropertyChanged();
+    }
 }

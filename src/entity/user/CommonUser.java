@@ -40,8 +40,8 @@ class CommonUser implements User {
     }
 
     @Override
-    public String getUserFolders() {
-        return null;
+    public ArrayList<Folder> getUserFolders() {
+        return userFolders;
     }
 
     @Override

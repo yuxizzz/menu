@@ -17,18 +17,12 @@ public class CollectRecipeInteractor implements CollectRecipeInputBoundary {
     }
     @Override
     public void execute(CollectRecipeInputData collectRecipeInputData) {
-        if (recipeDataAccessObject.existsAllFolders(collectRecipeInputData.getRecipeID())) {
-            userPresenter.prepareFailView("Recipe already existed in all folders");
-        } else {
-            ArrayList<Folder> folderLists = recipeDataAccessObject.getAllFolders(collectRecipeInputData.getUserID());
-            ArrayList<String> folders = new ArrayList<>();
-            for (Folder f: folderLists) {
-                folders.add(f.getName());
-            }
-            CollectRecipeOutputData collectRecipeOutputData = new CollectRecipeOutputData(folders, collectRecipeInputData.getRecipeID(),collectRecipeInputData.getUserID() );
+//        if (recipeDataAccessObject.existsAllFolders(collectRecipeInputData.getRecipeID())) {
+//            userPresenter.prepareFailView("Recipe already existed in all folders");
+//        } else {
+            ArrayList<String> foldernames= recipeDataAccessObject.getAllFolders(collectRecipeInputData.getUsername());
+            CollectRecipeOutputData collectRecipeOutputData = new CollectRecipeOutputData(foldernames, collectRecipeInputData.getRecipeID(),collectRecipeInputData.getUsername());
             userPresenter.prepareSuccessView(collectRecipeOutputData);
-
         }
 
     }
-}
