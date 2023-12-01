@@ -15,7 +15,7 @@ public class MyFolderViewModel extends ViewModel {
     public static final String DELETE_BUTTON_LABEL = "Delete Folder";
     public static final String CREATE_BUTTON_LABEL = "Create Folder";
 
-    private interface_adapter.get_my_folder.MyFolderState state = new interface_adapter.get_my_folder.MyFolderState();
+    private interface_adapter.my_folder.MyFolderState state = new interface_adapter.my_folder.MyFolderState();
 
     private ArrayList<String> folderList = new ArrayList<>();
 
@@ -23,7 +23,7 @@ public class MyFolderViewModel extends ViewModel {
         super("my folder");
     }
 
-    public void setState(interface_adapter.get_my_folder.MyFolderState state) {
+    public void setState(interface_adapter.my_folder.MyFolderState state) {
         this.state = state;
     }
 
