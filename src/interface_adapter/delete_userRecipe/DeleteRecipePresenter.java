@@ -29,6 +29,8 @@ public class DeleteRecipePresenter implements DeleteRecipeOutputBoundary {
 
         DeleteRecipeState deleteRecipeState = deleteRecipeViewModel.getState();
 
+
+
         deleteRecipeState.setRecipeDeleted(response.getRecipeDeleted());
     }
     public void prepareFailView(String error){

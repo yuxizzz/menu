@@ -20,27 +20,25 @@ public class SignupView extends JPanel implements ActionListener, PropertyChange
     public final String viewName = "sign up";
 
     private final SignupViewModel signupViewModel;
-    private final ClearViewModel clearViewModel;
     private final JTextField usernameInputField = new JTextField(15);
     private final JPasswordField passwordInputField = new JPasswordField(15);
     private final JPasswordField repeatPasswordInputField = new JPasswordField(15);
     private final SignupController signupController;
 
-    private final ClearController clearController;
+//    private final ClearController clearController;
 
     private final JButton signUp;
-    private final JButton cancel;
-    private final JButton clear;
+//    private final JButton cancel;
+//    private final JButton clear;
 
-    public SignupView(SignupController controller, SignupViewModel signupViewModel,
-                      ClearController clearController, ClearViewModel clearViewModel) {
+    public SignupView(SignupController controller, SignupViewModel signupViewModel) {
 
         this.signupController = controller;
         this.signupViewModel = signupViewModel;
-        this.clearViewModel = clearViewModel;
-        this.clearController = clearController;
+//        this.clearViewModel = clearViewModel;
+//        this.clearController = clearController;
         signupViewModel.addPropertyChangeListener(this);
-        clearViewModel.addPropertyChangeListener(this);
+//        clearViewModel.addPropertyChangeListener(this);
 
         JLabel title = new JLabel(SignupViewModel.TITLE_LABEL);
         title.setAlignmentX(Component.CENTER_ALIGNMENT);
@@ -55,10 +53,10 @@ public class SignupView extends JPanel implements ActionListener, PropertyChange
         JPanel buttons = new JPanel();
         signUp = new JButton(SignupViewModel.SIGNUP_BUTTON_LABEL);
         buttons.add(signUp);
-        cancel = new JButton(SignupViewModel.CANCEL_BUTTON_LABEL);
-        buttons.add(cancel);
-        clear = new JButton(SignupViewModel.CLEAR_BUTTON_LABEL);
-        buttons.add(clear);
+//        cancel = new JButton(SignupViewModel.CANCEL_BUTTON_LABEL);
+//        buttons.add(cancel);
+//        clear = new JButton(SignupViewModel.CLEAR_BUTTON_LABEL);
+//        buttons.add(clear);
 
         signUp.addActionListener(
 
@@ -79,19 +77,19 @@ public class SignupView extends JPanel implements ActionListener, PropertyChange
         );
 
 
-        clear.addActionListener(
-                new ActionListener() {
-                    @Override
-                    public void actionPerformed(ActionEvent e) {
-                        if (e.getSource().equals(clear)) {
-                            ClearState currentState = clearViewModel.getState();
-                            clearController.execute();
-                        }
-                    }
-                }
-        );
+//        clear.addActionListener(
+//                new ActionListener() {
+//                    @Override
+//                    public void actionPerformed(ActionEvent e) {
+//                        if (e.getSource().equals(clear)) {
+//                            ClearState currentState = clearViewModel.getState();
+//                            clearController.execute();
+//                        }
+//                    }
+//                }
+//        );
 
-        cancel.addActionListener(this);
+//        cancel.addActionListener(this);
 
         // This makes a new KeyListener implementing class, instantiates it, and
         // makes it listen to keystrokes in the usernameInputField.
@@ -182,11 +180,11 @@ public class SignupView extends JPanel implements ActionListener, PropertyChange
             if (state.getUsernameError() != null) {
                 JOptionPane.showMessageDialog(this, state.getUsernameError());
             }
-        } else if (evt.getNewValue() instanceof ClearState) {
-            ClearState clearState = (ClearState) evt.getNewValue();
-            if (clearState.getUserDeleted() != null) {
-                JOptionPane.showMessageDialog(this, clearState.getUserDeleted());
-            }
+//        } else if (evt.getNewValue() instanceof ClearState) {
+//            ClearState clearState = (ClearState) evt.getNewValue();
+//            if (clearState.getUserDeleted() != null) {
+//                JOptionPane.showMessageDialog(this, clearState.getUserDeleted());
+//            }
         }
     }
 

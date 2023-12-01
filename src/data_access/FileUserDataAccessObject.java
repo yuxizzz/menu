@@ -1,5 +1,5 @@
 package data_access;
-
+import entity.recipe.CommonRecipe;
 import entity.folder.Folder;
 import entity.user.User;
 import entity.user.UserFactory;
@@ -107,7 +107,6 @@ public class FileUserDataAccessObject implements SignupUserDataAccessInterface, 
         this.save();
         return users;
     }
-
 
     public ArrayList<Folder> getFolders(String username) {
         User user = accounts.get(username);

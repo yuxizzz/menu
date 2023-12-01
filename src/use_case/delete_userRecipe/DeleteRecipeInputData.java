@@ -1,8 +1,18 @@
 package use_case.delete_userRecipe;
 
 public class DeleteRecipeInputData {
-    final private Integer recipeid;
-    public DeleteRecipeInputData(Integer recipeid){this.recipeid = recipeid;}
+    final private Integer recipeID;
+    public DeleteRecipeInputData(Integer recipeID){
 
-    Integer getRecipeid(){return recipeid;}
+        this.recipeID = recipeID;
+
+
+    }
+
+    Integer getDeletedRecipeID(){
+
+        return recipeID;
+
+    }
+
 }

@@ -1,9 +1,20 @@
 package use_case.remove_recipe;
 
-import use_case.clear_users.ClearInputData;
-
 public class RemoveInputData {
-    public RemoveInputData(){
+
+    final private Integer recipeID;
+
+
+    public RemoveInputData(Integer recipeID){
+
+        this.recipeID = recipeID;
+    }
+
+    Integer getRemovedRecipeID(){
+
+
+        return recipeID;
+
 
     }
 }

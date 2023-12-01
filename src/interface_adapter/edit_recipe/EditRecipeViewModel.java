@@ -11,9 +11,8 @@ import java.beans.PropertyChangeSupport;
 public class EditRecipeViewModel extends ViewModel {
 
 
-    public final String TITLE_LABEL = "Edit Recipe View";
+    public static final String TITLE_LABEL = "Edit Recipe View";
 
-    public static final String RECIPENAME_LABEL = "Input recipename";
 
 
     public static final String INGREDIENTS_LABEL = "Input ingredients";
@@ -32,9 +31,13 @@ public class EditRecipeViewModel extends ViewModel {
 
 
     public static final String RECIPEID_LABEL = "Input recipeid";
+    public static final String RECIPENANME_LABEL = "Input recipename";
 
 
     private static EditRecipeState state = new EditRecipeState();
+    public static final String EDIT_BUTTON_LABEL = "edit recipe";
+
+    public static final String CANCEL_BUTTON_LABEL = "cancel recipe";
 
     private Integer recipeID;
 

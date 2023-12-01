@@ -30,4 +30,8 @@ public class OpenFolderInteractor {
              openFolderPresenter.prepareSuccessView(openFolderOutputData);
             }
         }
+
+
+
+
 }

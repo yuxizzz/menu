@@ -1,16 +1,31 @@
 package app;
 
+import data_access.FileFolderDataAccessObject;
+import data_access.FileRecipeDataAccessObject;
 import data_access.FileUserDataAccessObject;
+import entity.folder.CommonFolderFactory;
+import entity.folder.FolderFactory;
+import entity.recipe.CommonRecipeFactory;
 import entity.user.CommonUserFactory;
 import interface_adapter.ViewManagerModel;
 import interface_adapter.clear_users.ClearViewModel;
+import interface_adapter.get_recipe.GetRecipeViewModel;
 import interface_adapter.logged_in.LoggedInViewModel;
 import interface_adapter.login.LoginViewModel;
+import interface_adapter.logout.LogoutController;
+import interface_adapter.logout.LogoutViewModel;
+import interface_adapter.my_folder.MyFolderController;
+import interface_adapter.my_folder.MyFolderViewModel;
+import interface_adapter.opened_folder.OpenedFolderViewModel;
+import interface_adapter.search.SearchController;
+import interface_adapter.search.SearchViewModel;
+import interface_adapter.searched.SearchedViewModel;
 import interface_adapter.signup.SignupViewModel;
-import view.LoggedInView;
-import view.LoginView;
-import view.SignupView;
-import view.ViewManager;
+import use_case.clear_users.ClearUserDataAccessInterface;
+import use_case.logout.LogoutDataAccessInterface;
+import use_case.my_folder.MyFolderDataAccessInterface;
+import use_case.search.SearchUserDataAccessInterface;
+import view.*;
 
 import javax.swing.*;
 import java.awt.*;
@@ -42,7 +57,6 @@ public class Main {
         LoginViewModel loginViewModel = new LoginViewModel();
         LoggedInViewModel loggedInViewModel = new LoggedInViewModel();
         SignupViewModel signupViewModel = new SignupViewModel();
-        ClearViewModel clearViewModel = new ClearViewModel();
 
         FileUserDataAccessObject userDataAccessObject;
         try {
@@ -51,19 +65,64 @@ public class Main {
             throw new RuntimeException(e);
         }
 
-//        SignupView signupView = SignupUseCaseFactory.create(viewManagerModel, loginViewModel, signupViewModel,
-//        clearViewModel, userDataAccessObject, userDataAccessObject);
-//        views.add(signupView, signupView.viewName);
-//
-//        LoginView loginView = LoginUseCaseFactory.create(viewManagerModel, loginViewModel, loggedInViewModel,
-//        userDataAccessObject);
-//        views.add(loginView, loginView.viewName);
-//
-//        LoggedInView loggedInView = new LoggedInView(loggedInViewModel);
-//        views.add(loggedInView, loggedInView.viewName);
-//
-//        viewManagerModel.setActiveView(signupView.viewName);
-//        viewManagerModel.firePropertyChanged();
+        SignupView signupView = SignupUseCaseFactory.create(viewManagerModel, loginViewModel,
+                signupViewModel,userDataAccessObject);
+        views.add(signupView, signupView.viewName);
+
+        LoginView loginView = LoginUseCaseFactory.create(viewManagerModel, loginViewModel, loggedInViewModel,
+        userDataAccessObject);
+        views.add(loginView, loginView.viewName);
+
+        SearchViewModel searchViewModel = new SearchViewModel();
+        SearchUserDataAccessInterface searchUserDataAccessObject = (SearchUserDataAccessInterface) userDataAccessObject;
+
+        SearchedViewModel searchedViewModel = new SearchedViewModel();
+        MyFolderViewModel myFolderViewModel = new MyFolderViewModel();
+        OpenedFolderViewModel openedFolderViewModel = new OpenedFolderViewModel();
+        LogoutViewModel logoutViewModel = new LogoutViewModel();
+
+
+        // TODO CSV PATH
+
+        FileRecipeDataAccessObject recipeDataAccessObject;
+        try {
+            recipeDataAccessObject = new FileRecipeDataAccessObject("./users.csv",
+                    new CommonRecipeFactory());
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+
+
+        // TODO CSV PATH
+        FileFolderDataAccessObject myFolderDataAccessObject;
+        try {
+            myFolderDataAccessObject = new FileFolderDataAccessObject("./users.csv",
+                    new CommonFolderFactory(), recipeDataAccessObject);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+
+        // TODO CSV PATH
+        FileUserDataAccessObject logoutDataAccessObject;
+        try {
+            logoutDataAccessObject = new FileUserDataAccessObject("./users.csv", new CommonUserFactory());
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+
+        GetRecipeViewModel getRecipeViewModel = new GetRecipeViewModel();
+
+        LoggedInView loggedInView = LoggedinUseCaseFactory.create(viewManagerModel, loggedInViewModel,
+                searchedViewModel, getRecipeViewModel, searchViewModel, searchUserDataAccessObject, openedFolderViewModel,
+                myFolderViewModel, myFolderDataAccessObject, loginViewModel, logoutViewModel,
+                (LogoutDataAccessInterface) logoutDataAccessObject);
+        views.add(loggedInView, loggedInView.viewName);
+
+//        MyFolderView myFolderView = MY
+
+
+        viewManagerModel.setActiveView(signupView.viewName);
+        viewManagerModel.firePropertyChanged();
 
         application.pack();
         application.setVisible(true);

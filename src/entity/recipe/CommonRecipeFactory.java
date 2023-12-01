@@ -1,12 +1,15 @@
 package entity.recipe;
 
-public class CommonRecipeFactory implements RecipeFactory{
+public class CommonRecipeFactory implements RecipeFactory {
+
+
+
     @Override
-    public CommonRecipe create(String name, String ingredients,
-                         String nutrition, String instructions,
-                         String image, String recipeurl,
-                         Integer recipeID) {
-        return new CommonRecipe(name, ingredients, nutrition, instructions,
-                image, recipeurl, recipeID);
+    public Recipe create(String name, String ingredients, String nutrition,
+                         String instructions, String image, String recipeurl, Integer recipeID) {
+        return new CommonRecipe(name, ingredients, nutrition,
+                instructions, image, recipeurl, recipeID);
     }
+
+
 }

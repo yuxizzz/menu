@@ -12,7 +12,7 @@ public class SearchedViewModel extends ViewModel {
     public static final String CANCEL_BUTTON_LABEL = "Cancel";
 
     private SearchedState state = new SearchedState();
-    private SearchedViewModel(){super("get recipes");}
+    public SearchedViewModel(){super("get recipes");}
 
     public void setState(SearchedState state){this.state = state;}
 

@@ -31,16 +31,13 @@ public class SignupUseCaseFactory {
 
     public static SignupView create(
             ViewManagerModel viewManagerModel, LoginViewModel loginViewModel, SignupViewModel signupViewModel,
-            SignupUserDataAccessInterface userDataAccessObject, ClearViewModel clearViewModel,
-            ClearUserDataAccessInterface clearUserDataAccessObject)
+            SignupUserDataAccessInterface userDataAccessObject)
     {
 
         try {
             SignupController signupController = createUserSignupUseCase(viewManagerModel, signupViewModel,
                     loginViewModel, userDataAccessObject);
-            ClearController clearController = createUserClearUseCase(viewManagerModel, clearViewModel,
-                    clearUserDataAccessObject);
-            return new SignupView(signupController, signupViewModel, clearController, clearViewModel);
+            return new SignupView(signupController, signupViewModel);
         } catch (IOException e) {
             JOptionPane.showMessageDialog(null, "Could not open user data file.");
         }
@@ -63,17 +60,16 @@ public class SignupUseCaseFactory {
 
         return new SignupController(userSignupInteractor);
     }
-    private static ClearController createUserClearUseCase(ViewManagerModel viewManagerModel,
-                                                          ClearViewModel clearViewModel,
-                                                          ClearUserDataAccessInterface clearUserDataAccessObject) throws IOException {
 
-        // Notice how we pass this method's parameters to the Presenter.
-        ClearOutputBoundary clearOutputBoundary = new ClearPresenter(viewManagerModel, clearViewModel);
-
-
-        ClearInputBoundary userClearInteractor = new ClearInteractor(
-                clearUserDataAccessObject, clearOutputBoundary);
-
-        return new ClearController(userClearInteractor);
-    }
+//    private static ClearController createUserClearUseCase(ViewManagerModel viewManagerModel) throws IOException {
+//
+//        // Notice how we pass this method's parameters to the Presenter.
+//        ClearOutputBoundary clearOutputBoundary = new ClearPresenter(viewManagerModel);
+//
+//
+//        ClearInputBoundary userClearInteractor = new ClearInteractor(
+//                clearUserDataAccessObject, clearOutputBoundary);
+//
+//        return new ClearController(userClearInteractor);
+//    }
 }
