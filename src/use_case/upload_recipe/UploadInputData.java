@@ -1,5 +1,7 @@
 package use_case.upload_recipe;
 
+import entity.user.User;
+
 public class UploadInputData {
     final private String recipename;
 
@@ -10,8 +12,13 @@ public class UploadInputData {
     final private String instructions;
     final private String image;
     final private String recipeurl;
+
+    final private User user;
+
+
     public UploadInputData(String recipename, String ingredients, String nutrition,
-                           String instructions, String image, String recipeurl, Integer recipeID){
+                           String instructions, String image, String recipeurl,
+                           Integer recipeID, User user){
 
         this.recipename = recipename;
         this.recipeID = recipeID;
@@ -20,13 +27,34 @@ public class UploadInputData {
         this.instructions = instructions;
         this.image = image;
         this.recipeurl = recipeurl;
-    }
-    String getRecipename(){return recipename;}
-    Integer getRecipeid(){return recipeID;}
+        this.user = user;
 
-    String getIngredients(){return ingredients;}
-    String getNutrition(){return nutrition;}
-    String getInstructions(){return instructions;}
-    String getImage(){return image;}
-    String getRecipeurl(){return recipeurl;}
+    }
+    String getRecipename(){
+        return recipename;
+    }
+    Integer getRecipeid(){
+        return recipeID;}
+
+    String getIngredients(){
+        return ingredients;
+    }
+    String getNutrition(){
+        return nutrition;
+    }
+    String getInstructions(){
+        return instructions;
+    }
+    String getImage(){
+        return image;
+    }
+    String getRecipeurl(){
+        return recipeurl;
+    }
+
+    User getUser(){
+        return user;
+    }
+
+
 }

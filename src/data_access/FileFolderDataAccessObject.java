@@ -2,6 +2,7 @@ package data_access;
 
 import entity.folder.Folder;
 import entity.folder.FolderFactory;
+import entity.recipe.CommonRecipe;
 import entity.recipe.Recipe;
 import use_case.add_recipe_to_folder.AddRecipeToFolderDataAccessInterface;
 import use_case.add_recipe_to_folder.AddRecipeToFolderInputData;
@@ -166,4 +167,6 @@ public class FileFolderDataAccessObject implements DeleteFolderUserDataAccessInt
         }
         return null;
     }
+
+
 }

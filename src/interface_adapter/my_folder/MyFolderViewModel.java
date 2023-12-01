@@ -1,9 +1,7 @@
 package interface_adapter.my_folder;
 
 import interface_adapter.ViewModel;
-import interface_adapter.login.LoginState;
 
-import javax.swing.*;
 import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;
 import java.util.ArrayList;
@@ -17,7 +15,7 @@ public class MyFolderViewModel extends ViewModel {
     public static final String DELETE_BUTTON_LABEL = "Delete Folder";
     public static final String CREATE_BUTTON_LABEL = "Create Folder";
 
-    private MyFolderState state = new MyFolderState();
+    private interface_adapter.get_my_folder.MyFolderState state = new interface_adapter.get_my_folder.MyFolderState();
 
     private ArrayList<String> folderList = new ArrayList<>();
 
@@ -25,7 +23,7 @@ public class MyFolderViewModel extends ViewModel {
         super("my folder");
     }
 
-    public void setState(MyFolderState state) {
+    public void setState(interface_adapter.get_my_folder.MyFolderState state) {
         this.state = state;
     }
 

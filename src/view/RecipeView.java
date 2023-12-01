@@ -1,7 +1,9 @@
 package view;
+
 import interface_adapter.collect_recipe.CollectRecipeController;
 import interface_adapter.collect_recipe.CollectRecipeState;
 import interface_adapter.collect_recipe.CollectRecipeViewModel;
+
 import interface_adapter.get_recipe.GetRecipeController;
 import interface_adapter.get_recipe.GetRecipeState;
 import interface_adapter.get_recipe.GetRecipeViewModel;
@@ -15,6 +17,7 @@ import java.beans.PropertyChangeListener;
 
 //TODO: collect button addActionListener
 //TODO: actionPerformed message "Try again"
+//TODO: propertyChange
 
 public class RecipeView extends JPanel implements ActionListener, PropertyChangeListener {
     public final String viewName = "recipe";
@@ -64,6 +67,13 @@ public class RecipeView extends JPanel implements ActionListener, PropertyChange
         JOptionPane.showConfirmDialog(this, "Try again");
     }
 
+
+    /**
+     * This method gets called when a bound property is changed.
+     *
+     * @param evt A PropertyChangeEvent object describing the event source
+     *            and the property that has changed.
+     */
     @Override
     public void propertyChange(PropertyChangeEvent evt) {
         if (evt.getNewValue() instanceof GetRecipeState) {
