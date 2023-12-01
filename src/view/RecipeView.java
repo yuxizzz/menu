@@ -21,7 +21,7 @@ public class RecipeView extends JPanel implements ActionListener, PropertyChange
     private final GetRecipeViewModel getRecipeViewModel;
     private final GetRecipeController getRecipeController;
     private final CollectRecipeViewModel collectViewModel;
-    private final CollectRecipeController collectRecipeController
+    private final CollectRecipeController collectRecipeController;
     private final JButton collect;
 
     public RecipeView(GetRecipeViewModel getRecipeViewModel, GetRecipeController getRecipeController,
@@ -49,7 +49,7 @@ public class RecipeView extends JPanel implements ActionListener, PropertyChange
                     public void actionPerformed(ActionEvent evt) {
                         if (evt.getSource().equals(collect)) {
                             CollectRecipeState currentState = collectViewModel.getState();
-                            collectRecipeController.execute(currentState.getRecipeID(), currentState.getUserID());
+                            collectRecipeController.execute(currentState.getRecipeID(), currentState.getUsername());
                         }
                     }
                 }
