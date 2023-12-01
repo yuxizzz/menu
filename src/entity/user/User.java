@@ -1,5 +1,8 @@
 package entity.user;
+import entity.folder.Folder;
+
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 
 public interface User {
 
@@ -7,7 +10,7 @@ public interface User {
 
     String getPassword();
 
-    String getUserFolders();
+    ArrayList<Folder> getUserFolders();
 
     LocalDateTime getCreationTime();
 }

@@ -11,7 +11,7 @@ public class CollectRecipeInputData {
         return recipeID;
     }
 
-    String getUserID() {
+    String getUsername() {
         return username;
     }
 }
