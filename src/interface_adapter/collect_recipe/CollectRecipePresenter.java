@@ -17,13 +17,6 @@ public class CollectRecipePresenter implements CollectRecipeOutputBoundary {
         this.collectRecipeViewModel = collectRecipeViewModel;
         this.addRecipeToFolderViewModel = addRecipeToFolderViewModel;
     }
-    @Override
-    public void prepareFailView(String error) {
-        CollectRecipeState collectRecipeState = collectRecipeViewModel.getState();
-        collectRecipeState.setNoFolderError(error);
-        collectRecipeViewModel.firePropertyChanged();
-
-    }
 
     @Override
     public void prepareSuccessView(CollectRecipeOutputData collectRecipeOutputData) {
@@ -38,6 +31,14 @@ public class CollectRecipePresenter implements CollectRecipeOutputBoundary {
         viewManagerModel.setActiveView(addRecipeToFolderViewModel.getViewName());
         viewManagerModel.firePropertyChanged();
 
+
+    }
+
+    @Override
+    public void prepareFailView(String error) {
+        CollectRecipeState collectRecipeState = collectRecipeViewModel.getState();
+        collectRecipeState.setNoFolderError(error);
+        collectRecipeViewModel.firePropertyChanged();
 
     }
 }

@@ -1,8 +1,9 @@
 package data_access;
-
 import entity.recipe.CommonRecipe;
+import entity.folder.Folder;
 import entity.user.User;
 import entity.user.UserFactory;
+import use_case.collect_recipe.CollectRecipeDataAccessInterface;
 import use_case.login.LoginUserDataAccessInterface;
 import use_case.signup.SignupUserDataAccessInterface;
 import use_case.clear_users.ClearUserDataAccessInterface;
@@ -14,7 +15,7 @@ import java.util.LinkedHashMap;
 import java.util.Map;
 import java.util.ArrayList;
 
-public class FileUserDataAccessObject implements SignupUserDataAccessInterface, LoginUserDataAccessInterface , ClearUserDataAccessInterface{
+public class FileUserDataAccessObject implements SignupUserDataAccessInterface, LoginUserDataAccessInterface , ClearUserDataAccessInterface {
 
     private final File csvFile;
 
@@ -107,13 +108,8 @@ public class FileUserDataAccessObject implements SignupUserDataAccessInterface, 
         return users;
     }
 
-
-
-
-
-
-
-
-
-
+    public ArrayList<Folder> getFolders(String username) {
+        User user = accounts.get(username);
+        return user.getUserFolders();
+    }
 }
