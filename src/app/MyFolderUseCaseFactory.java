@@ -72,16 +72,17 @@ public class MyFolderUseCaseFactory {
             SearchUserDataAccessInterface searchUserDataAccessObject) throws IOException {
 
         // Notice how we pass this method's parameters to the Presenter.
-        SearchOutputBoundary searchOutputBoundary = new SearchPresenter(viewManagerModel,
-                searchViewModel,searchedViewModel);
+//        SearchOutputBoundary searchOutputBoundary = new SearchPresenter(viewManagerModel,
+//                searchViewModel,searchedViewModel);
 
 //        SearchResult searchResult = new SearchResult();
 //        userFactory = new CommonUserFactory();
 
-        SearchInputBoundary searchInteractor = new SearchInteractor(
-                searchUserDataAccessObject, searchOutputBoundary);
+//        SearchInputBoundary searchInteractor = new SearchInteractor(
+//                searchUserDataAccessObject, searchOutputBoundary);
 
-        return new SearchController(searchInteractor);
+//        return new SearchController(searchInteractor);
+        return null;
     }
     private static MyFolderController createMyFolderUseCase(
             ViewManagerModel viewManagerModel, OpenedFolderViewModel openedFolderViewModel,

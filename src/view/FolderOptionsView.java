@@ -43,7 +43,8 @@ public class FolderOptionsView extends JPanel implements ActionListener, Propert
                             if (evt.getSource().equals(b)) {
                                 AddRecipeToFolderState currentState = addRecipeToFolderViewModel.getState();
 
-                                addRecipeToFolderController.execute(folderButtons.get(b), currentState.getRecipeID(), currentState.getUsername());
+                                addRecipeToFolderController.execute(folderButtons.get(b),
+                                        currentState.getRecipeID(), currentState.getUsername());
                             }
                         }
                     }

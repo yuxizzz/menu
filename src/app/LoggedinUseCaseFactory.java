@@ -5,6 +5,7 @@ import entity.search_results.SearchResult;
 import entity.user.CommonUserFactory;
 import entity.user.UserFactory;
 import interface_adapter.ViewManagerModel;
+import interface_adapter.get_recipe.GetRecipeViewModel;
 import interface_adapter.logged_in.LoggedInViewModel;
 import interface_adapter.login.LoginController;
 import interface_adapter.login.LoginPresenter;
@@ -49,6 +50,7 @@ public class LoggedinUseCaseFactory {
             ViewManagerModel viewManagerModel,
             LoggedInViewModel loggedInViewModel,
             SearchedViewModel searchedViewModel,
+            GetRecipeViewModel getRecipeViewModel,
             SearchViewModel searchViewModel, SearchUserDataAccessInterface searchUserDataAccessObject,
             OpenedFolderViewModel openedFolderViewModel,
             MyFolderViewModel myFolderViewModel, MyFolderDataAccessInterface myFolderDataAccessObject,
@@ -56,9 +58,8 @@ public class LoggedinUseCaseFactory {
             LogoutViewModel logoutViewModel, LogoutDataAccessInterface logoutDataAccessObject) {
 
         try {
-            SearchController searchController = createSearchUseCase(viewManagerModel,
-                    searchedViewModel, searchViewModel,
-                    searchUserDataAccessObject);
+            SearchController searchController = createSearchUseCase(viewManagerModel, searchedViewModel,
+                    searchViewModel, getRecipeViewModel, searchUserDataAccessObject);
             MyFolderController myFolderController = createMyFolderUseCase(viewManagerModel,
                     openedFolderViewModel, myFolderViewModel,
                     myFolderDataAccessObject);
@@ -77,11 +78,12 @@ public class LoggedinUseCaseFactory {
             ViewManagerModel viewManagerModel,
             SearchedViewModel searchedViewModel,
             SearchViewModel searchViewModel,
+            GetRecipeViewModel getRecipeViewModel,
             SearchUserDataAccessInterface searchUserDataAccessObject) throws IOException {
 
         // Notice how we pass this method's parameters to the Presenter.
         SearchOutputBoundary searchOutputBoundary = new SearchPresenter(viewManagerModel,
-                searchViewModel,searchedViewModel);
+                searchViewModel,searchedViewModel, getRecipeViewModel);
 
 //        SearchResult searchResult = new SearchResult();
 //        userFactory = new CommonUserFactory();
