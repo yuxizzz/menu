@@ -70,11 +70,13 @@ public class OpenedFolderView extends JPanel implements ActionListener, Property
 
         this.remove = remove;
         this.get = get;
+        this.openedFolderViewModel.addPropertyChangeListener(this);
+
 
         for (Map.Entry<Integer, ArrayList> entry : recipeMap.entrySet()) {
             Integer key = entry.getKey();
             ArrayList value = entry.getValue();
-        this.openedFolderViewModel.addPropertyChangeListener(this);
+
 //        this.openRecipeViewModel.addPropertyChangeListener(this);
 
         JPanel buttons = new JPanel();
@@ -203,10 +205,10 @@ public class OpenedFolderView extends JPanel implements ActionListener, Property
     }
 
 
-    // TODO
+
     @Override
     public void propertyChange(PropertyChangeEvent evt) {
         OpenedFolderState state = (OpenedFolderState) evt.getNewValue();
-        foldername.setText(state.getFoldername());
+//        foldername.setText(state.getFoldername());
     }
 }
