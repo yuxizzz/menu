@@ -97,7 +97,7 @@ public class Main {
         FileFolderDataAccessObject myFolderDataAccessObject;
         try {
             myFolderDataAccessObject = new FileFolderDataAccessObject("./users.csv",
-                    new CommonFolderFactory(), recipeDataAccessObject);
+                    new CommonFolderFactory(), recipeDataAccessObject, userDataAccessObject);
         } catch (IOException e) {
             throw new RuntimeException(e);
         }

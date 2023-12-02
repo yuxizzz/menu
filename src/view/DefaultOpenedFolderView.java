@@ -88,7 +88,7 @@ public class DefaultOpenedFolderView extends JPanel implements ActionListener, P
                     public void actionPerformed(ActionEvent evt) {
                         if (evt.getSource().equals(delete)) {
                             DeleteRecipeState currentState = deleteRecipeViewModel.getState();
-                            deleteRecipeController.execute();
+//                            deleteRecipeController.execute();
                         }
                     }
                 });

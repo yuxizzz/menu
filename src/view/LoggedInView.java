@@ -44,7 +44,7 @@ public class LoggedInView extends JPanel implements ActionListener, PropertyChan
     public LoggedInView(LoggedInViewModel loggedInViewModel,
                         SearchViewModel searchViewModel,
                         SearchController searchController,
-                        // MyFolderViewModel myFolderViewModel,
+//                         MyFolderViewModel myFolderViewModel,
                         MyFolderController myFolderController,
                         LogoutViewModel logoutViewModel,
                         LogoutController logoutController) {
