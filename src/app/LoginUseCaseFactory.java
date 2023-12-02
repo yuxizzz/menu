@@ -24,13 +24,14 @@ public class LoginUseCaseFactory {
 
     public static LoginView create(
             ViewManagerModel viewManagerModel,
+            SearchViewModel searchViewModel,
             LoginViewModel loginViewModel,
             LoggedInViewModel loggedInViewModel,
             LoginUserDataAccessInterface userDataAccessObject) {
 
         try {
             LoginController loginController = createLoginUseCase(viewManagerModel, loginViewModel, loggedInViewModel,
-                    userDataAccessObject);
+                    searchViewModel, userDataAccessObject);
             return new LoginView(loginViewModel, loginController);
         } catch (IOException e) {
             JOptionPane.showMessageDialog(null, "Could not open user data file.");
@@ -43,10 +44,11 @@ public class LoginUseCaseFactory {
             ViewManagerModel viewManagerModel,
             LoginViewModel loginViewModel,
             LoggedInViewModel loggedInViewModel,
+            SearchViewModel searchViewModel,
             LoginUserDataAccessInterface userDataAccessObject) throws IOException {
 
         // Notice how we pass this method's parameters to the Presenter.
-        LoginOutputBoundary loginOutputBoundary = new LoginPresenter(viewManagerModel, loggedInViewModel, loginViewModel);
+        LoginOutputBoundary loginOutputBoundary = new LoginPresenter(viewManagerModel, loggedInViewModel, loginViewModel, searchViewModel);
 
         UserFactory userFactory = new CommonUserFactory();
 

@@ -60,6 +60,7 @@ public class RecipeView extends JPanel implements ActionListener, PropertyChange
         this.add(title);
         this.add(buttons);
         this.setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
+
     }
 
     @Override
@@ -78,14 +79,17 @@ public class RecipeView extends JPanel implements ActionListener, PropertyChange
     public void propertyChange(PropertyChangeEvent evt) {
         if (evt.getNewValue() instanceof GetRecipeState) {
             GetRecipeState state = (GetRecipeState) evt.getNewValue();
-            if (state.getRecipeError() != null) {
-                JOptionPane.showMessageDialog(this, state.getRecipeError());
-            } else {
-                JOptionPane.showMessageDialog(this, state.getRecipe());
-            }
+//            if (state.getRecipeError() != null) {
+//                JOptionPane.showMessageDialog(this, state.getRecipeError());
+//            }
         }
         else if (evt.getNewValue() instanceof CollectRecipeState) {
             CollectRecipeState state = (CollectRecipeState) evt.getNewValue();
+
+            if (state.getCollectSuccessMsg() != null) {
+                JOptionPane.showMessageDialog(this, state.getCollectSuccessMsg());
+            }
+
         }
     }
 }

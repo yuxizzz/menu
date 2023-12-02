@@ -9,8 +9,8 @@ public class CreateFolderController {
     public CreateFolderController(CreateFolderInputBoundary createFolderUseCaseInteractor) {
         this.createFolderUseCaseInteractor = createFolderUseCaseInteractor;
     }
-    public void execute(String foldername) {
-        CreateFolderInputData createFolderInputData = new CreateFolderInputData(foldername);
+    public void execute(String foldername, String username) {
+        CreateFolderInputData createFolderInputData = new CreateFolderInputData(foldername, username);
         createFolderUseCaseInteractor.execute(createFolderInputData);
     }
 }

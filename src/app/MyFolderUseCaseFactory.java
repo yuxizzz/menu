@@ -1,117 +1,94 @@
 package app;
 
-import entity.user.CommonUserFactory;
-import entity.user.UserFactory;
+import entity.folder.CommonFolderFactory;
+import entity.folder.FolderFactory;
 import interface_adapter.ViewManagerModel;
-import interface_adapter.logged_in.LoggedInViewModel;
-import interface_adapter.login.LoginViewModel;
-import interface_adapter.logout.LogoutController;
-import interface_adapter.logout.LogoutPresenter;
+import interface_adapter.create_folder.CreateFolderController;
+import interface_adapter.create_folder.CreateFolderPresenter;
+import interface_adapter.create_folder.CreateFolderViewModel;
+import interface_adapter.delete_folder.DeleteFolderController;
+import interface_adapter.delete_folder.DeleteFolderPresenter;
+import interface_adapter.delete_folder.DeleteFolderViewModel;
 import interface_adapter.logout.LogoutViewModel;
-import interface_adapter.my_folder.MyFolderController;
-import interface_adapter.my_folder.MyFolderPresenter;
 import interface_adapter.my_folder.MyFolderViewModel;
-import interface_adapter.opened_folder.OpenedFolderViewModel;
-import interface_adapter.search.SearchController;
-import interface_adapter.search.SearchPresenter;
-import interface_adapter.search.SearchViewModel;
-import interface_adapter.searched.SearchedViewModel;
-import use_case.logout.LogoutDataAccessInterface;
-import use_case.logout.LogoutInputBoundary;
-import use_case.logout.LogoutInteractor;
-import use_case.logout.LogoutOutputBoundary;
-import use_case.my_folder.MyFolderDataAccessInterface;
-import use_case.my_folder.MyFolderInputBoundary;
-import use_case.my_folder.MyFolderInteractor;
-import use_case.my_folder.MyFolderOutputBoundary;
-import use_case.search.SearchInputBoundary;
-import use_case.search.SearchInteractor;
-import use_case.search.SearchOutputBoundary;
-import use_case.search.SearchUserDataAccessInterface;
-import view.LoggedInView;
+import interface_adapter.open_folder.OpenFolderController;
+import interface_adapter.open_folder.OpenFolderPresenter;
+import interface_adapter.open_folder.OpenFolderViewModel;
+import interface_adapter.open_recipe.OpenRecipeViewModel;
+import use_case.create_folder.CreateFolderDataAccessInterface;
+import use_case.create_folder.CreateFolderInputBoundary;
+import use_case.create_folder.CreateFolderInteractor;
+import use_case.create_folder.CreateFolderOutputBoundary;
+import use_case.delete_folder.DeleteFolderInputBoundary;
+import use_case.delete_folder.DeleteFolderInteractor;
+import use_case.delete_folder.DeleteFolderOutputBoundary;
+import use_case.delete_folder.DeleteFolderUserDataAccessInterface;
+import use_case.open_folder.OpenFolderDataAccessInterface;
+import use_case.open_folder.OpenFolderInputBoundary;
+import use_case.open_folder.OpenFolderInteractor;
+import use_case.open_folder.OpenFolderOutputBoundary;
 import view.MyFolderView;
 
-import javax.swing.*;
-import java.io.IOException;
-
+/**
+ * MyFolderView that contains MyFolder, OpenFolder, DeleteFolder, CreateFolder
+ */
 public class MyFolderUseCaseFactory {
     private MyFolderUseCaseFactory() {}
 
     public static MyFolderView create(
             ViewManagerModel viewManagerModel,
-            LoggedInViewModel loggedInViewModel,
-            SearchedViewModel searchedViewModel,
-            SearchViewModel searchViewModel, SearchUserDataAccessInterface searchUserDataAccessObject,
-            OpenedFolderViewModel openedFolderViewModel,
-            MyFolderViewModel myFolderViewModel, MyFolderDataAccessInterface myFolderDataAccessObject,
-            LoginViewModel loginViewModel,
-            LogoutViewModel logoutViewModel, LogoutDataAccessInterface logoutDataAccessObject) {
+            MyFolderViewModel myFolderViewModel,
+            LogoutViewModel logoutViewModel,
+            OpenFolderViewModel openFolderViewModel,
+            DeleteFolderViewModel deleteFolderViewModel,
+            CreateFolderViewModel createFolderViewModel,
+            OpenRecipeViewModel openRecipeViewModel,
+            OpenFolderDataAccessInterface openFolderDataAccessInterface,
+            DeleteFolderUserDataAccessInterface deleteFolderUserDataAccessInterface,
+            CreateFolderDataAccessInterface createFolderDataAccessInterface) {
 
-        try {
-            SearchController searchController = createSearchUseCase(viewManagerModel,
-                    searchedViewModel, searchViewModel,
-                    searchUserDataAccessObject);
-            MyFolderController myFolderController = createMyFolderUseCase(viewManagerModel,
-                    openedFolderViewModel, myFolderViewModel,
-                    myFolderDataAccessObject);
-            LogoutController logoutController = createLogoutUseCase(viewManagerModel, loginViewModel,
-                    logoutViewModel, logoutDataAccessObject);
-//            return new MyFolderView(loggedInViewModel,searchViewModel,searchController,
-//                    myFolderViewModel, myFolderController, logoutViewModel, logoutController);
-        } catch (IOException e) {
-            JOptionPane.showMessageDialog(null, "Could not open user data file.");
-        }
+            OpenFolderController openFolderController = createOpenFolderUseCase(viewManagerModel,
+                    openFolderViewModel, openFolderDataAccessInterface, openRecipeViewModel);
+            DeleteFolderController deleteFolderController = createDeleteFolderUseCase(viewManagerModel,
+                    deleteFolderViewModel, deleteFolderUserDataAccessInterface);
+            CreateFolderController createFolderController = createCreateFolderUseCase(viewManagerModel, createFolderViewModel,
+                    createFolderDataAccessInterface);
 
-        return null;
+            return new MyFolderView(myFolderViewModel,logoutViewModel, openFolderViewModel, openFolderController, deleteFolderViewModel, deleteFolderController,
+                    createFolderViewModel, createFolderController);
     }
 
-    private static SearchController createSearchUseCase(
-            ViewManagerModel viewManagerModel,
-            SearchedViewModel searchedViewModel,
-            SearchViewModel searchViewModel,
-            SearchUserDataAccessInterface searchUserDataAccessObject) throws IOException {
+    private static CreateFolderController createCreateFolderUseCase(ViewManagerModel viewManagerModel,
+                                                                    CreateFolderViewModel createFolderViewModel,
+                                                                    CreateFolderDataAccessInterface createFolderDataAccessInterface) {
+        CreateFolderOutputBoundary createFolderOutputBoundary = new CreateFolderPresenter(createFolderViewModel, viewManagerModel);
+        FolderFactory folderFactory = new CommonFolderFactory();
 
-        // Notice how we pass this method's parameters to the Presenter.
-//        SearchOutputBoundary searchOutputBoundary = new SearchPresenter(viewManagerModel,
-//                searchViewModel,searchedViewModel);
+        CreateFolderInputBoundary CreateFolderInteractor = new CreateFolderInteractor(createFolderDataAccessInterface,
+                createFolderOutputBoundary, folderFactory);
 
-//        SearchResult searchResult = new SearchResult();
-//        userFactory = new CommonUserFactory();
+        return new CreateFolderController(CreateFolderInteractor);
 
-//        SearchInputBoundary searchInteractor = new SearchInteractor(
-//                searchUserDataAccessObject, searchOutputBoundary);
-
-//        return new SearchController(searchInteractor);
-        return null;
     }
-    private static MyFolderController createMyFolderUseCase(
-            ViewManagerModel viewManagerModel, OpenedFolderViewModel openedFolderViewModel,
-            MyFolderViewModel myFolderViewModel, MyFolderDataAccessInterface myFolderDataAccessObject) throws IOException {
 
-        // Notice how we pass this method's parameters to the Presenter.
-        MyFolderOutputBoundary myFolderOutputBoundary = new MyFolderPresenter(viewManagerModel,
-                myFolderViewModel, openedFolderViewModel);
+    private static DeleteFolderController createDeleteFolderUseCase(ViewManagerModel viewManagerModel,
+                                                                    DeleteFolderViewModel deleteFolderViewModel,
+                                                                    DeleteFolderUserDataAccessInterface deleteFolderUserDataAccessInterface) {
+        DeleteFolderOutputBoundary deleteFolderOutputBoundary = new DeleteFolderPresenter(viewManagerModel, deleteFolderViewModel);
+        DeleteFolderInputBoundary deleteFolderInteractor = new DeleteFolderInteractor(deleteFolderUserDataAccessInterface, deleteFolderOutputBoundary);
 
-        UserFactory userFactory = new CommonUserFactory();
+        return new DeleteFolderController(deleteFolderInteractor);
 
-        MyFolderInputBoundary myFolderInteractor = (MyFolderInputBoundary) new MyFolderInteractor(
-                myFolderDataAccessObject, myFolderOutputBoundary);
-
-        return new MyFolderController(myFolderInteractor);
     }
-    private static LogoutController createLogoutUseCase(
-            ViewManagerModel viewManagerModel, LoginViewModel loginViewModel,
-            LogoutViewModel logoutViewModel, LogoutDataAccessInterface logoutDataAccessObject) throws IOException {
 
-        // Notice how we pass this method's parameters to the Presenter.
-        LogoutOutputBoundary logoutOutputBoundary = new LogoutPresenter(logoutViewModel,
-                loginViewModel, viewManagerModel);
+    private static OpenFolderController createOpenFolderUseCase(ViewManagerModel viewManagerModel,
+                                                                OpenFolderViewModel openFolderViewModel,
+                                                                OpenFolderDataAccessInterface openFolderDataAccessInterface,
+                                                                OpenRecipeViewModel openRecipeViewModel) {
+        OpenFolderOutputBoundary OpenFolderOutputBoundary = new OpenFolderPresenter(viewManagerModel,
+                openFolderViewModel, openRecipeViewModel);
+        OpenFolderInputBoundary openFolderInteractor = new OpenFolderInteractor(openFolderDataAccessInterface, OpenFolderOutputBoundary);
 
-        UserFactory userFactory = new CommonUserFactory();
-
-        LogoutInputBoundary logoutInteractor = new LogoutInteractor(
-                logoutDataAccessObject, logoutOutputBoundary);
-
-        return new LogoutController(logoutInteractor);
+        return new OpenFolderController(openFolderInteractor);
     }
 }

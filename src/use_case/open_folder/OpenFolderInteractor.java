@@ -32,7 +32,4 @@ public class OpenFolderInteractor implements OpenFolderInputBoundary {
             }
         }
 
-
-
-
 }

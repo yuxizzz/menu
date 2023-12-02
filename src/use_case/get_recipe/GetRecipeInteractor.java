@@ -22,7 +22,9 @@ public class GetRecipeInteractor implements GetRecipeInputBoundary {
             Recipe recipe = Search.getRecipe(getRecipeInputData.getRecipeID());
             recipeDataAccessObject.save(recipe);
 
-            GetRecipeOutputData getRecipeOutputData = new GetRecipeOutputData(recipe, false);
+            GetRecipeOutputData getRecipeOutputData = new GetRecipeOutputData(recipe.getName(), recipe.getRecipeID(),
+                    recipe.getIngredients(), recipe.getNutrition(), recipe.getInstructions(), recipe.getImage(),
+                    recipe.getRecipeURL(), false);
             recipePresenter.prepareSuccessView(getRecipeOutputData);
         }
     }

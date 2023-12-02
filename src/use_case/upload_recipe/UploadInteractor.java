@@ -8,10 +8,10 @@ import entity.recipe.UserRecipeFactory;
 public class UploadInteractor implements UploadInputBoundary{
 
     final UploadDataAccessInterface recipeDataAccessObject;
-    final UploadOuntputBoundary recipePresenter;
+    final UploadOutputBoundary recipePresenter;
     final UserRecipeFactory userRecipeFactory;
     public UploadInteractor(UploadDataAccessInterface recipeDataAccessInterface,
-                            UploadOuntputBoundary recipeOutputBoundary,
+                            UploadOutputBoundary recipeOutputBoundary,
                             UserRecipeFactory userRecipeFactory) {
         this.recipeDataAccessObject = recipeDataAccessInterface;
         this.recipePresenter = recipeOutputBoundary;

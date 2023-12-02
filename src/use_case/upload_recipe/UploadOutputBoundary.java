@@ -1,6 +1,6 @@
 package use_case.upload_recipe;
 
-public interface UploadOuntputBoundary {
+public interface UploadOutputBoundary {
     void prepareSuccessView(UploadOutputData message);
 
     void prepareFailView(String error);
