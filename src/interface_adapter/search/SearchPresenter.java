@@ -27,7 +27,8 @@ public class SearchPresenter implements SearchOutputBoundary {
     @Override
     public void prepareSuccessView(SearchOutputData message) {
         //On success, switch to the interface_adapter.searched view.
-        // TO DO:
+
+
         SearchedState searchedState = searchedViewModel.getState();
         SearchState searchState = searchViewModel.getState();
         searchedState.setUsername(searchState.getUsername());

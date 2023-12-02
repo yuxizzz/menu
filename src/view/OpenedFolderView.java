@@ -112,8 +112,8 @@ public class OpenedFolderView extends JPanel implements ActionListener, Property
                     public void actionPerformed(ActionEvent e) {
                         if (e.getSource().equals(remove)) {
 
-                            RemoveState currentState = removeViewModel.getState();
-                            removeController.execute();
+//                           RemoveState currentState = removeViewModel.getState();
+  //                          removeController.execute();
                         }
                     }
                 }

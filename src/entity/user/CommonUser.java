@@ -12,6 +12,7 @@ class CommonUser implements User {
     private final String password;
     private final LocalDateTime creationTime;
     private ArrayList<Folder> userFolders;
+    private DefaultFolder defaultFolder;
 
 
 
@@ -24,7 +25,7 @@ class CommonUser implements User {
         this.name = name;
         this.password = password;
         this.creationTime = creationTime;
-        DefaultFolder defaultFolder = new DefaultFolder();
+        this.defaultFolder = new DefaultFolder();
         this.userFolders = new ArrayList<>();
         userFolders.add(defaultFolder);
     }
@@ -43,6 +44,8 @@ class CommonUser implements User {
     public ArrayList<Folder> getUserFolders() {
         return userFolders;
     }
+
+    public DefaultFolder getDefaultFolder(){return defaultFolder;}
 
     @Override
     public LocalDateTime getCreationTime() {
