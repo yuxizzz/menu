@@ -97,8 +97,8 @@ public class OpenedFolderView extends JPanel implements ActionListener, Property
                 new ActionListener() {
                     public void actionPerformed(ActionEvent evt) {
                         if (evt.getSource().equals(get)) {
-                            OpenRecipeState currentState = openRecipeViewModel.getState();
-
+//                            OpenRecipeState currentState = openRecipeViewModel.getState();
+//
 //                            openRecipeController.execute(
 //                                    currentState.getRecipeID(),
 //                                    currentState.getName(),
@@ -118,8 +118,8 @@ public class OpenedFolderView extends JPanel implements ActionListener, Property
                     public void actionPerformed(ActionEvent e) {
                         if (e.getSource().equals(remove)) {
 
-                            RemoveState currentState = removeViewModel.getState();
-//                            removeController.execute();
+//                           RemoveState currentState = removeViewModel.getState();
+  //                          removeController.execute();
                         }
                     }
                 }
@@ -203,7 +203,6 @@ public class OpenedFolderView extends JPanel implements ActionListener, Property
     public void actionPerformed(ActionEvent evt) {
         System.out.println("Click " + evt.getActionCommand());
     }
-
 
 
     @Override

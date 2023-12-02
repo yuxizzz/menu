@@ -9,12 +9,15 @@ import interface_adapter.get_recipe.GetRecipeState;
 import interface_adapter.get_recipe.GetRecipeViewModel;
 import interface_adapter.login.LoginState;
 
+import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
+import java.io.IOException;
+import java.net.URL;
 
 //TODO: collect button addActionListener
 //TODO: actionPerformed message "Try again"
@@ -44,6 +47,62 @@ public class RecipeView extends JPanel implements ActionListener, PropertyChange
         collect = new JButton(GetRecipeViewModel.COLLECT_BUTTON_LABEL);
         buttons.add(collect);
 
+        /**
+         * set information of recipe and image (url)
+         */
+//        JLabel label = new JLabel();
+        String recipeName = this.getRecipeViewModel.getState().getRecipename();
+        String ingredients = this.getRecipeViewModel.getState().getIngredients();
+        String nutrition = this.getRecipeViewModel.getState().getNutrition();
+        String instructions = this.getRecipeViewModel.getState().getInstructions();
+        String recipeURL = this.getRecipeViewModel.getState().getRecipeURL();
+        String recipeImage = this.getRecipeViewModel.getState().getImage();
+
+        Image image = null;
+        try {
+            URL url = new URL(recipeURL);
+            image = ImageIO.read(url);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        /**
+         * Set JLabel to show information of the recipe
+         */
+        JLabel label = new JLabel(new ImageIcon(image));
+
+//        label.setText(recipeName);
+
+        label.setBounds(150, 250, 150, 150);
+        label.setVisible(true);
+// set information?
+        label.setText(recipeName);
+        label.setText(ingredients);
+        label.setText(nutrition);
+        label.setText(instructions);
+        // set text of label label.setIcon(image);
+        label.setHorizontalTextPosition(JLabel.CENTER);
+        // set text LEFT,CENTER, RIGHT of imageicon
+        label.setVerticalTextPosition(JLabel.TOP);
+        // set text TOP,CENTER, BOTTOM of imageicon
+//        label.setForeground(new Color(0x00FF00));
+        // set font color of text
+        label.setFont(new Font("MV Boli", Font.PLAIN, 20));
+        // set font of text
+        label.setIconTextGap(-25);
+        // set gap of text to image
+        label.setBackground(Color.black);
+        // set background color
+        label.setOpaque(true);
+        // display background color
+//        label.setBorder(border);
+        // sets border of label (not image+text)
+        label.setVerticalAlignment(JLabel.CENTER);
+        // set vertical position of icon+text within label
+        label.setHorizontalAlignment(JLabel.CENTER);
+        // set horizontal position of icon+text within label
+        label.setBounds(100, 10, 250, 250);
+
 
         collect.addActionListener(
 
@@ -59,6 +118,7 @@ public class RecipeView extends JPanel implements ActionListener, PropertyChange
         );
         this.add(title);
         this.add(buttons);
+        this.add(label);
         this.setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
 
     }
@@ -79,9 +139,10 @@ public class RecipeView extends JPanel implements ActionListener, PropertyChange
     public void propertyChange(PropertyChangeEvent evt) {
         if (evt.getNewValue() instanceof GetRecipeState) {
             GetRecipeState state = (GetRecipeState) evt.getNewValue();
-//            if (state.getRecipeError() != null) {
-//                JOptionPane.showMessageDialog(this, state.getRecipeError());
-//            }
+            if (state.getRecipeIDError() != null) {
+                JOptionPane.showMessageDialog(this, state.getRecipeIDError());
+            }
+
         }
         else if (evt.getNewValue() instanceof CollectRecipeState) {
             CollectRecipeState state = (CollectRecipeState) evt.getNewValue();

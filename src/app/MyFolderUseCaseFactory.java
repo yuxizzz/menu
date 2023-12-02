@@ -44,20 +44,21 @@ public class MyFolderUseCaseFactory {
             MyFolderViewModel myFolderViewModel,
             LogoutViewModel logoutViewModel,
             OpenFolderViewModel openFolderViewModel,
-            RemoveViewModel removeViewModel,
             DeleteFolderViewModel deleteFolderViewModel,
             CreateFolderViewModel createFolderViewModel,
-            OpenRecipeViewModel openRecipeViewModel,
             OpenedFolderViewModel openedFolderViewModel,
-            UploadRecipeViewModel uploadRecipeViewModel,
-            DefaultOpenedFolderViewModel defaultOpenedFolderViewModel,
             OpenFolderDataAccessInterface openFolderDataAccessInterface,
             DeleteFolderUserDataAccessInterface deleteFolderUserDataAccessInterface,
-            CreateFolderDataAccessInterface createFolderDataAccessInterface) {
+            CreateFolderDataAccessInterface createFolderDataAccessInterface,
+            UploadRecipeViewModel uploadRecipeViewModel,
+            DefaultOpenedFolderViewModel defaultOpenedFolderViewModel,
+            OpenRecipeViewModel openRecipeViewModel,
+            RemoveViewModel removeViewModel) {
 
             OpenFolderController openFolderController = createOpenFolderUseCase(viewManagerModel,
-                    openFolderViewModel, openedFolderViewModel, uploadRecipeViewModel, defaultOpenedFolderViewModel,
-                    removeViewModel, openRecipeViewModel, openFolderDataAccessInterface);
+                    openFolderViewModel, openFolderDataAccessInterface, openedFolderViewModel,
+                    uploadRecipeViewModel, defaultOpenedFolderViewModel, openRecipeViewModel,
+                    removeViewModel);
             DeleteFolderController deleteFolderController = createDeleteFolderUseCase(viewManagerModel,
                     deleteFolderViewModel, deleteFolderUserDataAccessInterface);
             CreateFolderController createFolderController = createCreateFolderUseCase(viewManagerModel, createFolderViewModel,
@@ -92,14 +93,15 @@ public class MyFolderUseCaseFactory {
 
     private static OpenFolderController createOpenFolderUseCase(ViewManagerModel viewManagerModel,
                                                                 OpenFolderViewModel openFolderViewModel,
+                                                                OpenFolderDataAccessInterface openFolderDataAccessInterface,
                                                                 OpenedFolderViewModel openedFolderViewModel,
                                                                 UploadRecipeViewModel uploadRecipeViewModel,
                                                                 DefaultOpenedFolderViewModel defaultOpenedFolderViewModel,
-                                                                RemoveViewModel removeViewModel,
                                                                 OpenRecipeViewModel openRecipeViewModel,
-                                                                OpenFolderDataAccessInterface openFolderDataAccessInterface) {
+                                                                RemoveViewModel removeViewModel) {
         OpenFolderOutputBoundary OpenFolderOutputBoundary = new OpenFolderPresenter(viewManagerModel,
-                openFolderViewModel,openedFolderViewModel, uploadRecipeViewModel, defaultOpenedFolderViewModel, openRecipeViewModel, removeViewModel);
+                openFolderViewModel, openedFolderViewModel, uploadRecipeViewModel,
+                defaultOpenedFolderViewModel,openRecipeViewModel,removeViewModel);
         OpenFolderInputBoundary openFolderInteractor = new OpenFolderInteractor(openFolderDataAccessInterface, OpenFolderOutputBoundary);
 
         return new OpenFolderController(openFolderInteractor);
