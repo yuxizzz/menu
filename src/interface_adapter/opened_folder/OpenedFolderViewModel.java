@@ -66,6 +66,6 @@ public class OpenedFolderViewModel extends ViewModel {
     }
 
     public HashMap<Integer, ArrayList> getRecipeMap() {
-        return recipeMap;
+        return state.getRecipeMap();
     }
 }

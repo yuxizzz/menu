@@ -1,10 +1,6 @@
 package use_case.delete_userRecipe;
 
-import entity.recipe.CommonRecipe;
 import entity.recipe.UserRecipe;
-import use_case.clear_users.ClearInputData;
-import use_case.clear_users.ClearOutputData;
-import use_case.remove_recipe.RemoveOutputData;
 
 public class DeleteRecipeInteractor implements DeleteRecipeInputBoundary {
     final DeleteRecipeDataAccessInterface deleteRecipeDataAccessObject;
@@ -41,7 +37,8 @@ public class DeleteRecipeInteractor implements DeleteRecipeInputBoundary {
             UserRecipe userRecipe = deleteRecipeDataAccessObject.deleteRecipe(deleteRecipeInputData.getDeletedRecipeID());
 
 
-            DeleteRecipeOutputData deleteRecipeOutputData = new DeleteRecipeOutputData(userRecipe.getName(), false);
+            DeleteRecipeOutputData deleteRecipeOutputData = new DeleteRecipeOutputData(userRecipe.getName(),
+                    userRecipe.getRecipeID(),false);
             deleteRecipePresenter.prepareSuccessView(deleteRecipeOutputData);
 
 

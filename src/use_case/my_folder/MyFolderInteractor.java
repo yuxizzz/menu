@@ -23,7 +23,7 @@ public class MyFolderInteractor {
             myFolderPresenter.prepareFailView(username + ": User does not exist.");
         }else {
              Folder folder = folderDataAccessObject.get(myFolderInputData.getUsername());
-             HashMap<Integer, ArrayList> recipeMap = folderDataAccessObject.getrecipeMap(foldername);
+             HashMap<Integer, ArrayList> recipeMap = folderDataAccessObject.getrecipeMap(folder.getName());
 
              MyFolderOutputData myFolderOutputData = new MyFolderOutputData(folder.getName(),
                      false,folder.getRecipeMap());
