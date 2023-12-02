@@ -1,7 +1,7 @@
 package view;
 
-import default_opened_folder.DefaultOpenedFolderState;
-import default_opened_folder.DefaultOpenedFolderViewModel;
+import interface_adapter.default_opened_folder.DefaultOpenedFolderState;
+import interface_adapter.default_opened_folder.DefaultOpenedFolderViewModel;
 import interface_adapter.delete_userRecipe.DeleteRecipeController;
 import interface_adapter.delete_userRecipe.DeleteRecipeState;
 import interface_adapter.delete_userRecipe.DeleteRecipeViewModel;

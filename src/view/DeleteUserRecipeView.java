@@ -52,7 +52,7 @@ public class DeleteUserRecipeView extends Component implements PropertyChangeLis
                         JOptionPane.YES_NO_OPTION);
                 Object selectedValue = optionPane.getValue();
                 if(selectedValue.equals(YES_OPTION)){
-                    deleteRecipeController.execute();
+                    deleteRecipeController.execute(state.getRecipeID());
                 }
 
             }

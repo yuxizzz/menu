@@ -3,7 +3,6 @@ package interface_adapter.remove_recipe;
 import interface_adapter.ViewManagerModel;
 import interface_adapter.opened_folder.OpenedFolderState;
 import interface_adapter.opened_folder.OpenedFolderViewModel;
-//import use_case.remove_recipe.RemoveOuntputBoundary;
 import use_case.remove_recipe.RemoveOutputBoundary;
 import use_case.remove_recipe.RemoveOutputData;
 
@@ -22,7 +21,13 @@ public class RemovePresenter implements RemoveOutputBoundary {
     public void prepareSuccessView(RemoveOutputData response){
         //on success switch to pop up remove ensure, and then opened view.
         OpenedFolderState openedFolderState = OpenedFolderViewModel.getState();
-        //Do we need to implement something like that loginState.setUsername(response.getUsername());
+
+        RemoveState removeState = RemoveViewModel.getState();
+
+        removeState.setRecipeRemoved(response.getRemovedRecipe());
+        removeState.setRecipeID(response.getRecipeID());
+
+
         this.openedFolderViewModel.setState(openedFolderState);
         openedFolderViewModel.firePropertyChanged();
 

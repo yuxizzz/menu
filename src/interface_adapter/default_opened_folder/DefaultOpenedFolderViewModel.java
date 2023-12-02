@@ -1,7 +1,6 @@
-package default_opened_folder;
+package interface_adapter.default_opened_folder;
 
 import interface_adapter.ViewModel;
-import interface_adapter.opened_folder.OpenedFolderState;
 
 import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;

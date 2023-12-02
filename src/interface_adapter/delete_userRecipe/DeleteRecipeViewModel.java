@@ -1,15 +1,16 @@
 package interface_adapter.delete_userRecipe;
 
+import interface_adapter.ViewModel;
 import interface_adapter.search.SearchState;
 
 import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;
 
-public class DeleteRecipeViewModel {
+public class DeleteRecipeViewModel extends ViewModel {
     public static final String TITLE_LABEL = "delete recipe view";
     private DeleteRecipeState state = new DeleteRecipeState();
 
-    public DeleteRecipeViewModel(){ super();}
+    public DeleteRecipeViewModel(){ super("delete user recipe");}
 
     public void setState(DeleteRecipeState state){
         this.state = state;}
@@ -30,4 +31,6 @@ public class DeleteRecipeViewModel {
     public DeleteRecipeState getState() {
         return state;
     }
+
+
 }

@@ -6,9 +6,22 @@ public class RemoveOutputData {
 
     private String removedRecipe;
 
-    public RemoveOutputData(String removedRecipe, boolean useCaseFailed){
+    private Integer recipeID;
+
+    public RemoveOutputData(String removedRecipe, Integer recipeID, boolean useCaseFailed){
         this.useCaseFailed = useCaseFailed;
         this.removedRecipe = removedRecipe;
+        this.recipeID = recipeID;
+
     }
-    public String getRemovedRecipe() { return removedRecipe;}
+    public String getRemovedRecipe() {
+        return removedRecipe;
+    }
+
+    public Integer getRecipeID(){
+        return recipeID;
+    }
+
+
+
 }

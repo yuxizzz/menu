@@ -19,16 +19,26 @@ public class RemoveInteractor implements RemoveInputBoundary{
     @Override
     public void execute(RemoveInputData removeInputData) {
 
+
+
+
+
+
+
         Integer recipeID = removeInputData.getRemovedRecipeID();
 
 
         if (!removeDataAccessObject.existsByName(recipeID)) {
+
+
             removePresenter.prepareFailView(recipeID + ": Recipe does not exist.");
         } else {
+
             CommonRecipe commonRecipe = removeDataAccessObject.removeRecipe(removeInputData.getRemovedRecipeID());
 
 
-            RemoveOutputData removeOutputData = new RemoveOutputData(commonRecipe .getName(), false);
+            RemoveOutputData removeOutputData = new RemoveOutputData(commonRecipe .getName(),
+                    commonRecipe.getRecipeID(),false);
             removePresenter.prepareSuccessView(removeOutputData);
 
 
