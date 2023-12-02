@@ -2,10 +2,10 @@ package interface_adapter.upload_recipe;
 
 import interface_adapter.ViewManagerModel;
 import interface_adapter.create_folder.CreateFolderState;
-import use_case.upload_recipe.UploadOuntputBoundary;
+import use_case.upload_recipe.UploadOutputBoundary;
 import use_case.upload_recipe.UploadOutputData;
 
-public class UploadRecipePresenter implements UploadOuntputBoundary {
+public class UploadRecipePresenter implements UploadOutputBoundary {
     private final UploadRecipeViewModel uploadRecipeViewModel;
     private ViewManagerModel viewManagerModel;
 
