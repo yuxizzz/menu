@@ -25,6 +25,9 @@ import view.LoginView;
 import javax.swing.*;
 import java.io.IOException;
 
+/**
+ * the usecase factor for AddRecipeToFolder UseCase and FolderOptions View
+ */
 public class AddRecipeToFolderUseCaseFactory {
     private AddRecipeToFolderUseCaseFactory() {}
     public static FolderOptionsView create(

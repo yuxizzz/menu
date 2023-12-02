@@ -6,7 +6,7 @@ import entity.recipe.Recipe;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-public class OpenFolderInteractor {
+public class OpenFolderInteractor implements OpenFolderInputBoundary {
     final OpenFolderDataAccessInterface folderDataAccessObject;
     final OpenFolderOutputBoundary openFolderPresenter;
 
@@ -30,8 +30,5 @@ public class OpenFolderInteractor {
              openFolderPresenter.prepareSuccessView(openFolderOutputData);
             }
         }
-
-
-
 
 }
