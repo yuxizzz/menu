@@ -26,12 +26,10 @@ public class SearchView extends JPanel implements ActionListener, PropertyChange
     final JButton cancel;
 
     final JButton myFolder;
-    private final String username;
 
     private final SearchController searchController;
 
-    public SearchView(SearchViewModel searchViewModel, String username, SearchController searchController) {
-        this.username = username;
+    public SearchView(SearchViewModel searchViewModel, SearchController searchController) {
 
         this.searchController = searchController;
         this.searchViewModel = searchViewModel;

@@ -2,8 +2,6 @@ package app;
 
 import entity.folder.CommonFolderFactory;
 import entity.folder.FolderFactory;
-import entity.user.CommonUserFactory;
-import entity.user.UserFactory;
 import interface_adapter.ViewManagerModel;
 import interface_adapter.create_folder.CreateFolderController;
 import interface_adapter.create_folder.CreateFolderPresenter;
@@ -11,21 +9,12 @@ import interface_adapter.create_folder.CreateFolderViewModel;
 import interface_adapter.delete_folder.DeleteFolderController;
 import interface_adapter.delete_folder.DeleteFolderPresenter;
 import interface_adapter.delete_folder.DeleteFolderViewModel;
-import interface_adapter.login.LoginViewModel;
-import interface_adapter.logout.LogoutController;
-import interface_adapter.logout.LogoutPresenter;
 import interface_adapter.logout.LogoutViewModel;
-import interface_adapter.my_folder.MyFolderController;
-import interface_adapter.my_folder.MyFolderPresenter;
 import interface_adapter.my_folder.MyFolderViewModel;
 import interface_adapter.open_folder.OpenFolderController;
 import interface_adapter.open_folder.OpenFolderPresenter;
 import interface_adapter.open_folder.OpenFolderViewModel;
 import interface_adapter.open_recipe.OpenRecipeViewModel;
-import interface_adapter.opened_folder.OpenedFolderViewModel;
-import interface_adapter.search.SearchController;
-import interface_adapter.search.SearchViewModel;
-import interface_adapter.searched.SearchedViewModel;
 import use_case.create_folder.CreateFolderDataAccessInterface;
 import use_case.create_folder.CreateFolderInputBoundary;
 import use_case.create_folder.CreateFolderInteractor;
@@ -34,26 +23,14 @@ import use_case.delete_folder.DeleteFolderInputBoundary;
 import use_case.delete_folder.DeleteFolderInteractor;
 import use_case.delete_folder.DeleteFolderOutputBoundary;
 import use_case.delete_folder.DeleteFolderUserDataAccessInterface;
-import use_case.logout.LogoutDataAccessInterface;
-import use_case.logout.LogoutInputBoundary;
-import use_case.logout.LogoutInteractor;
-import use_case.logout.LogoutOutputBoundary;
-import use_case.my_folder.MyFolderDataAccessInterface;
-import use_case.my_folder.MyFolderInputBoundary;
-import use_case.my_folder.MyFolderInteractor;
-import use_case.my_folder.MyFolderOutputBoundary;
 import use_case.open_folder.OpenFolderDataAccessInterface;
 import use_case.open_folder.OpenFolderInputBoundary;
 import use_case.open_folder.OpenFolderInteractor;
 import use_case.open_folder.OpenFolderOutputBoundary;
-import use_case.search.SearchUserDataAccessInterface;
 import view.MyFolderView;
 
-import javax.swing.*;
-import java.io.IOException;
-
 /**
- * Search, OpenedFolder
+ * MyFolderView that contains MyFolder, OpenFolder, DeleteFolder, CreateFolder
  */
 public class MyFolderUseCaseFactory {
     private MyFolderUseCaseFactory() {}
@@ -113,6 +90,5 @@ public class MyFolderUseCaseFactory {
         OpenFolderInputBoundary openFolderInteractor = new OpenFolderInteractor(openFolderDataAccessInterface, OpenFolderOutputBoundary);
 
         return new OpenFolderController(openFolderInteractor);
-
     }
 }
