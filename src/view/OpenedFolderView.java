@@ -91,8 +91,8 @@ public class OpenedFolderView extends JPanel implements ActionListener, Property
                 new ActionListener() {
                     public void actionPerformed(ActionEvent evt) {
                         if (evt.getSource().equals(get)) {
-//                            OpenRecipeState currentState = openRecipeViewModel.getState();
-//
+                            OpenRecipeState currentState = openRecipeViewModel.getState();
+
 //                            openRecipeController.execute(
 //                                    currentState.getRecipeID(),
 //                                    currentState.getName(),
@@ -113,7 +113,7 @@ public class OpenedFolderView extends JPanel implements ActionListener, Property
                         if (e.getSource().equals(remove)) {
 
                             RemoveState currentState = removeViewModel.getState();
-                            removeController.execute();
+//                            removeController.execute();
                         }
                     }
                 }
@@ -198,6 +198,8 @@ public class OpenedFolderView extends JPanel implements ActionListener, Property
         System.out.println("Click " + evt.getActionCommand());
     }
 
+
+    // TODO
     @Override
     public void propertyChange(PropertyChangeEvent evt) {
         OpenedFolderState state = (OpenedFolderState) evt.getNewValue();
