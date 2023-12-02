@@ -47,9 +47,14 @@ public class RecipeView extends JPanel implements ActionListener, PropertyChange
         /**
          * JLabel to show information of the recipe
          */
-
         JLabel label = new JLabel();
-//        label.setText();
+        String recipeName = this.getRecipeViewModel.getState().getRecipename();
+        String ingredients = this.getRecipeViewModel.getState().getIngredients();
+        String nutrition = this.getRecipeViewModel.getState().getNutrition();
+        String instructions = this.getRecipeViewModel.getState().getInstructions();
+        String url = this.getRecipeViewModel.getState().getRecipeULR();
+        String image = this.getRecipeViewModel.getState().getImage();
+//        label.setText(recipeName);
 
 
         collect.addActionListener(
