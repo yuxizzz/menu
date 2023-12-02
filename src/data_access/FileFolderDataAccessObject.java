@@ -11,10 +11,7 @@ import use_case.my_folder.MyFolderDataAccessInterface;
 import use_case.open_folder.OpenFolderDataAccessInterface;
 
 import java.io.*;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.LinkedHashMap;
-import java.util.Map;
+import java.util.*;
 
 //TODO recipeDAO & folderDAO
 public class FileFolderDataAccessObject implements DeleteFolderUserDataAccessInterface,
@@ -160,12 +157,18 @@ public class FileFolderDataAccessObject implements DeleteFolderUserDataAccessInt
 
     @Override
     public String addRecipeToFolder(String folderName, Integer recipeID) {
-        recipeDataAccessObject.getRecipeFromFile(recipeID);
+//
+        Recipe r = recipeDataAccessObject.getRecipeFromFile(recipeID);
+
         for (String s : folders.keySet()) {
             if (s.equals(folderName)) {
                 Folder f = folders.get(s);
-                Recipe r = recipeDataAccessObject.getRecipeFromFile(recipeID);
-                f.addRecipe(r.getRecipeID(), r);
+                for (Recipe recipe: f) {
+                    if (Objects.equals(recipe.getRecipeID(), recipeID)){
+                        return null;
+                    }
+                }
+                f.addRecipe(recipeID, r);
                 return "successfully added to " + folderName;
             }
         }
