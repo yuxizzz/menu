@@ -41,4 +41,7 @@ public class AddRecipeToFolderState {
 
     public void setUserID(String userID) {
     }
+
+    public void setMessageError(String recipeAlreadyExisted) {
+    }
 }

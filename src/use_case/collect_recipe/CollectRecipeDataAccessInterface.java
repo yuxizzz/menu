@@ -5,7 +5,6 @@ import entity.folder.Folder;
 import java.util.ArrayList;
 
 public interface CollectRecipeDataAccessInterface {
-    boolean existsAllFolders(Integer recipeID);
 
-    ArrayList<Folder> getAllFolders(String username);
+    ArrayList<String>  getAllFolders(String username);
 }

@@ -10,5 +10,5 @@ public interface Folder {
     HashMap<Integer, Recipe> getRecipeMap();
     void removeRecipe(Integer recipeId);
 
-    void addRecipe(Integer recipeID);
+    void addRecipe(Integer recipeID, Recipe recipe);
 }

@@ -5,22 +5,20 @@ import entity.folder.FolderFactory;
 import entity.recipe.CommonRecipe;
 import entity.recipe.Recipe;
 import use_case.add_recipe_to_folder.AddRecipeToFolderDataAccessInterface;
-import use_case.add_recipe_to_folder.AddRecipeToFolderInputData;
+import use_case.collect_recipe.CollectRecipeDataAccessInterface;
 import use_case.delete_folder.DeleteFolderUserDataAccessInterface;
 import use_case.my_folder.MyFolderDataAccessInterface;
 import use_case.open_folder.OpenFolderDataAccessInterface;
 
-import java.awt.*;
 import java.io.*;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.Map;
-import java.util.Objects;
 
 //TODO recipeDAO & folderDAO
 public class FileFolderDataAccessObject implements DeleteFolderUserDataAccessInterface,
-        OpenFolderDataAccessInterface, AddRecipeToFolderDataAccessInterface, MyFolderDataAccessInterface {
+        OpenFolderDataAccessInterface, AddRecipeToFolderDataAccessInterface, MyFolderDataAccessInterface, CollectRecipeDataAccessInterface {
 
     private final File csvFile;
 
@@ -30,6 +28,7 @@ public class FileFolderDataAccessObject implements DeleteFolderUserDataAccessInt
 
     private FolderFactory folderFactory;
     private FileRecipeDataAccessObject recipeDataAccessObject;
+    private FileUserDataAccessObject fileUserDataAccessObject;
 
     /**
      * @param csvPath
@@ -37,9 +36,11 @@ public class FileFolderDataAccessObject implements DeleteFolderUserDataAccessInt
      * @param recipeDataAccessObject
      * @throws IOException
      */
-    public FileFolderDataAccessObject(String csvPath, FolderFactory folderFactory, FileRecipeDataAccessObject recipeDataAccessObject) throws IOException {
+    public FileFolderDataAccessObject(String csvPath, FolderFactory folderFactory, FileRecipeDataAccessObject recipeDataAccessObject,
+                                      FileUserDataAccessObject fileUserDataAccessObject) throws IOException {
         this.folderFactory = folderFactory;
         this.recipeDataAccessObject = recipeDataAccessObject;
+        this.fileUserDataAccessObject = fileUserDataAccessObject;
 
         csvFile = new File(csvPath);
         headers.put("folder_name", 0);
@@ -158,15 +159,25 @@ public class FileFolderDataAccessObject implements DeleteFolderUserDataAccessInt
 
     @Override
     public String addRecipeToFolder(String folderName, Integer recipeID) {
+        recipeDataAccessObject.getRecipeFromFile(recipeID);
         for (String s : folders.keySet()) {
             if (s.equals(folderName)) {
                 Folder f = folders.get(s);
-                f.addRecipe(recipeID);
+                Recipe r = recipeDataAccessObject.getRecipeFromFile(recipeID);
+                f.addRecipe(r.getRecipeID(), r);
                 return "successfully added to " + folderName;
             }
         }
         return null;
     }
 
-
+    @Override
+    public ArrayList<String> getAllFolders(String username) {
+        ArrayList<Folder> folders = fileUserDataAccessObject.getFolders(username);
+        ArrayList<String> foldernames = new ArrayList<>();
+        for (Folder f : folders) {
+            foldernames.add(f.getName());
+        }
+        return foldernames;
+    }
 }
