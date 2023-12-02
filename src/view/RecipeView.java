@@ -7,6 +7,7 @@ import interface_adapter.collect_recipe.CollectRecipeViewModel;
 import interface_adapter.get_recipe.GetRecipeController;
 import interface_adapter.get_recipe.GetRecipeState;
 import interface_adapter.get_recipe.GetRecipeViewModel;
+import interface_adapter.login.LoginState;
 
 import javax.swing.*;
 import java.awt.*;
@@ -22,15 +23,14 @@ import java.beans.PropertyChangeListener;
 public class RecipeView extends JPanel implements ActionListener, PropertyChangeListener {
     public final String viewName = "recipe";
     private final GetRecipeViewModel getRecipeViewModel;
-    private final GetRecipeController getRecipeController;
     private final CollectRecipeViewModel collectViewModel;
     private final CollectRecipeController collectRecipeController;
     private final JButton collect;
 
-    public RecipeView(GetRecipeViewModel getRecipeViewModel, GetRecipeController getRecipeController,
+    public RecipeView(GetRecipeViewModel getRecipeViewModel,
                       CollectRecipeViewModel collectViewModel, CollectRecipeController collectRecipeController) {
         this.getRecipeViewModel = getRecipeViewModel;
-        this.getRecipeController = getRecipeController;
+//        this.getRecipeController = getRecipeController;
         getRecipeViewModel.addPropertyChangeListener(this);
 
         this.collectViewModel = collectViewModel;
@@ -84,11 +84,8 @@ public class RecipeView extends JPanel implements ActionListener, PropertyChange
                 JOptionPane.showMessageDialog(this, state.getRecipe());
             }
         }
-//        else if (evt.getNewValue() instanceof ClearState) {
-//          clearState = (ClearState) evt.getNewValue();
-//            if (clearState.getUserDeleted() != null) {
-//                JOptionPane.showMessageDialog(this, clearState.getUserDeleted());
-//            }
-//        }
+        else if (evt.getNewValue() instanceof CollectRecipeState) {
+            CollectRecipeState state = (CollectRecipeState) evt.getNewValue();
+        }
     }
 }

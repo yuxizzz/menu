@@ -5,6 +5,7 @@ import entity.user.User;
 import entity.user.UserFactory;
 import use_case.collect_recipe.CollectRecipeDataAccessInterface;
 import use_case.login.LoginUserDataAccessInterface;
+import use_case.logout.LogoutDataAccessInterface;
 import use_case.signup.SignupUserDataAccessInterface;
 import use_case.clear_users.ClearUserDataAccessInterface;
 
@@ -15,7 +16,8 @@ import java.util.LinkedHashMap;
 import java.util.Map;
 import java.util.ArrayList;
 
-public class FileUserDataAccessObject implements SignupUserDataAccessInterface, LoginUserDataAccessInterface , ClearUserDataAccessInterface {
+public class FileUserDataAccessObject implements SignupUserDataAccessInterface, LoginUserDataAccessInterface , ClearUserDataAccessInterface,
+        LogoutDataAccessInterface {
 
     private final File csvFile;
 
