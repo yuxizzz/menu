@@ -104,8 +104,7 @@ public class MyFolderView extends JPanel implements ActionListener, PropertyChan
                             if (evt.getSource().equals(openFolder)) {
                             OpenFolderState currentState = openFolderViewModel.getState();
 
-                            openFolderController.execute(
-                                    currentState.getFoldername());
+                           openFolderController.execute(currentState.getFoldername(), currentState.getUsername());
                             }
                         }
                     }
