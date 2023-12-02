@@ -28,6 +28,9 @@ public class CreateFolderView extends JPanel implements ActionListener, Property
         JLabel title = new JLabel(CreateFolderViewModel.TITLE_LABEL);
         title.setAlignmentX(Component.CENTER_ALIGNMENT);
 
+        LabelTextPanel foldernameInfor = new LabelTextPanel(
+                new JLabel(CreateFolderViewModel.FOLDERNAME_LABEL), foldernameInputField);
+
         JPanel buttons = new JPanel();
         create = new JButton(CreateFolderViewModel.CREATEFOLDER_BUTTON_LABEL);
         buttons.add(create);
@@ -76,16 +79,27 @@ public class CreateFolderView extends JPanel implements ActionListener, Property
         this.setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
 
         this.add(title);
-//        this.add()
+        this.add(foldernameInfor);
+        this.add(buttons);
     }
+
+    /**
+     * React to a button click that results in evt.
+     */
 
     @Override
     public void actionPerformed(ActionEvent e) {
-
+        JOptionPane.showConfirmDialog(this, "Create not implemented yet.");
     }
 
     @Override
     public void propertyChange(PropertyChangeEvent evt) {
+        if (evt.getNewValue() instanceof CreateFolderState) {
+            CreateFolderState state = (CreateFolderState) evt.getNewValue();
+            if (state.getFoldernameError() != null) {
+                JOptionPane.showMessageDialog(this, state.getFoldernameError());
+            }
 
+        }
     }
 }
