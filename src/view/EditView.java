@@ -47,7 +47,7 @@ public class EditView extends JPanel implements ActionListener, PropertyChangeLi
     private final JButton cancel;
 
     public EditView(EditRecipeViewModel editRecipeViewModel, EditRecipeController
-            editRecipeController, JButton edit, JButton cancel) {
+            editRecipeController) {
 
         this.editRecipeViewModel = editRecipeViewModel;
         this.editRecipeController = editRecipeController;

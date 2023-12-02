@@ -36,7 +36,8 @@ public class FileFolderDataAccessObject implements DeleteFolderUserDataAccessInt
      * @param recipeDataAccessObject
      * @throws IOException
      */
-    public FileFolderDataAccessObject(String csvPath, FolderFactory folderFactory, FileRecipeDataAccessObject recipeDataAccessObject,
+    public FileFolderDataAccessObject(String csvPath, FolderFactory folderFactory,
+                                      FileRecipeDataAccessObject recipeDataAccessObject,
                                       FileUserDataAccessObject fileUserDataAccessObject) throws IOException {
         this.folderFactory = folderFactory;
         this.recipeDataAccessObject = recipeDataAccessObject;
@@ -142,14 +143,14 @@ public class FileFolderDataAccessObject implements DeleteFolderUserDataAccessInt
      */
 
 // TODO change it to integer list<recipe information> use java doc to explain
-//    list[url, title]
+//    list[imageurl, title]
     public HashMap<Integer, ArrayList> getrecipeMap(String foldername) {
         HashMap<Integer, ArrayList> recipeMap = new HashMap<Integer, ArrayList>();
         for (Map.Entry<Integer, Recipe> entry : folders.get(foldername).getRecipeMap().entrySet()) {
             Integer key = entry.getKey();
             Recipe value = entry.getValue();
             ArrayList list1 = new ArrayList();
-            list1.add(value.getRecipeURL());
+            list1.add(value.getImage());
             list1.add(value.getName());
             recipeMap.put(key, list1);
         }

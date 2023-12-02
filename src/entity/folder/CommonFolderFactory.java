@@ -11,6 +11,7 @@ public class CommonFolderFactory implements FolderFactory {
         return new CommonFolder(foldername);
     }
 
+
     @Override
     public Folder create(String foldername, HashMap<Integer, Recipe> recipeHashMap) {
         return new CommonFolder(foldername, recipeHashMap);

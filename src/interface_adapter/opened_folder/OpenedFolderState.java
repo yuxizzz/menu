@@ -3,9 +3,15 @@ package interface_adapter.opened_folder;
 
 import interface_adapter.logged_in.LoggedInState;
 
+import java.util.ArrayList;
+import java.util.HashMap;
+
 public class OpenedFolderState {
     private String foldername = "";
     private String username = "";
+
+    private HashMap<Integer, ArrayList> recipeMap;
+
 
     public OpenedFolderState(OpenedFolderState copy) {
         foldername = copy.foldername;
@@ -33,5 +39,13 @@ public class OpenedFolderState {
     }
     public void setUsername(String username) {
         this.username = username;
+    }
+
+    public void setRecipeMap(HashMap<Integer, ArrayList> recipeMap) {
+        this.recipeMap = recipeMap;
+    }
+
+    public HashMap<Integer, ArrayList> getRecipeMap(){
+        return recipeMap;
     }
 }

@@ -18,6 +18,7 @@ public class OpenFolderInteractor implements OpenFolderInputBoundary {
 
     public void execute(OpenFolderInputData openFolderInputData) {
         String foldername = openFolderInputData.getFoldername();
+        String username = openFolderInputData.getUsername();
         if (!folderDataAccessObject.existsByName(foldername)) {
             openFolderPresenter.prepareFailView(foldername + ": Folder does not exist.");
         }else {
@@ -26,7 +27,7 @@ public class OpenFolderInteractor implements OpenFolderInputBoundary {
 
 
              OpenFolderOutputData openFolderOutputData = new OpenFolderOutputData(folder.getName(),
-                     false,folder.getRecipeMap());
+                     false,folder.getRecipeMap(), username);
              openFolderPresenter.prepareSuccessView(openFolderOutputData);
             }
         }

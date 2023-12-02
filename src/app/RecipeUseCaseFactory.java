@@ -13,9 +13,11 @@ import use_case.collect_recipe.CollectRecipeOutputBoundary;
 import view.RecipeView;
 
 
+
 /**
  * usecase factory for CollectRecipe on RecipeView
  */
+
 public class RecipeUseCaseFactory {
     private RecipeUseCaseFactory() {}
     public static RecipeView create(
