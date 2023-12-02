@@ -35,7 +35,6 @@ public class CommonFolder implements Folder {
             recipeMap.remove(recipeId);
         }
     }
-
     @Override
     public void addRecipe(Integer recipeID, Recipe recipe) {
         recipeMap.put(recipeID, recipe);

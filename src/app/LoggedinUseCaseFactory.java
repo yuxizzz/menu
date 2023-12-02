@@ -1,14 +1,10 @@
 package app;
 
-import data_access.FileUserDataAccessObject;
-import entity.search_results.SearchResult;
 import entity.user.CommonUserFactory;
 import entity.user.UserFactory;
 import interface_adapter.ViewManagerModel;
 import interface_adapter.get_recipe.GetRecipeViewModel;
 import interface_adapter.logged_in.LoggedInViewModel;
-import interface_adapter.login.LoginController;
-import interface_adapter.login.LoginPresenter;
 import interface_adapter.login.LoginViewModel;
 import interface_adapter.logout.LogoutController;
 import interface_adapter.logout.LogoutPresenter;
@@ -21,10 +17,6 @@ import interface_adapter.search.SearchController;
 import interface_adapter.search.SearchPresenter;
 import interface_adapter.search.SearchViewModel;
 import interface_adapter.searched.SearchedViewModel;
-import use_case.login.LoginInputBoundary;
-import use_case.login.LoginInteractor;
-import use_case.login.LoginOutputBoundary;
-import use_case.login.LoginUserDataAccessInterface;
 import use_case.logout.LogoutDataAccessInterface;
 import use_case.logout.LogoutInputBoundary;
 import use_case.logout.LogoutInteractor;
@@ -38,7 +30,6 @@ import use_case.search.SearchInteractor;
 import use_case.search.SearchOutputBoundary;
 import use_case.search.SearchUserDataAccessInterface;
 import view.LoggedInView;
-import view.LoginView;
 
 import javax.swing.*;
 import java.io.IOException;
@@ -65,8 +56,7 @@ public class LoggedinUseCaseFactory {
                     myFolderDataAccessObject);
             LogoutController logoutController = createLogoutUseCase(viewManagerModel, loginViewModel,
                     logoutViewModel, logoutDataAccessObject);
-            return new LoggedInView(loggedInViewModel,searchViewModel,searchController,
-                myFolderViewModel, myFolderController, logoutViewModel, logoutController);
+            return new LoggedInView(loggedInViewModel,searchViewModel,searchController, myFolderController, logoutViewModel, logoutController);
         } catch (IOException e) {
             JOptionPane.showMessageDialog(null, "Could not open user data file.");
         }

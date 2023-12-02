@@ -34,12 +34,6 @@ public class DeleteUserRecipeView extends Component implements PropertyChangeLis
 
 
 
-
-
-
-
-
-
     @Override
     public void propertyChange(PropertyChangeEvent evt) {
         if(evt.getNewValue() instanceof DeleteRecipeState){
