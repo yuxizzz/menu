@@ -9,7 +9,6 @@ import java.beans.PropertyChangeSupport;
 public class SearchedViewModel extends ViewModel {
     public static final String GET_BUTTON_LABEL = "GET";
     public static final String TITLE_LABEL = "Searched Result View";
-    public static final String CANCEL_BUTTON_LABEL = "Cancel";
 
     private SearchedState state = new SearchedState();
     public SearchedViewModel(){super("get recipes");}

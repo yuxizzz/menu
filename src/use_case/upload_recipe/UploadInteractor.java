@@ -34,7 +34,7 @@ public class UploadInteractor implements UploadInputBoundary{
                     uploadInputData.getNutrition(), uploadInputData.getInstructions(),
                     uploadInputData.getImage(),
                     uploadInputData.getRecipeurl(), uploadInputData.getRecipeid(),
-                    uploadInputData.getUser());
+                    uploadInputData.getUsername());
             recipeDataAccessObject.saveRecipe(userRecipe);
             UploadOutputData createOutputData = new UploadOutputData(userRecipe.getRecipeID(), false);
             recipePresenter.prepareSuccessView(createOutputData);

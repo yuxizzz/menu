@@ -9,6 +9,8 @@ public interface SearchUserDataAccessInterface {
 
     boolean existsIngredients(String ingredient, String tags) throws IOException;
 
+
+
     HashMap<Object, SearchResult> getOutputRecipes(String ingredients, String allergy) throws IOException;
 
     //give the list of recipes to presenter and prepareSuccessView

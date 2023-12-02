@@ -6,7 +6,7 @@ import entity.recipe.Recipe;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-public class OpenFolderInteractor {
+public class OpenFolderInteractor implements OpenFolderInputBoundary {
     final OpenFolderDataAccessInterface folderDataAccessObject;
     final OpenFolderOutputBoundary openFolderPresenter;
 
@@ -18,6 +18,7 @@ public class OpenFolderInteractor {
 
     public void execute(OpenFolderInputData openFolderInputData) {
         String foldername = openFolderInputData.getFoldername();
+        String username = openFolderInputData.getUsername();
         if (!folderDataAccessObject.existsByName(foldername)) {
             openFolderPresenter.prepareFailView(foldername + ": Folder does not exist.");
         }else {
@@ -26,7 +27,7 @@ public class OpenFolderInteractor {
 
 
              OpenFolderOutputData openFolderOutputData = new OpenFolderOutputData(folder.getName(),
-                     false,folder.getRecipeMap());
+                     false,folder.getRecipeMap(), username);
              openFolderPresenter.prepareSuccessView(openFolderOutputData);
             }
         }

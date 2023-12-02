@@ -1,14 +1,20 @@
 package interface_adapter.searched;
 
+import entity.recipe.Recipe;
 import interface_adapter.edit_recipe.EditRecipeState;
+
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 public class SearchedState {
     private String keywords = "";
     private String username = "";
 
-    // Because of the previous copy constructor, the default constructor must be explicit.
+    private
 
-    public SearchedState(SearchedState copy){
+    // Because of the previous copy constructor, the default constructor must be explicit.
+    SearchedState(SearchedState copy){
         keywords = copy.keywords;
         username = copy.username;}
     public SearchedState(){}
@@ -21,4 +27,6 @@ public class SearchedState {
     public void setUsername(String username) {
         this.username = username;
     }
+
+
 }

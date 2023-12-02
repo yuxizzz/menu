@@ -31,7 +31,7 @@ public class EditInteractor implements EditInputBoundary{
         if (editDataAccessObject.existByRecipeID(editInputData.getRecipeID())) {
             UserRecipe userRecipe = editDataAccessObject.getRecipe();
 
-            User user = userRecipe.getUser();
+            String username = userRecipe.getUsername();
 
             EditOutputData editOutputData = new EditOutputData(userRecipe.getName(), false);
             editPresenter.prepareSuccessView(editOutputData);
@@ -39,7 +39,7 @@ public class EditInteractor implements EditInputBoundary{
 
                     && editInputData.getImage() != null) {
 
-                userRecipe.editImage(editInputData.getImage(), userRecipe, user);
+                userRecipe.editImage(editInputData.getImage(), userRecipe, username);
 
                 editPresenter.prepareSuccessView(editOutputData);
 
@@ -47,7 +47,7 @@ public class EditInteractor implements EditInputBoundary{
 
                     && editInputData.getIngredients() != null) {
 
-                userRecipe.editIngredients(editInputData.getIngredients(), userRecipe, user);
+                userRecipe.editIngredients(editInputData.getIngredients(), userRecipe, username);
 
                 editPresenter.prepareSuccessView(editOutputData);
 
@@ -55,7 +55,7 @@ public class EditInteractor implements EditInputBoundary{
 
                     && editInputData.getInstructions() != null) {
 
-                userRecipe.editInstructions(editInputData.getInstructions(), userRecipe, user);
+                userRecipe.editInstructions(editInputData.getInstructions(), userRecipe, username);
 
                 editPresenter.prepareSuccessView(editOutputData);
 
@@ -63,7 +63,7 @@ public class EditInteractor implements EditInputBoundary{
 
                     && editInputData.getRecipename() != null) {
 
-                userRecipe.editName(editInputData.getRecipename(), userRecipe, user);
+                userRecipe.editName(editInputData.getRecipename(), userRecipe, username);
 
                 editPresenter.prepareSuccessView(editOutputData);
 
@@ -72,7 +72,7 @@ public class EditInteractor implements EditInputBoundary{
 
                     && editInputData.getNutrition() != null) {
 
-                userRecipe.editNutrition(editInputData.getNutrition(), userRecipe, user);
+                userRecipe.editNutrition(editInputData.getNutrition(), userRecipe, username);
 
                 editPresenter.prepareSuccessView(editOutputData);
 
@@ -80,7 +80,7 @@ public class EditInteractor implements EditInputBoundary{
 
                     && editInputData.getRrecipeurl() != null) {
 
-                userRecipe.editRecipeURL(editInputData.getRrecipeurl(), userRecipe, user);
+                userRecipe.editRecipeURL(editInputData.getRrecipeurl(), userRecipe, username);
 
                 editPresenter.prepareSuccessView(editOutputData);
 
@@ -89,7 +89,7 @@ public class EditInteractor implements EditInputBoundary{
 
                     && editInputData.getRecipeID() != null) {
 
-                userRecipe.editRecipeID(editInputData.getRecipeID(), userRecipe, user);
+                userRecipe.editRecipeID(editInputData.getRecipeID(), userRecipe, username);
 
                 editPresenter.prepareSuccessView(editOutputData);
 
