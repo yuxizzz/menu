@@ -76,6 +76,7 @@ public class RecipeView extends JPanel implements ActionListener, PropertyChange
         label.setBounds(150, 250, 150, 150);
         label.setVisible(true);
 // set information?
+        label.setText(recipeName);
         label.setText(ingredients);
         label.setText(nutrition);
         label.setText(instructions);
@@ -86,8 +87,7 @@ public class RecipeView extends JPanel implements ActionListener, PropertyChange
         // set text TOP,CENTER, BOTTOM of imageicon
 //        label.setForeground(new Color(0x00FF00));
         // set font color of text
-//set recipe name
-        label.setFont(new Font(recipeName, Font.PLAIN, 20));
+        label.setFont(new Font("MV Boli", Font.PLAIN, 20));
         // set font of text
         label.setIconTextGap(-25);
         // set gap of text to image
