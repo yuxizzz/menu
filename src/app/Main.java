@@ -57,6 +57,7 @@ public class Main {
         LoginViewModel loginViewModel = new LoginViewModel();
         LoggedInViewModel loggedInViewModel = new LoggedInViewModel();
         SignupViewModel signupViewModel = new SignupViewModel();
+        SearchViewModel searchViewModel = new SearchViewModel();
 
         FileUserDataAccessObject userDataAccessObject;
         try {
@@ -69,11 +70,10 @@ public class Main {
                 signupViewModel,userDataAccessObject);
         views.add(signupView, signupView.viewName);
 
-        LoginView loginView = LoginUseCaseFactory.create(viewManagerModel, loginViewModel, loggedInViewModel,
-        userDataAccessObject);
+        LoginView loginView = LoginUseCaseFactory.create(viewManagerModel, searchViewModel,
+                loginViewModel, loggedInViewModel, userDataAccessObject);
         views.add(loginView, loginView.viewName);
 
-        SearchViewModel searchViewModel = new SearchViewModel();
         SearchUserDataAccessInterface searchUserDataAccessObject = (SearchUserDataAccessInterface) userDataAccessObject;
 
         SearchedViewModel searchedViewModel = new SearchedViewModel();
