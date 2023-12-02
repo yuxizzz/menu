@@ -13,10 +13,10 @@ public class UploadRecipeController {
     }
     public void execute(String recipename, String ingredients, String nutrition,
                         String instructions, String image,
-                        String recipeurl, Integer recipeID, User user){
+                        String recipeurl, Integer recipeID, String username){
         UploadInputData uploadInputData = new UploadInputData(recipename,
                 ingredients, nutrition,
-                instructions, image, recipeurl, recipeID, user);
+                instructions, image, recipeurl, recipeID, username);
         uploadRecipeUseCaseInteractor.execute(uploadInputData);
     }
 }

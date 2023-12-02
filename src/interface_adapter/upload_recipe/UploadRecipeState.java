@@ -20,7 +20,7 @@ public class UploadRecipeState {
     private Integer recipeID = null;
     private String recipeIDError = null;
 
-    private User user = null;
+    private String username = null;
 
     public UploadRecipeState(UploadRecipeState copy){
         recipeID = copy.recipeID;
@@ -109,16 +109,16 @@ public class UploadRecipeState {
 
         this.recipeurl = recipeurl;
     }
-    public User getUser(){
+    public String getUsername(){
 
-        return user;
+        return username;
 
 
     }
 
-    public void setUser(User user){
+    public void setUsername(String username){
 
-        this.user = user;
+        this.username = username;
     }
 
 }

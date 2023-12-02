@@ -5,11 +5,11 @@ import java.util.HashMap;
 
 public class SearchOutputData {
     private boolean useCaseFailed;
-    private HashMap<String, ArrayList<String>> searchedRecipes;
+    private HashMap<Integer, ArrayList> searchedRecipes;
 
-    public SearchOutputData(HashMap<String, ArrayList<String>> searchedRecipes, boolean useCaseFailed){
+    public SearchOutputData(HashMap<Integer, ArrayList> searchedRecipes, boolean useCaseFailed){
         this.useCaseFailed = useCaseFailed;
         this.searchedRecipes = searchedRecipes;
     }
-    public HashMap<String, ArrayList<String>> getSearchedRecipes(){return searchedRecipes;}
+    public HashMap<Integer, ArrayList> getSearchedRecipes(){return searchedRecipes;}
 }

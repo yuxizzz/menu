@@ -13,12 +13,12 @@ public class UploadInputData {
     final private String image;
     final private String recipeurl;
 
-    final private User user;
+    final private String username;
 
 
     public UploadInputData(String recipename, String ingredients, String nutrition,
                            String instructions, String image, String recipeurl,
-                           Integer recipeID, User user){
+                           Integer recipeID, String username){
 
         this.recipename = recipename;
         this.recipeID = recipeID;
@@ -27,7 +27,7 @@ public class UploadInputData {
         this.instructions = instructions;
         this.image = image;
         this.recipeurl = recipeurl;
-        this.user = user;
+        this.username = username;
 
     }
     String getRecipename(){
@@ -52,8 +52,8 @@ public class UploadInputData {
         return recipeurl;
     }
 
-    User getUser(){
-        return user;
+    String getUsername(){
+        return username;
     }
 
 

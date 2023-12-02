@@ -10,8 +10,8 @@ import java.util.HashMap;
 public class RemoveInteractor implements RemoveInputBoundary{
 
     final RemoveFolderDataAccessInterface removeDataAccessObject;
-    final RemoveOuntputBoundary removePresenter;
-    public RemoveInteractor(RemoveFolderDataAccessInterface removeDataAccessInterface, RemoveOuntputBoundary removeOutputBoundary) {
+    final RemoveOutputBoundary removePresenter;
+    public RemoveInteractor(RemoveFolderDataAccessInterface removeDataAccessInterface, RemoveOutputBoundary removeOutputBoundary) {
         this.removeDataAccessObject = removeDataAccessInterface;
         this.removePresenter = removeOutputBoundary;
     }
@@ -19,16 +19,26 @@ public class RemoveInteractor implements RemoveInputBoundary{
     @Override
     public void execute(RemoveInputData removeInputData) {
 
+
+
+
+
+
+
         Integer recipeID = removeInputData.getRemovedRecipeID();
 
 
         if (!removeDataAccessObject.existsByName(recipeID)) {
+
+
             removePresenter.prepareFailView(recipeID + ": Recipe does not exist.");
         } else {
+
             CommonRecipe commonRecipe = removeDataAccessObject.removeRecipe(removeInputData.getRemovedRecipeID());
 
 
-            RemoveOutputData removeOutputData = new RemoveOutputData(commonRecipe .getName(), false);
+            RemoveOutputData removeOutputData = new RemoveOutputData(commonRecipe .getName(),
+                    commonRecipe.getRecipeID(),false);
             removePresenter.prepareSuccessView(removeOutputData);
 
 

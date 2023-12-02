@@ -47,7 +47,7 @@ public class UploadView extends JPanel implements ActionListener, PropertyChange
 
 
 
-    public UploadView(UploadRecipeViewModel uploadRecipeViewModel, UploadRecipeController uploadRecipeController, JButton upload, JButton cancel) {
+    public UploadView(UploadRecipeViewModel uploadRecipeViewModel, UploadRecipeController uploadRecipeController) {
         this.uploadRecipeViewModel = uploadRecipeViewModel;
         this.uploadRecipeController = uploadRecipeController;
 
@@ -109,7 +109,7 @@ public class UploadView extends JPanel implements ActionListener, PropertyChange
                                     currentState.getImage(),
                                     currentState.getRecipeurl(),
                                     currentState.getRecipeID(),
-                                    currentState.getUser()
+                                    currentState.getUsername()
 
 
                             );

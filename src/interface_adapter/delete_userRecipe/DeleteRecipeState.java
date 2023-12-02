@@ -4,7 +4,14 @@ public class DeleteRecipeState {
     private String message = "";
     private String messageError = null;
 
+    private Integer recipeID = null;
+
     private String recipe = null;
+
+
+
+
+
     public DeleteRecipeState(){
     }
 
@@ -14,16 +21,31 @@ public class DeleteRecipeState {
         }
 
 
-    public void setMessageError(String error) {
 
-        this.messageError = error;
-        }
 
     public void setRecipeDeleted(String recipeDeleted) {
 
         this.recipe = recipeDeleted;
     }
 
+
+
     public String getRecipeDeleted(){
         return this.recipe;}
+
+
+    public void setRecipeID(Integer recipeID){
+        this.recipeID = recipeID;
+    }
+
+
+    public Integer getRecipeID(){
+        return this.recipeID;
+    }
+
+
+    public void setMessageError(String error) {
+
+        this.messageError = error;
+    }
 }

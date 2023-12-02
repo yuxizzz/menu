@@ -79,9 +79,6 @@ public class GetRecipeState {
         return recipeIDError;
     }
 
-    public String getRecipeULR() {
-        return recipeurl;
-    }
     public String getImage() {
         return image;
     }
