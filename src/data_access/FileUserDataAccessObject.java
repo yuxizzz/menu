@@ -1,13 +1,13 @@
 package data_access;
-import entity.recipe.CommonRecipe;
 import entity.folder.Folder;
+import entity.recipe.Recipe;
 import entity.user.User;
 import entity.user.UserFactory;
-import use_case.collect_recipe.CollectRecipeDataAccessInterface;
 import use_case.login.LoginUserDataAccessInterface;
 import use_case.logout.LogoutDataAccessInterface;
 import use_case.signup.SignupUserDataAccessInterface;
 import use_case.clear_users.ClearUserDataAccessInterface;
+import use_case.upload_recipe.UploadDataAccessInterface;
 
 import java.io.*;
 import java.time.LocalDateTime;
@@ -17,7 +17,7 @@ import java.util.Map;
 import java.util.ArrayList;
 
 public class FileUserDataAccessObject implements SignupUserDataAccessInterface, LoginUserDataAccessInterface , ClearUserDataAccessInterface,
-        LogoutDataAccessInterface {
+        LogoutDataAccessInterface, UploadDataAccessInterface {
 
     private final File csvFile;
 
@@ -113,5 +113,23 @@ public class FileUserDataAccessObject implements SignupUserDataAccessInterface, 
     public ArrayList<Folder> getFolders(String username) {
         User user = accounts.get(username);
         return user.getUserFolders();
+    }
+
+    @Override
+    public void saveRecipe(Integer recipeID, Recipe recipe, String username) {
+        User user = accounts.get(username);
+        ArrayList<Folder> folders = user.getUserFolders();
+        folders.get(0).addRecipe(recipeID, recipe);
+
+        }
+
+
+    @Override
+    public boolean existByReicipeID(Integer recipeID, String username) {
+        User user = accounts.get(username);
+        ArrayList<Folder> folders = user.getUserFolders();
+        HashMap<Integer, Recipe> recipes = folders.get(0).getRecipeMap();
+        return recipes.containsKey(recipeID);
+
     }
 }
