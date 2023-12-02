@@ -44,6 +44,13 @@ public class RecipeView extends JPanel implements ActionListener, PropertyChange
         collect = new JButton(GetRecipeViewModel.COLLECT_BUTTON_LABEL);
         buttons.add(collect);
 
+        /**
+         * JLabel to show information of the recipe
+         */
+
+        JLabel label = new JLabel();
+//        label.setText();
+
 
         collect.addActionListener(
 
@@ -79,8 +86,8 @@ public class RecipeView extends JPanel implements ActionListener, PropertyChange
     public void propertyChange(PropertyChangeEvent evt) {
         if (evt.getNewValue() instanceof GetRecipeState) {
             GetRecipeState state = (GetRecipeState) evt.getNewValue();
-            if (state.getRecipeError() != null) {
-                JOptionPane.showMessageDialog(this, state.getRecipeError());
+            if (state.getRecipeIDError() != null) {
+                JOptionPane.showMessageDialog(this, state.getRecipeIDError());
             }
 //            else {
 //                JOptionPane.showMessageDialog(this, state.getRecipe());
