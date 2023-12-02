@@ -1,5 +1,7 @@
 package view;
 
+import interface_adapter.get_recipe.GetRecipeController;
+import interface_adapter.get_recipe.GetRecipeViewModel;
 import interface_adapter.searched.SearchedState;
 import interface_adapter.searched.SearchedViewModel;
 
@@ -12,26 +14,26 @@ import java.beans.PropertyChangeListener;
 public class SearchedView extends JPanel implements ActionListener, PropertyChangeListener {
     public final String viewName = "searched result";
     private final SearchedViewModel searchedViewModel;
+    private final GetRecipeViewModel getRecipeViewModel;
+    private final GetRecipeController getRecipeController;
 
-    private final JButton getRecipe1;
-    private final JButton cancel;
+    private final JButton get;
 
-    public SearchedView(SearchedViewModel searchedViewModel) {
+    public SearchedView(SearchedViewModel searchedViewModel, GetRecipeViewModel getRecipeViewModel,
+                        GetRecipeController getRecipeController) {
         this.searchedViewModel = searchedViewModel;
+        this.getRecipeViewModel = getRecipeViewModel;
+        this.getRecipeController = getRecipeController;
         this.searchedViewModel.addPropertyChangeListener(this);
 
         JPanel buttons = new JPanel();
-        cancel = new JButton(searchedViewModel.CANCEL_BUTTON_LABEL);
-        buttons.add(cancel);
 
-        getRecipe1 = new JButton(searchedViewModel.GET_BUTTON_LABEL);
-        buttons.add(getRecipe1);
-
-        cancel.addActionListener(this);
+        get = new JButton(searchedViewModel.GET_BUTTON_LABEL);
+        buttons.add(get);
 
         this.setLayout(new BoxLayout(this, BoxLayout.X_AXIS));
 
-        getRecipe1.addActionListener(this
+        get.addActionListener(this
                 // TODO: Get Recipe to be implemented
         );
         this.setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));

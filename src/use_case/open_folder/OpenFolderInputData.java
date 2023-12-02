@@ -1,21 +1,22 @@
 package use_case.open_folder;
 
-import entity.recipe.Recipe;
-
-import java.util.HashMap;
-
 public class OpenFolderInputData {
 
     final private String foldername;
 
-    public OpenFolderInputData(String foldername) {
+    final private String username;
+
+    public OpenFolderInputData(String foldername, String username) {
         this.foldername = foldername;
+        this.username = username;
     }
 
 
     String getFoldername() {
         return foldername;
     }
+
+    String getUsername(){return username;}
 
 }
 

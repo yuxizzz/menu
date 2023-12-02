@@ -66,7 +66,7 @@ public class LoggedinUseCaseFactory {
             LogoutController logoutController = createLogoutUseCase(viewManagerModel, loginViewModel,
                     logoutViewModel, logoutDataAccessObject);
             return new LoggedInView(loggedInViewModel,searchViewModel,searchController,
-                myFolderViewModel, myFolderController, logoutViewModel, logoutController);
+                myFolderController, logoutViewModel, logoutController);
         } catch (IOException e) {
             JOptionPane.showMessageDialog(null, "Could not open user data file.");
         }

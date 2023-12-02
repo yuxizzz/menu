@@ -36,7 +36,8 @@ public class FileFolderDataAccessObject implements DeleteFolderUserDataAccessInt
      * @param recipeDataAccessObject
      * @throws IOException
      */
-    public FileFolderDataAccessObject(String csvPath, FolderFactory folderFactory, FileRecipeDataAccessObject recipeDataAccessObject,
+    public FileFolderDataAccessObject(String csvPath, FolderFactory folderFactory,
+                                      FileRecipeDataAccessObject recipeDataAccessObject,
                                       FileUserDataAccessObject fileUserDataAccessObject) throws IOException {
         this.folderFactory = folderFactory;
         this.recipeDataAccessObject = recipeDataAccessObject;

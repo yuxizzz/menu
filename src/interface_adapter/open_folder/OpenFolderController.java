@@ -12,8 +12,8 @@ public class OpenFolderController {
     }
 
 
-    public void execute(String foldername) {
-        OpenFolderInputData openFolderInputData = new OpenFolderInputData(foldername);
+    public void execute(String foldername, String username) {
+        OpenFolderInputData openFolderInputData = new OpenFolderInputData(foldername, username);
 
         openFolderUseCaseInteractor.execute(openFolderInputData);
     }
