@@ -69,12 +69,13 @@ public class Main {
                 signupViewModel,userDataAccessObject);
         views.add(signupView, signupView.viewName);
 
-        LoginView loginView = LoginUseCaseFactory.create(viewManagerModel, loginViewModel, loggedInViewModel,
+        SearchViewModel searchViewModel = new SearchViewModel();
+        SearchUserDataAccessInterface searchUserDataAccessObject = (SearchUserDataAccessInterface) userDataAccessObject;
+        LoginView loginView = LoginUseCaseFactory.create(viewManagerModel, searchViewModel, loginViewModel, loggedInViewModel,
         userDataAccessObject);
         views.add(loginView, loginView.viewName);
 
-        SearchViewModel searchViewModel = new SearchViewModel();
-        SearchUserDataAccessInterface searchUserDataAccessObject = (SearchUserDataAccessInterface) userDataAccessObject;
+
 
         SearchedViewModel searchedViewModel = new SearchedViewModel();
         MyFolderViewModel myFolderViewModel = new MyFolderViewModel();

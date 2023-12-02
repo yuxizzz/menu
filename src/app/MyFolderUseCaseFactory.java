@@ -6,6 +6,7 @@ import interface_adapter.ViewManagerModel;
 import interface_adapter.create_folder.CreateFolderController;
 import interface_adapter.create_folder.CreateFolderPresenter;
 import interface_adapter.create_folder.CreateFolderViewModel;
+import interface_adapter.default_opened_folder.DefaultOpenedFolderViewModel;
 import interface_adapter.delete_folder.DeleteFolderController;
 import interface_adapter.delete_folder.DeleteFolderPresenter;
 import interface_adapter.delete_folder.DeleteFolderViewModel;
@@ -15,6 +16,9 @@ import interface_adapter.open_folder.OpenFolderController;
 import interface_adapter.open_folder.OpenFolderPresenter;
 import interface_adapter.open_folder.OpenFolderViewModel;
 import interface_adapter.open_recipe.OpenRecipeViewModel;
+import interface_adapter.opened_folder.OpenedFolderViewModel;
+import interface_adapter.remove_recipe.RemoveViewModel;
+import interface_adapter.upload_recipe.UploadRecipeViewModel;
 import use_case.create_folder.CreateFolderDataAccessInterface;
 import use_case.create_folder.CreateFolderInputBoundary;
 import use_case.create_folder.CreateFolderInteractor;
@@ -42,13 +46,19 @@ public class MyFolderUseCaseFactory {
             OpenFolderViewModel openFolderViewModel,
             DeleteFolderViewModel deleteFolderViewModel,
             CreateFolderViewModel createFolderViewModel,
-            OpenRecipeViewModel openRecipeViewModel,
+            OpenedFolderViewModel openedFolderViewModel,
             OpenFolderDataAccessInterface openFolderDataAccessInterface,
             DeleteFolderUserDataAccessInterface deleteFolderUserDataAccessInterface,
-            CreateFolderDataAccessInterface createFolderDataAccessInterface) {
+            CreateFolderDataAccessInterface createFolderDataAccessInterface,
+            UploadRecipeViewModel uploadRecipeViewModel,
+            DefaultOpenedFolderViewModel defaultOpenedFolderViewModel,
+            OpenRecipeViewModel openRecipeViewModel,
+            RemoveViewModel removeViewModel) {
 
             OpenFolderController openFolderController = createOpenFolderUseCase(viewManagerModel,
-                    openFolderViewModel, openFolderDataAccessInterface, openRecipeViewModel);
+                    openFolderViewModel, openFolderDataAccessInterface, openedFolderViewModel,
+                    uploadRecipeViewModel, defaultOpenedFolderViewModel, openRecipeViewModel,
+                    removeViewModel);
             DeleteFolderController deleteFolderController = createDeleteFolderUseCase(viewManagerModel,
                     deleteFolderViewModel, deleteFolderUserDataAccessInterface);
             CreateFolderController createFolderController = createCreateFolderUseCase(viewManagerModel, createFolderViewModel,
@@ -84,9 +94,14 @@ public class MyFolderUseCaseFactory {
     private static OpenFolderController createOpenFolderUseCase(ViewManagerModel viewManagerModel,
                                                                 OpenFolderViewModel openFolderViewModel,
                                                                 OpenFolderDataAccessInterface openFolderDataAccessInterface,
-                                                                OpenRecipeViewModel openRecipeViewModel) {
+                                                                OpenedFolderViewModel openedFolderViewModel,
+                                                                UploadRecipeViewModel uploadRecipeViewModel,
+                                                                DefaultOpenedFolderViewModel defaultOpenedFolderViewModel,
+                                                                OpenRecipeViewModel openRecipeViewModel,
+                                                                RemoveViewModel removeViewModel) {
         OpenFolderOutputBoundary OpenFolderOutputBoundary = new OpenFolderPresenter(viewManagerModel,
-                openFolderViewModel, openRecipeViewModel);
+                openFolderViewModel, openedFolderViewModel, uploadRecipeViewModel,
+                defaultOpenedFolderViewModel,openRecipeViewModel,removeViewModel);
         OpenFolderInputBoundary openFolderInteractor = new OpenFolderInteractor(openFolderDataAccessInterface, OpenFolderOutputBoundary);
 
         return new OpenFolderController(openFolderInteractor);
