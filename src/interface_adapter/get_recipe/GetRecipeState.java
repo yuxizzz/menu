@@ -30,7 +30,7 @@ public class GetRecipeState {
     public String getRecipeName() {
         return recipe.getName();
     }
-    public String getRecipeULR() {
+    public String getRecipeURL() {
         return recipe.getRecipeURL();
     }
     public String getRecipeImage() {

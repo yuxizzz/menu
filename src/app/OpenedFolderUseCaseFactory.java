@@ -70,7 +70,7 @@ public class OpenedFolderUseCaseFactory {
             OpenRecipeController openRecipeController = createOpenRecipeUseCase(viewManagerModel,
                     openRecipeViewModel,openRecipeDataAccessObject);
 
-            return new OpenedFolderView(openFolderViewModel, removeController,
+            return new OpenedFolderView(openedFolderViewModel, removeController,
                     openRecipeViewModel, openRecipeController,
                     removeViewModel);
 

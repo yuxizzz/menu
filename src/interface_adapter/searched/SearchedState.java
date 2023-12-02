@@ -11,6 +11,8 @@ public class SearchedState {
     private String keywords = "";
     private String username = "";
 
+    HashMap<Integer, ArrayList> result = new HashMap<>();
+
     private
 
     // Because of the previous copy constructor, the default constructor must be explicit.
@@ -27,6 +29,14 @@ public class SearchedState {
     public void setUsername(String username) {
         this.username = username;
     }
+
+    public void setResult(HashMap<Integer, ArrayList> result) {
+        this.result = result;
+    }
+    public HashMap<Integer, ArrayList> getResult() {
+        return result;
+    }
+
 
 
 }
