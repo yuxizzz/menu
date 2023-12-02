@@ -6,11 +6,11 @@ public class GetRecipeState {
 //    private Recipe recipe;
 //    private String recipeError = null;
 
-    private String ingredients;
-    private String nutrition;
-    private String instructions;
-    private String image;
-    private String recipeurl;
+    private String ingredients ="";
+    private String nutrition = "";
+    private String instructions = "";
+    private String image = "";
+    private String recipeurl = "";
     private String recipename = "";
     private String recipenameError = null;
     private Integer recipeID = null;

@@ -12,12 +12,12 @@ public class OpenRecipeState {
 
     private String recipeIDError = null;
 
-    private String username = "";
-    private String ingredients;
-    private String nutrition;
-    private String instructions;
-    private String image;
-    private String recipeurl;
+    private String username;
+    private String ingredients = "";
+    private String nutrition = "";
+    private String instructions = "";
+    private String image = "";
+    private String recipeurl = "";
 
 
     public OpenRecipeState(OpenRecipeState copy) {
