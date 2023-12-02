@@ -11,4 +11,5 @@ public interface Folder {
     void removeRecipe(Integer recipeId);
 
     void addRecipe(Integer recipeID, Recipe recipe);
+//    String getUsername();
 }
