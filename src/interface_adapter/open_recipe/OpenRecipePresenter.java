@@ -28,25 +28,15 @@ public class OpenRecipePresenter implements OpenRecipeOutputBoundary {
 
         this.openRecipeViewModel.firePropertyChanged();
 
-
-
-
         this.viewManagerModel.setActiveView(openRecipeViewModel.getViewName());
         this.viewManagerModel.firePropertyChanged();
-
-
-
     }
 
     @Override
     public void prepareFailView(String error) {
-
         OpenRecipeState openRecipeState = OpenRecipeViewModel.getState();
-
         openRecipeState.setRecipeIDError(error);
-
         openRecipeState.setRecipenameError(error);
-
         openRecipeViewModel.firePropertyChanged();
 
     }

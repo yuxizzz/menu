@@ -20,12 +20,24 @@ public class GetRecipePresenter implements GetRecipeOutputBoundary {
     @Override
     public void prepareSuccessView(GetRecipeOutputData recipe) {
         GetRecipeState getRecipeState = getRecipeViewModel.getState();
-        getRecipeState.setRecipe(recipe.getRecipe());
+//        getRecipeState.setRecipe(recipe.getRecipe());
+        getRecipeState.setRecipename(recipe.getRecipename());
+        getRecipeState.setRecipeID(recipe.getRecipeID());
+        getRecipeState.setIngredients(recipe.getIngredients());
+        getRecipeState.setNutrition(recipe.getNutrition());
+        getRecipeState.setInstructions(recipe.getInstructions());
+        getRecipeState.setImage(recipe.getImage());
+        getRecipeState.setRecipeurl(recipe.getRecipeULR());
+
         CollectRecipeState collectRecipeState = collectRecipeViewModel.getState();
         collectRecipeState.setRecipeID(getRecipeState.getRecipeID());
         collectRecipeState.setUsername(getRecipeState.getUsername());
+
         this.getRecipeViewModel.setState(getRecipeState);
         getRecipeViewModel.firePropertyChanged();
+
+        this.collectRecipeViewModel.setState(collectRecipeState);
+        collectRecipeViewModel.firePropertyChanged();
 
         viewManagerModel.setActiveView(getRecipeViewModel.getViewName());
         viewManagerModel.firePropertyChanged();
@@ -34,7 +46,8 @@ public class GetRecipePresenter implements GetRecipeOutputBoundary {
     @Override
     public void prepareFailView(String error) {
         GetRecipeState getRecipeState = getRecipeViewModel.getState();
-        getRecipeState.setRecipeError(error);
+        getRecipeState.setRecipeIDError(error);
+        getRecipeState.setRecipenameError(error);
         getRecipeViewModel.firePropertyChanged();
     }
 }
