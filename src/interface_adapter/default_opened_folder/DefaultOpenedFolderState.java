@@ -2,9 +2,12 @@ package interface_adapter.default_opened_folder;
 
 import interface_adapter.opened_folder.OpenedFolderState;
 
+
 public class DefaultOpenedFolderState {
     private String foldername = "default folder";
     private String username = "";
+
+        private HashMap<Integer, ArrayList> recipeMap;
 
     public DefaultOpenedFolderState(DefaultOpenedFolderState copy) {
         foldername = copy.foldername;
@@ -19,11 +22,11 @@ public class DefaultOpenedFolderState {
         return foldername;
     }
 
-    public void setFoldername(String foldername) {
+//     public void setFoldername(String foldername) {
 
-        this.foldername = foldername;
+//         this.foldername = foldername;
 
-    }
+//     }
     public void setFoldernameError(String error) {
     }
 
@@ -33,4 +36,13 @@ public class DefaultOpenedFolderState {
     public void setUsername(String username) {
         this.username = username;
     }
-}
+
+    public void setRecipeMap(HashMap<Integer, ArrayList> recipeMap) {
+            this.recipeMap = recipeMap;
+        }
+
+    public HashMap<Integer, ArrayList> getRecipeMap(){
+            return recipeMap;
+        }
+    }
+

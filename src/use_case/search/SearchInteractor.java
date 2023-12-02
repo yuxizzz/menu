@@ -21,17 +21,17 @@ public class SearchInteractor implements SearchInputBoundary {
         if (!searchDataAccessObject.existsIngredients(searchInputData.getIngredients(), searchInputData.getTags())) {
             searchPresenter.prepareFailView("Invalid ingredients");
         } else {
-            HashMap<Object, SearchResult> results = searchDataAccessObject.getOutputRecipes(searchInputData.getIngredients(),
+            HashMap<Integer, ArrayList> results = searchDataAccessObject.getOutputRecipes(searchInputData.getIngredients(),
                     searchInputData.getTags());
 
-            HashMap<String, ArrayList<String>> recipes = new HashMap<>();
-            for (SearchResult s: results.values()) {
-                ArrayList<String> response = new ArrayList<>();
-                response.add(s.getTitle());
-                response.add(s.getImage());
-                recipes.put(s.getRecipeid(), response);
-            }
-            SearchOutputData searchOutputData = new SearchOutputData(recipes, false);
+//            HashMap<String, ArrayList<String>> recipes = new HashMap<>();
+//            for (ArrayList s: results.values()) {
+//                ArrayList<String> response = new ArrayList<>();
+//                response.add(s.getTitle());
+//                response.add(s.getImage());
+//                recipes.put(s.getRecipeid(), response);
+//            }
+            SearchOutputData searchOutputData = new SearchOutputData(results, false);
             searchPresenter.prepareSuccessView(searchOutputData);
         }
     }

@@ -7,15 +7,18 @@ import java.util.HashMap;
 public class CommonFolder implements Folder {
     private String foldername;
     private HashMap<Integer, Recipe> recipeMap;
+//    private String username;
 
     public CommonFolder(String foldername) {
         this.foldername = foldername;
         this.recipeMap = new HashMap<Integer, Recipe>();
+//        this.username = username;
     }
 
-    public CommonFolder(String foldername, HashMap<Integer, Recipe> recipeMap) {
+    public CommonFolder(String foldername, HashMap recipeMap) {
         this.foldername = foldername;
         this.recipeMap = recipeMap;
+//        this.username = username;
     }
 
     @Override

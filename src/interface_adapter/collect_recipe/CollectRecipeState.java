@@ -10,6 +10,7 @@ public class CollectRecipeState {
 
     private Integer recipeID;
     private String username;
+    private String collectSuccessMsg;
 
     public CollectRecipeState(CollectRecipeState copy) {
         folderNames = copy.folderNames;
@@ -53,5 +54,12 @@ public class CollectRecipeState {
 
     public void setNoFolderError(String error) {
         noFolderError = error;
+    }
+
+    public void setMessage(String message) {
+        collectSuccessMsg = message;
+    }
+    public String getCollectSuccessMsg(){
+        return collectSuccessMsg;
     }
 }
