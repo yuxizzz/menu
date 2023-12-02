@@ -8,6 +8,8 @@ public class DeleteRecipeState {
 
     private String recipe = null;
 
+    private String username = "";
+
 
 
 
@@ -42,6 +44,14 @@ public class DeleteRecipeState {
     public Integer getRecipeID(){
         return this.recipeID;
     }
+
+    public String getUsername() {
+        return username;
+    }
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
 
 
     public void setMessageError(String error) {

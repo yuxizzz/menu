@@ -14,6 +14,8 @@ public class OpenRecipeState {
 
     private String username = "";
 
+    private String foldername = "";
+
 
     public OpenRecipeState(OpenRecipeState copy) {
 
@@ -27,6 +29,8 @@ public class OpenRecipeState {
 
         username = copy.username;
 
+        foldername = copy.foldername;
+
     }
 
 
@@ -36,6 +40,9 @@ public class OpenRecipeState {
     public String getRecipename(){
         return recipename;
     }
+    public void setRecipename(String recipename){
+        this.recipename = recipename;
+    }
 
     public String getRecipenameError(){
         return recipenameError;
@@ -43,6 +50,11 @@ public class OpenRecipeState {
 
     public Integer getRecipeID(){
         return recipeID;
+    }
+
+    public void setRecipeID(Integer recipeID){
+        this.recipeID = recipeID;
+
     }
 
 
@@ -54,25 +66,34 @@ public class OpenRecipeState {
         return username;
     }
 
-    public void setRecipename(String recipename){
-        this.recipename = recipename;
+
+    public void setUsername(String username){this.username = username;}
+
+
+
+
+    public String getFoldername() {
+        return foldername;
     }
+
+    public void setFoldername(String foldername) {
+        this.foldername = foldername;
+    }
+
+
+
+
 
     public void setRecipenameError(String recipenameError){
         this.recipenameError = recipenameError;
     }
 
-    public void setRecipeID(Integer recipeID){
-        this.recipeID = recipeID;
 
-    }
 
     public void setRecipeIDError(String recipeIDError){
         this.recipeIDError = recipeIDError;
     }
-    public void setUsername(String username) {
-        this.username = username;
-    }
+
 }
 
 

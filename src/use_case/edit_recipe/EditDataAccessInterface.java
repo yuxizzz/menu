@@ -5,7 +5,7 @@ import entity.recipe.UserRecipe;
 public interface EditDataAccessInterface {
     String editRecipe();
 
-    boolean existByRecipeID(Integer recipeID);
+    boolean existsByRecipeID(Integer recipeID);
 
     UserRecipe getRecipe();
 }

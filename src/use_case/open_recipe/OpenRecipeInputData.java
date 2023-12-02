@@ -4,17 +4,24 @@ import entity.folder.Folder;
 
 public class OpenRecipeInputData {
     private final Integer recipeID;
-    private final Folder folder;
 
-    public OpenRecipeInputData(Integer recipeID, Folder folder) {
+    final private String username;
+
+    final private String foldername;
+
+    public OpenRecipeInputData(Integer recipeID,
+                               String username, String foldername) {
         this.recipeID = recipeID;
-        this.folder = folder;
+        this.username = username;
+        this.foldername = foldername;
     }
 
     Integer getRecipeID() {
         return recipeID;
     }
-    Folder getFolder() {
-        return folder;
+    String getFoldername() {
+        return foldername;
     }
+
+    String getUsername(){return  username;}
 }

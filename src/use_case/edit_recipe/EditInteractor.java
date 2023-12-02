@@ -28,7 +28,7 @@ public class EditInteractor implements EditInputBoundary{
 
     @Override
     public void execute(EditInputData editInputData) {
-        if (editDataAccessObject.existByRecipeID(editInputData.getRecipeID())) {
+        if (editDataAccessObject.existsByRecipeID(editInputData.getRecipeID())) {
             UserRecipe userRecipe = editDataAccessObject.getRecipe();
 
             String username = userRecipe.getUsername();

@@ -9,5 +9,5 @@ public interface UploadDataAccessInterface  {
     void saveRecipe(Integer recipeID, Recipe recipe, String username);
 
 
-    boolean existByReicipeID(Integer recipeID, String username);
+    boolean existsByRecipeID(Integer recipeID, String username);
 }

@@ -17,15 +17,17 @@ public class OpenRecipeInteractor implements OpenRecipeInputBoundary {
 
     @Override
     public void execute(OpenRecipeInputData openRecipeInputData) throws IOException {
+        //TODO: Add the foldername/username to the existsByName.
         if (!openRecipeDataAccessObject.existsByName(openRecipeInputData.getRecipeID())) {
             openRecipePresenter.prepareFailView("Recipe not found.");
 
         } else {
-            Folder folder = openRecipeInputData.getFolder();
-            Recipe recipe = folder.getRecipeMap().get(openRecipeInputData.getRecipeID());
-            openRecipeDataAccessObject.save(recipe);
+            Integer recipeID = openRecipeInputData.getRecipeID();
+            String foldername = openRecipeInputData.getFoldername();
+            String username = openRecipeInputData.getUsername();
 
-            OpenRecipeOutputData openRecipeOutputData = new OpenRecipeOutputData(recipe, false);
+
+            OpenRecipeOutputData openRecipeOutputData = new OpenRecipeOutputData(recipeID, false, username, foldername);
             openRecipePresenter.prepareSuccessView(openRecipeOutputData);
         }
     }

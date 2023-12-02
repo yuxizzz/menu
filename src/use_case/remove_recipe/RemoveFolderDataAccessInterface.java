@@ -5,14 +5,12 @@ import entity.recipe.UserRecipe;
 
 public interface RemoveFolderDataAccessInterface {
 
-    boolean existsByName(Integer identifier);
+    boolean existsByRecipeID(Integer identifier, String username);
 
 
 
 
 
-
-
-
-    CommonRecipe removeRecipe(Integer removedRecipeID);
+    CommonRecipe removeRecipe(Integer removedRecipeID,
+                              String username, String foldername);
 }

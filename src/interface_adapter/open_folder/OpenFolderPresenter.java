@@ -5,6 +5,8 @@ import interface_adapter.ViewManagerModel;
 import interface_adapter.default_opened_folder.DefaultOpenedFolderState;
 import interface_adapter.default_opened_folder.DefaultOpenedFolderViewModel;
 import interface_adapter.delete_folder.DeleteFolderViewModel;
+import interface_adapter.delete_userRecipe.DeleteRecipeState;
+import interface_adapter.delete_userRecipe.DeleteRecipeViewModel;
 import interface_adapter.get_recipe.GetRecipeViewModel;
 import interface_adapter.logged_in.LoggedInState;
 import interface_adapter.open_recipe.OpenRecipeState;
@@ -31,6 +33,8 @@ public class OpenFolderPresenter implements OpenFolderOutputBoundary {
     private final DefaultOpenedFolderViewModel defaultOpenedFolderViewModel;
     private RemoveViewModel removeViewModel;
 
+    private DeleteRecipeViewModel deleteRecipeViewModel;
+
 
     public OpenFolderPresenter(ViewManagerModel viewManagerModel,
                                OpenFolderViewModel openFolderViewModel,
@@ -38,7 +42,8 @@ public class OpenFolderPresenter implements OpenFolderOutputBoundary {
                                UploadRecipeViewModel uploadRecipeViewModel,
                                DefaultOpenedFolderViewModel defaultOpenedFolderViewModel,
                                OpenRecipeViewModel openRecipeViewModel,
-                               RemoveViewModel removeViewModel) {
+                               RemoveViewModel removeViewModel,
+                               DeleteRecipeViewModel deleteRecipeViewModel) {
         this.viewManagerModel = viewManagerModel;
         this.openFolderViewModel = openFolderViewModel;
         this.openRecipeViewModel = openRecipeViewModel;
@@ -46,6 +51,7 @@ public class OpenFolderPresenter implements OpenFolderOutputBoundary {
         this.uploadRecipeViewModel = uploadRecipeViewModel;
         this.defaultOpenedFolderViewModel = defaultOpenedFolderViewModel;
         this.removeViewModel = removeViewModel;
+        this.deleteRecipeViewModel = deleteRecipeViewModel;
 
     }
 
@@ -65,6 +71,16 @@ public class OpenFolderPresenter implements OpenFolderOutputBoundary {
         this.uploadRecipeViewModel.setState(uploadRecipeState);
         this.uploadRecipeViewModel.firePropertyChanged();
 
+
+
+
+        DeleteRecipeState deleteRecipeState = deleteRecipeViewModel.getState();
+        deleteRecipeState.setUsername(response.getUsername());
+        this.deleteRecipeViewModel.setState(deleteRecipeState);
+        this.deleteRecipeViewModel.firePropertyChanged();
+
+
+
         DefaultOpenedFolderState defaultOpenedFolderState = defaultOpenedFolderViewModel.getState();
 //        defaultOpenedFolderState.setUsername(response.getUsername());
         this.defaultOpenedFolderViewModel.setState(defaultOpenedFolderState);
@@ -72,11 +88,13 @@ public class OpenFolderPresenter implements OpenFolderOutputBoundary {
 
         RemoveState removeState = removeViewModel.getState();
         removeState.setUsername(response.getUsername());
+        removeState.setFoldername(response.getFoldername());
         this.removeViewModel.setState(removeState);
         this.removeViewModel.firePropertyChanged();
 
         OpenRecipeState openRecipeState = openRecipeViewModel.getState();
         openRecipeState.setUsername(response.getUsername());
+        openRecipeState.setFoldername(response.getFoldername());
         this.openRecipeViewModel.setState(openRecipeState);
         this.openRecipeViewModel.firePropertyChanged();
 
