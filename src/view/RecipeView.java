@@ -118,6 +118,7 @@ public class RecipeView extends JPanel implements ActionListener, PropertyChange
         );
         this.add(title);
         this.add(buttons);
+        this.add(label);
         this.setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
 
     }
