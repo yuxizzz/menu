@@ -36,6 +36,9 @@ public class GetRecipePresenter implements GetRecipeOutputBoundary {
         this.getRecipeViewModel.setState(getRecipeState);
         getRecipeViewModel.firePropertyChanged();
 
+        this.collectRecipeViewModel.setState(collectRecipeState);
+        collectRecipeViewModel.firePropertyChanged();
+
         viewManagerModel.setActiveView(getRecipeViewModel.getViewName());
         viewManagerModel.firePropertyChanged();
     }
