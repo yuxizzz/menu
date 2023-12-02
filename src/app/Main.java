@@ -82,11 +82,20 @@ public class Main {
         LogoutViewModel logoutViewModel = new LogoutViewModel();
 
 
+
+        // TODO already created
+//        FileUserDataAccessObject userDataAccessObject;
+//        try {
+//            userDataAccessObject = new FileUserDataAccessObject("./users.csv", new CommonUserFactory());
+//        } catch (IOException e) {
+//            throw new RuntimeException(e);
+//        }
+
         // TODO CSV PATH
 
         FileRecipeDataAccessObject recipeDataAccessObject;
         try {
-            recipeDataAccessObject = new FileRecipeDataAccessObject("./users.csv",
+            recipeDataAccessObject = new FileRecipeDataAccessObject("./recipe.csv",
                     new CommonRecipeFactory());
         } catch (IOException e) {
             throw new RuntimeException(e);
@@ -94,28 +103,22 @@ public class Main {
 
 
         // TODO CSV PATH
-        FileFolderDataAccessObject myFolderDataAccessObject;
+        FileFolderDataAccessObject folderDataAccessObject;
         try {
-            myFolderDataAccessObject = new FileFolderDataAccessObject("./users.csv",
+            folderDataAccessObject = new FileFolderDataAccessObject("./folder.csv",
                     new CommonFolderFactory(), recipeDataAccessObject, userDataAccessObject);
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
 
-        // TODO CSV PATH
-        FileUserDataAccessObject logoutDataAccessObject;
-        try {
-            logoutDataAccessObject = new FileUserDataAccessObject("./users.csv", new CommonUserFactory());
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
 
         GetRecipeViewModel getRecipeViewModel = new GetRecipeViewModel();
 
+        //TODO: userDataAccessObject what to do
         LoggedInView loggedInView = LoggedinUseCaseFactory.create(viewManagerModel, loggedInViewModel,
                 searchedViewModel, getRecipeViewModel, searchViewModel, searchUserDataAccessObject, openedFolderViewModel,
-                myFolderViewModel, myFolderDataAccessObject, loginViewModel, logoutViewModel,
-                (LogoutDataAccessInterface) logoutDataAccessObject);
+                myFolderViewModel, folderDataAccessObject, loginViewModel, logoutViewModel,
+                userDataAccessObject);
         views.add(loggedInView, loggedInView.viewName);
 
 //        MyFolderView myFolderView = MY

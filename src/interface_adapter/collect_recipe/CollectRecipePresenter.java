@@ -12,8 +12,8 @@ public class CollectRecipePresenter implements CollectRecipeOutputBoundary {
     private final AddRecipeToFolderViewModel addRecipeToFolderViewModel;
     private ViewManagerModel viewManagerModel;
 
-    public CollectRecipePresenter(CollectRecipeViewModel collectRecipeViewModel, AddRecipeToFolderViewModel addRecipeToFolderViewModel) {
-
+    public CollectRecipePresenter(ViewManagerModel viewManagerModel, CollectRecipeViewModel collectRecipeViewModel, AddRecipeToFolderViewModel addRecipeToFolderViewModel) {
+        this.viewManagerModel = viewManagerModel;
         this.collectRecipeViewModel = collectRecipeViewModel;
         this.addRecipeToFolderViewModel = addRecipeToFolderViewModel;
     }
