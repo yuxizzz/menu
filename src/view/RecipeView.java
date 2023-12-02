@@ -79,9 +79,9 @@ public class RecipeView extends JPanel implements ActionListener, PropertyChange
     public void propertyChange(PropertyChangeEvent evt) {
         if (evt.getNewValue() instanceof GetRecipeState) {
             GetRecipeState state = (GetRecipeState) evt.getNewValue();
-            if (state.getRecipeError() != null) {
-                JOptionPane.showMessageDialog(this, state.getRecipeError());
-            }
+//            if (state.getRecipeError() != null) {
+//                JOptionPane.showMessageDialog(this, state.getRecipeError());
+//            }
         }
         else if (evt.getNewValue() instanceof CollectRecipeState) {
             CollectRecipeState state = (CollectRecipeState) evt.getNewValue();
