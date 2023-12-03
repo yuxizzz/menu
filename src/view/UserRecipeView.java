@@ -1,11 +1,15 @@
 package view;
 
 import interface_adapter.collect_recipe.CollectRecipeController;
+import interface_adapter.collect_recipe.CollectRecipeState;
 import interface_adapter.collect_recipe.CollectRecipeViewModel;
 import interface_adapter.edit_recipe.EditRecipeController;
+import interface_adapter.edit_recipe.EditRecipeState;
 import interface_adapter.edit_recipe.EditRecipeViewModel;
+import interface_adapter.get_recipe.GetRecipeState;
 import interface_adapter.get_recipe.GetRecipeViewModel;
 import interface_adapter.open_recipe.OpenRecipeController;
+import interface_adapter.open_recipe.OpenRecipeState;
 import interface_adapter.open_recipe.OpenRecipeViewModel;
 
 import javax.imageio.ImageIO;
@@ -18,7 +22,6 @@ import java.beans.PropertyChangeListener;
 import java.io.IOException;
 import java.net.URL;
 
-//TODO: to do open recipe
 
 public class UserRecipeView extends JPanel implements ActionListener, PropertyChangeListener {
     public final String viewName = "open user recipe";
@@ -45,8 +48,6 @@ public class UserRecipeView extends JPanel implements ActionListener, PropertyCh
 
     public UserRecipeView(OpenRecipeViewModel openRecipeViewModel,
                           OpenRecipeController openRecipeController,
-                          JButton edit, JButton delete, JButton upload,
-                          String recipename, Integer recipeID,
                           CollectRecipeViewModel collectViewModel,
                           CollectRecipeController collectRecipeController,
                           EditRecipeViewModel editRecipeViewModel,
@@ -68,32 +69,46 @@ public class UserRecipeView extends JPanel implements ActionListener, PropertyCh
         buttons.add(edit);
 
 
+//        delete.addActionListener(this
 
-        JPanel buttons = new JPanel();
-        delete = new JButton(OpenRecipeViewModel.DELETERecipe_BUTTON_LABEL);
-        edit = new JButton(OpenRecipeViewModel.EDITRecipe_BUTTON_LABEL);
-        upload = new JButton(OpenRecipeViewModel.UPLOADRecipe_BUTTON_LABEL);
-        buttons.add(delete);
-        buttons.add(edit);
-        buttons.add(upload);
+//        );
 
-        delete.addActionListener(this
-        //TODO: DELETE button to be implemented
+        edit.addActionListener(
+                // This creates an anonymous subclass of ActionListener and instantiates it.
+                new ActionListener() {
+                    public void actionPerformed(ActionEvent evt) {
+                        if (evt.getSource().equals(edit)) {
+//                            EditRecipeState currentState = editRecipeViewModel.getState();
+//
+//                            editRecipeController.execute(
+//                                  );
+                        }
+                    }
+                });
+
+        collect.addActionListener(
+
+                // This creates an anonymous subclass of ActionListener and instantiates it.
+                new ActionListener() {
+                    public void actionPerformed(ActionEvent evt) {
+                        if (evt.getSource().equals(collect)) {
+                            CollectRecipeState currentState = collectViewModel.getState();
+                            collectRecipeController.execute(currentState.getRecipeID(), currentState.getUsername());
+                        }
+                    }
+                }
         );
-        edit.addActionListener(this
-        //TODO: EDIT button to be implemented
-        );
 
-        upload.addActionListener(this
+//        upload.addActionListener(this
+//
 
-                //TODO:UPLOAD button to be implemented
-           );
+//           );
 
 
         /**
          * set information of recipe and image (url)
          */
-//        JLabel label = new JLabel();
+
         String recipeName = this.openRecipeViewModel.getState().getRecipename();
         String ingredients = this.openRecipeViewModel.getState().getIngredients();
         String nutrition = this.openRecipeViewModel.getState().getNutrition();
@@ -114,7 +129,6 @@ public class UserRecipeView extends JPanel implements ActionListener, PropertyCh
          */
         JLabel label = new JLabel(new ImageIcon(image));
 
-//        label.setText(recipeName);
 
         label.setBounds(150, 250, 150, 150);
         label.setVisible(true);
@@ -143,8 +157,7 @@ public class UserRecipeView extends JPanel implements ActionListener, PropertyCh
         // set horizontal position of icon+text within label
         label.setBounds(100, 10, 250, 250);
 
-// set text
-
+// set text (*3)
         JLabel label1 = new JLabel(ingredients);
         label1.setVisible(true);
 //        label1.setBackground(Color.red);
@@ -184,6 +197,14 @@ public class UserRecipeView extends JPanel implements ActionListener, PropertyCh
         // set horizontal position of icon+text within label
         label3.setBounds(350, 260, 250, 250);
 
+        this.add(title);
+        this.add(buttons);
+        this.add(label);
+        this.add(label1);
+        this.add(label2);
+        this.add(label3);
+        this.setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
+
     }
 
 
@@ -191,11 +212,35 @@ public class UserRecipeView extends JPanel implements ActionListener, PropertyCh
 
     @Override
     public void actionPerformed(ActionEvent e) {
-
+        JOptionPane.showConfirmDialog(this, "Try again");
     }
 
+    /**
+     * This method gets called when a bound property is changed.
+     *
+     * @param evt A PropertyChangeEvent object describing the event source
+     *            and the property that has changed.
+     */
     @Override
     public void propertyChange(PropertyChangeEvent evt) {
+        if (evt.getNewValue() instanceof OpenRecipeState) {
+            OpenRecipeState state1 = (OpenRecipeState) evt.getNewValue();
+            if (state1.getRecipenameError() != null) {
+                JOptionPane.showMessageDialog(this, state1.getRecipenameError());
+            }
 
+        }
+        else if (evt.getNewValue() instanceof CollectRecipeState) {
+            CollectRecipeState state2 = (CollectRecipeState) evt.getNewValue();
+            if (state2.getCollectSuccessMsg() != null) {
+                JOptionPane.showMessageDialog(this, state2.getCollectSuccessMsg());
+            }
+        }
+        else if (evt.getNewValue() instanceof EditRecipeState) {
+            EditRecipeState state = (EditRecipeState) evt.getNewValue();
+            if (state.getRecipenameError() != null) {
+                JOptionPane.showMessageDialog(this, state.getRecipenameError());
+            }
+        }
     }
 }
