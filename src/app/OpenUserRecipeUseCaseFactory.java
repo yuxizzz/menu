@@ -2,6 +2,7 @@ package app;
 
 import entity.recipe.CommonRecipeFactory;
 import entity.recipe.RecipeFactory;
+import entity.recipe.UserRecipeFactory;
 import interface_adapter.ViewManagerModel;
 import interface_adapter.add_recipe_to_folder.AddRecipeToFolderViewModel;
 import interface_adapter.collect_recipe.CollectRecipeController;
@@ -18,7 +19,7 @@ import use_case.collect_recipe.CollectRecipeDataAccessInterface;
 import use_case.collect_recipe.CollectRecipeInputBoundary;
 import use_case.collect_recipe.CollectRecipeInteractor;
 import use_case.collect_recipe.CollectRecipeOutputBoundary;
-import use_case.edit_recipe.EditOutputBoundary;
+import use_case.edit_recipe.*;
 import use_case.open_recipe.OpenRecipeDataAccessInterface;
 import use_case.open_recipe.OpenRecipeInputBoundary;
 import use_case.open_recipe.OpenRecipeInteractor;
@@ -85,8 +86,13 @@ public class OpenUserRecipeUseCaseFactory {
         return new CollectRecipeController(collectRecipeInteractor);
     }
     private static EditRecipeController createEditRecipeController(EditRecipeViewModel editRecipeViewModel,
-                                                                   ViewManagerModel viewManagerModel) {
+                                                                   ViewManagerModel viewManagerModel,
+                                                                   EditDataAccessInterface editDataAccessInterface,
+                                                                   UserRecipeFactory userRecipeFactory) {
         EditOutputBoundary editOutputBoundary = new EditRecipePresenter(editRecipeViewModel, viewManagerModel);
+
+        EditInputBoundary editInteractor = new EditInteractor(editDataAccessInterface, editOutputBoundary, userRecipeFactory);
+        return new EditRecipeController(editInteractor);
     }
 }
 
