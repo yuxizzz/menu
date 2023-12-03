@@ -33,7 +33,12 @@ public class CreateFolderPresenter implements CreateFolderOutputBoundary {
         this.myFolderViewModel.setState(myFolderState);
         myFolderViewModel.firePropertyChanged();
 
-        viewManagerModel.setActiveView(createFolderViewModel.getViewName());
+        if (createFolderState.getFoldername().equals("")) {
+            viewManagerModel.setActiveView(createFolderViewModel.getViewName());
+        } else {
+            viewManagerModel.setActiveView(myFolderViewModel.getViewName());
+        }
+//        viewManagerModel.setActiveView(createFolderViewModel.getViewName());
         viewManagerModel.firePropertyChanged();
     }
 

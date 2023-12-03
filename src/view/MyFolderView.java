@@ -194,7 +194,9 @@ public class MyFolderView extends JPanel implements ActionListener, PropertyChan
         } else if (evt.getNewValue() instanceof MyFolderState) {
             MyFolderState state = (MyFolderState) evt.getNewValue();
             foldernames = state.getFoldernames();
+        } else if (evt.getNewValue() instanceof CreateFolderState) {
+            CreateFolderState state = (CreateFolderState) evt.getNewValue();
+            foldernames.add(state.getFoldername());
         }
     }
 }
-
