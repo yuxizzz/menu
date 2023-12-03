@@ -39,6 +39,7 @@ public class MyFolderPresenter implements MyFolderOutputBoundary {
             // On success, switch to the
 
             MyFolderState myFolderState = myFolderViewModel.getState();
+            myFolderState.setUsername(response.getUserName());
             myFolderState.setFoldernames(response.getFoldernames());
             this.myFolderViewModel.setState(myFolderState);
             this.myFolderViewModel.firePropertyChanged();
@@ -47,17 +48,17 @@ public class MyFolderPresenter implements MyFolderOutputBoundary {
             OpenFolderState openFolderState = openFolderViewModel.getState();
             openFolderState.setUsername(myFolderState.getUsername());
             this.openFolderViewModel.setState(openFolderState);
-            this.openFolderViewModel.firePropertyChanged();
+//            this.openFolderViewModel.firePropertyChanged();
 
             DeleteFolderState deleteFolderState = deleteFolderViewModel.getState();
             deleteFolderState.setUsername(myFolderState.getUsername());
             this.deleteFolderViewModel.setState(deleteFolderState);
-            this.deleteFolderViewModel.firePropertyChanged();
+//            this.deleteFolderViewModel.firePropertyChanged();
 
             CreateFolderState createFolderState = createFolderViewModel.getState();
             createFolderState.setUsername(myFolderState.getUsername());
             this.createFolderViewModel.setState(createFolderState);
-            this.createFolderViewModel.firePropertyChanged();
+//            this.createFolderViewModel.firePropertyChanged();
 
             this.viewManagerModel.setActiveView(myFolderViewModel.getViewName());
             this.viewManagerModel.firePropertyChanged();

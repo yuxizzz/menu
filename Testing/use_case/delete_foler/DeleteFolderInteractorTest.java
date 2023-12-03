@@ -1,8 +1,9 @@
-package use_case.delete_folder;
+package use_case.delete_foler;
 
 import data_access.InMemoryFolderDataAccessObject;
 import data_access.InMemoryUserDataAccessObject;
 import org.junit.jupiter.api.Test;
+import use_case.delete_folder.*;
 
 import static org.junit.Assert.assertEquals;
 
@@ -19,7 +20,7 @@ class DeleteFolderInteractorTest {
 
             @Override
             public void prepareSuccessView(DeleteFolderOutputData message) {
-                assertEquals(message.getFolderDeleted(), "B is removed");
+                assertEquals(message.getFolderDeleted(), "Folder1 is removed");
             }
         };
         DeleteFolderInputBoundary interactor = new DeleteFolderInteractor(folderRepository, successPresenter);

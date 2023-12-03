@@ -6,25 +6,18 @@ import interface_adapter.create_folder.CreateFolderViewModel;
 import interface_adapter.delete_folder.DeleteFolderController;
 import interface_adapter.delete_folder.DeleteFolderState;
 import interface_adapter.delete_folder.DeleteFolderViewModel;
-import interface_adapter.logout.LogoutState;
 import interface_adapter.logout.LogoutViewModel;
 import interface_adapter.my_folder.MyFolderState;
 import interface_adapter.my_folder.MyFolderViewModel;
 import interface_adapter.open_folder.OpenFolderController;
 import interface_adapter.open_folder.OpenFolderState;
 import interface_adapter.open_folder.OpenFolderViewModel;
-import interface_adapter.remove_recipe.RemoveState;
-import interface_adapter.signup.SignupState;
-
-import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
-import java.io.IOException;
-import java.net.URL;
 import java.util.ArrayList;
 
 public class MyFolderView extends JPanel implements ActionListener, PropertyChangeListener {
@@ -41,11 +34,12 @@ public class MyFolderView extends JPanel implements ActionListener, PropertyChan
     private final CreateFolderController createFolderController;
 
     JLabel username;
-    final JButton openFolder;
-    final JButton deleteFolder;
-    final JButton createFolder;
+    ArrayList<JLabel> folderlists;
+
+    JButton openFolder;
+    JButton deleteFolder;
+    JButton createFolder;
 //    final JButton logOut;
-    private ArrayList<String> foldernames;
 
 
     /**
@@ -59,23 +53,14 @@ public class MyFolderView extends JPanel implements ActionListener, PropertyChan
                         DeleteFolderController deleteFolderController,
                         CreateFolderViewModel createFolderViewModel,
                         CreateFolderController createFolderController) {
-        this.myFolderViewModel = myFolderViewModel;
-        this.logoutViewModel = logoutViewModel;
-        this.openFolderViewModel = openFolderViewModel;
-        this.openFolderController = openFolderController;
-        this.deleteFolderViewModel = deleteFolderViewModel;
-        this.deleteFolderController = deleteFolderController;
-        this.createFolderViewModel = createFolderViewModel;
-        this.createFolderController = createFolderController;
-        this.myFolderViewModel.addPropertyChangeListener(this);
-        this.logoutViewModel.addPropertyChangeListener(this);
-        this.deleteFolderViewModel.addPropertyChangeListener(this);
 
         JLabel title = new JLabel("My Folder Screen");
         title.setAlignmentX(Component.CENTER_ALIGNMENT);
 
         JLabel usernameInfo = new JLabel("Username: ");
-        username = new JLabel();
+        JLabel username = new JLabel();
+        this.username = username;
+
 
 
 //        JButton logOut = new JButton(myFolderViewModel.LOGOUT_BUTTON_LABEL);
@@ -87,15 +72,38 @@ public class MyFolderView extends JPanel implements ActionListener, PropertyChan
         this.deleteFolder = deleteFolder;
         this.createFolder = createFolder;
 
+        this.myFolderViewModel = myFolderViewModel;
+        this.logoutViewModel = logoutViewModel;
+        this.openFolderViewModel = openFolderViewModel;
+        this.openFolderController = openFolderController;
+        this.deleteFolderViewModel = deleteFolderViewModel;
+        this.deleteFolderController = deleteFolderController;
+        this.createFolderViewModel = createFolderViewModel;
+        this.createFolderController = createFolderController;
 
+        this.myFolderViewModel.addPropertyChangeListener(this);
+        this.logoutViewModel.addPropertyChangeListener(this);
+        this.deleteFolderViewModel.addPropertyChangeListener(this);
+        this.createFolderViewModel.addPropertyChangeListener(this);
+
+        ArrayList<JLabel> folderlists = new ArrayList<>();
+        this.folderlists = folderlists;
+
+
+//        JButton logOut = new JButton(myFolderViewModel.LOGOUT_BUTTON_LABEL);
+//
+//
 //        this.logOut = logOut;
+//
+//        ArrayList<String> folderList = myFolderViewModel.getFolderList();
+//        this.foldernames = folderList;
+//        JPanel buttons = new JPanel();
 
-        ArrayList<String> folderList = myFolderViewModel.getFolderList();
-        this.foldernames = folderList;
+        JPanel buttons = new JPanel();
         Integer count = 0;
-        for (String item : foldernames) {
-            this.myFolderViewModel.addPropertyChangeListener(this);
-            JPanel buttons = new JPanel();
+        for (JLabel foldername : folderlists) {
+//            this.myFolderViewModel.addPropertyChangeListener(this);
+
             buttons.add(openFolder);
             buttons.add(deleteFolder);
             openFolder.setBounds(600, 10 + count, 100, 40);
@@ -112,8 +120,7 @@ public class MyFolderView extends JPanel implements ActionListener, PropertyChan
                         public void actionPerformed(ActionEvent evt) {
                             if (evt.getSource().equals(openFolder)) {
                                 OpenFolderState currentState = openFolderViewModel.getState();
-
-                                openFolderController.execute(currentState.getFoldername(), currentState.getUsername());
+                                openFolderController.execute(foldername.getText(), currentState.getUsername());
                             }
                         }
                     }
@@ -126,15 +133,15 @@ public class MyFolderView extends JPanel implements ActionListener, PropertyChan
                             if (e.getSource().equals(deleteFolder)) {
 
                                 DeleteFolderState currentState = deleteFolderViewModel.getState();
-                                deleteFolderController.execute(currentState.getFolderDeleted(), currentState.getUsername());
+                                deleteFolderController.execute(foldername.getText(), currentState.getUsername());
                             }
                         }
                     }
             );
 
 //        TODO need to get information in folder for recipe
-
-            // TODO add listener to each folder in my folder view. use the for loop in Opened Folder View
+//
+//             TODO add listener to each folder in my folder view. use the for loop in Opened Folder View
 
 
 //            logOut.addActionListener(
@@ -149,34 +156,32 @@ public class MyFolderView extends JPanel implements ActionListener, PropertyChan
 //                        }
 //                    });
 //            buttons.add(logOut);
-
-            this.setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
-
-            this.add(title);
-            this.add(usernameInfo);
-            this.add(username);
-            this.add(buttons);
+//            this.add(buttons);
+            this.add(foldername);
         }
-        createFolder.setBounds(600, 1000, 100, 40);
-        createFolder.addActionListener(
-                new ActionListener() {
-                    @Override
-                    public void actionPerformed(ActionEvent e) {
-                        if (e.getSource().equals(createFolder)) {
+            createFolder.setBounds(600, 1000, 100, 40);
+            createFolder.addActionListener(
+                    new ActionListener() {
+                        @Override
+                        public void actionPerformed(ActionEvent e) {
+                            if (e.getSource().equals(createFolder)) {
 
-                            CreateFolderState currentState = createFolderViewModel.getState();
-                            createFolderController.execute(currentState.getFoldername(), currentState.getUsername());
-                            // TODO check create folder state something might wrong
+                                CreateFolderState currentState = createFolderViewModel.getState();
+                                createFolderController.execute(currentState.getFoldername(), currentState.getUsername());
+                                // TODO check create folder state something might wrong
+                            }
                         }
                     }
-                }
-        );
-        JPanel buttons1 = new JPanel();
-        buttons1.add(createFolder);
-        this.add(buttons1);
-
-    }
-
+            );
+//        JPanel buttons1 = new JPanel();
+//        buttons1.add(createFolder);
+            buttons.add(createFolder);
+            this.setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
+//        this.add(buttons1);
+            this.add(buttons);
+            this.add(username);
+            this.add(title);
+        }
     /**
      * React to a button click that results in evt.
      */
@@ -193,10 +198,23 @@ public class MyFolderView extends JPanel implements ActionListener, PropertyChan
             }
         } else if (evt.getNewValue() instanceof MyFolderState) {
             MyFolderState state = (MyFolderState) evt.getNewValue();
-            foldernames = state.getFoldernames();
+            setButtons(state);
         } else if (evt.getNewValue() instanceof CreateFolderState) {
             CreateFolderState state = (CreateFolderState) evt.getNewValue();
-            foldernames.add(state.getFoldername());
+            addButton(state.getFoldername());
+        }
+    }
+
+    private void addButton(String foldername) {
+        JLabel folder = new JLabel(foldername);
+        folderlists.add(folder);
+    }
+
+    private void setButtons(MyFolderState state) {
+        username.setText(state.getUsername());
+        for (String foldername : state.getFoldernames()) {
+            JLabel folder = new JLabel(foldername);
+            folderlists.add(folder);
         }
     }
 }
