@@ -44,11 +44,8 @@ public class OpenFolderState {
     public void setRecipeMap(HashMap<Integer, ArrayList> RecipeMap) {
         this.recipeMap = recipeMap;
     }
-    public static OpenFolderState getState() {
-        return state;
-    }
 
-    public HashMap<Integer, ArrayList> getRecipeMap() {
-        return state.getRecipeMap();
+    public HashMap<Integer, ArrayList> getRecipeMap(){
+        return recipeMap;
     }
 }

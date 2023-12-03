@@ -11,16 +11,14 @@ import use_case.collect_recipe.CollectRecipeDataAccessInterface;
 import use_case.create_folder.CreateFolderDataAccessInterface;
 import use_case.delete_folder.DeleteFolderUserDataAccessInterface;
 import use_case.delete_userRecipe.DeleteRecipeDataAccessInterface;
-import use_case.my_folder.MyFolderDataAccessInterface;
 import use_case.open_folder.OpenFolderDataAccessInterface;
-import use_case.remove_recipe.RemoveFolderDataAccessInterface;
 
 import java.io.*;
 import java.util.*;
 
 //TODO recipeDAO & folderDAO
 public class FileFolderDataAccessObject implements  DeleteFolderUserDataAccessInterface, DeleteRecipeDataAccessInterface,
-        RemoveFolderDataAccessInterface, OpenFolderDataAccessInterface, AddRecipeToFolderDataAccessInterface, CollectRecipeDataAccessInterface, CreateFolderDataAccessInterface {
+        OpenFolderDataAccessInterface, AddRecipeToFolderDataAccessInterface, CollectRecipeDataAccessInterface, CreateFolderDataAccessInterface {
 
     private final File csvFile;
 
