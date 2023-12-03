@@ -1,6 +1,5 @@
 package data_access;
 import entity.folder.Folder;
-import entity.recipe.Recipe;
 import entity.user.User;
 import entity.user.UserFactory;
 import use_case.delete_folder.DeleteFolderUserDataAccessInterface;
@@ -10,7 +9,6 @@ import use_case.logout.LogoutDataAccessInterface;
 import use_case.my_folder.MyFolderDataAccessInterface;
 import use_case.signup.SignupUserDataAccessInterface;
 import use_case.clear_users.ClearUserDataAccessInterface;
-import use_case.upload_recipe.UploadDataAccessInterface;
 
 import java.io.*;
 import java.time.LocalDateTime;
@@ -92,9 +90,15 @@ public class FileUserDataAccessObject implements SignupUserDataAccessInterface, 
             writer.write(String.join(",", headers.keySet()));
             writer.newLine();
 
+// use for-loop to find all names of folders
+// write folder names in csvFile
             for (User user : accounts.values()) {
-                String line = String.format("%s,%s,%s",
-                        user.getName(), user.getPassword(), user.getCreationTime());
+                ArrayList<String> folderNames = new ArrayList<>();
+                for (Folder folder : user.getUserFolders()) {
+                    folderNames.add(folder.getName());
+                }
+                String line = String.format("%s,%s,%s,%s",
+                        user.getName(), user.getPassword(), user.getCreationTime(), folderNames);
                 writer.write(line);
                 writer.newLine();
             }
@@ -116,13 +120,47 @@ public class FileUserDataAccessObject implements SignupUserDataAccessInterface, 
         return accounts.containsKey(identifier);
     }
 
+
+    @Override
+    public boolean existsByFolder(String identifier, String username) {
+        User user = accounts.get(username);
+        ArrayList<Folder> folders = user.getUserFolders();
+        for (Folder folder : folders) {
+            if (identifier.equals(folder.getName())) {
+                return true;
+            }
+        }
+        return false;
+    }
+
     @Override
     public void save(Folder folder, String username) {
         User user = accounts.get(username);
         user.addFolder(folder);
 //        folders.put(folder.getName(), folder);
-//        saveToCSV();
+        save();
     }
+
+//    private void saveToCSV() {
+//        BufferedWriter writer;
+//        try {
+//            writer = new BufferedWriter(new FileWriter(csvFile));
+//            writer.write(String.join(",", headers.keySet()));
+//            writer.newLine();
+//
+//            for (Folder f : folders.values()) {
+//                String line = String.format("%s,%s,%s",
+//                        f.getName(), f.getRecipeMap().keySet());
+//                recipeDataAccessObject.saveFolderRecipes(f.getRecipeMap());
+//                writer.write(line);
+//                writer.newLine();
+//            }
+//            writer.close();
+//
+//        } catch (IOException e) {
+//            throw new RuntimeException(e);
+//        }
+//    }
 
     @Override
     public ArrayList<String> clearAllUser() {
