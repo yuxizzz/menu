@@ -73,12 +73,10 @@ public class OpenFolderPresenter implements OpenFolderOutputBoundary {
 
 
 
-
         DeleteRecipeState deleteRecipeState = deleteRecipeViewModel.getState();
         deleteRecipeState.setUsername(response.getUsername());
         this.deleteRecipeViewModel.setState(deleteRecipeState);
         this.deleteRecipeViewModel.firePropertyChanged();
-
 
 
         DefaultOpenedFolderState defaultOpenedFolderState = defaultOpenedFolderViewModel.getState();
