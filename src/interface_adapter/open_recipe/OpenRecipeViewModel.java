@@ -13,11 +13,11 @@ import java.beans.PropertyChangeSupport;
 
 public class OpenRecipeViewModel extends ViewModel {
 
-    public final String TITLE_LABEL = "Open Recipe View";
+    public static final String TITLE_LABEL = "Open Recipe View";
 
-    public static final String COLLECTRecipe_BUTTON_LABEL = "Collect";
+    public static final String COLLECT_BUTTON_LABEL = "Collect";
 
-    public static final String EDITRecipe_BUTTON_LABEL = "Edit";
+    public static final String EDIT_BUTTON_LABEL = "Edit";
 
 
     private String openedRecipe;
