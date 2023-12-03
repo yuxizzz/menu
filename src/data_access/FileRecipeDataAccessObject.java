@@ -7,6 +7,8 @@ import entity.recipe.UserRecipe;
 import entity.user.User;
 import use_case.delete_userRecipe.DeleteRecipeDataAccessInterface;
 import use_case.edit_recipe.EditDataAccessInterface;
+import use_case.get_recipe.GetRecipeDataAccessInterface;
+import use_case.open_recipe.OpenRecipeDataAccessInterface;
 import use_case.upload_recipe.UploadDataAccessInterface;
 
 import java.io.*;
@@ -17,7 +19,8 @@ import java.util.*;
  * The DataAccessObject class for Recipe objects, where they are stored in csv file. The usecases
  * can get access to the Recipe objects data through the DAO.
  */
-public class FileRecipeDataAccessObject implements UploadDataAccessInterface, EditDataAccessInterface {
+public class FileRecipeDataAccessObject implements UploadDataAccessInterface, EditDataAccessInterface,
+        GetRecipeDataAccessInterface, OpenRecipeDataAccessInterface {
 
     private final File csvFile;
 
@@ -103,8 +106,6 @@ public class FileRecipeDataAccessObject implements UploadDataAccessInterface, Ed
         }
     }
 
-
-
     /**
      * @param recipeID
      * @return
@@ -117,12 +118,11 @@ public class FileRecipeDataAccessObject implements UploadDataAccessInterface, Ed
         return recipeList.containsKey(recipeID);
     }
 
-
-
-
-
-
-
+    @Override
+    public void save(Recipe recipe) {
+        Integer recipeID = recipe.getRecipeID();
+        recipeList.put(recipeID, recipe);
+    }
 
     public UserRecipe deleteRecipe(Integer deletedRecipeID){
 
@@ -174,6 +174,4 @@ public class FileRecipeDataAccessObject implements UploadDataAccessInterface, Ed
         HashMap<Integer, Recipe> recipes = folders.get(0).getRecipeMap();
         return recipes.containsKey(recipeID);
     }
-
-
 }
