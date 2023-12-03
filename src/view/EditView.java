@@ -44,7 +44,7 @@ public class EditView extends JPanel implements ActionListener, PropertyChangeLi
 
 
 
-    private final JButton cancel;
+//    private final JButton cancel;
 
     public EditView(EditRecipeViewModel editRecipeViewModel, EditRecipeController
             editRecipeController) {
@@ -85,8 +85,8 @@ public class EditView extends JPanel implements ActionListener, PropertyChangeLi
         JPanel buttons = new JPanel();
         this.edit = new JButton(EditRecipeViewModel.EDIT_BUTTON_LABEL);
         buttons.add(edit);
-        this.cancel = new JButton(EditRecipeViewModel.CANCEL_BUTTON_LABEL);
-        buttons.add(cancel);
+//        this.cancel = new JButton(EditRecipeViewModel.CANCEL_BUTTON_LABEL);
+//        buttons.add(cancel);
 
 
 
@@ -103,13 +103,11 @@ public class EditView extends JPanel implements ActionListener, PropertyChangeLi
                                     currentState.getRecipeID(),
                                     currentState.getRecipename(),
                                     currentState.getIngredients(),
-
                                     currentState.getNutrition(),
                                     currentState.getInstructions(),
                                     currentState.getImage(),
-                                    currentState.getRecipeurl()
-
-
+                                    currentState.getRecipeurl(),
+                                    currentState.getUsername()
 
                             );
                         }
@@ -117,7 +115,7 @@ public class EditView extends JPanel implements ActionListener, PropertyChangeLi
                 }
         );
 
-        cancel.addActionListener(this);
+//        cancel.addActionListener(this);
 
 
 
