@@ -14,7 +14,7 @@ import java.io.IOException;
 
 public class CreateFolderUseCaseFactory {
     private CreateFolderUseCaseFactory() {}
-    public static CreateFolderView creat(
+    public static CreateFolderView create(
             ViewManagerModel viewManagerModel,
             CreateFolderViewModel createFolderViewModel,
             CreateFolderDataAccessInterface createFolderDataAccessInterface,
