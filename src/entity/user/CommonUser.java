@@ -16,10 +16,9 @@ class CommonUser implements User {
     private DefaultFolder defaultFolder;
 
 
-
-
     /**
      * Requires: password is valid.
+     *
      * @param name
      * @param password
      */
@@ -47,7 +46,9 @@ class CommonUser implements User {
         return userFolders;
     }
 
-    public DefaultFolder getDefaultFolder(){return defaultFolder;}
+    public DefaultFolder getDefaultFolder() {
+        return defaultFolder;
+    }
 
     @Override
     public LocalDateTime getCreationTime() {
@@ -57,13 +58,15 @@ class CommonUser implements User {
     @Override
     public void removeFolder(String folderName) {
         Folder folder = null;
-        for (Folder f: userFolders) {
+        for (Folder f : userFolders) {
             if (f.getName() == folderName) {
                 folder = f;
             }
         }
         userFolders.remove(folder);
-  
+
+    }
+
     @Override
     public void addFolder(Folder folder) {
         userFolders.add(folder);

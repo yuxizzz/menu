@@ -3,6 +3,8 @@ package view;
 import interface_adapter.search.SearchController;
 import interface_adapter.search.SearchState;
 import interface_adapter.search.SearchViewModel;
+import interface_adapter.searched.SearchedState;
+import interface_adapter.searched.SearchedViewModel;
 
 import javax.swing.*;
 import java.awt.*;
@@ -17,19 +19,20 @@ public class SearchView extends JPanel implements ActionListener, PropertyChange
 
     public final String viewName = "search recipes";
     private final SearchViewModel searchViewModel;
-    final JTextField ingredientsInputField = new JTextField();
-    final JTextField tagInputField = new JTextField();
+    final JTextField ingredientsInputField = new JTextField(15);
+    final JTextField tagInputField = new JTextField(15);
     private final JLabel tagErrorField = new JLabel();
 
     private final JLabel ingredientsErrorField = new JLabel();
     final JButton search;
 //    final JButton cancel;
 
-    final JButton myFolder;
+//    final JButton myFolder;
 
     private final SearchController searchController;
 
-    public SearchView(SearchViewModel searchViewModel, SearchController searchController) {
+    public SearchView(SearchViewModel searchViewModel,
+                      SearchController searchController) {
 
         this.searchController = searchController;
         this.searchViewModel = searchViewModel;
@@ -46,10 +49,10 @@ public class SearchView extends JPanel implements ActionListener, PropertyChange
         JPanel buttons = new JPanel();
         search = new JButton(SearchViewModel.SEARCH_BUTTON_LABEL);
 //        cancel = new JButton(SearchViewModel.CANCEL_BUTTON_LABEL);
-        myFolder = new JButton(SearchViewModel.MYFOLDER_BUTTON_LABEL);
+//        myFolder = new JButton(SearchViewModel.MYFOLDER_BUTTON_LABEL);
         buttons.add(search);
 //        buttons.add(cancel);
-        buttons.add(myFolder);
+//        buttons.add(myFolder);
 
         search.addActionListener(                // This creates an anonymous subclass of ActionListener and instantiates it.
                 new ActionListener() {
@@ -115,6 +118,7 @@ public class SearchView extends JPanel implements ActionListener, PropertyChange
 
         this.setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
         this.add(title);
+        this.add(IngredientRecipesInfo);
         this.add(searchRecipesInfo);
         this.add(buttons);
     }

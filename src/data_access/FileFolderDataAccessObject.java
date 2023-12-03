@@ -19,7 +19,8 @@ import java.util.*;
 
 //TODO recipeDAO & folderDAO
 public class FileFolderDataAccessObject implements DeleteRecipeDataAccessInterface,
-        OpenFolderDataAccessInterface, RemoveDataAccessInterface, AddRecipeToFolderDataAccessInterface, CollectRecipeDataAccessInterface, CreateFolderDataAccessInterface {
+        OpenFolderDataAccessInterface, RemoveDataAccessInterface,
+        AddRecipeToFolderDataAccessInterface, CollectRecipeDataAccessInterface{
 
     private final File csvFile;
 

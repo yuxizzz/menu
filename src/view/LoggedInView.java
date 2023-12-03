@@ -8,6 +8,7 @@ import interface_adapter.logout.LogoutViewModel;
 import interface_adapter.my_folder.MyFolderController;
 import interface_adapter.my_folder.MyFolderState;
 //import interface_adapter.my_folder.MyFolderViewModel;
+import interface_adapter.my_folder.MyFolderViewModel;
 import interface_adapter.search.SearchController;
 import interface_adapter.search.SearchState;
 import interface_adapter.search.SearchViewModel;
@@ -26,7 +27,7 @@ public class LoggedInView extends JPanel implements ActionListener, PropertyChan
     private final LoggedInViewModel loggedInViewModel;
     private final SearchViewModel searchViewModel;
     private final SearchController searchController;
-//    private final MyFolderViewModel myFolderViewModel;
+    private final MyFolderViewModel myFolderViewModel;
     private final MyFolderController myFolderController;
 
     private final LogoutViewModel logoutViewModel;
@@ -44,14 +45,14 @@ public class LoggedInView extends JPanel implements ActionListener, PropertyChan
     public LoggedInView(LoggedInViewModel loggedInViewModel,
                         SearchViewModel searchViewModel,
                         SearchController searchController,
-//                         MyFolderViewModel myFolderViewModel,
+                         MyFolderViewModel myFolderViewModel,
                         MyFolderController myFolderController,
                         LogoutViewModel logoutViewModel,
                         LogoutController logoutController) {
         this.loggedInViewModel = loggedInViewModel;
         this.searchViewModel = searchViewModel;
         this.searchController = searchController;
-        // this.myFolderViewModel = myFolderViewModel;
+         this.myFolderViewModel = myFolderViewModel;
         this.myFolderController = myFolderController;
         this.logoutViewModel = logoutViewModel;
         this.logoutController = logoutController;
@@ -110,17 +111,17 @@ public class LoggedInView extends JPanel implements ActionListener, PropertyChan
                 }
         );
 
-//        myFolder.addActionListener(
-//                new ActionListener() {
-//                    @Override
-//                    public void actionPerformed(ActionEvent evt) {
-//                        if (evt.getSource().equals(myFolder)){
-//                            MyFolderState currentState = myFolderViewModel.getState();
-//                            myFolderController.execute(currentState.getUsername());
-//                        }
-//                    }
-//                }
-//        );
+        myFolder.addActionListener(
+                new ActionListener() {
+                    @Override
+                    public void actionPerformed(ActionEvent evt) {
+                        if (evt.getSource().equals(myFolder)){
+                            MyFolderState currentState = myFolderViewModel.getState();
+                            myFolderController.execute(currentState.getUsername());
+                        }
+                    }
+                }
+        );
 
         logOut.addActionListener(
                 new ActionListener() {

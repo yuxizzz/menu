@@ -5,7 +5,7 @@ import java.util.ArrayList;
 public class AddRecipeToFolderState {
     private String message = "";
     private String messageError = null;
-    private ArrayList<String> folderNames;
+    private ArrayList<String> folderNames = new ArrayList<>();
     private Integer recipeID;
     private String username;
 
@@ -20,6 +20,8 @@ public class AddRecipeToFolderState {
     public void setFolderNames(ArrayList<String> folders) {
         this.folderNames = folders;
     }
+
+    public ArrayList<String> getFolderNames(){return folderNames;}
 
 
     public void setRecipeID(Integer recipeID) {

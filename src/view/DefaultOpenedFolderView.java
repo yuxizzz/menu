@@ -36,16 +36,12 @@ public class DefaultOpenedFolderView extends JPanel implements ActionListener, P
 
     private final DeleteRecipeController deleteRecipeController;
 
-    private final EditRecipeViewModel editRecipeViewModel;
-
-    private final EditRecipeController editRecipeController;
     private final UploadRecipeViewModel uploadRecipeViewModel;
     private final UploadRecipeController uploadRecipeController;
 
     JLabel defaultfolder;
     final JButton delete;
     final JButton get;
-    final JButton edit;
     final JButton upload;
 
     public DefaultOpenedFolderView(DefaultOpenedFolderViewModel defaultOpenedFolderViewModel,
@@ -53,8 +49,6 @@ public class DefaultOpenedFolderView extends JPanel implements ActionListener, P
                                    OpenRecipeController openRecipeController,
                                    DeleteRecipeViewModel deleteRecipeViewModel,
                                    DeleteRecipeController deleteRecipeController,
-                                   EditRecipeViewModel editRecipeViewModel,
-                                   EditRecipeController editRecipeController,
                                    UploadRecipeViewModel uploadRecipeViewModel,
                                    UploadRecipeController uploadRecipeController) {
         this.defaultOpenedFolderViewModel = defaultOpenedFolderViewModel;
@@ -62,19 +56,15 @@ public class DefaultOpenedFolderView extends JPanel implements ActionListener, P
         this.openRecipeController = openRecipeController;
         this.deleteRecipeViewModel = deleteRecipeViewModel;
         this.deleteRecipeController = deleteRecipeController;
-        this.editRecipeViewModel = editRecipeViewModel;
-        this.editRecipeController = editRecipeController;
         this.uploadRecipeController = uploadRecipeController;
         this.uploadRecipeViewModel = uploadRecipeViewModel;
 
         JButton delete = new JButton(DefaultOpenedFolderViewModel.DELETE_BUTTON_LABEL);
         JButton get = new JButton(DefaultOpenedFolderViewModel.GET_BUTTON_LABEL);
-        JButton edit = new JButton(DefaultOpenedFolderViewModel.EDIT_BUTTON_LABEL);
         JButton upload = new JButton(DefaultOpenedFolderViewModel.UPLOAD_BUTTON_LABEL);
 
         this.delete = delete;
         this.get = get;
-        this.edit = edit;
         this.upload = upload;
         this.defaultOpenedFolderViewModel.addPropertyChangeListener(this);
 
@@ -95,7 +85,6 @@ public class DefaultOpenedFolderView extends JPanel implements ActionListener, P
             JPanel buttons = new JPanel();
             buttons.add(get);
             buttons.add(delete);
-            buttons.add(edit);
 
 //        JButton button = new JButton(OpenedFolderViewModel.GET_BUTTON_LABEL);
             get.setBounds(600, 10, 250, 100);
@@ -104,9 +93,6 @@ public class DefaultOpenedFolderView extends JPanel implements ActionListener, P
 //        JButton buttonremove = new JButton(OpenedFolderViewModel.GET_BUTTON_LABEL);
             delete.setBounds(900, 10, 250, 100);
             delete.setText("DELETE");
-
-            edit.setBounds(1200, 10, 250, 100);
-            edit.setText("DELETE");
 
 
             get.addActionListener(
@@ -139,18 +125,7 @@ public class DefaultOpenedFolderView extends JPanel implements ActionListener, P
                         }
                     }
                 });
-            edit.addActionListener(
-                // This creates an anonymous subclass of ActionListener and instantiates it.
-                new ActionListener() {
-                    public void actionPerformed(ActionEvent evt) {
-                        if (evt.getSource().equals(edit)) {
-//                            EditRecipeState currentState = editRecipeViewModel.getState();
-//
-//                            editRecipeController.execute(
-//                                  );
-                        }
-                    }
-                });
+
 
             Image image = null;
             try {

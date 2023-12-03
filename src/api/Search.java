@@ -27,7 +27,7 @@ public class Search {
         // MediaType mediaType = MediaType.parse("application/json");
         // RequestBody body = RequestBody.create(mediaType, "0=i&1=n&2=g&3=r&4=e&5=d&6=i&7=e&8=n&9=t&10=L&11=i&12=s&13=t&14==&15=3&16= &17=o&18=z&19= &20=f&21=l&22=o&23=u&24=r&25=%26&26=s&27=e&28=r&29=v&30=i&31=n&32=g&33=s&34==&35=2");
         Request request = new Request.Builder()
-                .url(String.format("https://api.spoonacular.com/recipes/complexSearch?includeIngredients=%s&tags=%s&number=10&apiKey=33e759b1978e4ecb9cc584a2bf0ba675", includeIngredients, tags))
+                .url(String.format("https://api.spoonacular.com/recipes/complexSearch?includeIngredients=%s&tags=%s&number=10&apiKey=e0325e7f12074bf9aae3ac357b765a1e", includeIngredients, tags))
                 .addHeader("Content-Type", "application/json")
                 .build();
 
@@ -36,6 +36,7 @@ public class Search {
             assert response.body() != null;
             JSONObject responseBody = new JSONObject(response.body().string());
             JSONArray results = responseBody.getJSONArray("results");
+//            System.out.println(responseBody);
             if (response.code() == 200) {
 //                return results;
                 HashMap<Object, SearchResult> searchresult = new HashMap<Object, SearchResult>();
@@ -52,6 +53,7 @@ public class Search {
                 }
                 return searchresult;
 //                return CommonAllResults.builder().results(searchresult).build();
+//                return null;
             } else {
                 throw new RuntimeException(response.message());
             }

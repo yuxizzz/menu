@@ -10,7 +10,7 @@ public class DefaultOpenedFolderState {
     private String foldername = "My Recipes";
     private String username = "";
 
-        private HashMap<Integer, ArrayList> recipeMap;
+    private HashMap<Integer, ArrayList> recipeMap = new HashMap<>();
 
     public DefaultOpenedFolderState(DefaultOpenedFolderState copy) {
         foldername = copy.foldername;

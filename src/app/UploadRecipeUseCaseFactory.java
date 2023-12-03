@@ -26,9 +26,9 @@ public class UploadRecipeUseCaseFactory {
     private UploadRecipeUseCaseFactory() {}
     public static UploadView create(
             ViewManagerModel viewManagerModel,
-            CollectRecipeViewModel collectRecipeViewModel,
-            AddRecipeToFolderViewModel addRecipeToFolderViewModel,
-            GetRecipeViewModel getRecipeViewModel,
+//            CollectRecipeViewModel collectRecipeViewModel,
+//            AddRecipeToFolderViewModel addRecipeToFolderViewModel,
+//            GetRecipeViewModel getRecipeViewModel,
             UploadRecipeViewModel uploadRecipeViewModel,
             UploadDataAccessInterface recipeDataAccessObject) {
 

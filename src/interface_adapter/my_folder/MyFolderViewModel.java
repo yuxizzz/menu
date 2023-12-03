@@ -20,7 +20,7 @@ public class MyFolderViewModel extends ViewModel {
     private ArrayList<String> folderList = new ArrayList<>();
 
     public MyFolderViewModel() {
-        super("my folder");
+        super( "My Folder View");
     }
 
     public void setState(interface_adapter.my_folder.MyFolderState state) {
