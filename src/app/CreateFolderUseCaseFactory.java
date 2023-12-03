@@ -24,18 +24,33 @@ public class CreateFolderUseCaseFactory {
     private CreateFolderUseCaseFactory() {}
     public static CreateFolderView creat(
             ViewManagerModel viewManagerModel,
-            CreateFolderViewModel createFolderViewModel) {
-        try {
-            CreateFolderController createFolderController =
+            CreateFolderViewModel createFolderViewModel,
+            CreateFolderDataAccessInterface createFolderDataAccessInterface,
+            FolderFactory folderFactory) {
+        CreateFolderController createFolderController = createCreateFolderController(createFolderViewModel,
+                viewManagerModel, createFolderDataAccessInterface, folderFactory);
 
-            return new CreateFolderView(createFolderViewModel, createFolderController);
+        return new CreateFolderView(createFolderViewModel, createFolderController);
 
-        } catch (IOException e) {
-            JOptionPane.showMessageDialog(null, "Could not open user data file.");
-        }
-
-        return null;
     }
+
+//    public static CreateFolderView creat(
+//            ViewManagerModel viewManagerModel,
+//            CreateFolderViewModel createFolderViewModel,
+//            CreateFolderDataAccessInterface createFolderDataAccessInterface,
+//            FolderFactory folderFactory) {
+//        try {
+//            CreateFolderController createFolderController = createCreateFolderController(createFolderViewModel,
+//                    viewManagerModel, createFolderDataAccessInterface, folderFactory);
+//
+//            return new CreateFolderView(createFolderViewModel, createFolderController);
+//
+//        } catch (IOException e) {
+//            JOptionPane.showMessageDialog(null, "Could not open user data file.");
+//        }
+//
+//        return null;
+//    }
 
     private static CreateFolderController createCreateFolderController(CreateFolderViewModel createFolderViewModel,
                                                                        ViewManagerModel viewManagerModel,
