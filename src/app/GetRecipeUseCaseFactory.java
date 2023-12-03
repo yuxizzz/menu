@@ -18,8 +18,8 @@ import view.RecipeView;
  * usecase factory for CollectRecipe on RecipeView
  */
 
-public class RecipeUseCaseFactory {
-    private RecipeUseCaseFactory() {}
+public class GetRecipeUseCaseFactory {
+    private GetRecipeUseCaseFactory() {}
     public static RecipeView create(
             ViewManagerModel viewManagerModel,
             CollectRecipeViewModel collectRecipeViewModel,
