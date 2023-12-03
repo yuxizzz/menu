@@ -1,8 +1,9 @@
-package use_case.add_recipe_to_folder;
+package usecase_test;
 
 import data_access.InMemoryFolderDataAccessObject;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
+import use_case.add_recipe_to_folder.*;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;

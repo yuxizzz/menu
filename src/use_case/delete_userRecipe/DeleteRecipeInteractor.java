@@ -36,9 +36,6 @@ public class DeleteRecipeInteractor implements DeleteRecipeInputBoundary {
             UserRecipe userRecipe = deleteRecipeDataAccessObject.deleteRecipe(deleteRecipeInputData.getDeletedRecipeID(),
                     deleteRecipeInputData.getUsername());
 
-
-
-
             DeleteRecipeOutputData deleteRecipeOutputData = new DeleteRecipeOutputData(userRecipe.getName(),
                     userRecipe.getRecipeID(),recipeMap,false);
             deleteRecipePresenter.prepareSuccessView(deleteRecipeOutputData);
