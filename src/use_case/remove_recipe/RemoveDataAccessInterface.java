@@ -6,7 +6,7 @@ import entity.recipe.UserRecipe;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-public interface RemoveFolderDataAccessInterface {
+public interface RemoveDataAccessInterface {
 
     boolean existsByRecipeID(Integer identifier, String username);
 
