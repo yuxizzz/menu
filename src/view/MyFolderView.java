@@ -13,6 +13,7 @@ import interface_adapter.open_folder.OpenFolderController;
 import interface_adapter.open_folder.OpenFolderState;
 import interface_adapter.open_folder.OpenFolderViewModel;
 import interface_adapter.remove_recipe.RemoveState;
+import interface_adapter.signup.SignupState;
 
 import javax.imageio.ImageIO;
 import javax.swing.*;
@@ -66,6 +67,7 @@ public class MyFolderView extends JPanel implements ActionListener, PropertyChan
         this.createFolderController = createFolderController;
         this.myFolderViewModel.addPropertyChangeListener(this);
         this.logoutViewModel.addPropertyChangeListener(this);
+        this.deleteFolderViewModel.addPropertyChangeListener(this);
 
         JLabel title = new JLabel("My Folder Screen");
         title.setAlignmentX(Component.CENTER_ALIGNMENT);
@@ -104,9 +106,9 @@ public class MyFolderView extends JPanel implements ActionListener, PropertyChan
                     new ActionListener() {
                         public void actionPerformed(ActionEvent evt) {
                             if (evt.getSource().equals(openFolder)) {
-                            OpenFolderState currentState = openFolderViewModel.getState();
+                                OpenFolderState currentState = openFolderViewModel.getState();
 
-                           openFolderController.execute(currentState.getFoldername(), currentState.getUsername());
+                                openFolderController.execute(currentState.getFoldername(), currentState.getUsername());
                             }
                         }
                     }
@@ -166,16 +168,22 @@ public class MyFolderView extends JPanel implements ActionListener, PropertyChan
         }
     }
 
-            /**
-             * React to a button click that results in evt.
-             */
-            public void actionPerformed (ActionEvent evt){
-                System.out.println("Click " + evt.getActionCommand());
+    /**
+     * React to a button click that results in evt.
+     */
+    public void actionPerformed(ActionEvent evt) {
+        System.out.println("Click " + evt.getActionCommand());
+    }
+
+    @Override
+    public void propertyChange(PropertyChangeEvent evt) {
+        if (evt.getNewValue() instanceof DeleteFolderState) {
+            DeleteFolderState state = (DeleteFolderState) evt.getNewValue();
+            if (state.getFolderDeleted() != null) {
+                JOptionPane.showMessageDialog(this, state.getFolderDeleted());
             }
 
-            @Override
-            public void propertyChange(PropertyChangeEvent evt){
-
+        }
     }
 }
 
