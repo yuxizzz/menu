@@ -168,8 +168,9 @@ public class MyFolderView extends JPanel implements ActionListener, PropertyChan
 //                        }
 //                    });
 //            buttons.add(logOut);
-//            this.add(buttons);
-            this.add(foldername);
+            buttons.add(foldername);
+            this.add(buttons);
+
         }
             createFolder.setBounds(600, 1000, 100, 40);
             createFolder.addActionListener(
@@ -187,11 +188,11 @@ public class MyFolderView extends JPanel implements ActionListener, PropertyChan
                         }
                     }
             );
-//        JPanel buttons1 = new JPanel();
-//        buttons1.add(createFolder);
+        JPanel buttons1 = new JPanel();
+        buttons1.add(createFolder);
             buttons.add(createFolder);
             this.setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
-//        this.add(buttons1);
+        this.add(buttons1);
             this.add(buttons);
             this.add(username);
             this.add(title);
