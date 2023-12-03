@@ -1,6 +1,7 @@
 package view;
 
 import entity.recipe.Recipe;
+import interface_adapter.get_recipe.GetRecipeState;
 import interface_adapter.open_folder.OpenFolderViewModel;
 import interface_adapter.open_recipe.OpenRecipeController;
 import interface_adapter.open_recipe.OpenRecipeState;
@@ -10,6 +11,7 @@ import interface_adapter.opened_folder.OpenedFolderViewModel;
 import interface_adapter.remove_recipe.RemoveController;
 import interface_adapter.remove_recipe.RemoveState;
 import interface_adapter.remove_recipe.RemoveViewModel;
+import interface_adapter.searched.SearchedState;
 
 import javax.imageio.ImageIO;
 import javax.swing.*;
@@ -26,7 +28,7 @@ import java.util.Map;
 
 public class OpenedFolderView extends JPanel implements ActionListener, PropertyChangeListener {
     public final String viewName = "opened folder";
-    private final OpenFolderViewModel openFolderViewModel;
+    private final OpenedFolderViewModel openedFolderViewModel;
 
 // TODO import open recipe class
     private final OpenRecipeViewModel openRecipeViewModel;
@@ -43,12 +45,14 @@ public class OpenedFolderView extends JPanel implements ActionListener, Property
     /**
      * A window with a title and a JButton.
      */
-    public OpenedFolderView(OpenFolderViewModel openFolderViewModel, RemoveController removeController,
-                            OpenRecipeViewModel openRecipeViewModel, OpenRecipeController openRecipeController,
+    public OpenedFolderView(OpenedFolderViewModel openedFolderViewModel,
+                            RemoveController removeController,
+                            OpenRecipeViewModel openRecipeViewModel,
+                            OpenRecipeController openRecipeController,
                             RemoveViewModel removeViewModel) {
 //    public OpenedFolderView(OpenedFolderViewModel openedFolderViewModel, RemoveController removeController,
 //                            RemoveViewModel removeViewModel) {
-        this.openFolderViewModel = openFolderViewModel;
+        this.openedFolderViewModel = openedFolderViewModel;
         this.removeController = removeController;
         this.openRecipeController = openRecipeController;
         this.openRecipeViewModel = openRecipeViewModel;
@@ -56,7 +60,7 @@ public class OpenedFolderView extends JPanel implements ActionListener, Property
 
         JButton get = new JButton(OpenedFolderViewModel.GET_BUTTON_LABEL);
         JButton remove = new JButton(OpenedFolderViewModel.REMOVE_BUTTON_LABEL);
-        HashMap<Integer, ArrayList> recipeMap = openFolderViewModel.getRecipeMap();
+        HashMap<Integer, ArrayList> recipeMap = openedFolderViewModel.getRecipeMap();
 
         JLabel title = new JLabel("Opened Folder Screen");
         title.setAlignmentX(Component.CENTER_ALIGNMENT);
@@ -66,11 +70,13 @@ public class OpenedFolderView extends JPanel implements ActionListener, Property
 
         this.remove = remove;
         this.get = get;
+        this.openedFolderViewModel.addPropertyChangeListener(this);
+
 
         for (Map.Entry<Integer, ArrayList> entry : recipeMap.entrySet()) {
             Integer key = entry.getKey();
             ArrayList value = entry.getValue();
-        this.openFolderViewModel.addPropertyChangeListener(this);
+
 //        this.openRecipeViewModel.addPropertyChangeListener(this);
 
         JPanel buttons = new JPanel();
@@ -112,19 +118,18 @@ public class OpenedFolderView extends JPanel implements ActionListener, Property
                     public void actionPerformed(ActionEvent e) {
                         if (e.getSource().equals(remove)) {
 
-                            RemoveState currentState = removeViewModel.getState();
-                            removeController.execute();
+//                           RemoveState currentState = removeViewModel.getState();
+  //                          removeController.execute();
                         }
                     }
                 }
         );
 
-//        TODO need to get information in folder for recipe
 
 
             Image image = null;
             try {
-                URL url = new URL((String) value.get(1));
+                URL url = new URL((String) value.get(0));
 //                "https://spoonacular.com/productImages/436359-312x231.jpg"
                 image = ImageIO.read(url);
             } catch (IOException e) {
@@ -183,6 +188,7 @@ public class OpenedFolderView extends JPanel implements ActionListener, Property
             this.add(foldername);
             this.setSize(500, 500);
             this.setVisible(true);
+            this.add(buttons);
         }
     }
 
@@ -198,9 +204,10 @@ public class OpenedFolderView extends JPanel implements ActionListener, Property
         System.out.println("Click " + evt.getActionCommand());
     }
 
+
     @Override
     public void propertyChange(PropertyChangeEvent evt) {
         OpenedFolderState state = (OpenedFolderState) evt.getNewValue();
-        foldername.setText(state.getFoldername());
+//        foldername.setText(state.getFoldername());
     }
 }

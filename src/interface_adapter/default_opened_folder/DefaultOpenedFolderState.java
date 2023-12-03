@@ -1,36 +1,32 @@
-package interface_adapter.opened_folder;
+package interface_adapter.default_opened_folder;
+
+import interface_adapter.opened_folder.OpenedFolderState;
 
 
-import interface_adapter.logged_in.LoggedInState;
-
-import java.util.ArrayList;
-import java.util.HashMap;
-
-public class OpenedFolderState {
-    private String foldername = "";
+public class DefaultOpenedFolderState {
+    private String foldername = "default folder";
     private String username = "";
 
-    private HashMap<Integer, ArrayList> recipeMap;
+        private HashMap<Integer, ArrayList> recipeMap;
 
-
-    public OpenedFolderState(OpenedFolderState copy) {
+    public DefaultOpenedFolderState(DefaultOpenedFolderState copy) {
         foldername = copy.foldername;
         username = copy.username;
     }
 
     // Because of the previous copy constructor, the default constructor must be explicit.
-    public OpenedFolderState() {
+    public DefaultOpenedFolderState() {
     }
 
     public String getFoldername() {
         return foldername;
     }
 
-    public void setFoldername(String foldername) {
+//     public void setFoldername(String foldername) {
 
-        this.foldername = foldername;
+//         this.foldername = foldername;
 
-    }
+//     }
     public void setFoldernameError(String error) {
     }
 
@@ -42,10 +38,11 @@ public class OpenedFolderState {
     }
 
     public void setRecipeMap(HashMap<Integer, ArrayList> recipeMap) {
-        this.recipeMap = recipeMap;
-    }
+            this.recipeMap = recipeMap;
+        }
 
     public HashMap<Integer, ArrayList> getRecipeMap(){
-        return recipeMap;
+            return recipeMap;
+        }
     }
-}
+

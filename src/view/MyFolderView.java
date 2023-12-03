@@ -104,8 +104,7 @@ public class MyFolderView extends JPanel implements ActionListener, PropertyChan
                             if (evt.getSource().equals(openFolder)) {
                             OpenFolderState currentState = openFolderViewModel.getState();
 
-                            openFolderController.execute(
-                                    currentState.getFoldername());
+                           openFolderController.execute(currentState.getFoldername(), currentState.getUsername());
                             }
                         }
                     }
@@ -150,7 +149,7 @@ public class MyFolderView extends JPanel implements ActionListener, PropertyChan
                             if (e.getSource().equals(createFolder)) {
 
                                 CreateFolderState currentState = createFolderViewModel.getState();
-                                createFolderController.execute(currentState.getFoldername());
+                                createFolderController.execute(currentState.getFoldername(), currentState.getUsername());
                                 // TODO check create folder state something might wrong
                             }
                         }

@@ -8,10 +8,10 @@ import entity.recipe.UserRecipeFactory;
 public class UploadInteractor implements UploadInputBoundary{
 
     final UploadDataAccessInterface recipeDataAccessObject;
-    final UploadOuntputBoundary recipePresenter;
+    final UploadOutputBoundary recipePresenter;
     final UserRecipeFactory userRecipeFactory;
     public UploadInteractor(UploadDataAccessInterface recipeDataAccessInterface,
-                            UploadOuntputBoundary recipeOutputBoundary,
+                            UploadOutputBoundary recipeOutputBoundary,
                             UserRecipeFactory userRecipeFactory) {
         this.recipeDataAccessObject = recipeDataAccessInterface;
         this.recipePresenter = recipeOutputBoundary;
@@ -26,16 +26,19 @@ public class UploadInteractor implements UploadInputBoundary{
 
     @Override
     public void execute(UploadInputData uploadInputData) {
-        if (recipeDataAccessObject.existByName(uploadInputData.getRecipename())){
-            recipePresenter.prepareFailView("Recipe name already exists.");
+        if (recipeDataAccessObject.existByReicipeID(uploadInputData.getRecipeid(),
+                uploadInputData.getUsername())){
+            recipePresenter.prepareFailView("Recipe ID already exists.");
         }else{
             UserRecipe userRecipe = userRecipeFactory.create(uploadInputData.getRecipename(),
                     uploadInputData.getIngredients(),
                     uploadInputData.getNutrition(), uploadInputData.getInstructions(),
                     uploadInputData.getImage(),
                     uploadInputData.getRecipeurl(), uploadInputData.getRecipeid(),
-                    uploadInputData.getUser());
-            recipeDataAccessObject.saveRecipe(userRecipe);
+                    uploadInputData.getUsername());
+            Integer recipeID = uploadInputData.getRecipeid();
+            String username = uploadInputData.getUsername();
+            recipeDataAccessObject.saveRecipe(recipeID, userRecipe, username);
             UploadOutputData createOutputData = new UploadOutputData(userRecipe.getRecipeID(), false);
             recipePresenter.prepareSuccessView(createOutputData);
 
