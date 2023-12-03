@@ -19,9 +19,6 @@ import java.beans.PropertyChangeListener;
 import java.io.IOException;
 import java.net.URL;
 
-//TODO: collect button addActionListener
-//TODO: actionPerformed message "Try again"
-//TODO: propertyChange
 
 public class RecipeView extends JPanel implements ActionListener, PropertyChangeListener {
     public final String viewName = "recipe";
