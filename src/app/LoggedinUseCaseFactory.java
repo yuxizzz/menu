@@ -58,7 +58,7 @@ public class LoggedinUseCaseFactory {
             SearchViewModel searchViewModel, SearchUserDataAccessInterface searchUserDataAccessObject,
             OpenFolderViewModel openFolderViewModel,
             CreateFolderViewModel createFolderViewModel,
-            OpenedFolderViewModel openedFolderViewModel,
+//            OpenedFolderViewModel openedFolderViewModel,
             DeleteFolderViewModel deleteFolderViewModel,
             MyFolderViewModel myFolderViewModel, MyFolderDataAccessInterface myFolderDataAccessObject,
             LoginViewModel loginViewModel,
