@@ -21,6 +21,7 @@ import use_case.open_folder.OpenFolderOutputBoundary;
 import use_case.open_folder.OpenFolderOutputData;
 
 import java.util.HashMap;
+import java.util.Objects;
 
 public class OpenFolderPresenter implements OpenFolderOutputBoundary {
 
@@ -96,7 +97,12 @@ public class OpenFolderPresenter implements OpenFolderOutputBoundary {
         this.openRecipeViewModel.setState(openRecipeState);
         this.openRecipeViewModel.firePropertyChanged();
 
-        this.viewManagerModel.setActiveView(openedFolderViewModel.getViewName());
+
+        if (Objects.equals(response.getFoldername(), "My Recipes")){
+            this.viewManagerModel.setActiveView(defaultOpenedFolderViewModel.getViewName());
+        } else {
+            this.viewManagerModel.setActiveView(openedFolderViewModel.getViewName());
+        }
         this.viewManagerModel.firePropertyChanged();
     }
 

@@ -87,16 +87,18 @@ public class MyFolderView extends JPanel implements ActionListener, PropertyChan
         this.logOut = logOut;
 
         ArrayList<String> folderList = myFolderViewModel.getFolderList();
+        Integer count = 0;
         for (String item : folderList) {
             this.myFolderViewModel.addPropertyChangeListener(this);
             JPanel buttons = new JPanel();
             buttons.add(openFolder);
             buttons.add(deleteFolder);
-            openFolder.setBounds(600, 10, 250, 100);
+            openFolder.setBounds(600, 10 + count, 100, 40);
             openFolder.setText("OPEN");
 
-            deleteFolder.setBounds(900, 10, 250, 100);
+            deleteFolder.setBounds(900, 10 + count, 100, 40);
             deleteFolder.setText("DELETE");
+            count += 50;
 
             openFolder.addActionListener(
 
