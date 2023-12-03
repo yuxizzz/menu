@@ -34,6 +34,8 @@ public class EditInteractor implements EditInputBoundary{
             EditOutputData editOutputData = new EditOutputData(userRecipe.getName(), false);
             editPresenter.prepareSuccessView(editOutputData);
             Integer recipeID = editInputData.getRecipeID();
+
+
             if (!Objects.equals(userRecipe.getImage(), editInputData.getImage())
 
                     && editInputData.getImage() != null) {

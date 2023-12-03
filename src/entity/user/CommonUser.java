@@ -63,5 +63,9 @@ class CommonUser implements User {
             }
         }
         userFolders.remove(folder);
+  
+    @Override
+    public void addFolder(Folder folder) {
+        userFolders.add(folder);
     }
 }

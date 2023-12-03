@@ -15,4 +15,7 @@ public interface User {
     LocalDateTime getCreationTime();
 
     void removeFolder(String folderName);
+
+    void addFolder(Folder folder);
+
 }

@@ -5,7 +5,7 @@ import entity.recipe.RecipeFactory;
 import interface_adapter.ViewManagerModel;
 import interface_adapter.collect_recipe.CollectRecipeViewModel;
 import interface_adapter.edit_recipe.EditRecipeViewModel;
-import interface_adapter.open_folder.OpenFolderViewModel;
+import interface_adapter.get_recipe.GetRecipeViewModel;
 import interface_adapter.open_recipe.OpenRecipeController;
 import interface_adapter.open_recipe.OpenRecipePresenter;
 import interface_adapter.open_recipe.OpenRecipeViewModel;
@@ -17,7 +17,6 @@ import use_case.open_recipe.OpenRecipeDataAccessInterface;
 import use_case.open_recipe.OpenRecipeInputBoundary;
 import use_case.open_recipe.OpenRecipeInteractor;
 import use_case.open_recipe.OpenRecipeOutputBoundary;
-import use_case.remove_recipe.RemoveDataAccessInterface;
 import use_case.remove_recipe.RemoveDataAccessInterface;
 import use_case.remove_recipe.RemoveInputBoundary;
 import use_case.remove_recipe.RemoveInteractor;
@@ -33,11 +32,12 @@ public class OpenedFolderUseCaseFactory {
     public static OpenedFolderView create(
             ViewManagerModel viewManagerModel,
             OpenedFolderViewModel openedFolderViewModel,
-            OpenFolderViewModel openFolderViewModel,
+//            OpenFolderViewModel openFolderViewModel,
             OpenRecipeViewModel openRecipeViewModel,
             EditRecipeViewModel editRecipeViewModel,
             CollectRecipeViewModel collectRecipeViewModel,
             RemoveViewModel removeViewModel,
+            GetRecipeViewModel getRecipeViewModel,
             RemoveDataAccessInterface removeDataAccessObject,
             OpenRecipeDataAccessInterface openRecipeDataAccessObject) {
 
@@ -45,7 +45,11 @@ public class OpenedFolderUseCaseFactory {
             RemoveController removeController = createRemoveUseCase(viewManagerModel,
                     openedFolderViewModel, removeViewModel, removeDataAccessObject);
             OpenRecipeController openRecipeController = createOpenRecipeUseCase(viewManagerModel,
-                    openRecipeViewModel,editRecipeViewModel, collectRecipeViewModel,openRecipeDataAccessObject);
+                    openRecipeViewModel,getRecipeViewModel,
+                    editRecipeViewModel, collectRecipeViewModel,
+                    openRecipeDataAccessObject);
+
+
 
             return new OpenedFolderView(openedFolderViewModel, removeController,
                     openRecipeViewModel, openRecipeController,
@@ -77,13 +81,15 @@ public class OpenedFolderUseCaseFactory {
 
 
     private static OpenRecipeController createOpenRecipeUseCase(
-            ViewManagerModel viewManagerModel, OpenRecipeViewModel openRecipeViewModel, EditRecipeViewModel editRecipeViewModel,
+            ViewManagerModel viewManagerModel, OpenRecipeViewModel openRecipeViewModel,
+            GetRecipeViewModel getRecipeViewModel,
+            EditRecipeViewModel editRecipeViewModel,
             CollectRecipeViewModel collectRecipeViewModel,
             OpenRecipeDataAccessInterface openRecipeDataAccessObject) throws IOException {
 
         // Notice how we pass this method's parameters to the Presenter.
         OpenRecipeOutputBoundary openRecipeOutputBoundary = new OpenRecipePresenter(openRecipeViewModel,
-                editRecipeViewModel, collectRecipeViewModel, viewManagerModel);
+                getRecipeViewModel, editRecipeViewModel, collectRecipeViewModel, viewManagerModel);
 
         RecipeFactory recipeFactory = new CommonRecipeFactory();
 

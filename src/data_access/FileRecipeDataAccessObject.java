@@ -19,7 +19,8 @@ import java.util.*;
  * The DataAccessObject class for Recipe objects, where they are stored in csv file. The usecases
  * can get access to the Recipe objects data through the DAO.
  */
-public class FileRecipeDataAccessObject implements UploadDataAccessInterface, EditDataAccessInterface, OpenRecipeDataAccessInterface, GetRecipeDataAccessInterface {
+public class FileRecipeDataAccessObject implements UploadDataAccessInterface, EditDataAccessInterface,
+        GetRecipeDataAccessInterface, OpenRecipeDataAccessInterface {
 
     private final File csvFile;
 
@@ -106,8 +107,6 @@ public class FileRecipeDataAccessObject implements UploadDataAccessInterface, Ed
         }
     }
 
-
-
     /**
      * @param recipeID
      * @return
@@ -122,9 +121,9 @@ public class FileRecipeDataAccessObject implements UploadDataAccessInterface, Ed
 
     @Override
     public void save(Recipe recipe) {
-        recipeList.put(recipe.getRecipeID(), recipe);
+        Integer recipeID = recipe.getRecipeID();
+        recipeList.put(recipeID, recipe);
     }
-
 
     public UserRecipe deleteRecipe(Integer deletedRecipeID){
 
@@ -165,6 +164,25 @@ public class FileRecipeDataAccessObject implements UploadDataAccessInterface, Ed
 
     }
 
+    public Recipe getCommonRecipe(Integer recipeID, String username) {
+        Map<String, User> accounts = fileUserDataAccessObject.getAccounts();
+        User user = accounts.get(username);
+        ArrayList<Folder> folders = user.getUserFolders();
+        Recipe Recipe = null;
+        for (Folder f : folders) {
+            if(f.getRecipeMap().containsKey(recipeID)){
+                Recipe = f.getRecipeMap().get(recipeID);
+
+            }
+        }
+        return Recipe;
+
+
+    }
+
+
+
+
 
 
 
@@ -189,6 +207,4 @@ public class FileRecipeDataAccessObject implements UploadDataAccessInterface, Ed
         HashMap<Integer, Recipe> recipes = folders.get(0).getRecipeMap();
         return recipes.containsKey(recipeID);
     }
-
-
 }

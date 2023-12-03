@@ -50,6 +50,7 @@ public class LoggedinUseCaseFactory {
     private LoggedinUseCaseFactory() {}
 
     public static LoggedInView create(
+
             ViewManagerModel viewManagerModel,
             LoggedInViewModel loggedInViewModel,
             SearchedViewModel searchedViewModel,
@@ -79,7 +80,10 @@ public class LoggedinUseCaseFactory {
         return null;
     }
 
+
+
     private static SearchController createSearchUseCase(
+
             ViewManagerModel viewManagerModel,
             SearchedViewModel searchedViewModel,
             SearchViewModel searchViewModel,
@@ -114,6 +118,8 @@ public class LoggedinUseCaseFactory {
 
         return new MyFolderController(myFolderInteractor);
     }
+
+
     private static LogoutController createLogoutUseCase(
             ViewManagerModel viewManagerModel, LoginViewModel loginViewModel,
             LogoutViewModel logoutViewModel, LogoutDataAccessInterface logoutDataAccessObject) throws IOException {
