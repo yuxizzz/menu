@@ -54,6 +54,24 @@ public class MyFolderView extends JPanel implements ActionListener, PropertyChan
                         CreateFolderViewModel createFolderViewModel,
                         CreateFolderController createFolderController) {
 
+        JLabel title = new JLabel("My Folder Screen");
+        title.setAlignmentX(Component.CENTER_ALIGNMENT);
+
+        JLabel usernameInfo = new JLabel("Username: ");
+        JLabel username = new JLabel();
+        this.username = username;
+
+
+
+//        JButton logOut = new JButton(myFolderViewModel.LOGOUT_BUTTON_LABEL);
+        JButton openFolder = new JButton(myFolderViewModel.OPEN_BUTTON_LABEL);
+        JButton deleteFolder = new JButton(myFolderViewModel.DELETE_BUTTON_LABEL);
+        JButton createFolder = new JButton(myFolderViewModel.CREATE_BUTTON_LABEL);
+
+        this.openFolder = openFolder;
+        this.deleteFolder = deleteFolder;
+        this.createFolder = createFolder;
+
         this.myFolderViewModel = myFolderViewModel;
         this.logoutViewModel = logoutViewModel;
         this.openFolderViewModel = openFolderViewModel;
@@ -63,28 +81,13 @@ public class MyFolderView extends JPanel implements ActionListener, PropertyChan
         this.createFolderViewModel = createFolderViewModel;
         this.createFolderController = createFolderController;
 
-
         this.myFolderViewModel.addPropertyChangeListener(this);
         this.logoutViewModel.addPropertyChangeListener(this);
         this.deleteFolderViewModel.addPropertyChangeListener(this);
         this.createFolderViewModel.addPropertyChangeListener(this);
 
-        JButton deleteFolder = new JButton(myFolderViewModel.DELETE_BUTTON_LABEL);
-        JButton openFolder = new JButton(myFolderViewModel.OPEN_BUTTON_LABEL);
-        JButton createFolder = new JButton(myFolderViewModel.CREATE_BUTTON_LABEL);
-        this.openFolder = openFolder;
-        this.deleteFolder = deleteFolder;
-        this.createFolder = createFolder;
-
-        JLabel title = new JLabel("My Folder Screen");
-        title.setAlignmentX(Component.CENTER_ALIGNMENT);
-
-        JLabel username = new JLabel();
-        this.username = username;
-
         ArrayList<JLabel> folderlists = new ArrayList<>();
         this.folderlists = folderlists;
-        this.add(username);
 
 
 //        JButton logOut = new JButton(myFolderViewModel.LOGOUT_BUTTON_LABEL);
