@@ -11,8 +11,8 @@ public class DeleteFolderController {
         this.deleteFolderInteractor = deleteFolderInteractor;
     }
 
-    public void execute(String folderName) {
-        DeleteFolderInputData deleteFolderInputData = new DeleteFolderInputData(folderName);
+    public void execute(String folderName, String username) {
+        DeleteFolderInputData deleteFolderInputData = new DeleteFolderInputData(folderName, username);
         deleteFolderInteractor.execute(deleteFolderInputData);
     }
 }

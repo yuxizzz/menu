@@ -9,6 +9,8 @@ import entity.recipe.CommonRecipeFactory;
 import entity.user.CommonUserFactory;
 import interface_adapter.ViewManagerModel;
 import interface_adapter.clear_users.ClearViewModel;
+import interface_adapter.create_folder.CreateFolderViewModel;
+import interface_adapter.delete_folder.DeleteFolderViewModel;
 import interface_adapter.get_recipe.GetRecipeViewModel;
 import interface_adapter.logged_in.LoggedInViewModel;
 import interface_adapter.login.LoginViewModel;
@@ -16,6 +18,7 @@ import interface_adapter.logout.LogoutController;
 import interface_adapter.logout.LogoutViewModel;
 import interface_adapter.my_folder.MyFolderController;
 import interface_adapter.my_folder.MyFolderViewModel;
+import interface_adapter.open_folder.OpenFolderViewModel;
 import interface_adapter.opened_folder.OpenedFolderViewModel;
 import interface_adapter.search.SearchController;
 import interface_adapter.search.SearchViewModel;
@@ -109,12 +112,17 @@ public class Main {
 
 
         GetRecipeViewModel getRecipeViewModel = new GetRecipeViewModel();
+        CreateFolderViewModel createFolderViewModel = new CreateFolderViewModel();
+        DeleteFolderViewModel deleteFolderViewModel = new DeleteFolderViewModel();
+        OpenFolderViewModel openFolderViewModel = new OpenFolderViewModel();
 
         //TODO: userDataAccessObject what to do
         LoggedInView loggedInView = LoggedinUseCaseFactory.create(viewManagerModel, loggedInViewModel,
-                searchedViewModel, getRecipeViewModel, searchViewModel, searchUserDataAccessObject, openedFolderViewModel,
-                myFolderViewModel, folderDataAccessObject, loginViewModel, logoutViewModel,
+                searchedViewModel, getRecipeViewModel, searchViewModel, searchUserDataAccessObject, openFolderViewModel,
+                createFolderViewModel, openedFolderViewModel, deleteFolderViewModel,
+                myFolderViewModel, userDataAccessObject, loginViewModel, logoutViewModel,
                 userDataAccessObject);
+
         views.add(loggedInView, loggedInView.viewName);
 
 //        MyFolderView myFolderView = MY

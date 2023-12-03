@@ -13,8 +13,7 @@ import java.util.HashMap;
  * folders contains A folder with no recipe/Integer, contains B folder with 1 recipe/Integer 1
  */
 
-public class InMemoryFolderDataAccessObject implements DeleteFolderUserDataAccessInterface,
-        CollectRecipeDataAccessInterface, AddRecipeToFolderDataAccessInterface {
+public class InMemoryFolderDataAccessObject implements CollectRecipeDataAccessInterface, AddRecipeToFolderDataAccessInterface {
     private HashMap<String, ArrayList<Integer>> folders = new HashMap<>();
 
     public InMemoryFolderDataAccessObject() {
@@ -22,13 +21,6 @@ public class InMemoryFolderDataAccessObject implements DeleteFolderUserDataAcces
         recipeID.add(1);
         folders.put("A", new ArrayList<>());
         folders.put("B", recipeID);
-    }
-
-
-    @Override
-    public String deleteFolder(String folderName) {
-        folders.remove(folderName);
-        return folderName;
     }
 
 

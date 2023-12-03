@@ -8,6 +8,7 @@ import interface_adapter.delete_folder.DeleteFolderState;
 import interface_adapter.delete_folder.DeleteFolderViewModel;
 import interface_adapter.logout.LogoutState;
 import interface_adapter.logout.LogoutViewModel;
+import interface_adapter.my_folder.MyFolderState;
 import interface_adapter.my_folder.MyFolderViewModel;
 import interface_adapter.open_folder.OpenFolderController;
 import interface_adapter.open_folder.OpenFolderState;
@@ -44,6 +45,7 @@ public class MyFolderView extends JPanel implements ActionListener, PropertyChan
     final JButton deleteFolder;
     final JButton createFolder;
     final JButton logOut;
+    private ArrayList<String> foldernames;
 
 
     /**
@@ -86,9 +88,9 @@ public class MyFolderView extends JPanel implements ActionListener, PropertyChan
         this.createFolder = createFolder;
         this.logOut = logOut;
 
-        ArrayList<String> folderList = myFolderViewModel.getFolderList();
+//        ArrayList<String> folderList = myFolderViewModel.getFolderList();
         Integer count = 0;
-        for (String item : folderList) {
+        for (String item : foldernames) {
             this.myFolderViewModel.addPropertyChangeListener(this);
             JPanel buttons = new JPanel();
             buttons.add(openFolder);
@@ -121,7 +123,7 @@ public class MyFolderView extends JPanel implements ActionListener, PropertyChan
                             if (e.getSource().equals(deleteFolder)) {
 
                                 DeleteFolderState currentState = deleteFolderViewModel.getState();
-                                deleteFolderController.execute(currentState.getFolderDeleted());
+                                deleteFolderController.execute(currentState.getFolderDeleted(), currentState.getUsername());
                             }
                         }
                     }
@@ -182,7 +184,9 @@ public class MyFolderView extends JPanel implements ActionListener, PropertyChan
             if (state.getFolderDeleted() != null) {
                 JOptionPane.showMessageDialog(this, state.getFolderDeleted());
             }
-
+        } else if (evt.getNewValue() instanceof MyFolderState) {
+            MyFolderState state = (MyFolderState) evt.getNewValue();
+            foldernames = state.getFoldernames();
         }
     }
 }

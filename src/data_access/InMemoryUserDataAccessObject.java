@@ -1,13 +1,32 @@
 
 package data_access;
+import entity.folder.Folder;
+import entity.user.CommonUserFactory;
 import entity.user.User;
+import entity.user.UserFactory;
+import use_case.delete_folder.DeleteFolderUserDataAccessInterface;
+import use_case.my_folder.MyFolderDataAccessInterface;
 import use_case.signup.SignupUserDataAccessInterface;
+
+import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
-public class InMemoryUserDataAccessObject implements SignupUserDataAccessInterface{
+public class InMemoryUserDataAccessObject implements SignupUserDataAccessInterface, MyFolderDataAccessInterface, DeleteFolderUserDataAccessInterface {
 
     private final Map<String, User> users = new HashMap<>();
+    private final UserFactory userFactory;
+
+    public InMemoryUserDataAccessObject() {
+        this.userFactory = new CommonUserFactory();
+        LocalDateTime now = LocalDateTime.now();
+        User user1 = userFactory.create("User1", "123", now);
+        User user2 = userFactory.create("User2", "321", now);
+
+        users.put(user1.getName(), user1);
+        users.put(user2.getName(), user2);
+    }
 
     /**
      * @param identifier the user's username
@@ -16,6 +35,21 @@ public class InMemoryUserDataAccessObject implements SignupUserDataAccessInterfa
     @Override
     public boolean existsByName(String identifier) {
         return users.containsKey(identifier);
+    }
+
+    @Override
+    public User get(String username) {
+        return users.get(username);
+    }
+
+    @Override
+    public ArrayList<String> getFolderList(String username) {
+        User user = users.get(username);
+        ArrayList<String> foldernames = new ArrayList<>();
+        for (Folder f : user.getUserFolders()) {
+            foldernames.add(f.getName());
+        }
+        return foldernames;
     }
 
     /**
@@ -27,4 +61,10 @@ public class InMemoryUserDataAccessObject implements SignupUserDataAccessInterfa
     }
 
 
+    @Override
+    public String deleteFolder(String folderName, String username) {
+        User user = users.get(username);
+        user.removeFolder(folderName);
+        return folderName;
+    }
 }

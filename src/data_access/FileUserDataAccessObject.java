@@ -3,9 +3,11 @@ import entity.folder.Folder;
 import entity.recipe.Recipe;
 import entity.user.User;
 import entity.user.UserFactory;
+import use_case.delete_folder.DeleteFolderUserDataAccessInterface;
 import use_case.create_folder.CreateFolderDataAccessInterface;
 import use_case.login.LoginUserDataAccessInterface;
 import use_case.logout.LogoutDataAccessInterface;
+import use_case.my_folder.MyFolderDataAccessInterface;
 import use_case.signup.SignupUserDataAccessInterface;
 import use_case.clear_users.ClearUserDataAccessInterface;
 import use_case.upload_recipe.UploadDataAccessInterface;
@@ -18,7 +20,7 @@ import java.util.Map;
 import java.util.ArrayList;
 
 public class FileUserDataAccessObject implements SignupUserDataAccessInterface, LoginUserDataAccessInterface , ClearUserDataAccessInterface,
-        LogoutDataAccessInterface, CreateFolderDataAccessInterface {
+        LogoutDataAccessInterface, MyFolderDataAccessInterface, DeleteFolderUserDataAccessInterface{
 
     private final File csvFile;
 
@@ -69,6 +71,16 @@ public class FileUserDataAccessObject implements SignupUserDataAccessInterface, 
     @Override
     public User get(String username) {
         return accounts.get(username);
+    }
+
+    @Override
+    public ArrayList<String> getFolderList(String username) {
+        User user = accounts.get(username);
+        ArrayList<String> folders = new ArrayList<>();
+        for (Folder f: user.getUserFolders()) {
+            folders.add(f.getName());
+        }
+        return folders;
     }
 
     private void save() {
@@ -126,6 +138,14 @@ public class FileUserDataAccessObject implements SignupUserDataAccessInterface, 
 
     public static Map<String, User> getAccounts(){
         return accounts;
+    }
+
+    @Override
+    public String deleteFolder(String folderName, String username) {
+        User user = accounts.get(username);
+        user.removeFolder(folderName);
+        return folderName;
+
     }
 
 
