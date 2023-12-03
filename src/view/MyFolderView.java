@@ -1,5 +1,6 @@
 package view;
 
+import interface_adapter.ViewManagerModel;
 import interface_adapter.create_folder.CreateFolderController;
 import interface_adapter.create_folder.CreateFolderState;
 import interface_adapter.create_folder.CreateFolderViewModel;
@@ -39,6 +40,9 @@ public class MyFolderView extends JPanel implements ActionListener, PropertyChan
     JButton openFolder;
     JButton deleteFolder;
     JButton createFolder;
+
+
+    final private ViewManagerModel viewManagerModel;
 //    final JButton logOut;
 
 
@@ -52,7 +56,8 @@ public class MyFolderView extends JPanel implements ActionListener, PropertyChan
                         DeleteFolderViewModel deleteFolderViewModel,
                         DeleteFolderController deleteFolderController,
                         CreateFolderViewModel createFolderViewModel,
-                        CreateFolderController createFolderController) {
+                        CreateFolderController createFolderController,
+                        ViewManagerModel viewManagerModel) {
 
         JLabel title = new JLabel("My Folder Screen");
         title.setAlignmentX(Component.CENTER_ALIGNMENT);
@@ -80,6 +85,7 @@ public class MyFolderView extends JPanel implements ActionListener, PropertyChan
         this.deleteFolderController = deleteFolderController;
         this.createFolderViewModel = createFolderViewModel;
         this.createFolderController = createFolderController;
+        this.viewManagerModel = viewManagerModel;
 
         this.myFolderViewModel.addPropertyChangeListener(this);
         this.logoutViewModel.addPropertyChangeListener(this);
@@ -87,7 +93,13 @@ public class MyFolderView extends JPanel implements ActionListener, PropertyChan
         this.createFolderViewModel.addPropertyChangeListener(this);
 
         ArrayList<JLabel> folderlists = new ArrayList<>();
+        ArrayList<String> folderList = myFolderViewModel.getFolderList();
+        for (String folder: folderList){
+            JLabel f = new JLabel(folder);
+            folderlists.add(f);
+        }
         this.folderlists = folderlists;
+
 
 
 //        JButton logOut = new JButton(myFolderViewModel.LOGOUT_BUTTON_LABEL);
@@ -165,6 +177,8 @@ public class MyFolderView extends JPanel implements ActionListener, PropertyChan
                         @Override
                         public void actionPerformed(ActionEvent e) {
                             if (e.getSource().equals(createFolder)) {
+                                viewManagerModel.setActiveView(createFolderViewModel.getViewName());
+                                viewManagerModel.firePropertyChanged();
 
                                 CreateFolderState currentState = createFolderViewModel.getState();
                                 createFolderController.execute(currentState.getFoldername(), currentState.getUsername());
