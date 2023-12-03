@@ -3,6 +3,7 @@ import entity.folder.Folder;
 import entity.recipe.Recipe;
 import entity.user.User;
 import entity.user.UserFactory;
+import use_case.create_folder.CreateFolderDataAccessInterface;
 import use_case.login.LoginUserDataAccessInterface;
 import use_case.logout.LogoutDataAccessInterface;
 import use_case.signup.SignupUserDataAccessInterface;
@@ -17,7 +18,7 @@ import java.util.Map;
 import java.util.ArrayList;
 
 public class FileUserDataAccessObject implements SignupUserDataAccessInterface, LoginUserDataAccessInterface , ClearUserDataAccessInterface,
-        LogoutDataAccessInterface {
+        LogoutDataAccessInterface, CreateFolderDataAccessInterface {
 
     private final File csvFile;
 
@@ -99,6 +100,14 @@ public class FileUserDataAccessObject implements SignupUserDataAccessInterface, 
     @Override
     public boolean existsByName(String identifier) {
         return accounts.containsKey(identifier);
+    }
+
+    @Override
+    public void save(Folder folder, String username) {
+        User user = accounts.get(username);
+        user.addFolder(folder);
+//        folders.put(folder.getName(), folder);
+//        saveToCSV();
     }
 
     @Override
