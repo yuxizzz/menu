@@ -11,8 +11,7 @@ public interface MyFolderDataAccessInterface {
     boolean existsByName(String identifier);
 
     Folder get(String foldername);
-    HashMap<Integer, ArrayList> getrecipeMap(String foldername);
 
-    ArrayList<String> getFolderList();
+    ArrayList<String> getFolderList(String username);
 
 }
