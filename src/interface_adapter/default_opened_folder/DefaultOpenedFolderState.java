@@ -2,6 +2,9 @@ package interface_adapter.default_opened_folder;
 
 import interface_adapter.opened_folder.OpenedFolderState;
 
+import java.util.ArrayList;
+import java.util.HashMap;
+
 
 public class DefaultOpenedFolderState {
     private String foldername = "default folder";

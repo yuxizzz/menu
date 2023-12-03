@@ -121,6 +121,7 @@ public class GetRecipeState {
     public void setRecipeurl(String recipeurl) {
         this.recipeurl = recipeurl;
     }
+    public String getRecipeURL(){return recipeurl;}
 
     public String getUsername() {
         return this.username;
