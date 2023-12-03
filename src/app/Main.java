@@ -212,6 +212,7 @@ public class Main {
 
         CreateFolderView createFolderView = CreateFolderUseCaseFactory.create(viewManagerModel,
                 createFolderViewModel,
+                myFolderViewModel,
                 createFolderDataAccessObject,
                 folderFactory);
         views.add(createFolderView, createFolderView.viewName);

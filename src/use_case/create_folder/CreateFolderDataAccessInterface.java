@@ -4,6 +4,6 @@ import entity.folder.Folder;
 import entity.recipe.Recipe;
 
 public interface CreateFolderDataAccessInterface {
-    boolean existsByName(String identifier);
+    boolean existsByFolder(String identifier, String username);
     void save(Folder folder, String username);
 }
