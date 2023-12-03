@@ -16,4 +16,8 @@ public class CreateFolderOutputData {
     public String getFoldername() {
         return foldername;
     }
+
+    public String getUsername() {
+        return username;
+    }
 }
