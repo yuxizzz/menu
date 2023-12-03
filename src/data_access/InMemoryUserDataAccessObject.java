@@ -4,6 +4,7 @@ import entity.folder.Folder;
 import entity.user.CommonUserFactory;
 import entity.user.User;
 import entity.user.UserFactory;
+import use_case.create_folder.CreateFolderDataAccessInterface;
 import use_case.delete_folder.DeleteFolderUserDataAccessInterface;
 import use_case.my_folder.MyFolderDataAccessInterface;
 import use_case.signup.SignupUserDataAccessInterface;
@@ -13,7 +14,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
-public class InMemoryUserDataAccessObject implements SignupUserDataAccessInterface, MyFolderDataAccessInterface, DeleteFolderUserDataAccessInterface {
+public class InMemoryUserDataAccessObject implements SignupUserDataAccessInterface, MyFolderDataAccessInterface, DeleteFolderUserDataAccessInterface, CreateFolderDataAccessInterface {
 
     private final Map<String, User> users = new HashMap<>();
     private final UserFactory userFactory;
@@ -66,5 +67,21 @@ public class InMemoryUserDataAccessObject implements SignupUserDataAccessInterfa
         User user = users.get(username);
         user.removeFolder(folderName);
         return folderName;
+    }
+
+    @Override
+    public boolean existsByFolder(String identifier, String username) {
+        for (Folder f : users.get(username).getUserFolders()) {
+            if (identifier == f.getName()) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    @Override
+    public void save(Folder folder, String username) {
+        User user = users.get(username);
+        user.addFolder(folder);
     }
 }

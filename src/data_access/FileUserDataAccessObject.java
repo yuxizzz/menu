@@ -139,7 +139,7 @@ public class FileUserDataAccessObject implements SignupUserDataAccessInterface, 
         User user = accounts.get(username);
         user.addFolder(folder);
 //        folders.put(folder.getName(), folder);
-        save();
+        this.save();
     }
 
 //    private void saveToCSV() {

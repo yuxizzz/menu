@@ -6,26 +6,18 @@ import interface_adapter.create_folder.CreateFolderViewModel;
 import interface_adapter.delete_folder.DeleteFolderController;
 import interface_adapter.delete_folder.DeleteFolderState;
 import interface_adapter.delete_folder.DeleteFolderViewModel;
-import interface_adapter.logout.LogoutState;
 import interface_adapter.logout.LogoutViewModel;
 import interface_adapter.my_folder.MyFolderState;
 import interface_adapter.my_folder.MyFolderViewModel;
 import interface_adapter.open_folder.OpenFolderController;
 import interface_adapter.open_folder.OpenFolderState;
 import interface_adapter.open_folder.OpenFolderViewModel;
-import interface_adapter.remove_recipe.RemoveState;
-import interface_adapter.signup.SignupState;
-import interface_adapter.signup.SignupViewModel;
-
-import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
-import java.io.IOException;
-import java.net.URL;
 import java.util.ArrayList;
 
 public class MyFolderView extends JPanel implements ActionListener, PropertyChangeListener {
@@ -73,7 +65,6 @@ public class MyFolderView extends JPanel implements ActionListener, PropertyChan
 
 
         this.myFolderViewModel.addPropertyChangeListener(this);
-
         this.logoutViewModel.addPropertyChangeListener(this);
         this.deleteFolderViewModel.addPropertyChangeListener(this);
         this.createFolderViewModel.addPropertyChangeListener(this);
@@ -81,8 +72,8 @@ public class MyFolderView extends JPanel implements ActionListener, PropertyChan
         JButton deleteFolder = new JButton(myFolderViewModel.DELETE_BUTTON_LABEL);
         JButton openFolder = new JButton(myFolderViewModel.OPEN_BUTTON_LABEL);
         JButton createFolder = new JButton(myFolderViewModel.CREATE_BUTTON_LABEL);
-//        this.openFolder = openFolder;
-//        this.deleteFolder = deleteFolder;
+        this.openFolder = openFolder;
+        this.deleteFolder = deleteFolder;
         this.createFolder = createFolder;
 
         JLabel title = new JLabel("My Folder Screen");
@@ -109,8 +100,7 @@ public class MyFolderView extends JPanel implements ActionListener, PropertyChan
         Integer count = 0;
         for (JLabel foldername : folderlists) {
 //            this.myFolderViewModel.addPropertyChangeListener(this);
-            this.openFolder = openFolder;
-            this.deleteFolder = deleteFolder;
+
             buttons.add(openFolder);
             buttons.add(deleteFolder);
             openFolder.setBounds(600, 10 + count, 100, 40);
