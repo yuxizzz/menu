@@ -7,6 +7,7 @@ import entity.recipe.UserRecipe;
 import entity.user.User;
 import use_case.delete_userRecipe.DeleteRecipeDataAccessInterface;
 import use_case.edit_recipe.EditDataAccessInterface;
+import use_case.open_recipe.OpenRecipeDataAccessInterface;
 import use_case.upload_recipe.UploadDataAccessInterface;
 
 import java.io.*;
@@ -17,7 +18,7 @@ import java.util.*;
  * The DataAccessObject class for Recipe objects, where they are stored in csv file. The usecases
  * can get access to the Recipe objects data through the DAO.
  */
-public class FileRecipeDataAccessObject implements UploadDataAccessInterface, EditDataAccessInterface {
+public class FileRecipeDataAccessObject implements UploadDataAccessInterface, EditDataAccessInterface, OpenRecipeDataAccessInterface {
 
     private final File csvFile;
 
@@ -34,8 +35,9 @@ public class FileRecipeDataAccessObject implements UploadDataAccessInterface, Ed
      * @param recipeFactory
      * @throws IOException
      */
-    public FileRecipeDataAccessObject(String csvPath, RecipeFactory recipeFactory) throws IOException {
+    public FileRecipeDataAccessObject(String csvPath, RecipeFactory recipeFactory, FileUserDataAccessObject fileUserDataAccessObject) throws IOException {
         this.recipeFactory = recipeFactory;
+        this.fileUserDataAccessObject = fileUserDataAccessObject;
 
         csvFile = new File(csvPath);
         headers.put("recipe_name", 0);
@@ -117,11 +119,10 @@ public class FileRecipeDataAccessObject implements UploadDataAccessInterface, Ed
         return recipeList.containsKey(recipeID);
     }
 
-
-
-
-
-
+    @Override
+    public void save(Recipe recipe) {
+        recipeList.put(recipe.getRecipeID(), recipe);
+    }
 
 
     public UserRecipe deleteRecipe(Integer deletedRecipeID){
@@ -143,13 +144,12 @@ public class FileRecipeDataAccessObject implements UploadDataAccessInterface, Ed
     public void editRecipe(Integer recipeID, UserRecipe userRecipe) {
         recipeList.replace(recipeID,userRecipe);
 
-
     }
 
 
     @Override
     public UserRecipe getRecipe(Integer recipeID, String username) {
-        Map<String, User> accounts = FileUserDataAccessObject.getAccounts();
+        Map<String, User> accounts = fileUserDataAccessObject.getAccounts();
         User user = accounts.get(username);
         ArrayList<Folder> folders = user.getUserFolders();
         UserRecipe userRecipe = null;
@@ -170,7 +170,7 @@ public class FileRecipeDataAccessObject implements UploadDataAccessInterface, Ed
 
     @Override
     public void saveRecipe(Integer recipeID, Recipe recipe, String username) {
-        Map<String, User> accounts = FileUserDataAccessObject.getAccounts();
+        Map<String, User> accounts = fileUserDataAccessObject.getAccounts();
         User user = accounts.get(username);
         ArrayList<Folder> folders = user.getUserFolders();
         folders.get(0).addRecipe(recipeID, recipe);
@@ -182,7 +182,7 @@ public class FileRecipeDataAccessObject implements UploadDataAccessInterface, Ed
 
     @Override
     public boolean existsByRecipeID(Integer recipeID, String username) {
-        Map<String, User> accounts = FileUserDataAccessObject.getAccounts();
+        Map<String, User> accounts = fileUserDataAccessObject.getAccounts();
         User user = accounts.get(username);
         ArrayList<Folder> folders = user.getUserFolders();
         HashMap<Integer, Recipe> recipes = folders.get(0).getRecipeMap();

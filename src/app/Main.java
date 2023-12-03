@@ -97,7 +97,7 @@ public class Main {
         FileRecipeDataAccessObject recipeDataAccessObject;
         try {
             recipeDataAccessObject = new FileRecipeDataAccessObject("./recipe.csv",
-                    new CommonRecipeFactory());
+                    new CommonRecipeFactory(), userDataAccessObject);
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
