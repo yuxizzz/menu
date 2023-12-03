@@ -27,7 +27,7 @@ class MyFolderInteractorTest {
             public void prepareSuccessView(MyFolderOutputData folder) {
                 ArrayList<String> folders = new ArrayList<>();
                 folders.add("My Recipes");
-                assertEquals(folders, folder.getFoldernames());
+                assertEquals(folder.getFoldernames(), folders);
             }
 
             @Override

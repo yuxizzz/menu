@@ -23,8 +23,7 @@ public class MyFolderInteractor implements MyFolderInputBoundary{
             myFolderPresenter.prepareFailView(username + ": User does not exist.");
         }else {
              ArrayList<String> foldernames = userDataAccessObject.getFolderList(myFolderInputData.getUsername());
-
-             MyFolderOutputData myFolderOutputData = new MyFolderOutputData(foldernames, false);
+             MyFolderOutputData myFolderOutputData = new MyFolderOutputData(foldernames, username, false);
              myFolderPresenter.prepareSuccessView(myFolderOutputData);
             }
         }
