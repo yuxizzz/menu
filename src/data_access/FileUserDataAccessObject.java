@@ -189,6 +189,11 @@ public class FileUserDataAccessObject implements SignupUserDataAccessInterface, 
 
     }
 
+    @Override
+    public void saveData() {
+        this.save();
+    }
+
 
 //    public void saveRecipe(Integer recipeID, Recipe recipe, String username) {
 //        User user = accounts.get(username);
