@@ -17,7 +17,8 @@ import use_case.open_recipe.OpenRecipeDataAccessInterface;
 import use_case.open_recipe.OpenRecipeInputBoundary;
 import use_case.open_recipe.OpenRecipeInteractor;
 import use_case.open_recipe.OpenRecipeOutputBoundary;
-import use_case.remove_recipe.RemoveFolderDataAccessInterface;
+import use_case.remove_recipe.RemoveDataAccessInterface;
+import use_case.remove_recipe.RemoveDataAccessInterface;
 import use_case.remove_recipe.RemoveInputBoundary;
 import use_case.remove_recipe.RemoveInteractor;
 import use_case.remove_recipe.RemoveOutputBoundary;
@@ -37,7 +38,7 @@ public class OpenedFolderUseCaseFactory {
             EditRecipeViewModel editRecipeViewModel,
             CollectRecipeViewModel collectRecipeViewModel,
             RemoveViewModel removeViewModel,
-            RemoveFolderDataAccessInterface removeDataAccessObject,
+            RemoveDataAccessInterface removeDataAccessObject,
             OpenRecipeDataAccessInterface openRecipeDataAccessObject) {
 
         try {
@@ -60,7 +61,7 @@ public class OpenedFolderUseCaseFactory {
     private static RemoveController createRemoveUseCase(ViewManagerModel viewManagerModel,
                                                         OpenedFolderViewModel openedFolderViewModel,
                                                         RemoveViewModel removeViewModel,
-                                                        RemoveFolderDataAccessInterface removeDataAccessObject) throws IOException {
+                                                        RemoveDataAccessInterface removeDataAccessObject) throws IOException {
 
         // Notice how we pass this method's parameters to the Presenter.
         RemoveOutputBoundary removeOutputBoundary = new RemovePresenter(viewManagerModel,

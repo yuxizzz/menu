@@ -9,9 +9,9 @@ import java.util.HashMap;
 
 public class RemoveInteractor implements RemoveInputBoundary{
 
-    final RemoveFolderDataAccessInterface removeDataAccessObject;
+    final RemoveDataAccessInterface removeDataAccessObject;
     final RemoveOutputBoundary removePresenter;
-    public RemoveInteractor(RemoveFolderDataAccessInterface removeDataAccessInterface, RemoveOutputBoundary removeOutputBoundary) {
+    public RemoveInteractor(RemoveDataAccessInterface removeDataAccessInterface, RemoveOutputBoundary removeOutputBoundary) {
         this.removeDataAccessObject = removeDataAccessInterface;
         this.removePresenter = removeOutputBoundary;
     }
