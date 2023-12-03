@@ -124,7 +124,6 @@ public class FileRecipeDataAccessObject implements UploadDataAccessInterface, Ed
 
 
 
-
     public UserRecipe deleteRecipe(Integer deletedRecipeID){
 
         UserRecipe userRecipe = (UserRecipe) recipeList.get(deletedRecipeID);
@@ -141,18 +140,28 @@ public class FileRecipeDataAccessObject implements UploadDataAccessInterface, Ed
 
 
     @Override
-    public String editRecipe() {
-        return null;
+    public void editRecipe(Integer recipeID, UserRecipe userRecipe) {
+        recipeList.replace(recipeID,userRecipe);
+
+
     }
 
-    @Override
-    public boolean existsByRecipeID(Integer recipeID) {
-        return false;
-    }
 
     @Override
-    public UserRecipe getRecipe() {
-        return null;
+    public UserRecipe getRecipe(Integer recipeID, String username) {
+        Map<String, User> accounts = FileUserDataAccessObject.getAccounts();
+        User user = accounts.get(username);
+        ArrayList<Folder> folders = user.getUserFolders();
+        UserRecipe userRecipe = null;
+        for (Folder f : folders) {
+            if(f.getRecipeMap().containsKey(recipeID)){
+                userRecipe = (UserRecipe) f.getRecipeMap().get(recipeID);
+
+            }
+        }
+        return userRecipe;
+
+
     }
 
 
@@ -165,6 +174,7 @@ public class FileRecipeDataAccessObject implements UploadDataAccessInterface, Ed
         User user = accounts.get(username);
         ArrayList<Folder> folders = user.getUserFolders();
         folders.get(0).addRecipe(recipeID, recipe);
+        recipeList.put(recipeID, recipe);
         save();
     }
 

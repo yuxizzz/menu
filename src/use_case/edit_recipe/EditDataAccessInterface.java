@@ -3,9 +3,9 @@ package use_case.edit_recipe;
 import entity.recipe.UserRecipe;
 
 public interface EditDataAccessInterface {
-    String editRecipe();
+    void editRecipe(Integer recipeID, UserRecipe userRecipe);
 
-    boolean existsByRecipeID(Integer recipeID);
+    boolean existsByRecipeID(Integer recipeID,String username);
 
-    UserRecipe getRecipe();
+    UserRecipe getRecipe(Integer recipeID, String username);
 }

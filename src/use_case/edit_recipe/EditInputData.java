@@ -11,13 +11,15 @@ public class EditInputData {
     final private String image;
     final private String recipeurl;
 
+    final private String username;
+
     public EditInputData(Integer recipeID,
                          String recipename,
                          String ingredients,
                          String nutrition,
                          String instructions,
                          String image,
-                         String recipeurl){
+                         String recipeurl, String username){
 
 
         this.recipeID = recipeID;
@@ -31,6 +33,7 @@ public class EditInputData {
         this.instructions = instructions;
         this.image = image;
         this.recipeurl = recipeurl;
+        this.username = username;
     }
 
     Integer getRecipeID(){
@@ -70,6 +73,11 @@ public class EditInputData {
 
     String getRrecipeurl(){
         return recipeurl;
+    }
+
+
+    String getUsername(){
+        return username;
     }
 
 }
