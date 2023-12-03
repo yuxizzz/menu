@@ -16,9 +16,9 @@ public class GetRecipeInteractor implements GetRecipeInputBoundary {
 
     @Override
     public void execute(GetRecipeInputData getRecipeInputData) throws IOException {
-        if (!recipeDataAccessObject.existsByName(getRecipeInputData.getRecipeID())) {
-            recipePresenter.prepareFailView("Recipe not found.");
-        } else {
+//        if (!recipeDataAccessObject.existsByName(getRecipeInputData.getRecipeID())) {
+//            recipePresenter.prepareFailView("Recipe not found.");
+//        } else {
             Recipe recipe = Search.getRecipe(getRecipeInputData.getRecipeID());
             recipeDataAccessObject.save(recipe);
 
@@ -26,6 +26,6 @@ public class GetRecipeInteractor implements GetRecipeInputBoundary {
                     recipe.getIngredients(), recipe.getNutrition(), recipe.getInstructions(), recipe.getImage(),
                     recipe.getRecipeURL(), false);
             recipePresenter.prepareSuccessView(getRecipeOutputData);
-        }
+//        }
     }
 }

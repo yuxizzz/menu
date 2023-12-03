@@ -6,6 +6,8 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import use_case.add_recipe_to_folder.*;
 
+import java.io.IOException;
+
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.fail;
@@ -35,27 +37,26 @@ class SearchInteractorTest {
 //        AddRecipeToFolderInputBoundary interactor = new AddRecipeToFolderInteractor(userRepository, successPresenter);
 //        interactor.execute(inputData);
 //    }
-//
-//    @Test
-//    void failureRecipeExistsTest() {
-//        AddRecipeToFolderInputData inputData = new AddRecipeToFolderInputData("B", 1, "judy");
-//        AddRecipeToFolderDataAccessInterface userRepository = new InMemoryFolderDataAccessObject();
-//
-//        // Add Paul to the repo so that when we check later they already exist
-//        AddRecipeToFolderOutputBoundary successPresenter = new AddRecipeToFolderOutputBoundary() {
-//
-//            @Override
-//            public void prepareSuccessView(AddRecipeToFolderOutputData outputData) {
-//                fail("Use case failure is unexpected.");
-//            }
-//
-//            @Override
-//            public void prepareFailView(String error) {
-//                Assertions.assertEquals("Recipe already existed", error);
-//                Assertions.assertFalse(userRepository.addRecipeToFolder("B", 1));
-//            }
-//        };
-//        AddRecipeToFolderInputBoundary interactor = new AddRecipeToFolderInteractor(userRepository, successPresenter);
-//        interactor.execute(inputData);
-//    }
+
+    @Test
+    void failureIngredientExistsTest() throws IOException {
+        SearchInputData inputData = new SearchInputData("", "gluten free");
+        SearchUserDataAccessInterface userRepository = new InMemorySearchResultsDataAccessObject();
+
+        // Add Paul to the repo so that when we check later they already exist
+        SearchOutputBoundary successPresenter = new SearchOutputBoundary() {
+
+            @Override
+            public void prepareSuccessView(SearchOutputData message) {
+                fail("Use case failure is unexpected.");
+            }
+
+            @Override
+            public void prepareFailView(String error) {
+                Assertions.assertEquals("Invalid ingredients", error);
+            }
+        };
+        SearchInputBoundary interactor = new SearchInteractor(userRepository, successPresenter);
+        interactor.execute(inputData);
+    }
 }
