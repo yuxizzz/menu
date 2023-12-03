@@ -1,7 +1,5 @@
 package data_access;
 
-import entity.recipe.Recipe;
-import entity.recipe.RecipeFactory;
 import entity.search_results.SearchResult;
 import use_case.search.SearchUserDataAccessInterface;
 
@@ -17,8 +15,13 @@ import static api.Search.getRecipeList;
 public class SearchResultsDataAccessObject implements SearchUserDataAccessInterface {
 
     private final HashMap<Object, SearchResult> headers = new LinkedHashMap<>();
+    private final File csvFile;
 
     private HashMap<Object, SearchResult> resultMap = new HashMap<>();
+
+    public SearchResultsDataAccessObject(File csvFile) {
+        this.csvFile = csvFile;
+    }
 
 
     @Override
