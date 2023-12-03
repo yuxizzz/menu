@@ -3,6 +3,7 @@ import entity.folder.Folder;
 import entity.recipe.Recipe;
 import entity.user.User;
 import entity.user.UserFactory;
+import use_case.delete_folder.DeleteFolderUserDataAccessInterface;
 import use_case.login.LoginUserDataAccessInterface;
 import use_case.logout.LogoutDataAccessInterface;
 import use_case.my_folder.MyFolderDataAccessInterface;
@@ -18,7 +19,7 @@ import java.util.Map;
 import java.util.ArrayList;
 
 public class FileUserDataAccessObject implements SignupUserDataAccessInterface, LoginUserDataAccessInterface , ClearUserDataAccessInterface,
-        LogoutDataAccessInterface, MyFolderDataAccessInterface {
+        LogoutDataAccessInterface, MyFolderDataAccessInterface, DeleteFolderUserDataAccessInterface{
 
     private final File csvFile;
 
@@ -128,6 +129,14 @@ public class FileUserDataAccessObject implements SignupUserDataAccessInterface, 
 
     public static Map<String, User> getAccounts(){
         return accounts;
+    }
+
+    @Override
+    public String deleteFolder(String folderName, String username) {
+        User user = accounts.get(username);
+        user.removeFolder(folderName);
+        return folderName;
+
     }
 
 

@@ -12,13 +12,14 @@ import use_case.create_folder.CreateFolderDataAccessInterface;
 import use_case.delete_folder.DeleteFolderUserDataAccessInterface;
 import use_case.delete_userRecipe.DeleteRecipeDataAccessInterface;
 import use_case.open_folder.OpenFolderDataAccessInterface;
+import use_case.remove_recipe.RemoveDataAccessInterface;
 
 import java.io.*;
 import java.util.*;
 
 //TODO recipeDAO & folderDAO
-public class FileFolderDataAccessObject implements  DeleteFolderUserDataAccessInterface, DeleteRecipeDataAccessInterface,
-        OpenFolderDataAccessInterface, AddRecipeToFolderDataAccessInterface, CollectRecipeDataAccessInterface, CreateFolderDataAccessInterface {
+public class FileFolderDataAccessObject implements DeleteRecipeDataAccessInterface,
+        OpenFolderDataAccessInterface, RemoveDataAccessInterface, AddRecipeToFolderDataAccessInterface, CollectRecipeDataAccessInterface, CreateFolderDataAccessInterface {
 
     private final File csvFile;
 
@@ -105,15 +106,7 @@ public class FileFolderDataAccessObject implements  DeleteFolderUserDataAccessIn
         }
     }
 
-    /**
-     * @param folderName
-     * @return
-     */
-    @Override
-    public String deleteFolder(String folderName) {
-        folders.remove(folderName);
-        return folderName;
-    }
+
 
     /**
      * @param identifier

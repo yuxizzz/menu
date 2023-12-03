@@ -1,9 +1,13 @@
 package use_case.my_folder;
 
 import data_access.InMemoryFolderDataAccessObject;
+import data_access.InMemoryUserDataAccessObject;
+import entity.folder.Folder;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import use_case.add_recipe_to_folder.*;
+
+import java.util.ArrayList;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
@@ -13,18 +17,17 @@ import static org.junit.jupiter.api.Assertions.*;
 class MyFolderInteractorTest {
     @Test
     void successTest() {
-        MyFolderInputData inputData = new MyFolderInputData("B", 2, "judy");
-        AddRecipeToFolderDataAccessInterface userRepository = new InMemoryFolderDataAccessObject();
+        MyFolderInputData inputData = new MyFolderInputData("User1");
+        MyFolderDataAccessInterface userRepository = new InMemoryUserDataAccessObject();
 
         // This creates a successPresenter that tests whether the test case is as we expect.
-        AddRecipeToFolderOutputBoundary successPresenter = new AddRecipeToFolderOutputBoundary() {
+        MyFolderOutputBoundary successPresenter = new MyFolderOutputBoundary() {
 
             @Override
-            public void prepareSuccessView(AddRecipeToFolderOutputData outputData) {
-                String message = "Successfully added to B";
-                assertEquals(message, outputData.getMessage());
-                assertFalse(userRepository.addRecipeToFolder("B", 2));
-
+            public void prepareSuccessView(MyFolderOutputData folder) {
+                ArrayList<String> folders = new ArrayList<>();
+                folders.add("My Recipes");
+                assertEquals(folders, folder.getFoldernames());
             }
 
             @Override
@@ -32,33 +35,30 @@ class MyFolderInteractorTest {
                 fail("Use case failure is unexpected.");
             }
         };
-        AddRecipeToFolderInputBoundary interactor = new AddRecipeToFolderInteractor(userRepository, successPresenter);
+        MyFolderInputBoundary interactor = new MyFolderInteractor(userRepository, successPresenter);
         interactor.execute(inputData);
     }
 
     @Test
-    void failureRecipeExistsTest() {
-        AddRecipeToFolderInputData inputData = new AddRecipeToFolderInputData("B", 1, "judy");
-        AddRecipeToFolderDataAccessInterface userRepository = new InMemoryFolderDataAccessObject();
+    void userNotExistTest() {
+        MyFolderInputData inputData = new MyFolderInputData("User3");
+        MyFolderDataAccessInterface userRepository = new InMemoryUserDataAccessObject();
 
         // Add Paul to the repo so that when we check later they already exist
-        AddRecipeToFolderOutputBoundary successPresenter = new AddRecipeToFolderOutputBoundary() {
+        MyFolderOutputBoundary successPresenter = new MyFolderOutputBoundary() {
 
             @Override
-            public void prepareSuccessView(AddRecipeToFolderOutputData outputData) {
+            public void prepareSuccessView(MyFolderOutputData folder) {
                 fail("Use case failure is unexpected.");
-
             }
 
             @Override
             public void prepareFailView(String error) {
-                Assertions.assertEquals("Recipe already existed", error);
-                Assertions.assertFalse(userRepository.addRecipeToFolder("B", 1));
+                Assertions.assertEquals("User3: User does not exist.", error);
             }
         };
-        AddRecipeToFolderInputBoundary interactor = new AddRecipeToFolderInteractor(userRepository, successPresenter);
+        MyFolderInputBoundary interactor = new MyFolderInteractor(userRepository, successPresenter);
         interactor.execute(inputData);
     }
-
 
 }

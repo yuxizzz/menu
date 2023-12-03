@@ -123,7 +123,7 @@ public class MyFolderView extends JPanel implements ActionListener, PropertyChan
                             if (e.getSource().equals(deleteFolder)) {
 
                                 DeleteFolderState currentState = deleteFolderViewModel.getState();
-                                deleteFolderController.execute(currentState.getFolderDeleted());
+                                deleteFolderController.execute(currentState.getFolderDeleted(), currentState.getUsername());
                             }
                         }
                     }

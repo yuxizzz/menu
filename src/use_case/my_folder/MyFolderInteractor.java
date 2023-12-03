@@ -7,7 +7,7 @@ import use_case.my_folder.MyFolderDataAccessInterface;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-public class MyFolderInteractor {
+public class MyFolderInteractor implements MyFolderInputBoundary{
     final MyFolderDataAccessInterface userDataAccessObject;
     final MyFolderOutputBoundary myFolderPresenter;
 
