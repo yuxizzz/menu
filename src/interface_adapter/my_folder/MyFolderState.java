@@ -7,6 +7,7 @@ import java.util.HashMap;
 
 public class MyFolderState {
     private String username = "";
+    private ArrayList<String> foldernames;
 
     public MyFolderState(MyFolderState copy) {
         username = copy.username;
@@ -22,7 +23,13 @@ public class MyFolderState {
         this.username = username;
     }
 
-    public void setFoldernameError(String error) {
+    public void setFoldernames(ArrayList<String> foldernames) {
+        this.foldernames = foldernames;
+    }
+    public ArrayList<String> getFoldernames() {
+        return foldernames;
+    }
 
+    public void setFoldernameError(String error) {
     }
 }

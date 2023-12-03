@@ -1,6 +1,10 @@
 package interface_adapter.my_folder;
 
 import interface_adapter.ViewManagerModel;
+import interface_adapter.create_folder.CreateFolderState;
+import interface_adapter.create_folder.CreateFolderViewModel;
+import interface_adapter.delete_folder.DeleteFolderState;
+import interface_adapter.delete_folder.DeleteFolderViewModel;
 import interface_adapter.open_folder.OpenFolderState;
 import interface_adapter.open_folder.OpenFolderViewModel;
 import interface_adapter.opened_folder.OpenedFolderState;
@@ -13,27 +17,49 @@ import use_case.open_folder.OpenFolderOutputData;
 public class MyFolderPresenter implements MyFolderOutputBoundary {
 
     private final MyFolderViewModel myFolderViewModel;
-    private final OpenedFolderViewModel openedFolderViewModel;
+    private final OpenFolderViewModel openFolderViewModel;
+    private final DeleteFolderViewModel deleteFolderViewModel;
+    private final CreateFolderViewModel createFolderViewModel;
     private ViewManagerModel viewManagerModel;
 
     public MyFolderPresenter(ViewManagerModel viewManagerModel,
                                    MyFolderViewModel myFolderViewModel,
-                                   OpenedFolderViewModel openedFolderViewModel) {
+                             DeleteFolderViewModel deleteFolderViewModel,
+                                   OpenFolderViewModel openFolderViewModel,
+                             CreateFolderViewModel createFolderViewModel) {
         this.viewManagerModel = viewManagerModel;
         this.myFolderViewModel = myFolderViewModel;
-        this.openedFolderViewModel = openedFolderViewModel;
+        this.openFolderViewModel = openFolderViewModel;
+        this.deleteFolderViewModel = deleteFolderViewModel;
+        this.createFolderViewModel = createFolderViewModel;
         }
 
         @Override
         public void prepareSuccessView(MyFolderOutputData response) {
-            // On success, switch to the logged in view.
+            // On success, switch to the
 
-            OpenedFolderState openedFolderState = openedFolderViewModel.getState();
-            openedFolderState.setFoldername(response.getFoldername());
-            this.openedFolderViewModel.setState(openedFolderState);
-            this.openedFolderViewModel.firePropertyChanged();
+            MyFolderState myFolderState = myFolderViewModel.getState();
+            myFolderState.setFoldernames(response.getFoldernames());
+            this.myFolderViewModel.setState(myFolderState);
+            this.myFolderViewModel.firePropertyChanged();
 
-            this.viewManagerModel.setActiveView(openedFolderViewModel.getViewName());
+
+            OpenFolderState openFolderState = openFolderViewModel.getState();
+            openFolderState.setUsername(myFolderState.getUsername());
+//            this.openFolderViewModel.setState(openFolderState);
+//            this.openFolderViewModel.firePropertyChanged();
+
+            DeleteFolderState deleteFolderState = deleteFolderViewModel.getState();
+            deleteFolderState.setUsername(myFolderState.getUsername());
+//            this.deleteFolderViewModel.setState(deleteFolderState);
+//            this.deleteFolderViewModel.firePropertyChanged();
+
+            CreateFolderState createFolderState = createFolderViewModel.getState();
+            createFolderState.setUsername(myFolderState.getUsername());
+//            this.createFolderViewModel.setState(createFolderState);
+//            this.createFolderViewModel.firePropertyChanged();
+
+            this.viewManagerModel.setActiveView(myFolderViewModel.getViewName());
             this.viewManagerModel.firePropertyChanged();
         }
 

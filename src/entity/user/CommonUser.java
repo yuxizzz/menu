@@ -5,6 +5,7 @@ import entity.folder.Folder;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
+import java.util.HashMap;
 
 class CommonUser implements User {
 
@@ -13,6 +14,7 @@ class CommonUser implements User {
     private final LocalDateTime creationTime;
     private ArrayList<Folder> userFolders;
     private DefaultFolder defaultFolder;
+
 
 
 
@@ -52,6 +54,16 @@ class CommonUser implements User {
         return creationTime;
     }
 
+    @Override
+    public void removeFolder(String folderName) {
+        Folder folder = null;
+        for (Folder f: userFolders) {
+            if (f.getName() == folderName) {
+                folder = f;
+            }
+        }
+        userFolders.remove(folder);
+  
     @Override
     public void addFolder(Folder folder) {
         userFolders.add(folder);

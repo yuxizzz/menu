@@ -8,9 +8,9 @@ import entity.recipe.UserRecipe;
 import entity.user.User;
 import use_case.add_recipe_to_folder.AddRecipeToFolderDataAccessInterface;
 import use_case.collect_recipe.CollectRecipeDataAccessInterface;
+import use_case.create_folder.CreateFolderDataAccessInterface;
 import use_case.delete_folder.DeleteFolderUserDataAccessInterface;
 import use_case.delete_userRecipe.DeleteRecipeDataAccessInterface;
-import use_case.my_folder.MyFolderDataAccessInterface;
 import use_case.open_folder.OpenFolderDataAccessInterface;
 import use_case.remove_recipe.RemoveDataAccessInterface;
 
@@ -18,9 +18,8 @@ import java.io.*;
 import java.util.*;
 
 //TODO recipeDAO & folderDAO
-public class FileFolderDataAccessObject implements  DeleteFolderUserDataAccessInterface, DeleteRecipeDataAccessInterface,
-        RemoveDataAccessInterface, OpenFolderDataAccessInterface, AddRecipeToFolderDataAccessInterface,
-        MyFolderDataAccessInterface, CollectRecipeDataAccessInterface {
+public class FileFolderDataAccessObject implements DeleteRecipeDataAccessInterface,
+        OpenFolderDataAccessInterface, RemoveDataAccessInterface, AddRecipeToFolderDataAccessInterface, CollectRecipeDataAccessInterface, CreateFolderDataAccessInterface {
 
     private final File csvFile;
 
@@ -107,15 +106,7 @@ public class FileFolderDataAccessObject implements  DeleteFolderUserDataAccessIn
         }
     }
 
-    /**
-     * @param folderName
-     * @return
-     */
-    @Override
-    public String deleteFolder(String folderName) {
-        folders.remove(folderName);
-        return folderName + "is removed";
-    }
+
 
     /**
      * @param identifier

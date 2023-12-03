@@ -5,6 +5,8 @@ import entity.search_results.SearchResult;
 import entity.user.CommonUserFactory;
 import entity.user.UserFactory;
 import interface_adapter.ViewManagerModel;
+import interface_adapter.create_folder.CreateFolderViewModel;
+import interface_adapter.delete_folder.DeleteFolderViewModel;
 import interface_adapter.get_recipe.GetRecipeViewModel;
 import interface_adapter.logged_in.LoggedInViewModel;
 import interface_adapter.login.LoginController;
@@ -16,6 +18,7 @@ import interface_adapter.logout.LogoutViewModel;
 import interface_adapter.my_folder.MyFolderController;
 import interface_adapter.my_folder.MyFolderPresenter;
 import interface_adapter.my_folder.MyFolderViewModel;
+import interface_adapter.open_folder.OpenFolderViewModel;
 import interface_adapter.opened_folder.OpenedFolderViewModel;
 import interface_adapter.search.SearchController;
 import interface_adapter.search.SearchPresenter;
@@ -52,20 +55,20 @@ public class LoggedinUseCaseFactory {
             LoggedInViewModel loggedInViewModel,
             SearchedViewModel searchedViewModel,
             GetRecipeViewModel getRecipeViewModel,
-            SearchViewModel searchViewModel,
-            SearchUserDataAccessInterface searchUserDataAccessObject,
+            SearchViewModel searchViewModel, SearchUserDataAccessInterface searchUserDataAccessObject,
+            OpenFolderViewModel openFolderViewModel,
+            CreateFolderViewModel createFolderViewModel,
             OpenedFolderViewModel openedFolderViewModel,
-            MyFolderViewModel myFolderViewModel,
-            MyFolderDataAccessInterface myFolderDataAccessObject,
+            DeleteFolderViewModel deleteFolderViewModel,
+            MyFolderViewModel myFolderViewModel, MyFolderDataAccessInterface myFolderDataAccessObject,
             LoginViewModel loginViewModel,
             LogoutViewModel logoutViewModel, LogoutDataAccessInterface logoutDataAccessObject) {
 
         try {
             SearchController searchController = createSearchUseCase(viewManagerModel, searchedViewModel,
                     searchViewModel, getRecipeViewModel, searchUserDataAccessObject);
-            MyFolderController myFolderController = createMyFolderUseCase(viewManagerModel,
-                    openedFolderViewModel, myFolderViewModel,
-                    myFolderDataAccessObject);
+            MyFolderController myFolderController = createMyFolderUseCase(viewManagerModel, openFolderViewModel, deleteFolderViewModel,
+                    createFolderViewModel, myFolderViewModel, myFolderDataAccessObject);
             LogoutController logoutController = createLogoutUseCase(viewManagerModel, loginViewModel,
                     logoutViewModel, logoutDataAccessObject);
             return new LoggedInView(loggedInViewModel,searchViewModel,searchController,
@@ -100,12 +103,13 @@ public class LoggedinUseCaseFactory {
         return new SearchController(searchInteractor);
     }
     private static MyFolderController createMyFolderUseCase(
-            ViewManagerModel viewManagerModel, OpenedFolderViewModel openedFolderViewModel,
+            ViewManagerModel viewManagerModel, OpenFolderViewModel openFolderViewModel,
+            DeleteFolderViewModel deleteFolderViewModel, CreateFolderViewModel createFolderViewModel,
             MyFolderViewModel myFolderViewModel, MyFolderDataAccessInterface myFolderDataAccessObject) throws IOException {
 
-        // Notice how we pass this method's parameters to the Presenter.
+//         Notice how we pass this method's parameters to the Presenter.
         MyFolderOutputBoundary myFolderOutputBoundary = new MyFolderPresenter(viewManagerModel,
-                myFolderViewModel, openedFolderViewModel);
+                myFolderViewModel, deleteFolderViewModel, openFolderViewModel, createFolderViewModel);
 
         UserFactory userFactory = new CommonUserFactory();
 
