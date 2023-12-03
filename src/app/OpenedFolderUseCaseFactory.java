@@ -34,7 +34,7 @@ public class OpenedFolderUseCaseFactory {
     public static OpenedFolderView create(
             ViewManagerModel viewManagerModel,
             OpenedFolderViewModel openedFolderViewModel,
-            OpenFolderViewModel openFolderViewModel,
+//            OpenFolderViewModel openFolderViewModel,
             OpenRecipeViewModel openRecipeViewModel,
             EditRecipeViewModel editRecipeViewModel,
             GetRecipeViewModel getRecipeViewModel,
