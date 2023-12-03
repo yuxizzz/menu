@@ -40,13 +40,16 @@ public class OpenUserRecipeUseCaseFactory {
             CollectRecipeViewModel collectRecipeViewModel,
             AddRecipeToFolderViewModel addRecipeToFolderViewModel,
             CollectRecipeDataAccessInterface fileDataAccessObject,
-            OpenRecipeDataAccessInterface openRecipeDataAccessObject) {
+            OpenRecipeDataAccessInterface openRecipeDataAccessObject,
+            EditDataAccessInterface editDataAccessInterface,
+            UserRecipeFactory userRecipeFactory) {
         try {
             OpenRecipeController openRecipeController = createOpenRecipeUseCase(viewManagerModel,
                     openRecipeViewModel,editRecipeViewModel, collectRecipeViewModel,openRecipeDataAccessObject);
             CollectRecipeController collectRecipeController = createCollectRecipeUseCase(viewManagerModel,
                     collectRecipeViewModel, addRecipeToFolderViewModel, fileDataAccessObject);
-            EditRecipeController editRecipeController =
+            EditRecipeController editRecipeController = createEditRecipeController(editRecipeViewModel,
+                    viewManagerModel, editDataAccessInterface, userRecipeFactory);
 
             return new UserRecipeView(openRecipeViewModel, openRecipeController,
                     collectRecipeViewModel, collectRecipeController,
