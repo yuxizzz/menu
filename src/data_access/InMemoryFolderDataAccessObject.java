@@ -27,8 +27,8 @@ public class InMemoryFolderDataAccessObject implements DeleteFolderUserDataAcces
 
     @Override
     public String deleteFolder(String folderName) {
-        // remove 1 folder
-        return null;
+        folders.remove(folderName);
+        return folderName;
     }
 
 

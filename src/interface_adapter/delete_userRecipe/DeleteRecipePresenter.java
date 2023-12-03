@@ -1,21 +1,22 @@
 package interface_adapter.delete_userRecipe;
 
 import interface_adapter.ViewManagerModel;
+import interface_adapter.default_opened_folder.DefaultOpenedFolderState;
+import interface_adapter.default_opened_folder.DefaultOpenedFolderViewModel;
 import use_case.delete_userRecipe.DeleteRecipeOutputBoundary;
 import use_case.delete_userRecipe.DeleteRecipeOutputData;
 
 public class DeleteRecipePresenter implements DeleteRecipeOutputBoundary {
     private final DeleteRecipeViewModel deleteRecipeViewModel;
+
+    private final DefaultOpenedFolderViewModel defaultOpenedFolderViewModel;
     private ViewManagerModel viewManagerModel;
 
     public DeleteRecipePresenter(ViewManagerModel viewManagerModel,
-                                 DeleteRecipeViewModel deleteRecipeViewModel) {
+                                 DeleteRecipeViewModel deleteRecipeViewModel, DefaultOpenedFolderViewModel defaultOpenedFolderViewModel) {
         this.deleteRecipeViewModel = deleteRecipeViewModel;
-
-
-
-
         this.viewManagerModel = viewManagerModel;
+        this.defaultOpenedFolderViewModel = defaultOpenedFolderViewModel;
     }
 
 
@@ -25,35 +26,30 @@ public class DeleteRecipePresenter implements DeleteRecipeOutputBoundary {
 
 
     public void prepareSuccessView(DeleteRecipeOutputData response){
-        //on success keep in the same view and delete the specific recipe
-
-        DeleteRecipeState deleteRecipeState = deleteRecipeViewModel.getState();
+        //on success switch to defaultOpenedFolder View and delete the specific recipe
 
 
 
-        deleteRecipeState.setRecipeDeleted(response.getRecipeDeleted());
-        deleteRecipeState.setRecipeID(response.getRecipeID());
 
 
 
-        this.deleteRecipeViewModel.setState(deleteRecipeState);
-        deleteRecipeViewModel.firePropertyChanged();
+        DefaultOpenedFolderState defaultOpenedFolderState = defaultOpenedFolderViewModel.getState();
+        defaultOpenedFolderState.setRecipeMap(response.getRecipeMap());
 
-        viewManagerModel.setActiveView(deleteRecipeViewModel.getViewName());
+        this.defaultOpenedFolderViewModel.setState(defaultOpenedFolderState);
+        defaultOpenedFolderViewModel.firePropertyChanged();
+
+        viewManagerModel.setActiveView(defaultOpenedFolderViewModel.getViewName());
         viewManagerModel.firePropertyChanged();
+
+
+
     }
     public void prepareFailView(String error){
 
-
-
-
         DeleteRecipeState deleteRecipeState = deleteRecipeViewModel.getState();
 
-
-
         deleteRecipeState.setMessageError(error);
-
-
 
         deleteRecipeViewModel.firePropertyChanged();
 

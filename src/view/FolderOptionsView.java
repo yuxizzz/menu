@@ -20,35 +20,33 @@ public class FolderOptionsView extends JPanel implements ActionListener, Propert
     private final AddRecipeToFolderController addRecipeToFolderController;
 
     private ArrayList<String> folders;
-    private HashMap<JButton, String> folderButtons;
+    private JButton folderButton;
 
     public FolderOptionsView(AddRecipeToFolderViewModel addRecipeToFolderViewModel, AddRecipeToFolderController addRecipeToFolderController) {
         this.addRecipeToFolderController = addRecipeToFolderController;
         this.addRecipeToFolderViewModel = addRecipeToFolderViewModel;
         this.addRecipeToFolderViewModel.addPropertyChangeListener(this);
 
-        //TODO: where do I know about the folderNames?
+        int counts = 0;
         JPanel buttons = new JPanel();
-        for (String folder: folders) {
-            JButton folderButton = new JButton(folder);
+        for (String foldername: folders) {
+            folderButton = new JButton(foldername);
+            folderButton.setBounds(600, 10 + counts, 100, 40);
             buttons.add(folderButton);
-            folderButtons.put(folderButton, folder);
-        }
-        for (JButton b: folderButtons.keySet()) {
-            b.addActionListener(
-
+            folderButton.addActionListener(
                     // This creates an anonymous subclass of ActionListener and instantiates it.
                     new ActionListener() {
                         public void actionPerformed(ActionEvent evt) {
-                            if (evt.getSource().equals(b)) {
+                            if (evt.getSource().equals(folderButton)) {
                                 AddRecipeToFolderState currentState = addRecipeToFolderViewModel.getState();
 
-                                addRecipeToFolderController.execute(folderButtons.get(b),
+                                addRecipeToFolderController.execute(foldername,
                                         currentState.getRecipeID(), currentState.getUsername());
                             }
                         }
                     }
             );
+            counts += 50;
         }
 
     }

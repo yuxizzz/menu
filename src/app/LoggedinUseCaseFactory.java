@@ -47,13 +47,16 @@ public class LoggedinUseCaseFactory {
     private LoggedinUseCaseFactory() {}
 
     public static LoggedInView create(
+
             ViewManagerModel viewManagerModel,
             LoggedInViewModel loggedInViewModel,
             SearchedViewModel searchedViewModel,
             GetRecipeViewModel getRecipeViewModel,
-            SearchViewModel searchViewModel, SearchUserDataAccessInterface searchUserDataAccessObject,
+            SearchViewModel searchViewModel,
+            SearchUserDataAccessInterface searchUserDataAccessObject,
             OpenedFolderViewModel openedFolderViewModel,
-            MyFolderViewModel myFolderViewModel, MyFolderDataAccessInterface myFolderDataAccessObject,
+            MyFolderViewModel myFolderViewModel,
+            MyFolderDataAccessInterface myFolderDataAccessObject,
             LoginViewModel loginViewModel,
             LogoutViewModel logoutViewModel, LogoutDataAccessInterface logoutDataAccessObject) {
 
@@ -74,7 +77,10 @@ public class LoggedinUseCaseFactory {
         return null;
     }
 
+
+
     private static SearchController createSearchUseCase(
+
             ViewManagerModel viewManagerModel,
             SearchedViewModel searchedViewModel,
             SearchViewModel searchViewModel,
@@ -108,6 +114,8 @@ public class LoggedinUseCaseFactory {
 
         return new MyFolderController(myFolderInteractor);
     }
+
+
     private static LogoutController createLogoutUseCase(
             ViewManagerModel viewManagerModel, LoginViewModel loginViewModel,
             LogoutViewModel logoutViewModel, LogoutDataAccessInterface logoutDataAccessObject) throws IOException {

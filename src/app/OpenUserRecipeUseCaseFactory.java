@@ -8,9 +8,11 @@ import interface_adapter.add_recipe_to_folder.AddRecipeToFolderViewModel;
 import interface_adapter.collect_recipe.CollectRecipeController;
 import interface_adapter.collect_recipe.CollectRecipePresenter;
 import interface_adapter.collect_recipe.CollectRecipeViewModel;
+import interface_adapter.default_opened_folder.DefaultOpenedFolderViewModel;
 import interface_adapter.edit_recipe.EditRecipeController;
 import interface_adapter.edit_recipe.EditRecipePresenter;
 import interface_adapter.edit_recipe.EditRecipeViewModel;
+import interface_adapter.get_recipe.GetRecipeViewModel;
 import interface_adapter.open_recipe.OpenRecipeController;
 import interface_adapter.open_recipe.OpenRecipePresenter;
 import interface_adapter.open_recipe.OpenRecipeViewModel;
@@ -41,15 +43,17 @@ public class OpenUserRecipeUseCaseFactory {
             AddRecipeToFolderViewModel addRecipeToFolderViewModel,
             CollectRecipeDataAccessInterface fileDataAccessObject,
             OpenRecipeDataAccessInterface openRecipeDataAccessObject,
+            DefaultOpenedFolderViewModel defaultOpenedFolderViewModel,
+            GetRecipeViewModel getRecipeViewModel,
             EditDataAccessInterface editDataAccessInterface,
             UserRecipeFactory userRecipeFactory) {
         try {
             OpenRecipeController openRecipeController = createOpenRecipeUseCase(viewManagerModel,
-                    openRecipeViewModel,editRecipeViewModel, collectRecipeViewModel,openRecipeDataAccessObject);
+                    openRecipeViewModel,editRecipeViewModel, getRecipeViewModel, collectRecipeViewModel,openRecipeDataAccessObject);
             CollectRecipeController collectRecipeController = createCollectRecipeUseCase(viewManagerModel,
                     collectRecipeViewModel, addRecipeToFolderViewModel, fileDataAccessObject);
             EditRecipeController editRecipeController = createEditRecipeController(editRecipeViewModel,
-                    viewManagerModel, editDataAccessInterface, userRecipeFactory);
+                    viewManagerModel, defaultOpenedFolderViewModel, editDataAccessInterface, userRecipeFactory);
 
             return new UserRecipeView(openRecipeViewModel, openRecipeController,
                     collectRecipeViewModel, collectRecipeController,
@@ -62,13 +66,15 @@ public class OpenUserRecipeUseCaseFactory {
     }
 
     private static OpenRecipeController createOpenRecipeUseCase(
-            ViewManagerModel viewManagerModel, OpenRecipeViewModel openRecipeViewModel, EditRecipeViewModel editRecipeViewModel,
+            ViewManagerModel viewManagerModel, OpenRecipeViewModel openRecipeViewModel,
+            EditRecipeViewModel editRecipeViewModel,
+            GetRecipeViewModel getRecipeviewModel,
             CollectRecipeViewModel collectRecipeViewModel,
             OpenRecipeDataAccessInterface openRecipeDataAccessObject) throws IOException {
 
         // Notice how we pass this method's parameters to the Presenter.
         OpenRecipeOutputBoundary openRecipeOutputBoundary = new OpenRecipePresenter(openRecipeViewModel,
-                editRecipeViewModel, collectRecipeViewModel, viewManagerModel);
+                getRecipeviewModel, editRecipeViewModel, collectRecipeViewModel, viewManagerModel);
 
         RecipeFactory recipeFactory = new CommonRecipeFactory();
 
@@ -91,9 +97,10 @@ public class OpenUserRecipeUseCaseFactory {
     }
     private static EditRecipeController createEditRecipeController(EditRecipeViewModel editRecipeViewModel,
                                                                    ViewManagerModel viewManagerModel,
+                                                                   DefaultOpenedFolderViewModel defaultOpenedFolderViewModel,
                                                                    EditDataAccessInterface editDataAccessInterface,
                                                                    UserRecipeFactory userRecipeFactory) {
-        EditOutputBoundary editOutputBoundary = new EditRecipePresenter(editRecipeViewModel, viewManagerModel);
+        EditOutputBoundary editOutputBoundary = new EditRecipePresenter(editRecipeViewModel, viewManagerModel, defaultOpenedFolderViewModel);
 
         EditInputBoundary editInteractor = new EditInteractor(editDataAccessInterface, editOutputBoundary, userRecipeFactory);
         return new EditRecipeController(editInteractor);

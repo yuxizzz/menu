@@ -1,17 +1,27 @@
 package interface_adapter.open_recipe;
 
 
+import entity.recipe.UserRecipe;
 import interface_adapter.ViewManagerModel;
 import interface_adapter.collect_recipe.CollectRecipeState;
 import interface_adapter.collect_recipe.CollectRecipeViewModel;
 import interface_adapter.edit_recipe.EditRecipeState;
 import interface_adapter.edit_recipe.EditRecipeViewModel;
+import interface_adapter.get_recipe.GetRecipeState;
+import interface_adapter.get_recipe.GetRecipeViewModel;
 import use_case.open_recipe.OpenRecipeOutputBoundary;
 import use_case.open_recipe.OpenRecipeOutputData;
+import view.RecipeView;
+import view.RemoveView;
+import view.UserRecipeView;
 
 public class OpenRecipePresenter implements OpenRecipeOutputBoundary {
 
     private final OpenRecipeViewModel openRecipeViewModel;
+
+    private final GetRecipeViewModel getRecipeViewModel;
+
+
 
     private final EditRecipeViewModel editRecipeViewModel;
 
@@ -19,10 +29,12 @@ public class OpenRecipePresenter implements OpenRecipeOutputBoundary {
     private final ViewManagerModel viewManagerModel;
 
     public OpenRecipePresenter(OpenRecipeViewModel openRecipeViewModel,
+                               GetRecipeViewModel getRecipeViewModel,
                                EditRecipeViewModel editRecipeViewModel,
                                CollectRecipeViewModel collectRecipeViewModel,
                                ViewManagerModel viewManagerModel) {
         this.openRecipeViewModel = openRecipeViewModel;
+        this.getRecipeViewModel = getRecipeViewModel;
         this.editRecipeViewModel = editRecipeViewModel;
         this.collectRecipeViewModel = collectRecipeViewModel;
 
@@ -41,6 +53,13 @@ public class OpenRecipePresenter implements OpenRecipeOutputBoundary {
         this.openRecipeViewModel.firePropertyChanged();
 
 
+        GetRecipeState getRecipeState = getRecipeViewModel.getState();
+
+        getRecipeState.setRecipeID(response.getRecipeID());
+
+        this.getRecipeViewModel.setState(getRecipeState);
+
+        this.getRecipeViewModel.firePropertyChanged();
 
 
 
@@ -51,6 +70,7 @@ public class OpenRecipePresenter implements OpenRecipeOutputBoundary {
         this.editRecipeViewModel.setState(editRecipeState);
         this.editRecipeViewModel.firePropertyChanged();
 
+
         CollectRecipeState collectRecipeState = collectRecipeViewModel.getState();
         collectRecipeState.setUsername(response.getUsername());
         this.collectRecipeViewModel.setState(collectRecipeState);
@@ -58,9 +78,14 @@ public class OpenRecipePresenter implements OpenRecipeOutputBoundary {
 
 
 
+        if (response.getUsername() != null){
+            this.viewManagerModel.setActiveView(openRecipeViewModel.getViewName());
 
-        this.viewManagerModel.setActiveView(openRecipeViewModel.getViewName());
-        this.viewManagerModel.firePropertyChanged();
+        }else{
+            this.viewManagerModel.setActiveView(getRecipeViewModel.getViewName());
+
+        }this.viewManagerModel.firePropertyChanged();
+
 
 
 
