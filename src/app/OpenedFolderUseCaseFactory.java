@@ -5,7 +5,6 @@ import entity.recipe.RecipeFactory;
 import interface_adapter.ViewManagerModel;
 import interface_adapter.collect_recipe.CollectRecipeViewModel;
 import interface_adapter.edit_recipe.EditRecipeViewModel;
-import interface_adapter.open_folder.OpenFolderViewModel;
 import interface_adapter.open_recipe.OpenRecipeController;
 import interface_adapter.open_recipe.OpenRecipePresenter;
 import interface_adapter.open_recipe.OpenRecipeViewModel;
