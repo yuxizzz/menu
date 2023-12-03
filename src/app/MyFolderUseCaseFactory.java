@@ -65,7 +65,7 @@ public class MyFolderUseCaseFactory {
             DeleteFolderController deleteFolderController = createDeleteFolderUseCase(viewManagerModel,
                     deleteFolderViewModel, deleteFolderUserDataAccessInterface);
             CreateFolderController createFolderController = createCreateFolderUseCase(viewManagerModel, createFolderViewModel,
-                    createFolderDataAccessInterface);
+                    myFolderViewModel, createFolderDataAccessInterface);
 
             return new MyFolderView(myFolderViewModel,logoutViewModel, openFolderViewModel, openFolderController,
                     deleteFolderViewModel, deleteFolderController,
@@ -74,8 +74,9 @@ public class MyFolderUseCaseFactory {
 
     private static CreateFolderController createCreateFolderUseCase(ViewManagerModel viewManagerModel,
                                                                     CreateFolderViewModel createFolderViewModel,
+                                                                    MyFolderViewModel myFolderViewModel,
                                                                     CreateFolderDataAccessInterface createFolderDataAccessInterface) {
-        CreateFolderOutputBoundary createFolderOutputBoundary = new CreateFolderPresenter(createFolderViewModel, viewManagerModel);
+        CreateFolderOutputBoundary createFolderOutputBoundary = new CreateFolderPresenter(createFolderViewModel, myFolderViewModel, viewManagerModel);
         FolderFactory folderFactory = new CommonFolderFactory();
 
         CreateFolderInputBoundary CreateFolderInteractor = new CreateFolderInteractor(createFolderDataAccessInterface,

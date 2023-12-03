@@ -5,6 +5,7 @@ import interface_adapter.ViewManagerModel;
 import interface_adapter.create_folder.CreateFolderController;
 import interface_adapter.create_folder.CreateFolderPresenter;
 import interface_adapter.create_folder.CreateFolderViewModel;
+import interface_adapter.my_folder.MyFolderViewModel;
 import use_case.create_folder.*;
 import view.CreateFolderView;
 
@@ -17,10 +18,11 @@ public class CreateFolderUseCaseFactory {
     public static CreateFolderView create(
             ViewManagerModel viewManagerModel,
             CreateFolderViewModel createFolderViewModel,
+            MyFolderViewModel myFolderViewModel,
             CreateFolderDataAccessInterface createFolderDataAccessInterface,
             FolderFactory folderFactory) {
         CreateFolderController createFolderController = createCreateFolderController(createFolderViewModel,
-                viewManagerModel, createFolderDataAccessInterface, folderFactory);
+                myFolderViewModel, viewManagerModel, createFolderDataAccessInterface, folderFactory);
 
         return new CreateFolderView(createFolderViewModel, createFolderController);
 
@@ -45,11 +47,12 @@ public class CreateFolderUseCaseFactory {
 //    }
 
     private static CreateFolderController createCreateFolderController(CreateFolderViewModel createFolderViewModel,
+                                                                       MyFolderViewModel myFolderViewModel,
                                                                        ViewManagerModel viewManagerModel,
                                                                        CreateFolderDataAccessInterface createFolderDataAccessInterface,
                                                                        FolderFactory folderFactory) {
         CreateFolderOutputBoundary createFolderOutputBoundary = new CreateFolderPresenter(
-              createFolderViewModel, viewManagerModel);
+              createFolderViewModel, myFolderViewModel, viewManagerModel);
         CreateFolderInputBoundary createInteractor = new CreateFolderInteractor(createFolderDataAccessInterface,
                 createFolderOutputBoundary, folderFactory);
         return new CreateFolderController(createInteractor);
