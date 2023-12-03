@@ -24,7 +24,7 @@ public class CreateFolderInteractor implements CreateFolderInputBoundary {
             String username = createFolderInputData.getUsername();
             folderDataAccessObject.save(folder, username);
 
-            CreateFolderOutputData createFolderOutputData = new CreateFolderOutputData(folder.getName(), false);
+            CreateFolderOutputData createFolderOutputData = new CreateFolderOutputData(folder.getName(), username, false);
             folderPresenter.prepareSuccessView(createFolderOutputData);
         }
     }

@@ -1,15 +1,19 @@
 package interface_adapter.create_folder;
 
 import interface_adapter.ViewManagerModel;
+import interface_adapter.my_folder.MyFolderState;
+import interface_adapter.my_folder.MyFolderViewModel;
 import use_case.create_folder.CreateFolderOutputBoundary;
 import use_case.create_folder.CreateFolderOutputData;
 
 public class CreateFolderPresenter implements CreateFolderOutputBoundary {
     private final CreateFolderViewModel createFolderViewModel;
+    private final MyFolderViewModel myFolderViewModel;
     private ViewManagerModel viewManagerModel;
 
-    public CreateFolderPresenter(CreateFolderViewModel createFolderViewModel, ViewManagerModel viewManagerModel) {
+    public CreateFolderPresenter(CreateFolderViewModel createFolderViewModel, MyFolderViewModel myFolderViewModel, ViewManagerModel viewManagerModel) {
         this.createFolderViewModel = createFolderViewModel;
+        this.myFolderViewModel = myFolderViewModel;
         this.viewManagerModel = viewManagerModel;
     }
 
@@ -19,6 +23,9 @@ public class CreateFolderPresenter implements CreateFolderOutputBoundary {
         createFolderState.setFoldername(folder.getFoldername());
         this.createFolderViewModel.setState(createFolderState);
         createFolderViewModel.firePropertyChanged();
+
+        MyFolderState myFolderState = myFolderViewModel.getState();
+        myFolderState.setUsername();
 
         viewManagerModel.setActiveView(createFolderViewModel.getViewName());
         viewManagerModel.firePropertyChanged();
