@@ -17,9 +17,8 @@ import java.util.LinkedHashMap;
 import java.util.Map;
 import java.util.ArrayList;
 
-public class FileUserDataAccessObject implements SignupUserDataAccessInterface, LoginUserDataAccessInterface,
-        ClearUserDataAccessInterface,
-        LogoutDataAccessInterface {
+public class FileUserDataAccessObject implements SignupUserDataAccessInterface, LoginUserDataAccessInterface , ClearUserDataAccessInterface,
+        LogoutDataAccessInterface, CreateFolderDataAccessInterface {
 
     private final File csvFile;
 
@@ -101,6 +100,14 @@ public class FileUserDataAccessObject implements SignupUserDataAccessInterface, 
     @Override
     public boolean existsByName(String identifier) {
         return accounts.containsKey(identifier);
+    }
+
+    @Override
+    public void save(Folder folder, String username) {
+        User user = accounts.get(username);
+        user.addFolder(folder);
+//        folders.put(folder.getName(), folder);
+//        saveToCSV();
     }
 
     @Override

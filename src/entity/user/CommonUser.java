@@ -51,4 +51,9 @@ class CommonUser implements User {
     public LocalDateTime getCreationTime() {
         return creationTime;
     }
+
+    @Override
+    public void addFolder(Folder folder) {
+        userFolders.add(folder);
+    }
 }

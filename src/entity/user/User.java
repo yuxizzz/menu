@@ -13,4 +13,6 @@ public interface User {
     ArrayList<Folder> getUserFolders();
 
     LocalDateTime getCreationTime();
+
+    void addFolder(Folder folder);
 }

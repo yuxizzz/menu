@@ -24,18 +24,6 @@ public class EditRecipePresenter implements EditOutputBoundary {
         this.defaultOpenedFolderViewModel = defaultOpenedFolderViewModel;
     }
 
-
-
-
-
-
-
-
-
-
-
-
-
     @Override
     public void prepareSuccessView(EditOutputData message) {
         //On success, switch to the edit folder view.
@@ -50,16 +38,6 @@ public class EditRecipePresenter implements EditOutputBoundary {
 
 
     }
-
-
-
-
-
-
-
-
-
-
 
 
     @Override
