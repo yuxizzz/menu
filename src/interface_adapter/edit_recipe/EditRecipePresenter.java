@@ -16,18 +16,6 @@ public class EditRecipePresenter implements EditOuntputBoundary {
         this.viewManagerModel = viewManagerModel;
     }
 
-
-
-
-
-
-
-
-
-
-
-
-
     @Override
     public void prepareSuccessView(EditOutputData message) {
         //On success, switch to the edit folder view.
@@ -42,16 +30,6 @@ public class EditRecipePresenter implements EditOuntputBoundary {
 
 
     }
-
-
-
-
-
-
-
-
-
-
 
 
     @Override
