@@ -28,19 +28,22 @@ public class DeleteRecipeUseCaseFactory {
             ViewManagerModel viewManagerModel,
             DeleteRecipeViewModel deleteRecipeViewModel,
             DeleteRecipeDataAccessInterface deleteRecipeDataAccessObject,
-            DefaultOpenedFolderViewModel defaultOpenedFolderViewModel) {
+            DefaultOpenedFolderViewModel defaultOpenedViewModel) {
 
         DeleteRecipeController deleteRecipeController = createDeleteRecipeUseCase(viewManagerModel,
-                deleteRecipeViewModel, deleteRecipeDataAccessObject);
-        return new DeleteUserRecipeView(deleteRecipeViewModel, deleteRecipeController, defaultOpenedFolderViewModel);
+                deleteRecipeViewModel, deleteRecipeDataAccessObject,defaultOpenedViewModel);
+        return new DeleteUserRecipeView(deleteRecipeViewModel, deleteRecipeController);
 
     }
 
+
+
     private static DeleteRecipeController createDeleteRecipeUseCase(ViewManagerModel viewManagerModel,
                                                                     DeleteRecipeViewModel deleteRecipeViewModel,
-                                                                    DeleteRecipeDataAccessInterface deleteRecipeDataAccessObject) {
+                                                                    DeleteRecipeDataAccessInterface deleteRecipeDataAccessObject,
+                                                                    DefaultOpenedFolderViewModel defaultOpenedViewModel) {
         DeleteRecipeOutputBoundary deleteRecipeOutputBoundary =
-                new DeleteRecipePresenter(viewManagerModel, deleteRecipeViewModel);
+                new DeleteRecipePresenter(viewManagerModel, deleteRecipeViewModel, defaultOpenedViewModel);
 
         DeleteRecipeInputBoundary collectRecipeInteractor = new DeleteRecipeInteractor(
                 deleteRecipeDataAccessObject, deleteRecipeOutputBoundary);
