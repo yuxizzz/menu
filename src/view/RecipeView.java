@@ -105,7 +105,7 @@ public class RecipeView extends JPanel implements ActionListener, PropertyChange
         JLabel label1 = new JLabel(ingredients);
         label1.setVisible(true);
 //        label1.setBackground(Color.red);
-        label1.setText(ingredients);
+//        label1.setText(ingredients);
         label1.setHorizontalTextPosition(JLabel.CENTER);
         label1.setVerticalTextPosition(JLabel.TOP);
         label1.setOpaque(true);
@@ -118,7 +118,7 @@ public class RecipeView extends JPanel implements ActionListener, PropertyChange
         JLabel label2 = new JLabel(nutrition);
         label2.setVisible(true);
 //        label2.setBackground(Color.cyan);
-        label2.setText(nutrition);
+//        label2.setText(nutrition);
         label2.setHorizontalTextPosition(JLabel.CENTER);
         label2.setVerticalTextPosition(JLabel.TOP);
         label2.setOpaque(true);
@@ -131,7 +131,7 @@ public class RecipeView extends JPanel implements ActionListener, PropertyChange
         JLabel label3 = new JLabel(instructions);
         label3.setVisible(true);
 //        label3.setBackground(Color.ORANGE);
-        label3.setText(instructions);
+//        label3.setText(instructions);
         label3.setHorizontalTextPosition(JLabel.CENTER);
         label3.setVerticalTextPosition(JLabel.TOP);
         label3.setOpaque(true);
@@ -157,8 +157,10 @@ public class RecipeView extends JPanel implements ActionListener, PropertyChange
         this.add(title);
         this.add(buttons);
         this.add(label);
+        this.add(label1);
+        this.add(label2);
+        this.add(label3);
         this.setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
-
     }
 
     @Override
