@@ -1,10 +1,8 @@
 package use_case.collect_recipe;
 
-import entity.folder.Folder;
 
 
 import java.util.ArrayList;
-import java.util.HashMap;
 
 public class CollectRecipeInteractor implements CollectRecipeInputBoundary {
     final CollectRecipeDataAccessInterface recipeDataAccessObject;

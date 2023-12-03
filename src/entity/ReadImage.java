@@ -57,7 +57,7 @@ public class ReadImage {
         // set font of text
         label.setIconTextGap(-25);
         // set gap of text to image
-        label.setBackground(Color.black);
+        label.setBackground(Color.gray);
         // set background color
         label.setOpaque(true);
         // display background color

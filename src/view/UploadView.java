@@ -38,7 +38,6 @@ public class UploadView extends JPanel implements ActionListener, PropertyChange
     private final JTextField recipeurlInputField = new JTextField(15);
     private final JTextField recipeidInputField = new JTextField(15);
     private final JButton upload;
-    private final JButton cancel;
 
 
 
@@ -83,8 +82,6 @@ public class UploadView extends JPanel implements ActionListener, PropertyChange
         JPanel buttons = new JPanel();
         this.upload = new JButton(UploadRecipeViewModel.UPLOAD_BUTTON_LABEL);
         buttons.add(upload);
-        this.cancel = new JButton(UploadRecipeViewModel.CANCEL_BUTTON_LABEL);
-        buttons.add(cancel);
 
 
 
@@ -118,7 +115,7 @@ public class UploadView extends JPanel implements ActionListener, PropertyChange
                 }
         );
 
-        cancel.addActionListener(this);
+
 
         // This makes a new KeyListener implementing class, instantiates it, and
         // makes it listen to keystrokes in the usernameInputField.

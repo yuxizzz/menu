@@ -23,7 +23,7 @@ public class SearchView extends JPanel implements ActionListener, PropertyChange
 
     private final JLabel ingredientsErrorField = new JLabel();
     final JButton search;
-    final JButton cancel;
+//    final JButton cancel;
 
     final JButton myFolder;
 
@@ -45,10 +45,10 @@ public class SearchView extends JPanel implements ActionListener, PropertyChange
 
         JPanel buttons = new JPanel();
         search = new JButton(SearchViewModel.SEARCH_BUTTON_LABEL);
-        cancel = new JButton(SearchViewModel.CANCEL_BUTTON_LABEL);
+//        cancel = new JButton(SearchViewModel.CANCEL_BUTTON_LABEL);
         myFolder = new JButton(SearchViewModel.MYFOLDER_BUTTON_LABEL);
         buttons.add(search);
-        buttons.add(cancel);
+//        buttons.add(cancel);
         buttons.add(myFolder);
 
         search.addActionListener(                // This creates an anonymous subclass of ActionListener and instantiates it.
@@ -67,9 +67,9 @@ public class SearchView extends JPanel implements ActionListener, PropertyChange
                 }
         );
 
-        cancel.addActionListener(this
+//        cancel.addActionListener(this
         // TODO: CANCEL button to be implemented
-        );
+//        );
 
 //        myFolder.addActionListener(
 //                // TODO: MY FOLDER to be implemented);

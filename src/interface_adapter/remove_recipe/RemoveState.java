@@ -11,6 +11,8 @@ public class RemoveState {
     private String recipes = null;
     private String username = "";
 
+    private String foldername = "";
+
 
 
     public RemoveState(){
@@ -40,6 +42,13 @@ public class RemoveState {
     }
     public void setUsername(String username) {
         this.username = username;
+    }
+
+    public String getFoldername() {
+        return foldername;
+    }
+    public void setFoldername(String username) {
+        this.foldername = foldername;
     }
 
     public void setMessageError(String error){

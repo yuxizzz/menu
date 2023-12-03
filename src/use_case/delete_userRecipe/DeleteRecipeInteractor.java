@@ -27,14 +27,16 @@ public class DeleteRecipeInteractor implements DeleteRecipeInputBoundary {
         Integer recipeID = deleteRecipeInputData.getDeletedRecipeID();
 
 
-        if (!deleteRecipeDataAccessObject.existsByName(recipeID)) {
+
+        if (!deleteRecipeDataAccessObject.existsByRecipeID(recipeID, deleteRecipeInputData.getUsername())) {
 
 
             deleteRecipePresenter.prepareFailView(recipeID + ": Recipe does not exist.");
         } else {
 
 
-            UserRecipe userRecipe = deleteRecipeDataAccessObject.deleteRecipe(deleteRecipeInputData.getDeletedRecipeID());
+            UserRecipe userRecipe = deleteRecipeDataAccessObject.deleteRecipe(deleteRecipeInputData.getDeletedRecipeID(),
+                    deleteRecipeInputData.getUsername());
 
 
             DeleteRecipeOutputData deleteRecipeOutputData = new DeleteRecipeOutputData(userRecipe.getName(),

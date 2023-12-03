@@ -33,12 +33,17 @@ public class UploadInputData {
     String getRecipename(){
         return recipename;
     }
+
+
     Integer getRecipeid(){
         return recipeID;}
 
     String getIngredients(){
         return ingredients;
     }
+
+
+
     String getNutrition(){
         return nutrition;
     }

@@ -17,13 +17,13 @@ import java.util.Map;
 import java.util.ArrayList;
 
 public class FileUserDataAccessObject implements SignupUserDataAccessInterface, LoginUserDataAccessInterface , ClearUserDataAccessInterface,
-        LogoutDataAccessInterface, UploadDataAccessInterface {
+        LogoutDataAccessInterface {
 
     private final File csvFile;
 
     private final Map<String, Integer> headers = new LinkedHashMap<>();
 
-    private final Map<String, User> accounts = new HashMap<>();
+    private static final Map<String, User> accounts = new HashMap<>();
 
     private UserFactory userFactory;
 
@@ -115,21 +115,25 @@ public class FileUserDataAccessObject implements SignupUserDataAccessInterface, 
         return user.getUserFolders();
     }
 
-    @Override
-    public void saveRecipe(Integer recipeID, Recipe recipe, String username) {
-        User user = accounts.get(username);
-        ArrayList<Folder> folders = user.getUserFolders();
-        folders.get(0).addRecipe(recipeID, recipe);
-
-        }
-
-
-    @Override
-    public boolean existByReicipeID(Integer recipeID, String username) {
-        User user = accounts.get(username);
-        ArrayList<Folder> folders = user.getUserFolders();
-        HashMap<Integer, Recipe> recipes = folders.get(0).getRecipeMap();
-        return recipes.containsKey(recipeID);
-
+    public static Map<String, User> getAccounts(){
+        return accounts;
     }
+
+
+//    public void saveRecipe(Integer recipeID, Recipe recipe, String username) {
+//        User user = accounts.get(username);
+//        ArrayList<Folder> folders = user.getUserFolders();
+//        folders.get(0).addRecipe(recipeID, recipe);
+//
+//        }
+
+
+
+//    public boolean existByReicipeID(Integer recipeID, String username) {
+//        User user = accounts.get(username);
+//        ArrayList<Folder> folders = user.getUserFolders();
+//        HashMap<Integer, Recipe> recipes = folders.get(0).getRecipeMap();
+//        return recipes.containsKey(recipeID);
+//
+//    }
 }

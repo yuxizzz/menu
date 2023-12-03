@@ -34,7 +34,7 @@ public class EditRecipeViewModel extends ViewModel {
     public static final String RECIPENANME_LABEL = "Input recipename";
 
 
-    private static EditRecipeState state = new EditRecipeState();
+    private  EditRecipeState state = new EditRecipeState();
     public static final String EDIT_BUTTON_LABEL = "edit recipe";
 
     public static final String CANCEL_BUTTON_LABEL = "cancel recipe";
@@ -74,7 +74,7 @@ public class EditRecipeViewModel extends ViewModel {
 
     }
 
-    public static EditRecipeState getState() {
+    public  EditRecipeState getState() {
         return state;
     }
 

@@ -16,8 +16,8 @@ public class OpenRecipeController {
     }
 
 
-    public void execute(Integer recipeID, Folder folder) throws IOException {
-        OpenRecipeInputData openRecipeInputData = new OpenRecipeInputData(recipeID, folder);
+    public void execute(Integer recipeID, String username, String foldername) throws IOException {
+        OpenRecipeInputData openRecipeInputData = new OpenRecipeInputData(recipeID, username, foldername);
 
         openRecipeInteractor.execute(openRecipeInputData);
 

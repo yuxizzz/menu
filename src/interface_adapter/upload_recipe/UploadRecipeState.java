@@ -20,7 +20,7 @@ public class UploadRecipeState {
     private Integer recipeID = null;
     private String recipeIDError = null;
 
-    private String username = null;
+    private String username = "";
 
     public UploadRecipeState(UploadRecipeState copy){
         recipeID = copy.recipeID;

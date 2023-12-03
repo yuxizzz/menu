@@ -4,21 +4,23 @@ import entity.folder.Folder;
 import entity.folder.FolderFactory;
 import entity.recipe.CommonRecipe;
 import entity.recipe.Recipe;
+import entity.recipe.UserRecipe;
+import entity.user.User;
 import use_case.add_recipe_to_folder.AddRecipeToFolderDataAccessInterface;
 import use_case.collect_recipe.CollectRecipeDataAccessInterface;
 import use_case.delete_folder.DeleteFolderUserDataAccessInterface;
+import use_case.delete_userRecipe.DeleteRecipeDataAccessInterface;
 import use_case.my_folder.MyFolderDataAccessInterface;
 import use_case.open_folder.OpenFolderDataAccessInterface;
+import use_case.remove_recipe.RemoveFolderDataAccessInterface;
 
 import java.io.*;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.LinkedHashMap;
-import java.util.Map;
+import java.util.*;
 
 //TODO recipeDAO & folderDAO
-public class FileFolderDataAccessObject implements DeleteFolderUserDataAccessInterface,
-        OpenFolderDataAccessInterface, AddRecipeToFolderDataAccessInterface, MyFolderDataAccessInterface, CollectRecipeDataAccessInterface {
+public class FileFolderDataAccessObject implements  DeleteFolderUserDataAccessInterface, DeleteRecipeDataAccessInterface,
+        RemoveFolderDataAccessInterface, OpenFolderDataAccessInterface, AddRecipeToFolderDataAccessInterface,
+        MyFolderDataAccessInterface, CollectRecipeDataAccessInterface {
 
     private final File csvFile;
 
@@ -79,6 +81,7 @@ public class FileFolderDataAccessObject implements DeleteFolderUserDataAccessInt
      */
     public void save(Folder folder) {
         folders.put(folder.getName(), folder);
+        saveToCSV();
     }
 
     ;
@@ -159,17 +162,16 @@ public class FileFolderDataAccessObject implements DeleteFolderUserDataAccessInt
 
 
     @Override
-    public String addRecipeToFolder(String folderName, Integer recipeID) {
-        recipeDataAccessObject.getRecipeFromFile(recipeID);
-        for (String s : folders.keySet()) {
-            if (s.equals(folderName)) {
-                Folder f = folders.get(s);
-                Recipe r = recipeDataAccessObject.getRecipeFromFile(recipeID);
-                f.addRecipe(r.getRecipeID(), r);
-                return "successfully added to " + folderName;
+    public Boolean addRecipeToFolder(String folderName, Integer recipeID) {
+        Recipe r = recipeDataAccessObject.getRecipeFromFile(recipeID);
+        Folder f = folders.get(folderName);
+        for (Recipe recipe : f) {
+            if (Objects.equals(recipe.getRecipeID(), recipeID)) {
+                return false;
             }
         }
-        return null;
+        f.addRecipe(recipeID, r);
+        return true;
     }
 
     @Override
@@ -180,5 +182,43 @@ public class FileFolderDataAccessObject implements DeleteFolderUserDataAccessInt
             foldernames.add(f.getName());
         }
         return foldernames;
+    }
+
+
+
+    @Override
+    public boolean existsByRecipeID(Integer identifier, String username) {
+        Map<String, User> accounts = FileUserDataAccessObject.getAccounts();
+        User user = accounts.get(username);
+        ArrayList<Folder> folders = user.getUserFolders();
+        HashMap<Integer, Recipe> recipes = folders.get(0).getRecipeMap();
+        return recipes.containsKey(identifier);
+    }
+
+    @Override
+    public CommonRecipe removeRecipe(Integer removedRecipeID, String username, String foldername) {
+
+        ArrayList<Folder> folders = fileUserDataAccessObject.getFolders(username);
+        CommonRecipe commonRecipe = null;
+        for (Folder f : folders) {
+            if (f.getName().equals(foldername)) {
+                commonRecipe = (CommonRecipe) f.getRecipeMap().get(removedRecipeID);
+                f.removeRecipe(removedRecipeID);
+                saveToCSV();
+            }
+        }
+
+        return commonRecipe;
+    }
+
+    public UserRecipe deleteRecipe(Integer deletedRecipeID, String username) {
+
+        ArrayList<Folder> folders = fileUserDataAccessObject.getFolders(username);
+        HashMap<Integer, Recipe> recipes = folders.get(0).getRecipeMap();
+        UserRecipe userRecipe = (UserRecipe) recipes.get(deletedRecipeID);
+        recipes.remove(deletedRecipeID);
+        recipeDataAccessObject.saveRecipe(deletedRecipeID,userRecipe,username);
+        saveToCSV();
+        return userRecipe;
     }
 }

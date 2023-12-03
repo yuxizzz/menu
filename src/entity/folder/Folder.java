@@ -3,8 +3,9 @@ package entity.folder;
 import entity.recipe.Recipe;
 
 import java.util.HashMap;
+import java.util.Iterator;
 
-public interface Folder {
+public interface Folder extends Iterable<Recipe> {
 
     String getName();
     HashMap<Integer, Recipe> getRecipeMap();

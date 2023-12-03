@@ -1,9 +1,13 @@
 package data_access;
 
-import entity.recipe.CommonRecipe;
+import entity.folder.Folder;
 import entity.recipe.Recipe;
 import entity.recipe.RecipeFactory;
 import entity.recipe.UserRecipe;
+import entity.user.User;
+import use_case.delete_userRecipe.DeleteRecipeDataAccessInterface;
+import use_case.edit_recipe.EditDataAccessInterface;
+import use_case.upload_recipe.UploadDataAccessInterface;
 
 import java.io.*;
 
@@ -13,7 +17,7 @@ import java.util.*;
  * The DataAccessObject class for Recipe objects, where they are stored in csv file. The usecases
  * can get access to the Recipe objects data through the DAO.
  */
-public class FileRecipeDataAccessObject{
+public class FileRecipeDataAccessObject implements UploadDataAccessInterface, EditDataAccessInterface {
 
     private final File csvFile;
 
@@ -22,6 +26,8 @@ public class FileRecipeDataAccessObject{
     private final Map<Integer, Recipe> recipeList = new HashMap<>();
 
     private RecipeFactory recipeFactory;
+
+    private FileUserDataAccessObject fileUserDataAccessObject;
 
     /**
      * @param csvPath
@@ -117,16 +123,6 @@ public class FileRecipeDataAccessObject{
 
 
 
-    public CommonRecipe removeRecipe(Integer removedRecipeID){
-
-
-        CommonRecipe commonRecipe = (CommonRecipe) recipeList.get(removedRecipeID);
-
-
-        recipeList.remove(removedRecipeID);
-
-        return commonRecipe;
-    }
 
     public UserRecipe deleteRecipe(Integer deletedRecipeID){
 
@@ -138,6 +134,60 @@ public class FileRecipeDataAccessObject{
         return userRecipe;
     }
 
+
+
+
+
+
+    @Override
+    public void editRecipe(Integer recipeID, UserRecipe userRecipe) {
+        recipeList.replace(recipeID,userRecipe);
+
+
+    }
+
+
+    @Override
+    public UserRecipe getRecipe(Integer recipeID, String username) {
+        Map<String, User> accounts = FileUserDataAccessObject.getAccounts();
+        User user = accounts.get(username);
+        ArrayList<Folder> folders = user.getUserFolders();
+        UserRecipe userRecipe = null;
+        for (Folder f : folders) {
+            if(f.getRecipeMap().containsKey(recipeID)){
+                userRecipe = (UserRecipe) f.getRecipeMap().get(recipeID);
+
+            }
+        }
+        return userRecipe;
+
+
+    }
+
+
+
+
+
+    @Override
+    public void saveRecipe(Integer recipeID, Recipe recipe, String username) {
+        Map<String, User> accounts = FileUserDataAccessObject.getAccounts();
+        User user = accounts.get(username);
+        ArrayList<Folder> folders = user.getUserFolders();
+        folders.get(0).addRecipe(recipeID, recipe);
+        recipeList.put(recipeID, recipe);
+        save();
+    }
+
+
+
+    @Override
+    public boolean existsByRecipeID(Integer recipeID, String username) {
+        Map<String, User> accounts = FileUserDataAccessObject.getAccounts();
+        User user = accounts.get(username);
+        ArrayList<Folder> folders = user.getUserFolders();
+        HashMap<Integer, Recipe> recipes = folders.get(0).getRecipeMap();
+        return recipes.containsKey(recipeID);
+    }
 
 
 }

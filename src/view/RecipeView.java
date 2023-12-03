@@ -55,12 +55,12 @@ public class RecipeView extends JPanel implements ActionListener, PropertyChange
         String ingredients = this.getRecipeViewModel.getState().getIngredients();
         String nutrition = this.getRecipeViewModel.getState().getNutrition();
         String instructions = this.getRecipeViewModel.getState().getInstructions();
-        String recipeULR = this.getRecipeViewModel.getState().getRecipeULR();
+        String recipeURL = this.getRecipeViewModel.getState().getRecipeURL();
         String recipeImage = this.getRecipeViewModel.getState().getImage();
 
         Image image = null;
         try {
-            URL url = new URL(recipeULR);
+            URL url = new URL(recipeURL);
             image = ImageIO.read(url);
         } catch (IOException e) {
             e.printStackTrace();
