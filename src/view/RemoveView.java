@@ -45,7 +45,9 @@ public class RemoveView extends Component implements PropertyChangeListener {
                         JOptionPane.YES_NO_OPTION);
                 Object selectedValue = optionPane.getValue();
                 if(selectedValue.equals(YES_OPTION)){
-                    removeController.execute(state.getRecipeID());
+                    removeController.execute(state.getRecipeID(),
+                            state.getUsername(),
+                            state.getFoldername());
                 }
 
             }
