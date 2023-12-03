@@ -43,12 +43,12 @@ public class LoginPresenter implements LoginOutputBoundary {
         SearchState searchState = searchViewModel.getState();
         searchState.setUsername(response.getUsername());
         this.searchViewModel.setState(searchState);
-        this.searchViewModel.firePropertyChanged();
+//        this.searchViewModel.firePropertyChanged();
 
         MyFolderState myFolderState = myFolderViewModel.getState();
         myFolderState.setUsername(response.getUsername());
         this.myFolderViewModel.setState(myFolderState);
-        this.myFolderViewModel.firePropertyChanged();
+//        this.myFolderViewModel.firePropertyChanged();
 
         this.viewManagerModel.setActiveView(loggedInViewModel.getViewName());
         this.viewManagerModel.firePropertyChanged();
