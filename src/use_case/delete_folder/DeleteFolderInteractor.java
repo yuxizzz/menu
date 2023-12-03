@@ -14,7 +14,7 @@ public class DeleteFolderInteractor implements DeleteFolderInputBoundary {
     @Override
     public void execute(DeleteFolderInputData deleteFolderInputData) {
         String deletedFolder = deleteFolderUserDataAccessObject.deleteFolder(deleteFolderInputData.getFoldername());
-        DeleteFolderOutputData deleteFolderOutputData = new DeleteFolderOutputData(deletedFolder, false);
+        DeleteFolderOutputData deleteFolderOutputData = new DeleteFolderOutputData(deletedFolder + " is removed", false);
         deleteFolderPresenter.prepareSuccessView(deleteFolderOutputData);
     }
 }

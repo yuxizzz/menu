@@ -114,7 +114,7 @@ public class FileFolderDataAccessObject implements  DeleteFolderUserDataAccessIn
     @Override
     public String deleteFolder(String folderName) {
         folders.remove(folderName);
-        return folderName + "is removed";
+        return folderName;
     }
 
     /**
