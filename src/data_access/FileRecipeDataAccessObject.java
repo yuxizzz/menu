@@ -165,6 +165,25 @@ public class FileRecipeDataAccessObject implements UploadDataAccessInterface, Ed
 
     }
 
+    public Recipe getCommonRecipe(Integer recipeID, String username) {
+        Map<String, User> accounts = fileUserDataAccessObject.getAccounts();
+        User user = accounts.get(username);
+        ArrayList<Folder> folders = user.getUserFolders();
+        Recipe Recipe = null;
+        for (Folder f : folders) {
+            if(f.getRecipeMap().containsKey(recipeID)){
+                Recipe = f.getRecipeMap().get(recipeID);
+
+            }
+        }
+        return Recipe;
+
+
+    }
+
+
+
+
 
 
 
