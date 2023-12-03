@@ -1,9 +1,7 @@
 package use_case.edit_recipe;
 
-import data_access.FileRecipeDataAccessObject;
 import entity.recipe.UserRecipe;
 import entity.recipe.UserRecipeFactory;
-import entity.user.User;
 
 import java.util.Objects;
 
@@ -14,10 +12,10 @@ public class EditInteractor implements EditInputBoundary{
 
 
 
-    final EditOuntputBoundary editPresenter;
+    final EditOutputBoundary editPresenter;
 
     final UserRecipeFactory userRecipeFactory;
-    public EditInteractor(EditDataAccessInterface editDataAccessInterface, EditOuntputBoundary editOutputBoundary, UserRecipeFactory userRecipeFactory) {
+    public EditInteractor(EditDataAccessInterface editDataAccessInterface, EditOutputBoundary editOutputBoundary, UserRecipeFactory userRecipeFactory) {
 
         this.editDataAccessObject = editDataAccessInterface;
 

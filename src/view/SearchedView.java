@@ -46,6 +46,7 @@ public class SearchedView extends JPanel implements ActionListener, PropertyChan
 
         get = new JButton(searchedViewModel.GET_BUTTON_LABEL);
 
+        Integer count = 0;
         for (Map.Entry<Integer, ArrayList> entry : result.entrySet()) {
             Integer key = entry.getKey();
             ArrayList value = entry.getValue();
@@ -56,8 +57,9 @@ public class SearchedView extends JPanel implements ActionListener, PropertyChan
             buttons.add(get);
 
 //        JButton button = new JButton(OpenedFolderViewModel.GET_BUTTON_LABEL);
-            get.setBounds(600, 10, 250, 100);
+            get.setBounds(600, 10 + count, 100, 40);
             get.setText("GET");
+            count += 50;
 
             get.addActionListener(
 

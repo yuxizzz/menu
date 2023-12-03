@@ -134,18 +134,10 @@ public class FileRecipeDataAccessObject implements UploadDataAccessInterface, Ed
         return userRecipe;
     }
 
-
-
-
-
-
     @Override
     public void editRecipe(Integer recipeID, UserRecipe userRecipe) {
         recipeList.replace(recipeID,userRecipe);
-
-
     }
-
 
     @Override
     public UserRecipe getRecipe(Integer recipeID, String username) {
@@ -164,10 +156,6 @@ public class FileRecipeDataAccessObject implements UploadDataAccessInterface, Ed
 
     }
 
-
-
-
-
     @Override
     public void saveRecipe(Integer recipeID, Recipe recipe, String username) {
         Map<String, User> accounts = FileUserDataAccessObject.getAccounts();
@@ -177,8 +165,6 @@ public class FileRecipeDataAccessObject implements UploadDataAccessInterface, Ed
         recipeList.put(recipeID, recipe);
         save();
     }
-
-
 
     @Override
     public boolean existsByRecipeID(Integer recipeID, String username) {
