@@ -17,7 +17,7 @@ public class CreateFolderInteractor implements CreateFolderInputBoundary {
 
     @Override
     public void execute(CreateFolderInputData createFolderInputData) {
-        if (folderDataAccessObject.existsByName(createFolderInputData.getFoldername())) {
+        if (folderDataAccessObject.existsByFolder(createFolderInputData.getFoldername(), createFolderInputData.getUsername())) {
             folderPresenter.prepareFailView("Folder name already exists.");
         } else {
             Folder folder = folderFactory.create(createFolderInputData.getFoldername());
