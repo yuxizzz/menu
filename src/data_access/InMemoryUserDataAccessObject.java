@@ -6,6 +6,8 @@ import entity.user.User;
 import entity.user.UserFactory;
 import use_case.create_folder.CreateFolderDataAccessInterface;
 import use_case.delete_folder.DeleteFolderUserDataAccessInterface;
+import use_case.login.LoginUserDataAccessInterface;
+import use_case.logout.LogoutDataAccessInterface;
 import use_case.my_folder.MyFolderDataAccessInterface;
 import use_case.signup.SignupUserDataAccessInterface;
 
@@ -14,7 +16,9 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
-public class InMemoryUserDataAccessObject implements SignupUserDataAccessInterface, MyFolderDataAccessInterface, DeleteFolderUserDataAccessInterface, CreateFolderDataAccessInterface {
+public class InMemoryUserDataAccessObject implements SignupUserDataAccessInterface, MyFolderDataAccessInterface,
+        DeleteFolderUserDataAccessInterface, CreateFolderDataAccessInterface, LoginUserDataAccessInterface,
+        LogoutDataAccessInterface {
 
     private final Map<String, User> users = new HashMap<>();
     private final UserFactory userFactory;
@@ -27,6 +31,11 @@ public class InMemoryUserDataAccessObject implements SignupUserDataAccessInterfa
 
         users.put(user1.getName(), user1);
         users.put(user2.getName(), user2);
+
+    }
+
+    public int userNum() {
+        return users.size();
     }
 
     /**

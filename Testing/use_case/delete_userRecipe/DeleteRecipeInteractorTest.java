@@ -1,4 +1,4 @@
-package usecase_test;
+package use_case.delete_userRecipe;
 
 import data_access.InMemoryFolderDataAccessObject;
 import use_case.collect_recipe.*;

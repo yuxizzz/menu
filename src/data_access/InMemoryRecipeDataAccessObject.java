@@ -4,11 +4,12 @@ import entity.recipe.CommonRecipe;
 import entity.recipe.CommonRecipeFactory;
 import entity.recipe.Recipe;
 import entity.recipe.RecipeFactory;
+import use_case.get_recipe.GetRecipeDataAccessInterface;
 
 import java.util.HashMap;
 import java.util.Map;
 
-public class InMemoryRecipeDataAccessObject {
+public class InMemoryRecipeDataAccessObject implements GetRecipeDataAccessInterface{
     private final Map<Integer, Recipe> recipeList = new HashMap<>();
     private RecipeFactory recipeFactory;
     public InMemoryRecipeDataAccessObject() {
@@ -23,5 +24,19 @@ public class InMemoryRecipeDataAccessObject {
 
     public Recipe getRecipeFromFile(Integer recipeID) {
         return recipeList.get(recipeID);
+    }
+
+    @Override
+    public boolean existsByName(Integer recipeID) {
+        recipeList.get(recipeID);
+        if (recipeList.containsKey(recipeID)) {
+            return true;
+        }
+        return false;
+    }
+
+    @Override
+    public void save(Recipe recipe) {
+        this.recipeList.put(recipe.getRecipeID(), recipe);
     }
 }

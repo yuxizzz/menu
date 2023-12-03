@@ -1,4 +1,4 @@
-package usecase_test;
+package use_case.create_recipe;
 
 import data_access.InMemoryFolderDataAccessObject;
 import org.junit.jupiter.api.Test;

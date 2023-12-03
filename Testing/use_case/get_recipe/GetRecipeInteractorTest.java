@@ -1,9 +1,13 @@
 package use_case.get_recipe;
 
 import data_access.InMemoryFolderDataAccessObject;
+import data_access.InMemoryRecipeDataAccessObject;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import use_case.add_recipe_to_folder.*;
+
+import java.io.IOException;
+import java.util.Optional;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
@@ -12,18 +16,17 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class GetRecipeInteractorTest {
 //    @Test
-//    void successTest() {
+//    void successTest() throws IOException {
 //        GetRecipeInputData inputData = new GetRecipeInputData(1);
-//        GetRecipeDataAccessInterface folderRepository = new InMemoryFolderDataAccessObject();
+//        GetRecipeDataAccessInterface recipeRepository = new InMemoryRecipeDataAccessObject();
 //
 //        // This creates a successPresenter that tests whether the test case is as we expect.
-//        AddRecipeToFolderOutputBoundary successPresenter = new AddRecipeToFolderOutputBoundary() {
-//
+//        GetRecipeOutputBoundary successPresenter = new GetRecipeOutputBoundary() {
 //            @Override
-//            public void prepareSuccessView(AddRecipeToFolderOutputData outputData) {
-//                String message = "Successfully added to B";
-//                assertEquals(message, outputData.getMessage());
-//                assertFalse(userRepository.addRecipeToFolder("B", 2));
+//            public void prepareSuccessView(GetRecipeOutputData recipe) {
+//                Integer i = 1;
+//                assertEquals(i, recipe.getRecipeID());
+//                assertFalse(recipeRepository.existsByName(i));
 //
 //            }
 //
@@ -32,7 +35,7 @@ class GetRecipeInteractorTest {
 //                fail("Use case failure is unexpected.");
 //            }
 //        };
-//        AddRecipeToFolderInputBoundary interactor = new AddRecipeToFolderInteractor(userRepository, successPresenter);
+//        GetRecipeInputBoundary interactor = new GetRecipeInteractor(recipeRepository, successPresenter);
 //        interactor.execute(inputData);
 //    }
 //
