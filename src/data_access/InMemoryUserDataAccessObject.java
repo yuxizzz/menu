@@ -93,4 +93,9 @@ public class InMemoryUserDataAccessObject implements SignupUserDataAccessInterfa
         User user = users.get(username);
         user.addFolder(folder);
     }
+
+    @Override
+    public void saveData() {
+
+    }
 }
