@@ -1,19 +1,15 @@
 package data_access;
 
-import entity.folder.CommonFolderFactory;
+import entity.folder.CommonFolder;
 import entity.folder.Folder;
-import entity.folder.FolderFactory;
-import entity.recipe.CommonRecipeFactory;
+import entity.recipe.CommonRecipe;
 import entity.recipe.Recipe;
-import entity.recipe.RecipeFactory;
 import entity.recipe.UserRecipe;
 import use_case.add_recipe_to_folder.AddRecipeToFolderDataAccessInterface;
 import use_case.collect_recipe.CollectRecipeDataAccessInterface;
-import use_case.delete_folder.DeleteFolderUserDataAccessInterface;
 import use_case.delete_userRecipe.DeleteRecipeDataAccessInterface;
-import use_case.get_recipe.GetRecipeDataAccessInterface;
+import use_case.open_folder.OpenFolderDataAccessInterface;
 
-import java.io.IOException;
 import java.util.*;
 
 /**
@@ -22,7 +18,7 @@ import java.util.*;
  */
 
 public class InMemoryFolderDataAccessObject implements CollectRecipeDataAccessInterface, AddRecipeToFolderDataAccessInterface,
-        DeleteRecipeDataAccessInterface, GetRecipeDataAccessInterface {
+        DeleteRecipeDataAccessInterface, OpenFolderDataAccessInterface {
 
 //    private final Map<String, Folder> folders = new HashMap<>();
 //
@@ -31,12 +27,19 @@ public class InMemoryFolderDataAccessObject implements CollectRecipeDataAccessIn
 //    private InMemoryUserDataAccessObject userDataAccessObject;
 
     private HashMap<String, ArrayList<Integer>> folders = new HashMap<>();
+    private HashMap<Integer, String> recipes = new HashMap<>();
+    private Folder demo;
 
     public InMemoryFolderDataAccessObject() {
         ArrayList<Integer> recipeID = new ArrayList<>();
         recipeID.add(1);
         folders.put("A", new ArrayList<>());
         folders.put("B", recipeID);
+        recipes.put(1, "recipe info");
+        Folder demo = new CommonFolder("demo");
+        this.demo = demo;
+        Recipe recipe1 = new CommonRecipe("1", "1", "1", "1", "1", "1", 1);
+        demo.addRecipe(recipe1.getRecipeID(), recipe1);
     }
 
 
@@ -80,6 +83,22 @@ public class InMemoryFolderDataAccessObject implements CollectRecipeDataAccessIn
     }
 
     @Override
+    public boolean existsByName(String identifier) {
+        if (folders.containsKey(identifier)) {
+            return true;
+        } else if (Objects.equals(identifier, demo.getName())) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    @Override
+    public Folder get(String foldername) {
+        return demo;
+    }
+
+    @Override
     public HashMap<Integer, ArrayList> getrecipeMap(String foldername) {
         return null;
     }
@@ -89,13 +108,4 @@ public class InMemoryFolderDataAccessObject implements CollectRecipeDataAccessIn
         return false;
     }
 
-    @Override
-    public boolean existsByName(Integer recipeID) {
-        return false;
-    }
-
-    @Override
-    public void save(Recipe recipe) {
-
-    }
 }

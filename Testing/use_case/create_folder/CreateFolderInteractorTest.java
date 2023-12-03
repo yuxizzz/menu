@@ -1,4 +1,4 @@
-package usecase_test;
+package use_case.create_folder;
 
 import data_access.InMemoryFolderDataAccessObject;
 import data_access.InMemoryUserDataAccessObject;
