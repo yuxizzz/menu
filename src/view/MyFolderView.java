@@ -94,6 +94,8 @@ public class MyFolderView extends JPanel implements ActionListener, PropertyChan
 
         ArrayList<JLabel> folderlists = new ArrayList<>();
         ArrayList<String> folderList = myFolderViewModel.getFolderList();
+        System.out.println(folderList);
+        System.out.println(folderlists);
         for (String folder: folderList){
             JLabel f = new JLabel(folder);
             folderlists.add(f);
