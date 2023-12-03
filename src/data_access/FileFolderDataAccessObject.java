@@ -26,7 +26,7 @@ public class FileFolderDataAccessObject implements DeleteRecipeDataAccessInterfa
 
     private final Map<String, Integer> headers = new LinkedHashMap<>();
 
-    private final Map<String, Folder> folders = new HashMap<>();
+    private static final Map<String, Folder> folders = new HashMap<>();
 
     private FolderFactory folderFactory;
     private FileRecipeDataAccessObject recipeDataAccessObject;

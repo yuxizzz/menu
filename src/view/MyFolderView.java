@@ -157,7 +157,7 @@ public class MyFolderView extends JPanel implements ActionListener, PropertyChan
 //                    });
 //            buttons.add(logOut);
 //            this.add(buttons);
-//            this.add(foldername);
+            this.add(foldername);
         }
             createFolder.setBounds(600, 1000, 100, 40);
             createFolder.addActionListener(

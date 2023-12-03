@@ -1,7 +1,8 @@
-package use_case.collect_recipe;
+package usecase_test;
 
 import data_access.InMemoryFolderDataAccessObject;
 import org.junit.jupiter.api.Test;
+import use_case.collect_recipe.*;
 
 import java.util.ArrayList;
 

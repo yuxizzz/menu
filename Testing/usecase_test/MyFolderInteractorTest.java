@@ -1,4 +1,4 @@
-package use_case.my_folder;
+package usecase_test;
 
 import data_access.InMemoryFolderDataAccessObject;
 import data_access.InMemoryUserDataAccessObject;
@@ -6,6 +6,7 @@ import entity.folder.Folder;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import use_case.add_recipe_to_folder.*;
+import use_case.my_folder.*;
 
 import java.util.ArrayList;
 
