@@ -4,12 +4,17 @@ import use_case.add_recipe_to_folder.AddRecipeToFolderDataAccessInterface;
 import use_case.collect_recipe.CollectRecipeDataAccessInterface;
 import use_case.delete_folder.DeleteFolderUserDataAccessInterface;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 
+/**
+ * MiniFolderDAO used for usecase test only!
+ * folders contains A folder with no recipe/Integer, contains B folder with 1 recipe/Integer 1
+ */
+
 public class InMemoryFolderDataAccessObject implements DeleteFolderUserDataAccessInterface,
         CollectRecipeDataAccessInterface, AddRecipeToFolderDataAccessInterface {
-    //TODO mini DAO used to test the Folder usecases
     private HashMap<String, ArrayList<Integer>> folders = new HashMap<>();
 
     public InMemoryFolderDataAccessObject() {
@@ -35,7 +40,13 @@ public class InMemoryFolderDataAccessObject implements DeleteFolderUserDataAcces
     }
 
     @Override
-    public String addRecipeToFolder(String folderName, Integer recipeID) {
-        return null;
+    public Boolean addRecipeToFolder(String folderName, Integer recipeID) {
+        ArrayList<Integer> recipe = folders.get(folderName);
+        if (recipe.contains(recipeID)) {
+            return false;
+        } else {
+            recipe.add(recipeID);
+            return true;
+        }
     }
 }
