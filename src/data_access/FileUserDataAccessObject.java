@@ -20,7 +20,7 @@ import java.util.Map;
 import java.util.ArrayList;
 
 public class FileUserDataAccessObject implements SignupUserDataAccessInterface, LoginUserDataAccessInterface , ClearUserDataAccessInterface,
-        LogoutDataAccessInterface, MyFolderDataAccessInterface, DeleteFolderUserDataAccessInterface{
+        LogoutDataAccessInterface, MyFolderDataAccessInterface, DeleteFolderUserDataAccessInterface, CreateFolderDataAccessInterface{
 
     private final File csvFile;
 
