@@ -7,7 +7,7 @@ import java.util.HashMap;
 
 
 public class DefaultOpenedFolderState {
-    private String foldername = "default folder";
+    private String foldername = "My Recipes";
     private String username = "";
 
         private HashMap<Integer, ArrayList> recipeMap;
