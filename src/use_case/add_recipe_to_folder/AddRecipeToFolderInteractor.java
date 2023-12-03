@@ -15,12 +15,11 @@ public class AddRecipeToFolderInteractor implements AddRecipeToFolderInputBounda
     }
     @Override
     public void execute(AddRecipeToFolderInputData addRecipeToFolderInputData) {
-        if (userDataAccessObject.addRecipeToFolder(addRecipeToFolderInputData.getFolderName(),
-                addRecipeToFolderInputData.getRecipeID()) == null) {
+        if (!userDataAccessObject.addRecipeToFolder(addRecipeToFolderInputData.getFolderName(),
+                addRecipeToFolderInputData.getRecipeID())) {
             userPresenter.prepareFailView("Recipe already existed");
         } else {
-            String message = userDataAccessObject.addRecipeToFolder(addRecipeToFolderInputData.getFolderName(),
-                    addRecipeToFolderInputData.getRecipeID());
+            String message = "Successfully added to " + addRecipeToFolderInputData.getFolderName();
             AddRecipeToFolderOutputData addRecipeToFolderOutputData = new AddRecipeToFolderOutputData(message, false);
             userPresenter.prepareSuccessView(addRecipeToFolderOutputData);
         }
