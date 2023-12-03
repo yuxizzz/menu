@@ -1,10 +1,10 @@
 package interface_adapter.edit_recipe;
 
 import interface_adapter.ViewManagerModel;
-import use_case.edit_recipe.EditOuntputBoundary;
+import use_case.edit_recipe.EditOutputBoundary;
 import use_case.edit_recipe.EditOutputData;
 
-public class EditRecipePresenter implements EditOuntputBoundary {
+public class EditRecipePresenter implements EditOutputBoundary {
 
     private final EditRecipeViewModel editRecipeViewModel;
     private final ViewManagerModel viewManagerModel;

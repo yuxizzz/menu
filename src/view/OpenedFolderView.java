@@ -72,7 +72,7 @@ public class OpenedFolderView extends JPanel implements ActionListener, Property
         this.get = get;
         this.openedFolderViewModel.addPropertyChangeListener(this);
 
-
+        Integer count = 0;
         for (Map.Entry<Integer, ArrayList> entry : recipeMap.entrySet()) {
             Integer key = entry.getKey();
             ArrayList value = entry.getValue();
@@ -84,12 +84,13 @@ public class OpenedFolderView extends JPanel implements ActionListener, Property
         buttons.add(remove);
 
 //        JButton button = new JButton(OpenedFolderViewModel.GET_BUTTON_LABEL);
-        get.setBounds(600, 10, 250, 100);
+        get.setBounds(600, 10 + count, 100, 40);
         get.setText("GET");
 
 //        JButton buttonremove = new JButton(OpenedFolderViewModel.GET_BUTTON_LABEL);
-        remove.setBounds(900, 10, 250, 100);
+        remove.setBounds(900, 10 + count, 100, 40);
         remove.setText("REMOVE");
+        count += 50;
 
         get.addActionListener(
 
