@@ -12,4 +12,7 @@ public class CreateFolderInputData {
     String getFoldername() {
         return foldername;
     }
+    String getUsername() {
+        return username;
+    }
 }
