@@ -90,7 +90,7 @@ public class MyFolderView extends JPanel implements ActionListener, PropertyChan
 
 //        this.logOut = logOut;
 
-        ArrayList<String> folderList = myFolderViewModel.getFolderList();
+        ArrayList<String> folderList = myFolderViewModel.getState().getFoldernames();
         this.foldernames = folderList;
         Integer count = 0;
         for (String item : foldernames) {
