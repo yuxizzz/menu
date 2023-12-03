@@ -3,11 +3,14 @@ package interface_adapter.login;
 import interface_adapter.ViewManagerModel;
 import interface_adapter.logged_in.LoggedInState;
 import interface_adapter.logged_in.LoggedInViewModel;
+import interface_adapter.my_folder.MyFolderState;
+import interface_adapter.my_folder.MyFolderViewModel;
 import interface_adapter.search.SearchState;
 import interface_adapter.search.SearchViewModel;
 import use_case.login.LoginOutputBoundary;
 import use_case.login.LoginOutputData;
 import interface_adapter.login.LoginViewModel;
+import view.MyFolderView;
 
 public class LoginPresenter implements LoginOutputBoundary {
 
@@ -15,15 +18,18 @@ public class LoginPresenter implements LoginOutputBoundary {
     private final LoggedInViewModel loggedInViewModel;
     private final SearchViewModel searchViewModel;
     private ViewManagerModel viewManagerModel;
+    private MyFolderViewModel myFolderViewModel;
 
     public LoginPresenter(ViewManagerModel viewManagerModel,
                           LoggedInViewModel loggedInViewModel,
                           LoginViewModel loginViewModel,
-                          SearchViewModel searchViewModel) {
+                          SearchViewModel searchViewModel,
+                          MyFolderViewModel myFolderViewModel) {
         this.viewManagerModel = viewManagerModel;
         this.loggedInViewModel = loggedInViewModel;
         this.loginViewModel = loginViewModel;
         this.searchViewModel = searchViewModel;
+        this.myFolderViewModel = myFolderViewModel;
     }
 
     @Override
@@ -38,6 +44,11 @@ public class LoginPresenter implements LoginOutputBoundary {
         searchState.setUsername(response.getUsername());
         this.searchViewModel.setState(searchState);
         this.searchViewModel.firePropertyChanged();
+
+        MyFolderState myFolderState = myFolderViewModel.getState();
+        myFolderState.setUsername(response.getUsername());
+        this.myFolderViewModel.setState(myFolderState);
+        this.myFolderViewModel.firePropertyChanged();
 
         this.viewManagerModel.setActiveView(loggedInViewModel.getViewName());
         this.viewManagerModel.firePropertyChanged();

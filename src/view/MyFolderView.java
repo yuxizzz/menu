@@ -44,7 +44,7 @@ public class MyFolderView extends JPanel implements ActionListener, PropertyChan
     final JButton openFolder;
     final JButton deleteFolder;
     final JButton createFolder;
-    final JButton logOut;
+//    final JButton logOut;
     private ArrayList<String> foldernames;
 
 
@@ -78,7 +78,7 @@ public class MyFolderView extends JPanel implements ActionListener, PropertyChan
         username = new JLabel();
 
 
-        JButton logOut = new JButton(myFolderViewModel.LOGOUT_BUTTON_LABEL);
+//        JButton logOut = new JButton(myFolderViewModel.LOGOUT_BUTTON_LABEL);
         JButton openFolder = new JButton(myFolderViewModel.OPEN_BUTTON_LABEL);
         JButton deleteFolder = new JButton(myFolderViewModel.DELETE_BUTTON_LABEL);
         JButton createFolder = new JButton(myFolderViewModel.CREATE_BUTTON_LABEL);
@@ -86,9 +86,12 @@ public class MyFolderView extends JPanel implements ActionListener, PropertyChan
         this.openFolder = openFolder;
         this.deleteFolder = deleteFolder;
         this.createFolder = createFolder;
-        this.logOut = logOut;
 
-//        ArrayList<String> folderList = myFolderViewModel.getFolderList();
+
+//        this.logOut = logOut;
+
+        ArrayList<String> folderList = myFolderViewModel.getFolderList();
+        this.foldernames = folderList;
         Integer count = 0;
         for (String item : foldernames) {
             this.myFolderViewModel.addPropertyChangeListener(this);
@@ -134,33 +137,19 @@ public class MyFolderView extends JPanel implements ActionListener, PropertyChan
             // TODO add listener to each folder in my folder view. use the for loop in Opened Folder View
 
 
-            logOut.addActionListener(
+//            logOut.addActionListener(
+//
+//                    // This creates an anonymous subclass of ActionListener and instantiates it.
+//                    new ActionListener() {
+//                        public void actionPerformed(ActionEvent evt) {
+//                            if (evt.getSource().equals(logOut)) {
+//                                LogoutState currentState = logoutViewModel.getState();
+//
+//                            }
+//                        }
+//                    });
+//            buttons.add(logOut);
 
-                    // This creates an anonymous subclass of ActionListener and instantiates it.
-                    new ActionListener() {
-                        public void actionPerformed(ActionEvent evt) {
-                            if (evt.getSource().equals(logOut)) {
-                                LogoutState currentState = logoutViewModel.getState();
-
-                            }
-                        }
-                    });
-            buttons.add(logOut);
-            buttons.add(createFolder);
-
-            createFolder.addActionListener(
-                    new ActionListener() {
-                        @Override
-                        public void actionPerformed(ActionEvent e) {
-                            if (e.getSource().equals(createFolder)) {
-
-                                CreateFolderState currentState = createFolderViewModel.getState();
-                                createFolderController.execute(currentState.getFoldername(), currentState.getUsername());
-                                // TODO check create folder state something might wrong
-                            }
-                        }
-                    }
-            );
             this.setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
 
             this.add(title);
@@ -168,6 +157,24 @@ public class MyFolderView extends JPanel implements ActionListener, PropertyChan
             this.add(username);
             this.add(buttons);
         }
+        createFolder.setBounds(600, 1000, 100, 40);
+        createFolder.addActionListener(
+                new ActionListener() {
+                    @Override
+                    public void actionPerformed(ActionEvent e) {
+                        if (e.getSource().equals(createFolder)) {
+
+                            CreateFolderState currentState = createFolderViewModel.getState();
+                            createFolderController.execute(currentState.getFoldername(), currentState.getUsername());
+                            // TODO check create folder state something might wrong
+                        }
+                    }
+                }
+        );
+        JPanel buttons1 = new JPanel();
+        buttons1.add(createFolder);
+        this.add(buttons1);
+
     }
 
     /**

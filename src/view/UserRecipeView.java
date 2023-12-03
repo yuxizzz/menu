@@ -51,7 +51,7 @@ public class UserRecipeView extends JPanel implements ActionListener, PropertyCh
                           CollectRecipeViewModel collectViewModel,
                           CollectRecipeController collectRecipeController,
                           EditRecipeViewModel editRecipeViewModel,
-                          EditRecipeController editRecipeController) {
+                          EditRecipeController editRecipeController) throws IOException {
         this.openRecipeViewModel = openRecipeViewModel;
         this.openRecipeController = openRecipeController;
         this.collectViewModel = collectViewModel;
@@ -117,12 +117,8 @@ public class UserRecipeView extends JPanel implements ActionListener, PropertyCh
         String recipeImage = this.openRecipeViewModel.getState().getImage();
 
         Image image = null;
-        try {
-            URL url = new URL(recipeURL);
-            image = ImageIO.read(url);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        URL url = new URL(recipeImage);
+        image = ImageIO.read(url);
 
         /**
          * Set JLabel to show information of the recipe

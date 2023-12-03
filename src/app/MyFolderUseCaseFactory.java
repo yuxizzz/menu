@@ -67,7 +67,8 @@ public class MyFolderUseCaseFactory {
             CreateFolderController createFolderController = createCreateFolderUseCase(viewManagerModel, createFolderViewModel,
                     createFolderDataAccessInterface);
 
-            return new MyFolderView(myFolderViewModel,logoutViewModel, openFolderViewModel, openFolderController, deleteFolderViewModel, deleteFolderController,
+            return new MyFolderView(myFolderViewModel,logoutViewModel, openFolderViewModel, openFolderController,
+                    deleteFolderViewModel, deleteFolderController,
                     createFolderViewModel, createFolderController);
     }
 

@@ -12,6 +12,7 @@ import use_case.collect_recipe.CollectRecipeInteractor;
 import use_case.collect_recipe.CollectRecipeOutputBoundary;
 import view.RecipeView;
 
+import java.io.IOException;
 
 
 /**
@@ -25,7 +26,7 @@ public class GetRecipeUseCaseFactory {
             CollectRecipeViewModel collectRecipeViewModel,
             AddRecipeToFolderViewModel addRecipeToFolderViewModel,
             GetRecipeViewModel getRecipeViewModel,
-            CollectRecipeDataAccessInterface fileDataAccessObject) {
+            CollectRecipeDataAccessInterface fileDataAccessObject) throws IOException {
 
         CollectRecipeController collectRecipeController = createCollectRecipeUseCase(viewManagerModel, collectRecipeViewModel,
                 addRecipeToFolderViewModel, fileDataAccessObject);

@@ -29,6 +29,7 @@ public class FolderOptionsView extends JPanel implements ActionListener, Propert
 
         int counts = 0;
         JPanel buttons = new JPanel();
+        folders = addRecipeToFolderViewModel.getState().getFolderNames();
         for (String foldername: folders) {
             folderButton = new JButton(foldername);
             folderButton.setBounds(600, 10 + counts, 100, 40);

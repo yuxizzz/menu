@@ -27,8 +27,10 @@ public class RecipeView extends JPanel implements ActionListener, PropertyChange
     private final CollectRecipeController collectRecipeController;
     private final JButton collect;
 
+//    private String recipeURL = "";
+
     public RecipeView(GetRecipeViewModel getRecipeViewModel,
-                      CollectRecipeViewModel collectViewModel, CollectRecipeController collectRecipeController) {
+                      CollectRecipeViewModel collectViewModel, CollectRecipeController collectRecipeController) throws IOException {
         this.getRecipeViewModel = getRecipeViewModel;
 //        this.getRecipeController = getRecipeController;
         getRecipeViewModel.addPropertyChangeListener(this);
@@ -48,6 +50,7 @@ public class RecipeView extends JPanel implements ActionListener, PropertyChange
          * set information of recipe and image (url)
          */
 //        JLabel label = new JLabel();
+
         String recipeName = this.getRecipeViewModel.getState().getRecipename();
         String ingredients = this.getRecipeViewModel.getState().getIngredients();
         String nutrition = this.getRecipeViewModel.getState().getNutrition();
@@ -56,17 +59,14 @@ public class RecipeView extends JPanel implements ActionListener, PropertyChange
         String recipeImage = this.getRecipeViewModel.getState().getImage();
 
         Image image = null;
-        try {
-            URL url = new URL(recipeURL);
-            image = ImageIO.read(url);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        URL url = new URL(recipeImage);
+        image = ImageIO.read(url);
+        JLabel label = new JLabel(new ImageIcon(image));
 
         /**
          * Set JLabel to show information of the recipe
          */
-        JLabel label = new JLabel(new ImageIcon(image));
+
 
 //        label.setText(recipeName);
 

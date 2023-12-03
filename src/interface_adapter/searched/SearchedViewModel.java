@@ -11,7 +11,7 @@ public class SearchedViewModel extends ViewModel {
     public static final String TITLE_LABEL = "Searched Result View";
 
     private SearchedState state = new SearchedState();
-    public SearchedViewModel(){super("get recipes");}
+    public SearchedViewModel(){super("searched result");}
 
     public void setState(SearchedState state){this.state = state;}
 
