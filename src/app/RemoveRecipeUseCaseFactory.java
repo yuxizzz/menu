@@ -22,24 +22,34 @@ import view.RemoveView;
 
 public class RemoveRecipeUseCaseFactory {
     private RemoveRecipeUseCaseFactory() {}
+
+
+
     public static RemoveView create(
             ViewManagerModel viewManagerModel,
             RemoveViewModel removeRecipeViewModel,
             RemoveDataAccessInterface removeDataAccessObject,
             OpenedFolderViewModel openedFolderViewModel) {
 
+
+
         RemoveController removeRecipeController = createRemoveRecipeUseCase(viewManagerModel,
-                removeRecipeViewModel, openedFolderViewModel, removeDataAccessObject);
-        return new RemoveView(removeRecipeViewModel, removeRecipeController, openedFolderViewModel);
+                removeRecipeViewModel, openedFolderViewModel,
+                removeDataAccessObject);
+        return new RemoveView(removeRecipeViewModel, removeRecipeController);
 
     }
 
+
+
     private static RemoveController createRemoveRecipeUseCase(ViewManagerModel viewManagerModel,
                                                                     RemoveViewModel removeRecipeViewModel,
-                                                                    OpenedFolderViewModel openedFolderViewModel
-                                                                    RemoveDataAccessInterface removeDataAccessObject) {
+                                                                    OpenedFolderViewModel openedFolderViewModel,
+                                                              RemoveDataAccessInterface removeDataAccessObject) {
         RemoveOutputBoundary removeRecipeOutputBoundary =
                 new RemovePresenter(viewManagerModel, openedFolderViewModel, removeRecipeViewModel);
+
+
 
         RemoveInputBoundary removeRecipeInteractor = new RemoveInteractor(
                 removeDataAccessObject, removeRecipeOutputBoundary);
