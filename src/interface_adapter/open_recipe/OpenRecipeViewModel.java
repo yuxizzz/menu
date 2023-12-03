@@ -15,14 +15,10 @@ public class OpenRecipeViewModel extends ViewModel {
 
     public static final String TITLE_LABEL = "Open Recipe View";
 
-    public static final String DELETERecipe_BUTTON_LABEL = "Delete";
-
-    public static final String EDITRecipe_BUTTON_LABEL = "Edit";
-
-    public static final String UPLOADRecipe_BUTTON_LABEL = "Upload";
     public static final String COLLECT_BUTTON_LABEL = "Collect";
 
-    public static final String REMOVERecipe_BUTTON_LABEL = "Remove";
+    public static final String EDIT_BUTTON_LABEL = "Edit";
+
 
     private String openedRecipe;
     private  OpenRecipeState state = new OpenRecipeState();

@@ -64,7 +64,7 @@ public class UserRecipeView extends JPanel implements ActionListener, PropertyCh
 
         JPanel buttons = new JPanel();
         collect = new JButton(OpenRecipeViewModel.COLLECT_BUTTON_LABEL);
-        edit = new JButton(OpenRecipeViewModel.EDITRecipe_BUTTON_LABEL);
+        edit = new JButton(OpenRecipeViewModel.EDIT_BUTTON_LABEL);
         buttons.add(collect);
         buttons.add(edit);
 
@@ -238,8 +238,8 @@ public class UserRecipeView extends JPanel implements ActionListener, PropertyCh
         }
         else if (evt.getNewValue() instanceof EditRecipeState) {
             EditRecipeState state = (EditRecipeState) evt.getNewValue();
-            if (state.getRecipenameError() != null) {
-                JOptionPane.showMessageDialog(this, state.getRecipenameError());
+            if (state.getRecipeIDError() != null) {
+                JOptionPane.showMessageDialog(this, state.getRecipeIDError());
             }
         }
     }

@@ -5,6 +5,7 @@ import interface_adapter.add_recipe_to_folder.AddRecipeToFolderViewModel;
 import interface_adapter.collect_recipe.CollectRecipeController;
 import interface_adapter.collect_recipe.CollectRecipePresenter;
 import interface_adapter.collect_recipe.CollectRecipeViewModel;
+import interface_adapter.default_opened_folder.DefaultOpenedFolderViewModel;
 import interface_adapter.delete_userRecipe.DeleteRecipeController;
 import interface_adapter.delete_userRecipe.DeleteRecipePresenter;
 import interface_adapter.delete_userRecipe.DeleteRecipeViewModel;
@@ -26,19 +27,23 @@ public class DeleteRecipeUseCaseFactory {
     public static DeleteUserRecipeView create(
             ViewManagerModel viewManagerModel,
             DeleteRecipeViewModel deleteRecipeViewModel,
-            DeleteRecipeDataAccessInterface deleteRecipeDataAccessObject) {
+            DeleteRecipeDataAccessInterface deleteRecipeDataAccessObject,
+            DefaultOpenedFolderViewModel defaultOpenedViewModel) {
 
         DeleteRecipeController deleteRecipeController = createDeleteRecipeUseCase(viewManagerModel,
-                deleteRecipeViewModel, deleteRecipeDataAccessObject);
+                deleteRecipeViewModel, deleteRecipeDataAccessObject,defaultOpenedViewModel);
         return new DeleteUserRecipeView(deleteRecipeViewModel, deleteRecipeController);
 
     }
 
+
+
     private static DeleteRecipeController createDeleteRecipeUseCase(ViewManagerModel viewManagerModel,
                                                                     DeleteRecipeViewModel deleteRecipeViewModel,
-                                                                    DeleteRecipeDataAccessInterface deleteRecipeDataAccessObject) {
+                                                                    DeleteRecipeDataAccessInterface deleteRecipeDataAccessObject,
+                                                                    DefaultOpenedFolderViewModel defaultOpenedViewModel) {
         DeleteRecipeOutputBoundary deleteRecipeOutputBoundary =
-                new DeleteRecipePresenter(viewManagerModel, deleteRecipeViewModel);
+                new DeleteRecipePresenter(viewManagerModel, deleteRecipeViewModel, defaultOpenedViewModel);
 
         DeleteRecipeInputBoundary collectRecipeInteractor = new DeleteRecipeInteractor(
                 deleteRecipeDataAccessObject, deleteRecipeOutputBoundary);

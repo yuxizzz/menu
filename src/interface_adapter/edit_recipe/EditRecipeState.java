@@ -8,8 +8,6 @@ public class EditRecipeState {
 
     private String recipename = "";
 
-    private String recipenameError = null;
-
     private String ingredients = null;
 
     private String nutrition = null;
@@ -35,7 +33,6 @@ public class EditRecipeState {
         instructions = copy.instructions;
         image = copy.image;
         recipeurl = copy.recipeurl;
-        recipenameError = copy.recipenameError;
         recipeIDError = copy.recipeIDError;
     }
 
@@ -99,15 +96,6 @@ public class EditRecipeState {
 
     }
 
-    public void setRecipeNameError(String recipenameError){
-        this.recipenameError = recipenameError;
-
-    }
-
-    public String getRecipenameError(){
-
-        return recipenameError;
-    }
 
     public String getRecipeIDError(){
 

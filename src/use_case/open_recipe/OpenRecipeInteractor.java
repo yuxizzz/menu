@@ -26,8 +26,17 @@ public class OpenRecipeInteractor implements OpenRecipeInputBoundary {
             String foldername = openRecipeInputData.getFoldername();
             String username = openRecipeInputData.getUsername();
 
+            Recipe recipe = openRecipeDataAccessObject.getCommonRecipe(recipeID, username);
 
-            OpenRecipeOutputData openRecipeOutputData = new OpenRecipeOutputData(recipeID, false, username, foldername);
+            String ingredients = recipe.getIngredients();
+            String nutrition = recipe.getNutrition();
+            String instructions = recipe.getInstructions();
+            String image = recipe.getImage();
+            String recipeurl = recipe.getRecipeURL();
+
+
+            OpenRecipeOutputData openRecipeOutputData = new OpenRecipeOutputData(recipeID, false, ingredients,
+                    nutrition, instructions, image, username, foldername);
             openRecipePresenter.prepareSuccessView(openRecipeOutputData);
         }
     }
