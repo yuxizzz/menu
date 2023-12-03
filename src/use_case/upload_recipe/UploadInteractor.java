@@ -26,7 +26,7 @@ public class UploadInteractor implements UploadInputBoundary{
 
     @Override
     public void execute(UploadInputData uploadInputData) {
-        if (recipeDataAccessObject.existByReicipeID(uploadInputData.getRecipeid(),
+        if (recipeDataAccessObject.existsByRecipeID(uploadInputData.getRecipeid(),
                 uploadInputData.getUsername())){
             recipePresenter.prepareFailView("Recipe ID already exists.");
         }else{

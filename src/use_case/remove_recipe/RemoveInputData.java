@@ -4,10 +4,16 @@ public class RemoveInputData {
 
     final private Integer recipeID;
 
+    final private String username;
 
-    public RemoveInputData(Integer recipeID){
+    final private String foldername;
+
+
+    public RemoveInputData(Integer recipeID, String username, String foldername){
 
         this.recipeID = recipeID;
+        this.username = username;
+        this.foldername = foldername;
     }
 
     Integer getRemovedRecipeID(){
@@ -17,4 +23,13 @@ public class RemoveInputData {
 
 
     }
+
+    String getUsername(){
+        return  username;
+    }
+
+    String getFoldername(){
+        return foldername;
+    }
+
 }

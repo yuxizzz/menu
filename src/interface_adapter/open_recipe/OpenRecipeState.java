@@ -19,6 +19,8 @@ public class OpenRecipeState {
     private String image = "";
     private String recipeurl = "";
 
+    private String foldername = "";
+
 
     public OpenRecipeState(OpenRecipeState copy) {
         recipename = copy.recipename;
@@ -31,6 +33,7 @@ public class OpenRecipeState {
         instructions = copy.instructions;
         image = copy.image;
         recipeurl = copy.recipeurl;
+        foldername = copy.foldername;
     }
 
 
@@ -57,6 +60,13 @@ public class OpenRecipeState {
     public String getUsername() {
         return username;
     }
+
+    public String getFoldername() {
+        return foldername;
+    }
+
+
+    public void setFoldername(String foldername){this.foldername = foldername;}
 
     public void setRecipename(String recipename){
         this.recipename = recipename;

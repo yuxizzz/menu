@@ -5,25 +5,37 @@ import entity.recipe.Recipe;
 import java.io.IOException;
 
 public class OpenRecipeOutputData {
-    private Recipe recipe;
+    private Integer recipeID;
     private boolean useCaseFailed;
 
-    public OpenRecipeOutputData(Recipe recipe, boolean useCaseFailed) throws IOException {
+
+    private String username;
+
+    private String foldername;
+
+    public OpenRecipeOutputData(Integer recipeID, boolean useCaseFailed, String username, String foldername) throws IOException {
 //        this.recipeID = recipeID;
 
 
         this.useCaseFailed = useCaseFailed;
 
 
-        this.recipe = recipe;
+        this.recipeID = recipeID;
+        this.username = username;
+        this.foldername = foldername;
     }
-    public Recipe getRecipe() {
+    public Integer getRecipeID() {
 
-        return recipe;
-    }
-
-    public Integer getRecipeID(){
-        return recipe.getRecipeID();
+        return recipeID;
     }
 
+
+    public String getUsername() {
+        return username;
+    }
+
+
+    public String getFoldername(){
+        return foldername;
+    }
 }

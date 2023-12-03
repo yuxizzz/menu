@@ -18,8 +18,8 @@ public class RemoveController {
 
 
 
-    public void execute(Integer recipeID){
-        RemoveInputData removeInputData = new RemoveInputData(recipeID);
+    public void execute(Integer recipeID, String username, String foldername){
+        RemoveInputData removeInputData = new RemoveInputData(recipeID, username, foldername);
 
 
         removeUseCaseInteractor.execute(removeInputData);

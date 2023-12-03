@@ -13,10 +13,10 @@ public class EditRecipeController {
 
     public void execute(Integer recipeID, String recipename, String ingredients,
                         String nutrition, String instructions,
-                        String image, String recipeurl){
+                        String image, String recipeurl, String username){
         EditInputData editInputData = new EditInputData(recipeID, recipename,
                 ingredients, nutrition,
-                instructions, image, recipeurl);
+                instructions, image, recipeurl, username);
 
         editRecipeUseCaseInteractor.execute(editInputData);
     }

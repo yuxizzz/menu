@@ -6,7 +6,7 @@ public class EditRecipeState {
 
 
 
-    private String recipename = null;
+    private String recipename = "";
 
     private String recipenameError = null;
 
@@ -20,6 +20,10 @@ public class EditRecipeState {
     private Integer recipeID = null;
 
     private String recipeIDError = null;
+
+    private String username = "";
+
+    private String foldername = "";
 
 
     public EditRecipeState(EditRecipeState copy) {
@@ -116,5 +120,31 @@ public class EditRecipeState {
     public void setRecipename(String recipename) {
 
         this.recipename = recipename;
+    }
+
+
+    public String getUsername(){
+
+        return username;
+
+
+    }
+
+    public void setUsername(String username){
+
+        this.username = username;
+    }
+
+
+    public String getFoldername(){
+
+        return foldername;
+
+
+    }
+
+    public void setFoldername(String foldername){
+
+        this.username = foldername;
     }
 }

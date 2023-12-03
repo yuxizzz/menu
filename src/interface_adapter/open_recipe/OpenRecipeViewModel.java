@@ -24,7 +24,7 @@ public class OpenRecipeViewModel extends ViewModel {
     public static final String REMOVERecipe_BUTTON_LABEL = "Remove";
 
     private String openedRecipe;
-    private static OpenRecipeState state = new OpenRecipeState();
+    private  OpenRecipeState state = new OpenRecipeState();
     public OpenRecipeViewModel() {
         super("open recipe");
     }
@@ -46,7 +46,7 @@ public class OpenRecipeViewModel extends ViewModel {
         support.addPropertyChangeListener(listener);
     }
 
-    public static OpenRecipeState getState() {
+    public  OpenRecipeState getState() {
         return state;
     }
 
