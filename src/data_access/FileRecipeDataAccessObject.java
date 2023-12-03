@@ -19,7 +19,8 @@ import java.util.*;
  * The DataAccessObject class for Recipe objects, where they are stored in csv file. The usecases
  * can get access to the Recipe objects data through the DAO.
  */
-public class FileRecipeDataAccessObject implements UploadDataAccessInterface, EditDataAccessInterface, OpenRecipeDataAccessInterface, GetRecipeDataAccessInterface {
+public class FileRecipeDataAccessObject implements UploadDataAccessInterface,
+        EditDataAccessInterface, OpenRecipeDataAccessInterface, GetRecipeDataAccessInterface {
 
     private final File csvFile;
 
@@ -139,10 +140,7 @@ public class FileRecipeDataAccessObject implements UploadDataAccessInterface, Ed
     @Override
     public void editRecipe(Integer recipeID, UserRecipe userRecipe) {
         recipeList.replace(recipeID,userRecipe);
-<<<<<<<<< Temporary merge branch 1
 
-=========
->>>>>>>>> Temporary merge branch 2
     }
 
     @Override
@@ -171,6 +169,21 @@ public class FileRecipeDataAccessObject implements UploadDataAccessInterface, Ed
         recipeList.put(recipeID, recipe);
         save();
     }
+
+    public Recipe getCommonRecipe(Integer recipeID, String username) {
+        Map<String, User> accounts = fileUserDataAccessObject.getAccounts();
+        User user = accounts.get(username);
+        ArrayList<Folder> folders = user.getUserFolders();
+        Recipe Recipe = null;
+        for (Folder f : folders) {
+            if(f.getRecipeMap().containsKey(recipeID)){
+                Recipe = f.getRecipeMap().get(recipeID);
+
+            }
+        }
+        return Recipe;
+    }
+
 
     @Override
     public boolean existsByRecipeID(Integer recipeID, String username) {
