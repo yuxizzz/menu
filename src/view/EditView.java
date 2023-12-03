@@ -1,11 +1,9 @@
 package view;
 
+import interface_adapter.default_opened_folder.DefaultOpenedFolderViewModel;
 import interface_adapter.edit_recipe.EditRecipeController;
 import interface_adapter.edit_recipe.EditRecipeState;
 import interface_adapter.edit_recipe.EditRecipeViewModel;
-import interface_adapter.upload_recipe.UploadRecipeController;
-import interface_adapter.upload_recipe.UploadRecipeState;
-import interface_adapter.upload_recipe.UploadRecipeViewModel;
 
 import javax.swing.*;
 import java.awt.*;
@@ -32,6 +30,8 @@ public class EditView extends JPanel implements ActionListener, PropertyChangeLi
 
     private final EditRecipeController editRecipeController;
 
+    private final DefaultOpenedFolderViewModel defaultOpenedFolderViewModel;
+
     private final JTextField nameInputField = new JTextField(15);
     private final JTextField ingredientsInputField = new JTextField(15);
     private final JTextField nutritionInputField = new JTextField(15);
@@ -47,10 +47,11 @@ public class EditView extends JPanel implements ActionListener, PropertyChangeLi
 //    private final JButton cancel;
 
     public EditView(EditRecipeViewModel editRecipeViewModel, EditRecipeController
-            editRecipeController) {
+            editRecipeController, DefaultOpenedFolderViewModel defaultOpenedFolderViewModel) {
 
         this.editRecipeViewModel = editRecipeViewModel;
         this.editRecipeController = editRecipeController;
+        this.defaultOpenedFolderViewModel = defaultOpenedFolderViewModel;
 
 
         editRecipeViewModel.addPropertyChangeListener(this);

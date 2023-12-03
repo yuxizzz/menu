@@ -70,9 +70,19 @@ public class LoggedInView extends JPanel implements ActionListener, PropertyChan
         JButton myFolder = new JButton(loggedInViewModel.MYFOLDER_BUTTON_LABEL);
         JButton logOut = new JButton(loggedInViewModel.LOGOUT_BUTTON_LABEL);
 
+
         this.search = search;
         this.myFolder = myFolder;
         this.logOut = logOut;
+
+        search.setBounds(600, 10, 100, 40);
+        search.setText("SEARCH");
+
+        myFolder.setBounds(600, 100, 100, 40);
+        myFolder.setText("MY FOLDER");
+
+        logOut.setBounds(600, 190, 100, 40);
+        logOut.setText("LOG OUT");
 
         buttons.add(search);
         buttons.add(myFolder);

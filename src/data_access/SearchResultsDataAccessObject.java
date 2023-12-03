@@ -23,7 +23,15 @@ public class SearchResultsDataAccessObject implements SearchUserDataAccessInterf
 
     @Override
     public boolean existsIngredients(String ingredient, String tags) throws IOException {
-        if (getRecipeList(ingredient, tags).isEmpty()) {
+        if (getRecipeList(ingredient, "gulten free").isEmpty()) {
+            return false;
+        } else {
+            return true;
+        }
+    }
+
+    public boolean existsTags(String ingredient, String tags) throws IOException {
+        if (getRecipeList("egg", tags).isEmpty()) {
             return false;
         } else {
             return true;

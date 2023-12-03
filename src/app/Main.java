@@ -65,6 +65,22 @@ public class Main {
             throw new RuntimeException(e);
         }
 
+        FileRecipeDataAccessObject recipeDataAccessObject;
+        try {
+            recipeDataAccessObject = new FileRecipeDataAccessObject("./recipes.csv",
+                    new CommonRecipeFactory(), userDataAccessObject);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+
+        FileFolderDataAccessObject folderDataAccessObject;
+        try {
+            folderDataAccessObject = new FileFolderDataAccessObject("./folders.csv",
+                    new CommonFolderFactory(), recipeDataAccessObject, userDataAccessObject);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+
         SignupView signupView = SignupUseCaseFactory.create(viewManagerModel, loginViewModel,
                 signupViewModel,userDataAccessObject);
         views.add(signupView, signupView.viewName);
@@ -74,8 +90,6 @@ public class Main {
         LoginView loginView = LoginUseCaseFactory.create(viewManagerModel, searchViewModel, loginViewModel, loggedInViewModel,
         userDataAccessObject);
         views.add(loginView, loginView.viewName);
-
-
 
         SearchedViewModel searchedViewModel = new SearchedViewModel();
         MyFolderViewModel myFolderViewModel = new MyFolderViewModel();
@@ -92,25 +106,6 @@ public class Main {
 //            throw new RuntimeException(e);
 //        }
 
-        // TODO CSV PATH
-
-        FileRecipeDataAccessObject recipeDataAccessObject;
-        try {
-            recipeDataAccessObject = new FileRecipeDataAccessObject("./recipe.csv",
-                    new CommonRecipeFactory());
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
-
-
-        // TODO CSV PATH
-        FileFolderDataAccessObject folderDataAccessObject;
-        try {
-            folderDataAccessObject = new FileFolderDataAccessObject("./folder.csv",
-                    new CommonFolderFactory(), recipeDataAccessObject, userDataAccessObject);
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
 
 
         GetRecipeViewModel getRecipeViewModel = new GetRecipeViewModel();

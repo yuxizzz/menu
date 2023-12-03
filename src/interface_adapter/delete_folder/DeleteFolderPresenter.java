@@ -24,7 +24,4 @@ public class DeleteFolderPresenter implements DeleteFolderOutputBoundary {
         viewManagerModel.firePropertyChanged();
     }
 
-    @Override
-    public void prepareFailView(String error) {
-    }
 }
