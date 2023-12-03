@@ -1,5 +1,6 @@
 package app;
 
+import entity.folder.FolderFactory;
 import interface_adapter.ViewManagerModel;
 import interface_adapter.collect_recipe.CollectRecipeViewModel;
 import interface_adapter.create_folder.CreateFolderController;
@@ -10,7 +11,7 @@ import interface_adapter.open_recipe.OpenRecipeController;
 import interface_adapter.open_recipe.OpenRecipeViewModel;
 import interface_adapter.remove_recipe.RemoveController;
 import interface_adapter.remove_recipe.RemoveViewModel;
-import use_case.create_folder.CreateFolderOutputBoundary;
+import use_case.create_folder.*;
 import use_case.open_recipe.OpenRecipeDataAccessInterface;
 import use_case.remove_recipe.RemoveFolderDataAccessInterface;
 import view.CreateFolderView;
@@ -37,9 +38,12 @@ public class CreateFolderUseCaseFactory {
     }
 
     private static CreateFolderController createCreateFolderController(CreateFolderViewModel createFolderViewModel,
-                                                                       ViewManagerModel viewManagerModel) {
+                                                                       ViewManagerModel viewManagerModel,
+                                                                       CreateFolderDataAccessInterface createFolderDataAccessInterface,
+                                                                       FolderFactory folderFactory) {
         CreateFolderOutputBoundary createFolderOutputBoundary = new CreateFolderPresenter(
               createFolderViewModel, viewManagerModel);
-
+        CreateFolderInputBoundary createInteractor = new CreateFolderInteractor(createFolderDataAccessInterface,
+                createFolderOutputBoundary, folderFactory);
     }
 }
