@@ -109,7 +109,7 @@ public class EditInteractor implements EditInputBoundary{
                 editPresenter.prepareSuccessView(editOutputData);
 
             } else {
-                editPresenter.prepareFailView("The edited image is the same as before");
+                editPresenter.prepareFailView("The edited  is the same as before");
             }
 
 

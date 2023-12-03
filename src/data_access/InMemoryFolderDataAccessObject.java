@@ -1,6 +1,7 @@
 package data_access;
 
 import entity.folder.CommonFolder;
+import entity.folder.DefaultFolder;
 import entity.folder.Folder;
 import entity.recipe.CommonRecipe;
 import entity.recipe.Recipe;
@@ -30,16 +31,30 @@ public class InMemoryFolderDataAccessObject implements CollectRecipeDataAccessIn
     private HashMap<Integer, String> recipes = new HashMap<>();
     private Folder demo;
 
+    private Folder demoDefault;
+
+    private static final Map<String, Folder> foldersDemo = new HashMap<>();
+
     public InMemoryFolderDataAccessObject() {
         ArrayList<Integer> recipeID = new ArrayList<>();
         recipeID.add(1);
         folders.put("A", new ArrayList<>());
         folders.put("B", recipeID);
         recipes.put(1, "recipe info");
+
         Folder demo = new CommonFolder("demo");
         this.demo = demo;
         Recipe recipe1 = new CommonRecipe("1", "1", "1", "1", "1", "1", 1);
         demo.addRecipe(recipe1.getRecipeID(), recipe1);
+
+
+
+
+        Folder demoDefault = new DefaultFolder();
+        this.demoDefault = demoDefault;
+        Recipe recipe2 = new UserRecipe("2", "2", "2", "2", "2", "2", 2, "Irina");
+        demoDefault.addRecipe(recipe2.getRecipeID(), recipe2);
+
     }
 
 
@@ -79,7 +94,12 @@ public class InMemoryFolderDataAccessObject implements CollectRecipeDataAccessIn
 
     @Override
     public UserRecipe deleteRecipe(Integer recipeid, String username) {
-        return null;
+        HashMap<Integer, Recipe> recipes = demoDefault.getRecipeMap();
+
+        UserRecipe userRecipe = (UserRecipe) recipes.get(recipeid);
+        recipes.remove(recipeid);
+
+        return userRecipe;
     }
 
     @Override
@@ -100,12 +120,22 @@ public class InMemoryFolderDataAccessObject implements CollectRecipeDataAccessIn
 
     @Override
     public HashMap<Integer, ArrayList> getrecipeMap(String foldername) {
-        return null;
+        HashMap<Integer, ArrayList> recipeMap = new HashMap<Integer, ArrayList>();
+        for (Map.Entry<Integer, Recipe> entry : foldersDemo.get(foldername).getRecipeMap().entrySet()) {
+            Integer key = entry.getKey();
+            Recipe value = entry.getValue();
+            ArrayList list1 = new ArrayList();
+            list1.add(value.getImage());
+            list1.add(value.getName());
+            recipeMap.put(key, list1);
+        }
+        return recipeMap;
     }
 
     @Override
     public boolean existsByRecipeID(Integer recipeID, String username) {
-        return false;
+        HashMap<Integer, Recipe> recipes = demoDefault.getRecipeMap();
+        return recipes.containsKey(recipeID);
     }
 
 }

@@ -20,19 +20,8 @@ public class DeleteRecipePresenter implements DeleteRecipeOutputBoundary {
     }
 
 
-
-
-
-
-
     public void prepareSuccessView(DeleteRecipeOutputData response){
         //on success switch to defaultOpenedFolder View and delete the specific recipe
-
-
-
-
-
-
         DefaultOpenedFolderState defaultOpenedFolderState = defaultOpenedFolderViewModel.getState();
         defaultOpenedFolderState.setRecipeMap(response.getRecipeMap());
 
@@ -41,16 +30,10 @@ public class DeleteRecipePresenter implements DeleteRecipeOutputBoundary {
 
         viewManagerModel.setActiveView(defaultOpenedFolderViewModel.getViewName());
         viewManagerModel.firePropertyChanged();
-
-
-
     }
     public void prepareFailView(String error){
-
         DeleteRecipeState deleteRecipeState = deleteRecipeViewModel.getState();
-
         deleteRecipeState.setMessageError(error);
-
         deleteRecipeViewModel.firePropertyChanged();
 
 

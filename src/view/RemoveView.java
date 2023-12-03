@@ -27,12 +27,6 @@ public class RemoveView extends Component implements PropertyChangeListener {
         title.setAlignmentX(Component.CENTER_ALIGNMENT);
     }
 
-
-
-
-
-
-
     @Override
     public void propertyChange(PropertyChangeEvent evt) {
         if(evt.getNewValue() instanceof RemoveState){

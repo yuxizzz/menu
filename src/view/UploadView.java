@@ -17,12 +17,6 @@ import java.awt.event.KeyListener;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 
-
-
-
-
-
-
 public class UploadView extends JPanel implements ActionListener, PropertyChangeListener {
    public final String viewName = "upload recipe";
 
@@ -39,21 +33,9 @@ public class UploadView extends JPanel implements ActionListener, PropertyChange
     private final JTextField recipeidInputField = new JTextField(15);
     private final JButton upload;
 
-
-
-
-
-
-
-
     public UploadView(UploadRecipeViewModel uploadRecipeViewModel, UploadRecipeController uploadRecipeController) {
         this.uploadRecipeViewModel = uploadRecipeViewModel;
         this.uploadRecipeController = uploadRecipeController;
-
-
-
-
-
 
         uploadRecipeViewModel.addPropertyChangeListener(this);
 
@@ -76,18 +58,9 @@ public class UploadView extends JPanel implements ActionListener, PropertyChange
                 new JLabel(UploadRecipeViewModel.RECIPEID_LABEL), recipeidInputField);
 
 
-
-
-
         JPanel buttons = new JPanel();
         this.upload = new JButton(UploadRecipeViewModel.UPLOAD_BUTTON_LABEL);
         buttons.add(upload);
-
-
-
-
-
-
 
         upload.addActionListener(
 
@@ -121,14 +94,6 @@ public class UploadView extends JPanel implements ActionListener, PropertyChange
         // makes it listen to keystrokes in the usernameInputField.
         //
         // Notice how it has access to instance variables in the enclosing class!
-
-
-
-
-
-
-
-
         nameInputField.addKeyListener(
                 new KeyListener() {
             @Override
@@ -147,13 +112,6 @@ public class UploadView extends JPanel implements ActionListener, PropertyChange
             public void keyReleased(KeyEvent e) {
             }
         });
-
-
-
-
-
-
-
 
         ingredientsInputField.addKeyListener(
                 new KeyListener() {
@@ -174,12 +132,6 @@ public class UploadView extends JPanel implements ActionListener, PropertyChange
                     }
                 });
 
-
-
-
-
-
-
         nutritionInputField.addKeyListener(
                 new KeyListener() {
                     @Override
@@ -198,11 +150,6 @@ public class UploadView extends JPanel implements ActionListener, PropertyChange
                     public void keyReleased(KeyEvent e) {
                     }
                 });
-
-
-
-
-
 
         instructionsInputField.addKeyListener(
                 new KeyListener() {
@@ -223,11 +170,6 @@ public class UploadView extends JPanel implements ActionListener, PropertyChange
                     }
                 });
 
-
-
-
-
-
         imageInputField.addKeyListener(
                 new KeyListener() {
                     @Override
@@ -247,11 +189,6 @@ public class UploadView extends JPanel implements ActionListener, PropertyChange
                     }
                 });
 
-
-
-
-
-
         recipeurlInputField.addKeyListener(
                 new KeyListener() {
                     @Override
@@ -270,10 +207,6 @@ public class UploadView extends JPanel implements ActionListener, PropertyChange
                     public void keyReleased(KeyEvent e) {
                     }
                 });
-
-
-
-
 
         recipeidInputField.addKeyListener(
                 new KeyListener() {
@@ -296,10 +229,6 @@ public class UploadView extends JPanel implements ActionListener, PropertyChange
 
         this.setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
 
-
-
-
-
         this.add(title);
         this.add(nameInfo);
         this.add(nutritionInfo);
@@ -313,10 +242,6 @@ public class UploadView extends JPanel implements ActionListener, PropertyChange
     }
 
 
-
-
-
-
     @Override
     public void actionPerformed(ActionEvent e) {
 
@@ -324,13 +249,6 @@ public class UploadView extends JPanel implements ActionListener, PropertyChange
         JOptionPane.showConfirmDialog(this, "Cancel not implemented yet.");
 
     }
-
-
-
-
-
-
-
 
     @Override
     public void propertyChange(PropertyChangeEvent evt) {

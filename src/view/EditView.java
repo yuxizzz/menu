@@ -14,14 +14,6 @@ import java.awt.event.KeyListener;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 
-
-
-
-
-
-
-
-
 public class EditView extends JPanel implements ActionListener, PropertyChangeListener {
 
     public final String viewName = "edit recipe";
@@ -335,8 +327,8 @@ public class EditView extends JPanel implements ActionListener, PropertyChangeLi
             EditRecipeState state = (EditRecipeState) evt.getNewValue();
             if (state.getRecipeIDError() != null) {
                 JOptionPane.showMessageDialog(this, state.getRecipeIDError());
-//            }else if (state.getRecipenameError() != null){
-//                JOptionPane.showMessageDialog(this, state.getRecipeIDError());
+            }else if (state.getRecipeIDError() != null){
+                JOptionPane.showMessageDialog(this, state.getRecipeIDError());
             }
         }
 
