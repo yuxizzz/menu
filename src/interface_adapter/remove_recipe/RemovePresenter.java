@@ -21,11 +21,7 @@ public class RemovePresenter implements RemoveOutputBoundary {
     public void prepareSuccessView(RemoveOutputData response){
         //on success switch to pop up remove ensure, and then opened view.
         OpenedFolderState openedFolderState = OpenedFolderViewModel.getState();
-
-        RemoveState removeState = RemoveViewModel.getState();
-
-        removeState.setRecipeRemoved(response.getRemovedRecipe());
-        removeState.setRecipeID(response.getRecipeID());
+        openedFolderState.setRecipeMap(response.getRecipeMap());
 
 
         this.openedFolderViewModel.setState(openedFolderState);

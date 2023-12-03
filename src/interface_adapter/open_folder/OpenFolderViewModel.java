@@ -9,12 +9,12 @@ import java.util.HashMap;
 public class OpenFolderViewModel extends ViewModel {
     public final String TITLE_LABEL = "Opened Folder View";
 
-    private static OpenFolderState state = new OpenFolderState();
-
     public static final String REMOVE_BUTTON_LABEL = "Remove recipe";
     public static final String GET_BUTTON_LABEL = "Get recipe";
     private String openedFolder;
     private HashMap<Integer, ArrayList> recipeMap;
+
+    private static OpenFolderState state = new OpenFolderState();
 
 
     public OpenFolderViewModel() {
