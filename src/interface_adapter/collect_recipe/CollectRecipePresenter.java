@@ -3,7 +3,6 @@ package interface_adapter.collect_recipe;
 import interface_adapter.ViewManagerModel;
 import interface_adapter.add_recipe_to_folder.AddRecipeToFolderState;
 import interface_adapter.add_recipe_to_folder.AddRecipeToFolderViewModel;
-import interface_adapter.clear_users.ClearState;
 import use_case.collect_recipe.CollectRecipeOutputBoundary;
 import use_case.collect_recipe.CollectRecipeOutputData;
 

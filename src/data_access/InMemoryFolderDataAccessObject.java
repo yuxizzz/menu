@@ -22,6 +22,7 @@ import java.util.*;
 public class InMemoryFolderDataAccessObject implements CollectRecipeDataAccessInterface, AddRecipeToFolderDataAccessInterface,
         DeleteRecipeDataAccessInterface, RemoveDataAccessInterface,OpenFolderDataAccessInterface {
 
+
 //    private final Map<String, Folder> folders = new HashMap<>();
 //
 //    private FolderFactory folderFactory;
@@ -147,13 +148,23 @@ public class InMemoryFolderDataAccessObject implements CollectRecipeDataAccessIn
             recipeMap.put(key, list1);
         }
         return recipeMap;
+
     }
 
+
+    @Override
+    public CommonRecipe removeRecipe(Integer removedRecipeID, String username, String foldername) {
+        CommonRecipe r = null;
+        for (Recipe recipe: demo) {
+            r = (CommonRecipe) recipe;
+
+        }
+        return r;
+    }
 
     @Override
     public boolean existsByRecipeID(Integer recipeID, String username) {
         HashMap<Integer, Recipe> recipes = demoDefault.getRecipeMap();
         return recipes.containsKey(recipeID);
     }
-
 }

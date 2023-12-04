@@ -30,7 +30,7 @@ public class RemoveInteractor implements RemoveInputBoundary{
 
             CommonRecipe commonRecipe = removeDataAccessObject.removeRecipe(removeInputData.getRemovedRecipeID(),
                     removeInputData.getUsername(), removeInputData.getFoldername());
-            RemoveOutputData removeOutputData = new RemoveOutputData(commonRecipe .getName(),
+            RemoveOutputData removeOutputData = new RemoveOutputData(commonRecipe.getName(),
                     commonRecipe.getRecipeID(),recipeMap,false);
             removePresenter.prepareSuccessView(removeOutputData);
 

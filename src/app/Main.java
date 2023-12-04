@@ -12,7 +12,6 @@ import entity.search_results.CommonSearchResultFactory;
 import entity.user.CommonUserFactory;
 import interface_adapter.ViewManagerModel;
 import interface_adapter.add_recipe_to_folder.AddRecipeToFolderViewModel;
-import interface_adapter.clear_users.ClearViewModel;
 import interface_adapter.collect_recipe.CollectRecipeViewModel;
 import interface_adapter.create_folder.CreateFolderViewModel;
 import interface_adapter.default_opened_folder.DefaultOpenedFolderViewModel;
@@ -22,21 +21,16 @@ import interface_adapter.edit_recipe.EditRecipeViewModel;
 import interface_adapter.get_recipe.GetRecipeViewModel;
 import interface_adapter.logged_in.LoggedInViewModel;
 import interface_adapter.login.LoginViewModel;
-import interface_adapter.logout.LogoutController;
 import interface_adapter.logout.LogoutViewModel;
-import interface_adapter.my_folder.MyFolderController;
 import interface_adapter.my_folder.MyFolderViewModel;
 import interface_adapter.open_folder.OpenFolderViewModel;
 import interface_adapter.open_recipe.OpenRecipeViewModel;
 import interface_adapter.opened_folder.OpenedFolderViewModel;
 import interface_adapter.remove_recipe.RemoveViewModel;
-import interface_adapter.search.SearchController;
 import interface_adapter.search.SearchViewModel;
 import interface_adapter.searched.SearchedViewModel;
 import interface_adapter.signup.SignupViewModel;
 import interface_adapter.upload_recipe.UploadRecipeViewModel;
-import use_case.add_recipe_to_folder.AddRecipeToFolderDataAccessInterface;
-import use_case.clear_users.ClearUserDataAccessInterface;
 import use_case.collect_recipe.CollectRecipeDataAccessInterface;
 import use_case.create_folder.CreateFolderDataAccessInterface;
 import use_case.delete_folder.DeleteFolderUserDataAccessInterface;
@@ -84,9 +78,6 @@ public class Main {
         SignupViewModel signupViewModel = new SignupViewModel();
 
 
-
-
-
         FileUserDataAccessObject userDataAccessObject;
         try {
             userDataAccessObject = new FileUserDataAccessObject("./users.csv", new CommonUserFactory());
@@ -124,8 +115,6 @@ public class Main {
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
-
-
 
 
 

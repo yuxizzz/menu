@@ -118,11 +118,6 @@ public class EditView extends JPanel implements ActionListener, PropertyChangeLi
         //
         // Notice how it has access to instance variables in the enclosing class!
 
-
-
-
-
-
         nameInputField.addKeyListener(
                 new KeyListener() {
                     @Override
