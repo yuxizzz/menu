@@ -20,7 +20,7 @@ public class InMemoryUserDataAccessObject implements SignupUserDataAccessInterfa
         DeleteFolderUserDataAccessInterface, CreateFolderDataAccessInterface, LoginUserDataAccessInterface,
         LogoutDataAccessInterface {
 
-    private final Map<String, User> users = new HashMap<>();
+    private static final Map<String, User> users = new HashMap<>();
     private final UserFactory userFactory;
 
     public InMemoryUserDataAccessObject() {
@@ -94,8 +94,6 @@ public class InMemoryUserDataAccessObject implements SignupUserDataAccessInterfa
         user.addFolder(folder);
     }
 
-    @Override
-    public void saveData() {
+    public static Map<String, User> getUsers(){return users;}
 
-    }
 }

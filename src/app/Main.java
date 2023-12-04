@@ -178,7 +178,9 @@ public class Main {
                 defaultOpenedFolderViewModel,
                 openRecipeViewModel,
                 removeViewModel,
-                deleteRecipeViewModel);
+                deleteRecipeViewModel
+//                myFolderDataAccessObject
+        );
         views.add(myFolderView, myFolderView.viewName);
 
         SearchView searchview = SearchUseCaseFactory.create(viewManagerModel,

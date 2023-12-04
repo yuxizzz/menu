@@ -1,5 +1,6 @@
 package view;
 
+import interface_adapter.ViewManagerModel;
 import interface_adapter.create_folder.CreateFolderController;
 import interface_adapter.create_folder.CreateFolderState;
 import interface_adapter.create_folder.CreateFolderViewModel;
@@ -39,6 +40,11 @@ public class MyFolderView extends JPanel implements ActionListener, PropertyChan
     JButton openFolder;
     JButton deleteFolder;
     JButton createFolder;
+
+
+
+    final private ViewManagerModel viewManagerModel;
+
 //    final JButton logOut;
 
 
@@ -52,7 +58,9 @@ public class MyFolderView extends JPanel implements ActionListener, PropertyChan
                         DeleteFolderViewModel deleteFolderViewModel,
                         DeleteFolderController deleteFolderController,
                         CreateFolderViewModel createFolderViewModel,
-                        CreateFolderController createFolderController) {
+                        CreateFolderController createFolderController,
+                        ViewManagerModel viewManagerModel) {
+
 
         JLabel title = new JLabel("My Folder Screen");
         title.setAlignmentX(Component.CENTER_ALIGNMENT);
@@ -81,13 +89,23 @@ public class MyFolderView extends JPanel implements ActionListener, PropertyChan
         this.createFolderViewModel = createFolderViewModel;
         this.createFolderController = createFolderController;
 
+        this.viewManagerModel = viewManagerModel;
+
         this.myFolderViewModel.addPropertyChangeListener(this);
         this.logoutViewModel.addPropertyChangeListener(this);
         this.deleteFolderViewModel.addPropertyChangeListener(this);
         this.createFolderViewModel.addPropertyChangeListener(this);
 
         ArrayList<JLabel> folderlists = new ArrayList<>();
+        ArrayList<String> folderList = myFolderViewModel.getFolderList();
+        System.out.println(folderList);
+        System.out.println(folderlists);
+        for (String folder: folderList){
+            JLabel f = new JLabel(folder);
+            folderlists.add(f);
+        }
         this.folderlists = folderlists;
+
 
 
 //        JButton logOut = new JButton(myFolderViewModel.LOGOUT_BUTTON_LABEL);
@@ -98,6 +116,7 @@ public class MyFolderView extends JPanel implements ActionListener, PropertyChan
 //        ArrayList<String> folderList = myFolderViewModel.getFolderList();
 //        this.foldernames = folderList;
 //        JPanel buttons = new JPanel();
+
 
         JPanel buttons = new JPanel();
         Integer count = 0;
@@ -156,8 +175,10 @@ public class MyFolderView extends JPanel implements ActionListener, PropertyChan
 //                        }
 //                    });
 //            buttons.add(logOut);
-//            this.add(buttons);
-            this.add(foldername);
+
+            buttons.add(foldername);
+            this.add(buttons);
+
         }
             createFolder.setBounds(600, 1000, 100, 40);
             createFolder.addActionListener(
@@ -165,23 +186,26 @@ public class MyFolderView extends JPanel implements ActionListener, PropertyChan
                         @Override
                         public void actionPerformed(ActionEvent e) {
                             if (e.getSource().equals(createFolder)) {
+                                viewManagerModel.setActiveView(createFolderViewModel.getViewName());
+                                viewManagerModel.firePropertyChanged();
 
-                                CreateFolderState currentState = createFolderViewModel.getState();
-                                createFolderController.execute(currentState.getFoldername(), currentState.getUsername());
+//                                 CreateFolderState currentState = createFolderViewModel.getState();
+//                                 createFolderController.execute(currentState.getFoldername(), currentState.getUsername());
                                 // TODO check create folder state something might wrong
                             }
                         }
                     }
             );
-//        JPanel buttons1 = new JPanel();
-//        buttons1.add(createFolder);
+        JPanel buttons1 = new JPanel();
+        buttons1.add(createFolder);
             buttons.add(createFolder);
             this.setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
-//        this.add(buttons1);
+        this.add(buttons1);
             this.add(buttons);
             this.add(username);
             this.add(title);
         }
+
     /**
      * React to a button click that results in evt.
      */
