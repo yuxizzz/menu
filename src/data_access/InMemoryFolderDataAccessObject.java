@@ -33,7 +33,7 @@ public class InMemoryFolderDataAccessObject implements CollectRecipeDataAccessIn
 
     private Folder demoDefault;
 
-    private static final Map<String, Folder> foldersDemo = new HashMap<>();
+    private static final HashMap<String, Folder> foldersDemo = new HashMap<>();
 
     public InMemoryFolderDataAccessObject() {
         ArrayList<Integer> recipeID = new ArrayList<>();
@@ -48,12 +48,11 @@ public class InMemoryFolderDataAccessObject implements CollectRecipeDataAccessIn
         demo.addRecipe(recipe1.getRecipeID(), recipe1);
 
 
-
-
         Folder demoDefault = new DefaultFolder();
         this.demoDefault = demoDefault;
         Recipe recipe2 = new UserRecipe("2", "2", "2", "2", "2", "2", 2, "Irina");
         demoDefault.addRecipe(recipe2.getRecipeID(), recipe2);
+        foldersDemo.put(demoDefault.getName(), demoDefault);
 
     }
 

@@ -28,6 +28,7 @@ class DeleteRecipeInteractorTest {
                 // any creation time is fine.
                 assertTrue(output.getRecipeMap() instanceof HashMap<Integer, ArrayList>);
                 assertEquals(2, output.getRecipeID());
+                assertEquals("2",output.getRecipeDeleted());
             }
 
             @Override
@@ -45,29 +46,26 @@ class DeleteRecipeInteractorTest {
 
 
 
-
-
     @Test
     void failureRecipeExistsTest() {
-        AddRecipeToFolderInputData inputData = new AddRecipeToFolderInputData("B", 1, "judy");
-        AddRecipeToFolderDataAccessInterface userRepository = new InMemoryFolderDataAccessObject();
+        DeleteRecipeInputData inputData = new DeleteRecipeInputData( 10, "Jessica");
+        DeleteRecipeDataAccessInterface folderRepository = new InMemoryFolderDataAccessObject();
 
         // Add Paul to the repo so that when we check later they already exist
-        AddRecipeToFolderOutputBoundary successPresenter = new AddRecipeToFolderOutputBoundary() {
+        DeleteRecipeOutputBoundary successPresenter = new DeleteRecipeOutputBoundary() {
 
             @Override
-            public void prepareSuccessView(AddRecipeToFolderOutputData outputData) {
+            public void prepareSuccessView(DeleteRecipeOutputData outputData) {
                 fail("Use case failure is unexpected.");
 
             }
 
             @Override
             public void prepareFailView(String error) {
-                Assertions.assertEquals("Recipe does not existed", error);
-                Assertions.assertFalse(userRepository.addRecipeToFolder("B", 1));
+                Assertions.assertEquals(10 + ": Recipe does not exist.", error);
             }
         };
-        AddRecipeToFolderInputBoundary interactor = new AddRecipeToFolderInteractor(userRepository, successPresenter);
+        DeleteRecipeInputBoundary interactor = new DeleteRecipeInteractor(folderRepository, successPresenter);
         interactor.execute(inputData);
     }
 
