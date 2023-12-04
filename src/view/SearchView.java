@@ -1,5 +1,6 @@
 package view;
 
+import entity.Searched;
 import interface_adapter.ViewManagerModel;
 import interface_adapter.search.SearchController;
 import interface_adapter.search.SearchState;
@@ -66,16 +67,16 @@ public class SearchView extends JPanel implements ActionListener, PropertyChange
                 new ActionListener() {
                     public void actionPerformed(ActionEvent evt) {
                         if (evt.getSource().equals(search)) {
-                            SearchedState currentState = searchedViewModel.getState();
+//                            SearchedState currentState = searchedViewModel.getState();
 
 //                            try {
 //                                searchController.execute(currentState.getIngredients(), currentState.getTags());
 //                            } catch (IOException e) {
 //                                throw new RuntimeException(e);
 //                            }
-                            viewManagerModel.setActiveView(searchedViewModel.getViewName());
-                            viewManagerModel.firePropertyChanged();
-
+//                            viewManagerModel.setActiveView(searchedViewModel.getViewName());
+//                            viewManagerModel.firePropertyChanged();
+                            Searched.main();
                         }
                     }
                 }

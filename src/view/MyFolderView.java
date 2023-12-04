@@ -1,5 +1,6 @@
 package view;
 
+import entity.ReadImage;
 import interface_adapter.ViewManagerModel;
 import interface_adapter.create_folder.CreateFolderController;
 import interface_adapter.create_folder.CreateFolderState;
@@ -21,6 +22,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
+import java.net.MalformedURLException;
 import java.util.ArrayList;
 
 public class MyFolderView extends JPanel implements ActionListener, PropertyChangeListener {
@@ -147,8 +149,13 @@ public class MyFolderView extends JPanel implements ActionListener, PropertyChan
                     new ActionListener() {
                         public void actionPerformed(ActionEvent evt) {
                             if (evt.getSource().equals(openFolder)) {
-                                OpenFolderState currentState = openFolderViewModel.getState();
-                                openFolderController.execute(foldername.getText(), currentState.getUsername());
+//                                OpenFolderState currentState = openFolderViewModel.getState();
+//                                openFolderController.execute(foldername.getText(), currentState.getUsername());
+                                try {
+                                    ReadImage.main();
+                                } catch (MalformedURLException e) {
+                                    throw new RuntimeException(e);
+                                }
                             }
                         }
                     }

@@ -11,7 +11,7 @@ import java.net.URISyntaxException;
 import java.net.URL;
 
 public class Searched {
-    public static void main(String[] args) {
+    public static void main() {
 
 //    {716426=[https://spoonacular.com/recipeImages/716426-312x231.jpg, Cauliflower, Brown Rice, and Vegetable Fried Rice],
         // 782601=[https://spoonacular.com/recipeImages/782601-312x231.jpg, Red Kidney Bean Jambalaya],

@@ -1,7 +1,5 @@
 package entity;
 
-import interface_adapter.get_recipe.GetRecipeState;
-
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -16,7 +14,7 @@ import javax.swing.*;
 // model for view
 
 public class ReadImage {
-    public static void main(String[] args) throws MalformedURLException {
+    public static void main() throws MalformedURLException {
         JLabel title = new JLabel("Opened Folder Screen");
         title.setAlignmentX(Component.CENTER_ALIGNMENT);
 
