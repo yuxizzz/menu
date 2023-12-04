@@ -1,5 +1,6 @@
 package data_access;
 
+import api.Search;
 import entity.folder.Folder;
 import entity.search_results.CommonSearchResultFactory;
 import entity.search_results.SearchResult;
@@ -123,7 +124,7 @@ public class SearchResultsDataAccessObject implements SearchUserDataAccessInterf
 
     @Override
     public boolean existsIngredients(String ingredient, String tags) throws IOException {
-        if (getRecipeList(ingredient, "gulten free").isEmpty()) {
+        if (Search.getRecipeList(ingredient, "gulten free").isEmpty()) {
             return false;
         } else {
             return true;
@@ -131,7 +132,7 @@ public class SearchResultsDataAccessObject implements SearchUserDataAccessInterf
     }
 
     public boolean existsTags(String ingredient, String tags) throws IOException {
-        if (getRecipeList("egg", tags).isEmpty()) {
+        if (Search.getRecipeList("egg", tags).isEmpty()) {
             return false;
         } else {
             return true;
@@ -139,7 +140,7 @@ public class SearchResultsDataAccessObject implements SearchUserDataAccessInterf
     }
 
     public HashMap<Integer, ArrayList> getOutputRecipes(String ingredients, String tags) throws IOException {
-        this.resultMap = getRecipeList(ingredients, tags);
+        this.resultMap = Search.getRecipeList(ingredients, tags);
         HashMap<Integer, ArrayList> result = new HashMap<Integer, ArrayList>();
         for (Map.Entry<Object, SearchResult> entry : resultMap.entrySet()){
             Object key = entry.getKey();

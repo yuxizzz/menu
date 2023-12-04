@@ -14,6 +14,9 @@ import interface_adapter.delete_folder.DeleteFolderPresenter;
 import interface_adapter.delete_folder.DeleteFolderViewModel;
 import interface_adapter.delete_userRecipe.DeleteRecipeState;
 import interface_adapter.delete_userRecipe.DeleteRecipeViewModel;
+import interface_adapter.login.LoginViewModel;
+import interface_adapter.logout.LogoutController;
+import interface_adapter.logout.LogoutPresenter;
 import interface_adapter.logout.LogoutViewModel;
 import interface_adapter.my_folder.MyFolderController;
 import interface_adapter.my_folder.MyFolderPresenter;
@@ -33,6 +36,10 @@ import use_case.delete_folder.DeleteFolderInputBoundary;
 import use_case.delete_folder.DeleteFolderInteractor;
 import use_case.delete_folder.DeleteFolderOutputBoundary;
 import use_case.delete_folder.DeleteFolderUserDataAccessInterface;
+import use_case.logout.LogoutDataAccessInterface;
+import use_case.logout.LogoutInputBoundary;
+import use_case.logout.LogoutInteractor;
+import use_case.logout.LogoutOutputBoundary;
 import use_case.my_folder.MyFolderDataAccessInterface;
 import use_case.my_folder.MyFolderInputBoundary;
 import use_case.my_folder.MyFolderInteractor;
@@ -67,9 +74,11 @@ public class MyFolderUseCaseFactory {
             DefaultOpenedFolderViewModel defaultOpenedFolderViewModel,
             OpenRecipeViewModel openRecipeViewModel,
             RemoveViewModel removeViewModel,
-            DeleteRecipeViewModel deleteRecipeViewModel
+            DeleteRecipeViewModel deleteRecipeViewModel, LoginViewModel loginViewModel,
+            LogoutDataAccessInterface logoutDataAccessObject
+            ) throws IOException {
 //            MyFolderDataAccessInterface myFolderDataAccessObject
-    ) throws IOException {
+
 
             OpenFolderController openFolderController = createOpenFolderUseCase(viewManagerModel,
                     openFolderViewModel, openFolderDataAccessInterface, openedFolderViewModel,
@@ -79,13 +88,16 @@ public class MyFolderUseCaseFactory {
                     deleteFolderViewModel, deleteFolderUserDataAccessInterface);
             CreateFolderController createFolderController = createCreateFolderUseCase(viewManagerModel, createFolderViewModel,
                     myFolderViewModel, createFolderDataAccessInterface);
+        LogoutController logoutController = createLogoutUseCase(viewManagerModel, loginViewModel,
+                logoutViewModel, logoutDataAccessObject);
 
 //        MyFolderController myFolderController = createMyFolderUseCase(viewManagerModel, openFolderViewModel, deleteFolderViewModel,
 //                createFolderViewModel, myFolderViewModel, myFolderDataAccessObject);
 
             return new MyFolderView(myFolderViewModel,logoutViewModel, openFolderViewModel, openFolderController,
                     deleteFolderViewModel, deleteFolderController,
-                    createFolderViewModel, createFolderController, viewManagerModel);
+                    createFolderViewModel, createFolderController, viewManagerModel,
+                    logoutController);
     }
 
     private static MyFolderController createMyFolderUseCase(ViewManagerModel viewManagerModel, OpenFolderViewModel openFolderViewModel,
@@ -144,5 +156,20 @@ public class MyFolderUseCaseFactory {
         OpenFolderInputBoundary openFolderInteractor = new OpenFolderInteractor(openFolderDataAccessInterface, OpenFolderOutputBoundary);
 
         return new OpenFolderController(openFolderInteractor);
+    }
+    private static LogoutController createLogoutUseCase(
+            ViewManagerModel viewManagerModel, LoginViewModel loginViewModel,
+            LogoutViewModel logoutViewModel, LogoutDataAccessInterface logoutDataAccessObject) throws IOException {
+
+        // Notice how we pass this method's parameters to the Presenter.
+        LogoutOutputBoundary logoutOutputBoundary = new LogoutPresenter(logoutViewModel,
+                loginViewModel, viewManagerModel);
+
+        UserFactory userFactory = new CommonUserFactory();
+
+        LogoutInputBoundary logoutInteractor = new LogoutInteractor(
+                logoutDataAccessObject, logoutOutputBoundary);
+
+        return new LogoutController(logoutInteractor);
     }
 }

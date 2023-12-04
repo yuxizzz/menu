@@ -1,5 +1,6 @@
 package view;
 
+import interface_adapter.ViewManagerModel;
 import interface_adapter.search.SearchController;
 import interface_adapter.search.SearchState;
 import interface_adapter.search.SearchViewModel;
@@ -30,13 +31,20 @@ public class SearchView extends JPanel implements ActionListener, PropertyChange
 //    final JButton myFolder;
 
     private final SearchController searchController;
+    private final ViewManagerModel viewManagerModel;
+
+    private final SearchedViewModel searchedViewModel;
 
     public SearchView(SearchViewModel searchViewModel,
-                      SearchController searchController) {
+                      SearchController searchedController,
+                      ViewManagerModel viewManagerModel,
+                      SearchedViewModel searchedViewModel) {
 
-        this.searchController = searchController;
+        this.searchController = searchedController;
         this.searchViewModel = searchViewModel;
         this.searchViewModel.addPropertyChangeListener(this);
+        this.viewManagerModel = viewManagerModel;
+        this.searchedViewModel = searchedViewModel;
 
         JLabel title = new JLabel(SearchViewModel.TITLE_LABEL);
         title.setAlignmentX(Component.CENTER_ALIGNMENT);
@@ -58,13 +66,16 @@ public class SearchView extends JPanel implements ActionListener, PropertyChange
                 new ActionListener() {
                     public void actionPerformed(ActionEvent evt) {
                         if (evt.getSource().equals(search)) {
-                            SearchState currentState = searchViewModel.getState();
+                            SearchedState currentState = searchedViewModel.getState();
 
-                            try {
-                                searchController.execute(currentState.getIngredients(), currentState.getTags());
-                            } catch (IOException e) {
-                                throw new RuntimeException(e);
-                            }
+//                            try {
+//                                searchController.execute(currentState.getIngredients(), currentState.getTags());
+//                            } catch (IOException e) {
+//                                throw new RuntimeException(e);
+//                            }
+                            viewManagerModel.setActiveView(searchedViewModel.getViewName());
+                            viewManagerModel.firePropertyChanged();
+
                         }
                     }
                 }

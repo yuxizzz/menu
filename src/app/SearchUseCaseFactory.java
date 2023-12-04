@@ -27,7 +27,8 @@ public class SearchUseCaseFactory {
 
         SearchController searchController = createUserSearchUseCase(viewManagerModel,
                 searchViewModel, getRecipeViewModel, searchedViewModel, userDataAccessObject);
-        return new SearchView(searchViewModel, searchController);
+        return new SearchView(searchViewModel, searchController,
+                viewManagerModel, searchedViewModel);
     }
 
     private static SearchController createUserSearchUseCase(ViewManagerModel viewManagerModel,

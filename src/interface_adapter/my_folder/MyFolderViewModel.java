@@ -25,6 +25,9 @@ public class MyFolderViewModel extends ViewModel {
 
     public void setState(interface_adapter.my_folder.MyFolderState state) {
         this.state = state;
+        this.folderList = state.getFoldernames();
+//        System.out.println(state.getFoldernames() + "sdfsdf");
+
     }
 
     private final PropertyChangeSupport support = new PropertyChangeSupport(this);
@@ -44,7 +47,10 @@ public class MyFolderViewModel extends ViewModel {
     }
 
     public void setFolderList(ArrayList<String> folderList){
-        this.folderList = folderList;
+        this.folderList = state.getFoldernames();
     }
-    public ArrayList<String> getFolderList(){return folderList;}
+    public ArrayList<String> getFolderList(){
+//        System.out.println(folderList + "sdfsdfbjh");
+        return folderList;
+        }
 }

@@ -189,7 +189,7 @@ public class Main {
                 defaultOpenedFolderViewModel,
                 openRecipeViewModel,
                 removeViewModel,
-                deleteRecipeViewModel
+                deleteRecipeViewModel, loginViewModel, logoutDataAccessObject
 //                myFolderDataAccessObject
         );
         views.add(myFolderView, myFolderView.viewName);
