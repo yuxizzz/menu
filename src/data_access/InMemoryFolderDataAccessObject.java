@@ -9,6 +9,7 @@ import use_case.add_recipe_to_folder.AddRecipeToFolderDataAccessInterface;
 import use_case.collect_recipe.CollectRecipeDataAccessInterface;
 import use_case.delete_userRecipe.DeleteRecipeDataAccessInterface;
 import use_case.open_folder.OpenFolderDataAccessInterface;
+import use_case.remove_recipe.RemoveDataAccessInterface;
 
 import java.util.*;
 
@@ -18,7 +19,7 @@ import java.util.*;
  */
 
 public class InMemoryFolderDataAccessObject implements CollectRecipeDataAccessInterface, AddRecipeToFolderDataAccessInterface,
-        DeleteRecipeDataAccessInterface, OpenFolderDataAccessInterface {
+        DeleteRecipeDataAccessInterface, OpenFolderDataAccessInterface, RemoveDataAccessInterface {
 
 //    private final Map<String, Folder> folders = new HashMap<>();
 //
@@ -100,12 +101,35 @@ public class InMemoryFolderDataAccessObject implements CollectRecipeDataAccessIn
 
     @Override
     public HashMap<Integer, ArrayList> getrecipeMap(String foldername) {
+        HashMap<Integer, ArrayList> recipeMap = new HashMap<>();
+        if (foldername == demo.getName()) {
+            for (Recipe r: demo.getRecipeMap().values()) {
+                ArrayList<String> recipes = new ArrayList<>();
+                recipes.add(r.getName());
+                recipeMap.put(r.getRecipeID(), recipes);
+            }
+            return recipeMap;
+        }
         return null;
     }
 
     @Override
-    public boolean existsByRecipeID(Integer recipeID, String username) {
-        return false;
+    public CommonRecipe removeRecipe(Integer removedRecipeID, String username, String foldername) {
+        CommonRecipe r = null;
+        for (Recipe recipe: demo) {
+            r = (CommonRecipe) recipe;
+
+        }
+        return r;
     }
 
+    @Override
+    public boolean existsByRecipeID(Integer recipeID, String username) {
+        if (folders.containsValue(recipeID)) {
+            return true;
+        } else if (recipeID == 1) {
+            return true;
+        }
+        return false;
+    }
 }

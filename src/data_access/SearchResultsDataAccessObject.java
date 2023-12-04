@@ -1,5 +1,6 @@
 package data_access;
 
+import api.Search;
 import entity.folder.Folder;
 import entity.search_results.CommonSearchResultFactory;
 import entity.search_results.SearchResult;
@@ -32,6 +33,7 @@ public class SearchResultsDataAccessObject implements SearchUserDataAccessInterf
                                          SearchResultFactory searchResult) throws IOException {
         this.searchResult = searchResult;
         csvFile = new File(csvPath);
+
     }
 //        headers.put("results", 0);
 //        headers.put("password", 1);
@@ -123,7 +125,7 @@ public class SearchResultsDataAccessObject implements SearchUserDataAccessInterf
 
     @Override
     public boolean existsIngredients(String ingredient, String tags) throws IOException {
-        if (getRecipeList(ingredient, "gulten free").isEmpty()) {
+        if (Search.getRecipeList(ingredient, "gulten free").isEmpty()) {
             return false;
         } else {
             return true;
@@ -131,7 +133,7 @@ public class SearchResultsDataAccessObject implements SearchUserDataAccessInterf
     }
 
     public boolean existsTags(String ingredient, String tags) throws IOException {
-        if (getRecipeList("egg", tags).isEmpty()) {
+        if (Search.getRecipeList("egg", tags).isEmpty()) {
             return false;
         } else {
             return true;

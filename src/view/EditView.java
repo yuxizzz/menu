@@ -14,14 +14,6 @@ import java.awt.event.KeyListener;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 
-
-
-
-
-
-
-
-
 public class EditView extends JPanel implements ActionListener, PropertyChangeListener {
 
     public final String viewName = "edit recipe";
@@ -125,11 +117,6 @@ public class EditView extends JPanel implements ActionListener, PropertyChangeLi
         // makes it listen to keystrokes in the usernameInputField.
         //
         // Notice how it has access to instance variables in the enclosing class!
-
-
-
-
-
 
         nameInputField.addKeyListener(
                 new KeyListener() {
