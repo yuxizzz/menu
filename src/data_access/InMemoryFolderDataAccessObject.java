@@ -10,6 +10,7 @@ import use_case.add_recipe_to_folder.AddRecipeToFolderDataAccessInterface;
 import use_case.collect_recipe.CollectRecipeDataAccessInterface;
 import use_case.delete_userRecipe.DeleteRecipeDataAccessInterface;
 import use_case.open_folder.OpenFolderDataAccessInterface;
+import use_case.remove_recipe.RemoveDataAccessInterface;
 
 import java.util.*;
 
@@ -19,7 +20,7 @@ import java.util.*;
  */
 
 public class InMemoryFolderDataAccessObject implements CollectRecipeDataAccessInterface, AddRecipeToFolderDataAccessInterface,
-        DeleteRecipeDataAccessInterface, OpenFolderDataAccessInterface {
+        DeleteRecipeDataAccessInterface, RemoveDataAccessInterface,OpenFolderDataAccessInterface {
 
 //    private final Map<String, Folder> folders = new HashMap<>();
 //
@@ -52,7 +53,13 @@ public class InMemoryFolderDataAccessObject implements CollectRecipeDataAccessIn
         this.demoDefault = demoDefault;
         Recipe recipe2 = new UserRecipe("2", "2", "2", "2", "2", "2", 2, "Irina");
         demoDefault.addRecipe(recipe2.getRecipeID(), recipe2);
+
+        demoDefault.addRecipe(recipe1.getRecipeID(), recipe1);
+
+
+
         foldersDemo.put(demoDefault.getName(), demoDefault);
+        foldersDemo.put(demo.getName(), demo);
 
     }
 
@@ -101,6 +108,17 @@ public class InMemoryFolderDataAccessObject implements CollectRecipeDataAccessIn
         return userRecipe;
     }
 
+
+    @Override
+    public CommonRecipe removeRecipe(Integer recipeid, String username, String foldername) {
+        HashMap<Integer, Recipe> recipes = demo.getRecipeMap();
+
+        CommonRecipe commonRecipe = (CommonRecipe) recipes.get(recipeid);
+        recipes.remove(recipeid);
+
+        return commonRecipe;
+    }
+
     @Override
     public boolean existsByName(String identifier) {
         if (folders.containsKey(identifier)) {
@@ -130,6 +148,7 @@ public class InMemoryFolderDataAccessObject implements CollectRecipeDataAccessIn
         }
         return recipeMap;
     }
+
 
     @Override
     public boolean existsByRecipeID(Integer recipeID, String username) {
