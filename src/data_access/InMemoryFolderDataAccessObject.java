@@ -152,15 +152,6 @@ public class InMemoryFolderDataAccessObject implements CollectRecipeDataAccessIn
     }
 
 
-    @Override
-    public CommonRecipe removeRecipe(Integer removedRecipeID, String username, String foldername) {
-        CommonRecipe r = null;
-        for (Recipe recipe: demo) {
-            r = (CommonRecipe) recipe;
-
-        }
-        return r;
-    }
 
     @Override
     public boolean existsByRecipeID(Integer recipeID, String username) {
