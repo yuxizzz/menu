@@ -3,7 +3,11 @@ package entity;
 import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.io.IOException;
+import java.net.URI;
+import java.net.URISyntaxException;
 import java.net.URL;
 
 public class Searched {
@@ -38,6 +42,32 @@ JLabel title = new JLabel("Search Result Screen");
 
     JPanel buttons = new JPanel();
         buttons.add(get);
+        get.addActionListener(
+                new ActionListener() {
+                    @Override
+                    public void actionPerformed(ActionEvent e) {
+                        if (e.getSource().equals(get)) {
+
+                            String url = "https://spoonacular.com/recipes/Cauliflower-Brown%20-Rice-%20and%20-Vegetable-Fried%20-Rice-716426";
+
+                            Desktop dt = Desktop.getDesktop();
+                            URI uri = null;
+                            try {
+                                uri = new URI(url);
+                            } catch (URISyntaxException ex) {
+                                throw new RuntimeException(ex);
+                            }
+                            try {
+                                dt.browse(uri.resolve(uri));
+                            } catch (IOException ex) {
+                                throw new RuntimeException(ex);
+                            }
+
+
+                        }
+                    }
+                }
+        );
 
         JButton get2 = new JButton();
 //    JButton remove = new JButton();

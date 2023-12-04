@@ -1,7 +1,14 @@
 package entity;
 
+import interface_adapter.get_recipe.GetRecipeState;
+
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.io.IOException;
+import java.net.MalformedURLException;
+import java.net.URI;
+import java.net.URISyntaxException;
 import java.net.URL;
 import javax.imageio.ImageIO;
 import javax.swing.*;
@@ -9,7 +16,7 @@ import javax.swing.*;
 // model for view
 
 public class ReadImage {
-    public static void main(String[] args) {
+    public static void main(String[] args) throws MalformedURLException {
         JLabel title = new JLabel("Opened Folder Screen");
         title.setAlignmentX(Component.CENTER_ALIGNMENT);
 
@@ -23,6 +30,36 @@ public class ReadImage {
         get.setBounds(600, 10, 250, 100);
         get.setText("GET");
 
+        get.addActionListener(
+                new ActionListener() {
+                    @Override
+                    public void actionPerformed(ActionEvent e) {
+                        if (e.getSource().equals(get)) {
+
+                            String url = "https://spoonacular.com/recipes/Cauliflower-Brown%20-Rice-%20and%20-Vegetable-Fried%20-Rice-716426";
+
+                            Desktop dt = Desktop.getDesktop();
+                            URI uri = null;
+                            try {
+                                uri = new URI(url);
+                            } catch (URISyntaxException ex) {
+                                throw new RuntimeException(ex);
+                            }
+                            try {
+                                dt.browse(uri.resolve(uri));
+                            } catch (IOException ex) {
+                                throw new RuntimeException(ex);
+                            }
+
+
+                        }
+                    }
+                }
+        );
+//        URI uri = new URI("https://spoonacular.com/recipes/Cauliflower-Brown%20-Rice-%20and%20-Vegetable-Fried%20-Rice-716426");
+//        Desktop dt = Desktop.getDesktop();
+//        dt.browse(uri.toURL());
+
 //        JButton buttonremove = new JButton(OpenedFolderViewModel.GET_BUTTON_LABEL);
         remove.setBounds(900, 10, 250, 100);
         remove.setText("REMOVE");
@@ -35,7 +72,7 @@ public class ReadImage {
 
         Image image = null;
         try {
-            URL url = new URL("https://spoonacular.com/productImages/436359-312x231.jpg");
+            URL url = new URL("https://spoonacular.com/recipeImages/716426-312x231.jpg");
             image = ImageIO.read(url);
         } catch (IOException e) {
             e.printStackTrace();
