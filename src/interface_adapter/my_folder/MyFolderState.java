@@ -7,6 +7,8 @@ import java.util.HashMap;
 
 public class MyFolderState {
     private String username = "";
+
+
     private ArrayList<String> foldernames = new ArrayList<>();
 
     public MyFolderState(MyFolderState copy) {

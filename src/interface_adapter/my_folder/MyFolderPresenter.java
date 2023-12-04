@@ -42,6 +42,7 @@ public class MyFolderPresenter implements MyFolderOutputBoundary {
             myFolderState.setUsername(response.getUserName());
             myFolderState.setFoldernames(response.getFoldernames());
             this.myFolderViewModel.setState(myFolderState);
+//            System.out.println(myFolderViewModel.getFolderList()+"tyu");
             this.myFolderViewModel.firePropertyChanged();
 
 

@@ -37,6 +37,10 @@ public class LoginPresenter implements LoginOutputBoundary {
         // On success, switch to the logged in view.
         LoggedInState loggedInState = loggedInViewModel.getState();
         loggedInState.setUsername(response.getUsername());
+//        System.out.println(response.getUsername());
+//        System.out.println(response.getFolderList(response.getUsername()));
+        loggedInState.setFoldernames(response.getFolderList(response.getUsername()));
+
         this.loggedInViewModel.setState(loggedInState);
         this.loggedInViewModel.firePropertyChanged();
 
@@ -47,6 +51,8 @@ public class LoginPresenter implements LoginOutputBoundary {
 
         MyFolderState myFolderState = myFolderViewModel.getState();
         myFolderState.setUsername(response.getUsername());
+        myFolderState.setFoldernames(response.getFolderList(response.getUsername()));
+//        System.out.println(response.getFolderList(response.getUsername()));
         this.myFolderViewModel.setState(myFolderState);
 //        this.myFolderViewModel.firePropertyChanged();
 

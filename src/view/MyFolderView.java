@@ -1,5 +1,6 @@
 package view;
 
+import entity.ReadImage;
 import interface_adapter.ViewManagerModel;
 import interface_adapter.create_folder.CreateFolderController;
 import interface_adapter.create_folder.CreateFolderState;
@@ -7,6 +8,8 @@ import interface_adapter.create_folder.CreateFolderViewModel;
 import interface_adapter.delete_folder.DeleteFolderController;
 import interface_adapter.delete_folder.DeleteFolderState;
 import interface_adapter.delete_folder.DeleteFolderViewModel;
+import interface_adapter.logout.LogoutController;
+import interface_adapter.logout.LogoutState;
 import interface_adapter.logout.LogoutViewModel;
 import interface_adapter.my_folder.MyFolderState;
 import interface_adapter.my_folder.MyFolderViewModel;
@@ -19,6 +22,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
+import java.net.MalformedURLException;
 import java.util.ArrayList;
 
 public class MyFolderView extends JPanel implements ActionListener, PropertyChangeListener {
@@ -26,6 +30,8 @@ public class MyFolderView extends JPanel implements ActionListener, PropertyChan
     private final MyFolderViewModel myFolderViewModel;
 
     private final LogoutViewModel logoutViewModel;
+
+    private final LogoutController logoutController;
 
     private final OpenFolderViewModel openFolderViewModel;
     private final OpenFolderController openFolderController;
@@ -36,16 +42,15 @@ public class MyFolderView extends JPanel implements ActionListener, PropertyChan
 
     JLabel username;
     ArrayList<JLabel> folderlists;
+    ArrayList<String> folderList;
 
     JButton openFolder;
     JButton deleteFolder;
     JButton createFolder;
 
-
-
     final private ViewManagerModel viewManagerModel;
 
-//    final JButton logOut;
+    final JButton logOut;
 
 
     /**
@@ -59,7 +64,8 @@ public class MyFolderView extends JPanel implements ActionListener, PropertyChan
                         DeleteFolderController deleteFolderController,
                         CreateFolderViewModel createFolderViewModel,
                         CreateFolderController createFolderController,
-                        ViewManagerModel viewManagerModel) {
+                        ViewManagerModel viewManagerModel,
+                        LogoutController logoutController) {
 
 
         JLabel title = new JLabel("My Folder Screen");
@@ -88,6 +94,7 @@ public class MyFolderView extends JPanel implements ActionListener, PropertyChan
         this.deleteFolderController = deleteFolderController;
         this.createFolderViewModel = createFolderViewModel;
         this.createFolderController = createFolderController;
+        this.logoutController = logoutController;
 
         this.viewManagerModel = viewManagerModel;
 
@@ -97,40 +104,44 @@ public class MyFolderView extends JPanel implements ActionListener, PropertyChan
         this.createFolderViewModel.addPropertyChangeListener(this);
 
         ArrayList<JLabel> folderlists = new ArrayList<>();
-        ArrayList<String> folderList = myFolderViewModel.getFolderList();
-        System.out.println(folderList);
-        System.out.println(folderlists);
+        folderList = myFolderViewModel.getState().getFoldernames();
+        folderList.add("Collected Recipes");
+        folderList.add("My Recipes");
+//        System.out.println(folderList + "????");
+//        System.out.println(folderlists);
         for (String folder: folderList){
             JLabel f = new JLabel(folder);
             folderlists.add(f);
         }
+//        System.out.println(folderList+"cdsvknsd");
+//        System.out.println(folderlists+"fdsfjsdi");
         this.folderlists = folderlists;
 
 
 
-//        JButton logOut = new JButton(myFolderViewModel.LOGOUT_BUTTON_LABEL);
-//
-//
-//        this.logOut = logOut;
-//
+        JButton logOut = new JButton(myFolderViewModel.LOGOUT_BUTTON_LABEL);
+
+
+        this.logOut = logOut;
+
 //        ArrayList<String> folderList = myFolderViewModel.getFolderList();
 //        this.foldernames = folderList;
 //        JPanel buttons = new JPanel();
 
 
-        JPanel buttons = new JPanel();
+
         Integer count = 0;
         for (JLabel foldername : folderlists) {
 //            this.myFolderViewModel.addPropertyChangeListener(this);
-
+            JPanel buttons = new JPanel();
             buttons.add(openFolder);
             buttons.add(deleteFolder);
-            openFolder.setBounds(600, 10 + count, 100, 40);
+            openFolder.setBounds(10 , 600 + count, 100, 40);
             openFolder.setText("OPEN");
 
-            deleteFolder.setBounds(900, 10 + count, 100, 40);
+            deleteFolder.setBounds(10 , 900+ count , 100, 40);
             deleteFolder.setText("DELETE");
-            count += 50;
+            count += 950;
 
             openFolder.addActionListener(
 
@@ -138,8 +149,13 @@ public class MyFolderView extends JPanel implements ActionListener, PropertyChan
                     new ActionListener() {
                         public void actionPerformed(ActionEvent evt) {
                             if (evt.getSource().equals(openFolder)) {
-                                OpenFolderState currentState = openFolderViewModel.getState();
-                                openFolderController.execute(foldername.getText(), currentState.getUsername());
+//                                OpenFolderState currentState = openFolderViewModel.getState();
+//                                openFolderController.execute(foldername.getText(), currentState.getUsername());
+                                try {
+                                    ReadImage.main();
+                                } catch (MalformedURLException e) {
+                                    throw new RuntimeException(e);
+                                }
                             }
                         }
                     }
@@ -163,24 +179,16 @@ public class MyFolderView extends JPanel implements ActionListener, PropertyChan
 //             TODO add listener to each folder in my folder view. use the for loop in Opened Folder View
 
 
-//            logOut.addActionListener(
-//
-//                    // This creates an anonymous subclass of ActionListener and instantiates it.
-//                    new ActionListener() {
-//                        public void actionPerformed(ActionEvent evt) {
-//                            if (evt.getSource().equals(logOut)) {
-//                                LogoutState currentState = logoutViewModel.getState();
-//
-//                            }
-//                        }
-//                    });
-//            buttons.add(logOut);
+
+
 
             buttons.add(foldername);
+            buttons.revalidate();
+            buttons.repaint();
             this.add(buttons);
 
         }
-            createFolder.setBounds(600, 1000, 100, 40);
+            createFolder.setBounds(1000, 600, 100, 40);
             createFolder.addActionListener(
                     new ActionListener() {
                         @Override
@@ -196,14 +204,31 @@ public class MyFolderView extends JPanel implements ActionListener, PropertyChan
                         }
                     }
             );
+        logOut.setBounds(1200, 600, 100, 40);
+        logOut.addActionListener(
+
+                // This creates an anonymous subclass of ActionListener and instantiates it.
+                new ActionListener() {
+                    public void actionPerformed(ActionEvent evt) {
+                        if (evt.getSource().equals(logOut)) {
+                            LogoutState currentState = logoutViewModel.getState();
+                            logoutController.execute(currentState.getUsername());
+
+                        }
+                    }
+                });
+
         JPanel buttons1 = new JPanel();
         buttons1.add(createFolder);
-            buttons.add(createFolder);
+        buttons1.add(logOut);
+//            buttons.add(createFolder);
             this.setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
         this.add(buttons1);
-            this.add(buttons);
+//            this.add(buttons);
             this.add(username);
             this.add(title);
+
+
         }
 
     /**

@@ -141,7 +141,7 @@ public class SearchResultsDataAccessObject implements SearchUserDataAccessInterf
     }
 
     public HashMap<Integer, ArrayList> getOutputRecipes(String ingredients, String tags) throws IOException {
-        this.resultMap = getRecipeList(ingredients, tags);
+        this.resultMap = Search.getRecipeList(ingredients, tags);
         HashMap<Integer, ArrayList> result = new HashMap<Integer, ArrayList>();
         for (Map.Entry<Object, SearchResult> entry : resultMap.entrySet()){
             Object key = entry.getKey();

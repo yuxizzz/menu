@@ -3,6 +3,8 @@ package use_case.login;
 
 import entity.user.User;
 
+import java.util.ArrayList;
+
 public class LoginInteractor implements LoginInputBoundary {
     final LoginUserDataAccessInterface userDataAccessObject;
     final LoginOutputBoundary loginPresenter;
@@ -26,8 +28,10 @@ public class LoginInteractor implements LoginInputBoundary {
             } else {
 
                 User user = userDataAccessObject.get(loginInputData.getUsername());
+                ArrayList<String> folders = userDataAccessObject.getFolderList(loginInputData.getUsername());
+//                System.out.println(folders);
 
-                LoginOutputData loginOutputData = new LoginOutputData(user.getName(), false);
+                LoginOutputData loginOutputData = new LoginOutputData(user.getName(), folders, false);
                 loginPresenter.prepareSuccessView(loginOutputData);
             }
         }
