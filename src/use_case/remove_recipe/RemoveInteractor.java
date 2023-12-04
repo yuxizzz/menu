@@ -17,12 +17,6 @@ public class RemoveInteractor implements RemoveInputBoundary{
     @Override
     public void execute(RemoveInputData removeInputData) {
 
-
-
-
-
-
-
         Integer recipeID = removeInputData.getRemovedRecipeID();
 
 
@@ -40,13 +34,7 @@ public class RemoveInteractor implements RemoveInputBoundary{
                     commonRecipe.getRecipeID(),recipeMap,false);
             removePresenter.prepareSuccessView(removeOutputData);
 
-
-
         }
-
-
-
-
 
 
     }
