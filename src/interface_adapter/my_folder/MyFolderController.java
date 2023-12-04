@@ -12,8 +12,8 @@ public class MyFolderController {
     }
 
 
-    public void execute(String foldername) {
-        MyFolderInputData myFolderInputData = new MyFolderInputData(foldername);
+    public void execute(String username) {
+        MyFolderInputData myFolderInputData = new MyFolderInputData(username);
 
         myFolderUseCaseInteractor.execute(myFolderInputData);
     }

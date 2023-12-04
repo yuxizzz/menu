@@ -14,7 +14,9 @@ import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.fail;
 import static org.junit.jupiter.api.Assertions.*;
 
-class GetRecipeInteractorTest {
+
+//class GetRecipeInteractorTest {
+
 //    @Test
 //    void successTest() throws IOException {
 //        GetRecipeInputData inputData = new GetRecipeInputData(1);
@@ -63,4 +65,6 @@ class GetRecipeInteractorTest {
 //        interactor.execute(inputData);
 //    }
 
-}
+
+// }
+
